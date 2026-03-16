@@ -1,166 +1,283 @@
 "use client"
 
-import { Cpu, Zap, Globe, Shield, ChevronRight } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
+import { useLang } from "@/lib/i18n"
+
+function BrushStrokes() {
+  return (
+    <>
+      {/* form1 — brush stroke, multiple placements */}
+      <img src="/book/form1.png" alt="" className="absolute top-[8%] right-[-5%] w-[400px] md:w-[550px] opacity-[0.06] rotate-[-8deg] book-brush" style={{ "--brush-d": "0.3s" } as React.CSSProperties} />
+      <img src="/book/form1.png" alt="" className="absolute bottom-[12%] left-[-8%] w-[350px] md:w-[450px] opacity-[0.04] rotate-[175deg] book-brush" style={{ "--brush-d": "1s" } as React.CSSProperties} />
+      <img src="/book/form1.png" alt="" className="absolute top-[110vh] right-[2%] w-[300px] md:w-[400px] opacity-[0.05] rotate-[-20deg] book-brush" style={{ "--brush-d": "1.8s" } as React.CSSProperties} />
+      <img src="/book/form1.png" alt="" className="absolute top-[220vh] left-[-3%] w-[350px] opacity-[0.04] rotate-[10deg] book-brush" style={{ "--brush-d": "2.5s" } as React.CSSProperties} />
+
+      {/* form2 — ink splatter, multiple placements */}
+      <img src="/book/form2.png" alt="" className="absolute top-[25%] left-[5%] w-[180px] md:w-[250px] opacity-[0.05] book-brush" style={{ "--brush-d": "0.6s" } as React.CSSProperties} />
+      <img src="/book/form2.png" alt="" className="absolute top-[65%] right-[8%] w-[150px] md:w-[200px] opacity-[0.04] rotate-[90deg] book-brush" style={{ "--brush-d": "1.3s" } as React.CSSProperties} />
+      <img src="/book/form2.png" alt="" className="absolute top-[150vh] left-[50%] w-[200px] opacity-[0.035] rotate-[45deg] book-brush" style={{ "--brush-d": "2.2s" } as React.CSSProperties} />
+    </>
+  )
+}
+
+const TOMES = [
+  { num: "I", key: "book.t1", href: "https://www.amazon.ca/Aladin-Akkari-ebook/dp/B0G3XJ9QHV/" },
+  { num: "II", key: "book.t2", href: "https://www.amazon.ca/-/fr/Aladin-Akkari-ebook/dp/B0GCK5T59R" },
+  { num: "III", key: "book.t3", href: "https://www.amazon.ca/-/fr/Aladin-Akkari-ebook/dp/B0GRC8PPGC" },
+  { num: "IV", key: "book.t4", href: null },
+]
+
+const INK_SPLATS = [
+  { w: 180, h: 160, top: "5%", left: "8%", o: 0.035, d: "0.3s", blur: 20 },
+  { w: 120, h: 130, top: "70%", right: "5%", o: 0.04, d: "0.8s", blur: 15 },
+  { w: 90, h: 80, top: "40%", left: "85%", o: 0.03, d: "1.2s", blur: 12 },
+  { w: 200, h: 180, top: "80%", left: "20%", o: 0.025, d: "0.6s", blur: 25 },
+  { w: 60, h: 55, top: "15%", left: "60%", o: 0.05, d: "1.5s", blur: 8 },
+  { w: 140, h: 120, top: "50%", left: "3%", o: 0.03, d: "1s", blur: 18 },
+]
+
+const INK_DRIPS = [
+  { left: "12%", top: "12%", h: "100px", d: "1s" },
+  { left: "88%", top: "72%", h: "60px", d: "1.8s" },
+  { left: "62%", top: "16%", h: "45px", d: "2.2s" },
+  { left: "25%", top: "82%", h: "80px", d: "1.4s" },
+]
+
+function Typewriter({ text, delay, steps }: { text: string; delay: string; steps: number }) {
+  return (
+    <span className="inline-block">
+      <span
+        className="typewriter book-font"
+        style={{ "--tw-dur": `${steps * 0.08}s`, "--tw-d": delay, "--tw-steps": steps } as React.CSSProperties}
+      >
+        {text}
+      </span>
+    </span>
+  )
+}
 
 export function TechSection() {
-  return (
-    <div className="section-tech min-h-[300vh]" style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}>
-      {/* Hero */}
-      <section className="h-screen flex flex-col justify-between p-6 md:p-12 relative overflow-hidden">
-        {/* Grid Background */}
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: `linear-gradient(var(--section-accent) 1px, transparent 1px), linear-gradient(90deg, var(--section-accent) 1px, transparent 1px)`,
-          backgroundSize: '50px 50px'
-        }}></div>
+  const { t } = useLang()
 
+  return (
+    <div
+      className="section-tech"
+      style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}
+    >
+      {/* Ink & brush layer — covers entire section */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden>
+        {INK_SPLATS.map((s, i) => (
+          <div
+            key={`splat-${i}`}
+            className="ink-splat"
+            style={{
+              width: s.w, height: s.h, top: s.top, left: s.left, right: (s as any).right,
+              "--ink-o": s.o, animationDelay: s.d, filter: `blur(${s.blur}px)`,
+            } as React.CSSProperties}
+          />
+        ))}
+        {INK_DRIPS.map((d, i) => (
+          <div
+            key={`drip-${i}`}
+            className="ink-drip"
+            style={{ left: d.left, top: d.top, "--drip-h": d.h, "--drip-d": d.d } as React.CSSProperties}
+          />
+        ))}
+        <BrushStrokes />
+      </div>
+
+      {/* ═══════════════ HERO ═══════════════ */}
+      <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
+        {/* Thin decorative border — like a page */}
+        <div className="absolute inset-8 md:inset-14 lg:inset-20 border border-current opacity-[0.06] pointer-events-none" />
+
+        {/* Corner ornaments */}
+        <div className="absolute top-8 left-8 md:top-14 md:left-14 lg:top-20 lg:left-20 w-4 h-4 border-t border-l border-current opacity-[0.15]" />
+        <div className="absolute top-8 right-8 md:top-14 md:right-14 lg:top-20 lg:right-20 w-4 h-4 border-t border-r border-current opacity-[0.15]" />
+        <div className="absolute bottom-8 left-8 md:bottom-14 md:left-14 lg:bottom-20 lg:left-20 w-4 h-4 border-b border-l border-current opacity-[0.15]" />
+        <div className="absolute bottom-8 right-8 md:bottom-14 md:right-14 lg:bottom-20 lg:right-20 w-4 h-4 border-b border-r border-current opacity-[0.15]" />
+
+        {/* Nav */}
         <nav className="relative z-10 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--section-accent)" }}>
-              <Cpu className="w-5 h-5" style={{ color: "var(--section-bg)" }} />
-            </div>
-            <span className="text-xl font-bold tracking-tight">NEXUS</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8 text-sm">
-            <a href="#" className="hover:text-[var(--section-accent)] transition-colors">Products</a>
-            <a href="#" className="hover:text-[var(--section-accent)] transition-colors">Solutions</a>
-            <a href="#" className="hover:text-[var(--section-accent)] transition-colors">Developers</a>
-            <a href="#" className="hover:text-[var(--section-accent)] transition-colors">About</a>
-          </div>
-          <button className="px-4 py-2 text-sm font-medium rounded-lg transition-colors" style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}>
-            Get Started
-          </button>
+          <span className="book-font text-xs tracking-[0.3em] uppercase opacity-40">
+            {t("book.label")}
+          </span>
+          <a
+            href="https://aladin-akkari-book-store.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="book-font text-xs tracking-[0.2em] uppercase opacity-40 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/20 hover:decoration-current/60"
+          >
+            {t("book.store")}
+          </a>
         </nav>
 
-        <div className="relative z-10 flex-1 flex items-center">
-          <div className="max-w-4xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs mb-6" style={{ backgroundColor: "var(--section-muted)", color: "var(--section-accent)" }}>
-              <Zap className="w-3 h-3" />
-              <span>Powered by AI</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none">
-              THE FUTURE
-              <br />
-              IS <span style={{ color: "var(--section-accent)" }}>NOW</span>
+        {/* Center */}
+        <div className="relative z-10 flex-1 flex items-center justify-center text-center">
+          <div className="max-w-3xl">
+            {/* Main title — like the book store */}
+            <h1 className="book-title-font text-center font-black leading-[0.85] mb-6" style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}>
+              {t("book.main.1")}<br />
+              <span className="italic book-ruby-glow">{t("book.main.2")}</span><br />
+              {t("book.main.3")}
             </h1>
-            <p className="mt-6 text-lg md:text-xl max-w-xl opacity-70">
-              Cutting-edge technology solutions that transform how businesses operate. Scale faster. Build smarter.
+
+            {/* Subtitle — italic serif */}
+            <p className="book-title-font italic opacity-40 text-lg md:text-2xl mt-8 mb-10 leading-relaxed">
+              {t("book.subtitle")}
             </p>
-            <div className="flex items-center gap-4 mt-8">
-              <button className="px-6 py-3 rounded-lg font-medium flex items-center gap-2 transition-transform hover:scale-105" style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}>
-                Start Building <ChevronRight className="w-4 h-4" />
-              </button>
-              <button className="px-6 py-3 rounded-lg font-medium border transition-colors hover:bg-[var(--section-muted)]" style={{ borderColor: "var(--section-accent)", color: "var(--section-accent)" }}>
-                Watch Demo
-              </button>
+
+            {/* Typewriter author */}
+            <div className="h-5 flex justify-center mb-10">
+              <Typewriter text={`Aladin Akkari`} delay="1.5s" steps={25} />
             </div>
+
+            {/* CTA */}
+            <a
+              href="https://www.amazon.ca/-/fr/dp/B0G4KNMJ42"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="book-font inline-flex items-center gap-3 px-8 py-4 text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(194,58,34,0.25)]"
+              style={{ backgroundColor: "#C41E3A", color: "#f5f2eb" }}
+            >
+              {t("book.cta")}
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
           </div>
         </div>
 
-        <div className="relative z-10 flex items-center justify-between">
-          <div className="flex items-center gap-8">
-            {["99.9% Uptime", "50ms Latency", "256-bit Encryption"].map((stat, i) => (
-              <div key={i} className="text-sm opacity-70 flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "var(--section-accent)" }}></div>
-                {stat}
+        {/* Bottom */}
+        <div className="relative z-10 flex items-end justify-between">
+          <span className="book-font text-[10px] tracking-[0.2em] uppercase opacity-20">
+            Dark Fantasy
+          </span>
+          <div className="flex flex-col items-center gap-2">
+            <div className="w-px h-10 bg-current opacity-10" />
+            <span className="book-font text-[10px] tracking-[0.2em] uppercase opacity-20">{t("book.scroll")}</span>
+          </div>
+          <span className="book-font text-[10px] tracking-[0.2em] uppercase opacity-20">
+            IV Tomes
+          </span>
+        </div>
+      </section>
+
+      {/* ═══════════════ SYNOPSIS ═══════════════ */}
+      <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24 flex items-center">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+          <div>
+            <span className="book-font text-[10px] tracking-[0.3em] uppercase opacity-30 block mb-6">
+              {t("book.synopsis.label")}
+            </span>
+            <h2 className="book-font text-2xl md:text-3xl lg:text-4xl leading-[1.3] mb-8 opacity-80">
+              {t("book.synopsis.title")}
+            </h2>
+            <div className="w-10 h-px bg-current opacity-10 mb-8" />
+            <p className="book-font text-sm leading-[2] opacity-45 mb-6">
+              {t("book.synopsis.p1")}
+            </p>
+            <p className="book-font text-sm leading-[2] opacity-45">
+              {t("book.synopsis.p2")}
+            </p>
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <span className="book-font text-[10px] tracking-[0.3em] uppercase opacity-30 block mb-8">
+              {t("book.characters.label")}
+            </span>
+            {[
+              { name: "Jez", key: "book.char.jez" },
+              { name: "Marv", key: "book.char.marv" },
+              { name: "Oslo", key: "book.char.oslo" },
+              { name: "Ava", key: "book.char.ava" },
+            ].map((char, i) => (
+              <div
+                key={i}
+                className="group flex items-baseline justify-between py-5 border-b"
+                style={{ borderColor: "var(--section-muted)" }}
+              >
+                <span className="book-title-font text-2xl md:text-3xl group-hover:translate-x-2 transition-transform duration-500">{char.name}</span>
+                <span className="book-font text-xs opacity-35">{t(char.key)}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="min-h-screen p-6 md:p-12">
-        <div className="text-center mb-16">
-          <span className="text-xs tracking-[0.2em] uppercase mb-4 block" style={{ color: "var(--section-accent)" }}>Platform</span>
-          <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Built for Scale</h2>
-        </div>
+      {/* ═══════════════ TOMES ═══════════════ */}
+      <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24">
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-16 md:mb-24">
+            <span className="book-font text-[10px] tracking-[0.3em] uppercase opacity-30 block mb-4">
+              {t("book.tomes.label")}
+            </span>
+            <h2 className="book-font text-2xl md:text-4xl opacity-70">
+              {t("book.tomes.title")}
+            </h2>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            { icon: Cpu, title: "AI-Powered", desc: "Machine learning at the core of every decision" },
-            { icon: Zap, title: "Lightning Fast", desc: "Sub-millisecond response times globally" },
-            { icon: Globe, title: "Global Edge", desc: "Deployed across 200+ data centers" },
-            { icon: Shield, title: "Enterprise Security", desc: "SOC 2 Type II compliant infrastructure" },
-          ].map((feature, i) => (
-            <div key={i} className="group p-6 rounded-xl transition-all hover:scale-105" style={{ backgroundColor: "var(--section-muted)" }}>
-              <div className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-colors group-hover:bg-[var(--section-accent)]" style={{ backgroundColor: "rgba(0, 212, 255, 0.1)" }}>
-                <feature.icon className="w-6 h-6 group-hover:text-[var(--section-bg)]" style={{ color: "var(--section-accent)" }} />
+          <div className="space-y-0">
+            {TOMES.map((tome, i) => (
+              <div
+                key={i}
+                className="group flex flex-col md:flex-row md:items-center justify-between py-8 md:py-10 border-t"
+                style={{ borderColor: "var(--section-muted)" }}
+              >
+                <div className="flex items-baseline gap-4 md:gap-8 mb-2 md:mb-0">
+                  <span className="book-font text-xs opacity-20">Tome {tome.num}</span>
+                  <h3 className="book-title-font text-2xl md:text-3xl lg:text-4xl group-hover:translate-x-2 transition-transform duration-500">
+                    {t(`${tome.key}.title`)}
+                  </h3>
+                </div>
+                <div className="flex items-center gap-4 md:pl-4">
+                  <span className="book-font text-[10px] uppercase tracking-wider opacity-30">{t(`${tome.key}.status`)}</span>
+                  {tome.href ? (
+                    <a
+                      href={tome.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="book-font flex items-center gap-2 px-4 py-2 border text-xs tracking-wide opacity-40 group-hover:opacity-100 transition-all duration-500 hover:bg-[var(--section-fg)] hover:text-[var(--section-bg)]"
+                      style={{ borderColor: "var(--section-muted)" }}
+                    >
+                      Amazon <ArrowUpRight className="w-3 h-3" />
+                    </a>
+                  ) : (
+                    <span className="book-font text-xs opacity-20 italic px-4 py-2">{t("book.coming")}</span>
+                  )}
+                </div>
               </div>
-              <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-              <p className="text-sm opacity-70">{feature.desc}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-16">
-          {[
-            { value: "10M+", label: "API Requests/day" },
-            { value: "99.99%", label: "Uptime SLA" },
-            { value: "500+", label: "Enterprise Clients" },
-            { value: "<50ms", label: "Global Latency" },
-          ].map((stat, i) => (
-            <div key={i} className="text-center p-6 rounded-xl" style={{ backgroundColor: "var(--section-muted)" }}>
-              <div className="text-3xl md:text-4xl font-bold mb-2" style={{ color: "var(--section-accent)" }}>{stat.value}</div>
-              <div className="text-sm opacity-70">{stat.label}</div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Code Preview */}
-      <section className="min-h-screen p-6 md:p-12 flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="text-xs tracking-[0.2em] uppercase mb-4 block" style={{ color: "var(--section-accent)" }}>Developer Experience</span>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mb-6">Build in Minutes</h2>
-            <p className="text-lg opacity-70 mb-8">
-              Our intuitive APIs and SDKs let you integrate powerful AI capabilities with just a few lines of code.
+          {/* Author quote */}
+          <div className="mt-24 text-center max-w-lg mx-auto">
+            <div className="w-6 h-px bg-current opacity-10 mx-auto mb-8" />
+            <p className="book-font text-base opacity-35 leading-relaxed mb-4">
+              &ldquo;{t("book.author.quote")}&rdquo;
             </p>
-            <ul className="space-y-4">
-              {["RESTful & GraphQL APIs", "SDKs for all major languages", "Real-time webhooks", "Comprehensive documentation"].map((item, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}>
-                    <ChevronRight className="w-3 h-3" />
-                  </div>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
+            <span className="book-font text-[10px] tracking-[0.2em] uppercase opacity-20">— Aladin Akkari</span>
           </div>
-          <div className="rounded-xl p-6 font-mono text-sm overflow-hidden" style={{ backgroundColor: "var(--section-muted)" }}>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-3 h-3 rounded-full bg-red-500"></div>
-              <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
+
+          {/* Bookstore link */}
+          <div className="mt-16 text-center">
+            <a
+              href="https://aladin-akkari-book-store.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="book-font inline-flex items-center gap-2 text-sm tracking-[0.1em] opacity-40 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
+            >
+              {t("book.store.cta")}
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </a>
+          </div>
+
+          {/* Dots */}
+          <div className="mt-10 flex justify-center">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-current opacity-15" />
+              <div className="w-2 h-2 rounded-full bg-current opacity-15" />
+              <div className="w-2 h-2 rounded-full bg-current opacity-50" />
+              <div className="w-2 h-2 rounded-full bg-current opacity-15" />
             </div>
-            <pre className="text-xs md:text-sm overflow-x-auto">
-              <code>
-{`import { Nexus } from '@nexus/sdk'
-
-const client = new Nexus({
-  apiKey: process.env.NEXUS_API_KEY
-})
-
-// Generate AI-powered insights
-const result = await client.analyze({
-  data: userBehavior,
-  model: 'insight-v2'
-})
-
-console.log(result.predictions)`}
-              </code>
-            </pre>
-          </div>
-        </div>
-
-        <div className="mt-16 text-center">
-          <p className="text-sm opacity-50 mb-4">SWIPE RIGHT FOR NEXT SECTION</p>
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }}></div>
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
           </div>
         </div>
       </section>

@@ -196,6 +196,59 @@ const dict: Record<string, Record<Lang, string>> = {
     fr: "Maintenance, mises à jour, corrections de bugs et améliorations continues. On s'occupe de tout pour que vous vous concentrez sur votre business.",
     en: "Maintenance, updates, bug fixes and continuous improvements. We handle everything so you can focus on your business.",
   },
+
+  // Book section
+  "book.label": { fr: "Roman", en: "Novel" },
+  "book.store": { fr: "Librairie", en: "Bookstore" },
+  "book.series": { fr: "Les Chroniques de Jez", en: "The Chronicles of Jez" },
+  "book.main.1": { fr: "Les", en: "The" },
+  "book.main.2": { fr: "Chroniques", en: "Chronicles" },
+  "book.main.3": { fr: "de Jez", en: "of Jez" },
+  "book.subtitle": {
+    fr: "Une épopée de guerre, de secrets et de destinée brisée.",
+    en: "An epic of war, secrets and shattered destiny.",
+  },
+  "book.by": { fr: "par", en: "by" },
+  "book.cta": { fr: "Découvrir la saga", en: "Discover the saga" },
+  "book.quote": {
+    fr: "Une épopée de guerre, de secrets et de destins brisés.",
+    en: "An epic of war, secrets and shattered destiny.",
+  },
+  "book.scroll": { fr: "Défiler", en: "Scroll" },
+  "book.synopsis.label": { fr: "Synopsis", en: "Synopsis" },
+  "book.synopsis.title": {
+    fr: "Un voleur, une épée légendaire, un destin maudit",
+    en: "A thief, a legendary sword, a cursed destiny",
+  },
+  "book.synopsis.p1": {
+    fr: "Jez, un petit voleur, dérobe une épée légendaire et se retrouve mêlé à une conspiration qui le dépasse. Emprisonné avec Marv, un guerrier brutal, l'arme semble posséder sa propre volonté.",
+    en: "Jez, a petty thief, steals a legendary sword and becomes entangled in a conspiracy beyond his comprehension. Imprisoned with Marv, a brutal warrior, the weapon appears to possess its own will.",
+  },
+  "book.synopsis.p2": {
+    fr: "Dans un monde médiéval-fantasy où la magie opère à travers pactes, dettes et malédictions — les dieux de la Mort complotent contre les mortels, et les épées légendaires ne sont jamais de simples armes.",
+    en: "In a medieval-fantasy world where magic operates through pacts, debts and curses — Death gods scheme against mortals, and legendary swords are never mere weapons.",
+  },
+  "book.characters.label": { fr: "Personnages", en: "Characters" },
+  "book.char.jez": { fr: "L'héritier maudit", en: "The cursed heir" },
+  "book.char.marv": { fr: "Le colosse silencieux", en: "The silent colossus" },
+  "book.char.oslo": { fr: "Le capitaine déchu", en: "The fallen captain" },
+  "book.char.ava": { fr: "La survivante", en: "The survivor" },
+  "book.tomes.label": { fr: "La saga", en: "The saga" },
+  "book.tomes.title": { fr: "Quatre tomes, un destin", en: "Four volumes, one destiny" },
+  "book.t1.title": { fr: "L'Épée de la Dernière Chance", en: "The Sword of Last Chance" },
+  "book.t1.status": { fr: "Disponible", en: "Available" },
+  "book.t2.title": { fr: "L'Épée des Trois Serments", en: "The Sword of Three Oaths" },
+  "book.t2.status": { fr: "Disponible", en: "Available" },
+  "book.t3.title": { fr: "L'Épée des Mensonges Tissés", en: "The Sword of Woven Lies" },
+  "book.t3.status": { fr: "Disponible", en: "Available" },
+  "book.t4.title": { fr: "L'Épée des Héritages Brisés", en: "The Sword of Shattered Legacies" },
+  "book.t4.status": { fr: "En préparation", en: "In preparation" },
+  "book.coming": { fr: "Bientôt", en: "Soon" },
+  "book.store.cta": { fr: "Pour plus d'informations", en: "For more information" },
+  "book.author.quote": {
+    fr: "L'héroïsme, ce n'est pas l'absence de peur. C'est savoir ce qu'on perd avant de choisir.",
+    en: "Heroism isn't absence of fear. It's knowing what you lose before choosing.",
+  },
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {

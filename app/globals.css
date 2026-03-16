@@ -90,10 +90,10 @@
 }
 
 .section-tech {
-  --section-bg: #0f0f0f;
-  --section-fg: #ffffff;
-  --section-accent: #00d4ff;
-  --section-muted: #1a1a2e;
+  --section-bg: #f5f2eb;
+  --section-fg: #1a1a1a;
+  --section-accent: #1a1a1a;
+  --section-muted: #e0dbd2;
 }
 
 .section-lifestyle {
@@ -370,6 +370,97 @@
   0%, 100% { transform: translate(0, 0); }
   33% { transform: translate(30px, -20px); }
   66% { transform: translate(-20px, 15px); }
+}
+
+/* ═══════ Book Section (Tech) ═══════ */
+
+.book-font {
+  font-family: var(--font-typewriter), 'Special Elite', 'Courier New', monospace;
+}
+
+.book-title-font {
+  font-family: var(--font-fantasy), 'UnifrakturMaguntia', serif;
+}
+
+/* Paper texture background */
+.section-tech {
+  position: relative;
+  background-image:
+    url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='paper'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.04' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23paper)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* Ink splatter blobs */
+.ink-splat {
+  position: absolute;
+  border-radius: 50%;
+  background: #1a1a1a;
+  pointer-events: none;
+  filter: blur(1px);
+  opacity: 0;
+  animation: inkDrip 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes inkDrip {
+  0% { transform: scale(0); opacity: 0; }
+  40% { opacity: 0.08; }
+  100% { transform: scale(1); opacity: var(--ink-o, 0.04); }
+}
+
+/* Ink drip that runs down */
+.ink-drip {
+  position: absolute;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.06), transparent);
+  pointer-events: none;
+  opacity: 0;
+  animation: inkDripDown 2s ease-in var(--drip-d, 1s) forwards;
+}
+
+@keyframes inkDripDown {
+  0% { height: 0; opacity: 0; }
+  10% { opacity: 1; }
+  100% { height: var(--drip-h, 80px); opacity: 0.5; }
+}
+
+/* Ruby glow on "Chroniques" */
+.book-ruby-glow {
+  color: #C41E3A;
+  text-shadow: 0 0 20px rgba(196, 30, 58, 0.3), 0 0 40px rgba(196, 30, 58, 0.1);
+  animation: rubyPulse 4s ease-in-out 2s infinite;
+}
+
+@keyframes rubyPulse {
+  0%, 100% { text-shadow: 0 0 20px rgba(196, 30, 58, 0.3), 0 0 40px rgba(196, 30, 58, 0.1); }
+  50% { text-shadow: 0 0 30px rgba(196, 30, 58, 0.5), 0 0 60px rgba(196, 30, 58, 0.15); }
+}
+
+/* Brush stroke reveal */
+.book-brush {
+  opacity: 0;
+  animation: brushReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) var(--brush-d, 0s) forwards;
+}
+
+@keyframes brushReveal {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Typewriter effect */
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid rgba(26, 26, 26, 0.4);
+  width: 0;
+  animation: typewrite var(--tw-dur, 3s) steps(var(--tw-steps, 30)) var(--tw-d, 0.5s) forwards,
+             blink 0.8s step-end infinite;
+}
+
+@keyframes typewrite {
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
 }
 
 /* ═══════ Scroll Reveal System ═══════ */

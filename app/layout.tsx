@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Playfair_Display } from 'next/font/google'
+import { Geist, Geist_Mono, Playfair_Display, Special_Elite, UnifrakturMaguntia } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
 import './globals.css'
@@ -7,6 +7,8 @@ import './globals.css'
 const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", weight: ["400", "700", "900"] });
+const specialElite = Special_Elite({ subsets: ["latin"], variable: "--font-typewriter", weight: "400" });
+const fraktur = UnifrakturMaguntia({ subsets: ["latin"], variable: "--font-fantasy", weight: "400" });
 
 export const metadata: Metadata = {
   title: 'Multi-Identity Scroll Experience',
@@ -41,7 +43,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700,900&display=swap" />
       </head>
-      <body className={`font-sans antialiased ${playfair.variable}`}>
+      <body className={`font-sans antialiased ${playfair.variable} ${specialElite.variable} ${fraktur.variable}`}>
         <I18nProvider>
           {children}
         </I18nProvider>
