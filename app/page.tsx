@@ -6,10 +6,11 @@ import { LifestyleSection } from "@/components/sections/lifestyle-section"
 
 export default function Home() {
   const sectionNames = ["Studio", "Agency", "Book", "Mood"]
-  
+  const sectionSlugs = ["studio", "agency", "book", "mood"]
+
   return (
     <main className="overflow-hidden">
-      <HorizontalScrollLayout sectionNames={sectionNames}>
+      <HorizontalScrollLayout sectionNames={sectionNames} sectionSlugs={sectionSlugs}>
         <StudioSection />
         <NatureSection />
         <TechSection />

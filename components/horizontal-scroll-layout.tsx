@@ -6,35 +6,57 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 interface HorizontalScrollLayoutProps {
   children: React.ReactNode[]
   sectionNames: string[]
+  sectionSlugs: string[]
 }
 
-export function HorizontalScrollLayout({ children, sectionNames }: HorizontalScrollLayoutProps) {
+export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs }: HorizontalScrollLayoutProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentSection, setCurrentSection] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
+  const isInitialLoad = useRef(true)
 
   const updateScrollState = () => {
     if (!containerRef.current) return
-    
+
     const { scrollLeft, scrollWidth, clientWidth } = containerRef.current
     const sectionWidth = clientWidth
     const newSection = Math.round(scrollLeft / sectionWidth)
-    
+
     setCurrentSection(newSection)
     setCanScrollLeft(scrollLeft > 10)
     setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
   }
 
+  // Sync URL hash with current section
+  useEffect(() => {
+    if (isInitialLoad.current) return
+    const slug = sectionSlugs[currentSection]
+    const newHash = currentSection === 0 ? "" : `#${slug}`
+    if (window.location.hash !== newHash) {
+      window.history.replaceState(null, "", newHash || window.location.pathname)
+    }
+  }, [currentSection, sectionSlugs])
+
+  // On mount: read hash and scroll to section
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
 
     container.addEventListener('scroll', updateScrollState)
+
+    const hash = window.location.hash.replace("#", "")
+    const index = hash ? sectionSlugs.indexOf(hash) : 0
+    if (index > 0) {
+      const sectionWidth = container.clientWidth
+      container.scrollTo({ left: index * sectionWidth, behavior: "instant" as ScrollBehavior })
+    }
+
+    isInitialLoad.current = false
     updateScrollState()
 
     return () => container.removeEventListener('scroll', updateScrollState)
-  }, [])
+  }, [sectionSlugs])
 
   const scrollToSection = (index: number) => {
     if (!containerRef.current) return
@@ -81,6 +103,7 @@ export function HorizontalScrollLayout({ children, sectionNames }: HorizontalScr
         {children.map((child, index) => (
           <section
             key={index}
+            id={sectionSlugs[index]}
             className="vertical-section"
           >
             {child}
