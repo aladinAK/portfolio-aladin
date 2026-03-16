@@ -1,147 +1,174 @@
 "use client"
 
-import { Star, Heart, ShoppingBag, ArrowUpRight } from "lucide-react"
+import { ArrowUpRight } from "lucide-react"
+import { useLang } from "@/lib/i18n"
+
+const MOODS = [
+  { emoji: "😄", key: "mood.joy", float: "mood-float-1" },
+  { emoji: "😢", key: "mood.sad", float: "mood-float-2" },
+  { emoji: "🤢", key: "mood.shock", float: "mood-float-3" },
+  { emoji: "😱", key: "mood.scare", float: "mood-float-1" },
+  { emoji: "😤", key: "mood.energy", float: "mood-float-2" },
+  { emoji: "😲", key: "mood.surprise", float: "mood-float-3" },
+]
+
+const FEATURES = [
+  { icon: "🎬", key: "mood.feat.0" },
+  { icon: "📺", key: "mood.feat.1" },
+  { icon: "📚", key: "mood.feat.2" },
+  { icon: "🎵", key: "mood.feat.3" },
+]
 
 export function LifestyleSection() {
+  const { t } = useLang()
+
   return (
-    <div className="section-lifestyle min-h-[300vh]" style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}>
-      {/* Hero */}
-      <section className="h-screen flex flex-col justify-between p-6 md:p-12">
-        <nav className="flex items-center justify-between">
-          <div className="text-2xl font-serif italic tracking-wide">Maison</div>
-          <div className="hidden md:flex items-center gap-8 text-sm">
-            <a href="#" className="hover:opacity-70 transition-opacity">Collection</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">Atelier</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">Journal</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">About</a>
-          </div>
-          <div className="flex items-center gap-4">
-            <button className="relative">
-              <ShoppingBag className="w-5 h-5" />
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full text-xs flex items-center justify-center" style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}>2</span>
-            </button>
-          </div>
+    <div
+      className="section-lifestyle"
+      style={{ color: "var(--section-fg)" }}
+    >
+      {/* ═══════════════ HERO ═══════════════ */}
+      <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
+        {/* Nav */}
+        <nav className="relative z-10 flex items-center justify-between">
+          <span className="text-sm opacity-30 font-bold tracking-tight">
+            MoodMovie
+          </span>
+          <a
+            href="https://moodmovie-by-aladinakkari.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/40"
+          >
+            {t("mood.cta")}
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </nav>
 
-        <div className="flex-1 flex items-center justify-center text-center">
-          <div className="max-w-3xl">
-            <p className="text-sm tracking-[0.3em] uppercase mb-8 opacity-60">New Collection 2024</p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif italic leading-tight">
-              Timeless
-              <br />
-              <span style={{ color: "var(--section-accent)" }}>Elegance</span>
-            </h1>
-            <p className="mt-8 text-lg font-light max-w-lg mx-auto opacity-70">
-              Curated pieces for the modern connoisseur. Where craftsmanship meets contemporary design.
-            </p>
-            <button className="mt-10 px-8 py-4 text-sm tracking-wide uppercase border rounded-none transition-colors hover:bg-[var(--section-fg)] hover:text-[var(--section-bg)]" style={{ borderColor: "var(--section-fg)" }}>
-              Explore Collection
-            </button>
-          </div>
-        </div>
+        {/* Center */}
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] mb-4">
+            {t("mood.hero.1")}<br />
+            <span className="mood-gradient-text">{t("mood.hero.2")}</span>
+          </h1>
 
-        <div className="flex items-center justify-center gap-8 text-sm opacity-60">
-          <span>Free Worldwide Shipping</span>
-          <span>•</span>
-          <span>Handcrafted with Care</span>
-          <span>•</span>
-          <span>Lifetime Warranty</span>
-        </div>
-      </section>
+          <p className="text-sm md:text-base opacity-50 max-w-md mt-6 leading-relaxed">
+            {t("mood.hero.desc")}
+          </p>
 
-      {/* Featured Products */}
-      <section className="min-h-screen p-6 md:p-12">
-        <div className="flex items-center justify-between mb-12">
-          <h2 className="text-3xl md:text-4xl font-serif italic">Featured Pieces</h2>
-          <a href="#" className="flex items-center gap-2 text-sm hover:gap-4 transition-all" style={{ color: "var(--section-accent)" }}>
-            View all <ArrowUpRight className="w-4 h-4" />
+          {/* CTA */}
+          <a
+            href="https://moodmovie-by-aladinakkari.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-4 mt-8 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(129,140,248,0.25)] bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+          >
+            {t("mood.try")}
+            <ArrowUpRight className="w-4 h-4" />
           </a>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[
-            { name: "The Milano Chair", category: "Furniture", price: "$2,450" },
-            { name: "Ceramic Vase Set", category: "Décor", price: "$380" },
-            { name: "Silk Throw", category: "Textiles", price: "$520" },
-            { name: "Bronze Table Lamp", category: "Lighting", price: "$890" },
-            { name: "Marble Tray", category: "Accessories", price: "$240" },
-            { name: "Linen Cushion", category: "Textiles", price: "$180" },
-          ].map((product, i) => (
-            <div key={i} className="group cursor-pointer">
-              <div className="aspect-[3/4] rounded-lg mb-4 relative overflow-hidden" style={{ backgroundColor: "var(--section-muted)" }}>
-                <button className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-sm">
-                  <Heart className="w-5 h-5" />
-                </button>
-                <div className="absolute inset-x-4 bottom-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="w-full py-3 text-sm rounded-lg font-medium transition-colors" style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}>
-                    Add to Cart
-                  </button>
-                </div>
+          {/* Mood bubbles */}
+          <div className="flex flex-wrap justify-center gap-4 mt-10">
+            {MOODS.map((mood, i) => (
+              <div
+                key={i}
+                className={`mood-bubble ${mood.float} w-20 h-20 md:w-24 md:h-24 rounded-full bg-white/10 border border-white/20 flex flex-col items-center justify-center gap-1`}
+              >
+                <span className="text-2xl">{mood.emoji}</span>
+                <span className="text-[9px] font-medium uppercase tracking-wider opacity-60">{t(mood.key)}</span>
               </div>
-              <div className="flex items-start justify-between">
-                <div>
-                  <h3 className="font-medium">{product.name}</h3>
-                  <p className="text-sm opacity-60">{product.category}</p>
-                </div>
-                <span className="font-medium" style={{ color: "var(--section-accent)" }}>{product.price}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="min-h-screen p-6 md:p-12 flex flex-col justify-center">
-        <div className="text-center mb-16">
-          <span className="text-xs tracking-[0.3em] uppercase opacity-50 mb-4 block">Testimonials</span>
-          <h2 className="text-3xl md:text-4xl font-serif italic">What Our Clients Say</h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { quote: "The attention to detail is extraordinary. Each piece feels like it was made just for me.", author: "Sarah M.", location: "Paris" },
-            { quote: "Finally, a brand that understands modern luxury. Quality that speaks for itself.", author: "James L.", location: "New York" },
-            { quote: "Their customer service is as exceptional as their products. A true luxury experience.", author: "Emma C.", location: "London" },
-          ].map((testimonial, i) => (
-            <div key={i} className="p-8 rounded-lg" style={{ backgroundColor: "var(--section-muted)" }}>
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(5)].map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-current" style={{ color: "var(--section-accent)" }} />
-                ))}
-              </div>
-              <p className="text-lg font-light italic mb-6 leading-relaxed">"{testimonial.quote}"</p>
-              <div>
-                <p className="font-medium">{testimonial.author}</p>
-                <p className="text-sm opacity-60">{testimonial.location}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Newsletter */}
-        <div className="mt-20 text-center max-w-xl mx-auto">
-          <h3 className="text-2xl font-serif italic mb-4">Join Our World</h3>
-          <p className="text-sm opacity-70 mb-6">Subscribe for exclusive access to new collections, events, and members-only offers.</p>
-          <div className="flex gap-2">
-            <input 
-              type="email" 
-              placeholder="Your email address" 
-              className="flex-1 px-4 py-3 rounded-lg text-sm bg-transparent border focus:outline-none focus:border-[var(--section-accent)]"
-              style={{ borderColor: "var(--section-muted)" }}
-            />
-            <button className="px-6 py-3 text-sm font-medium rounded-lg transition-colors" style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}>
-              Subscribe
-            </button>
+            ))}
           </div>
         </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-sm opacity-50 mb-4">SWIPE LEFT TO GO BACK</p>
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }}></div>
+        {/* Bottom */}
+        <div className="relative z-10 flex items-end justify-between">
+          <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+            {t("mood.bottom.left")}
+          </span>
+          <div className="flex flex-col items-center gap-2">
+            <div className="w-px h-10 bg-white/10" />
+            <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">Scroll</span>
+          </div>
+          <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+            {t("mood.bottom.right")}
+          </span>
+        </div>
+      </section>
+
+      {/* ═══════════════ FEATURES ═══════════════ */}
+      <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24 flex flex-col justify-center">
+        <div className="max-w-5xl mx-auto w-full">
+          <div className="text-center mb-16 md:mb-24">
+            <span className="text-xs font-mono tracking-widest uppercase opacity-30 block mb-4">
+              {t("mood.feat.label")}
+            </span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[0.9]">
+              {t("mood.feat.title.1")}<br />
+              <span className="mood-gradient-text">{t("mood.feat.title.2")}</span>
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {FEATURES.map((feat, i) => (
+              <div
+                key={i}
+                className="group p-8 md:p-10 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.06] hover:border-white/20"
+              >
+                <span className="text-3xl mb-4 block">{feat.icon}</span>
+                <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:translate-x-2 transition-transform duration-500">
+                  {t(`${feat.key}.title`)}
+                </h3>
+                <p className="text-sm opacity-40 leading-relaxed">
+                  {t(`${feat.key}.desc`)}
+                </p>
+              </div>
+            ))}
+          </div>
+
+          {/* How it works */}
+          <div className="mt-24 text-center">
+            <span className="text-xs font-mono tracking-widest uppercase opacity-30 block mb-4">
+              {t("mood.how.label")}
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold mb-16">
+              {t("mood.how.title")}
+            </h2>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[0, 1, 2].map((i) => (
+                <div key={i} className="flex flex-col items-center">
+                  <div className="w-12 h-12 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-sm font-bold mb-4 mood-gradient-text">
+                    0{i + 1}
+                  </div>
+                  <h3 className="font-bold mb-2">{t(`mood.step.${i}.title`)}</h3>
+                  <p className="text-sm opacity-40 max-w-xs">{t(`mood.step.${i}.desc`)}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="mt-24 text-center">
+            <a
+              href="https://moodmovie-by-aladinakkari.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-4 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(129,140,248,0.25)] bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+            >
+              {t("mood.try")}
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          {/* Dots */}
+          <div className="mt-16 flex justify-center">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-white/15" />
+              <div className="w-2 h-2 rounded-full bg-white/15" />
+              <div className="w-2 h-2 rounded-full bg-white/15" />
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }} />
+            </div>
           </div>
         </div>
       </section>

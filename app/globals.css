@@ -97,10 +97,10 @@
 }
 
 .section-lifestyle {
-  --section-bg: #1a1a1a;
+  --section-bg: #03094A;
   --section-fg: #f5f5f5;
-  --section-accent: #e8c547;
-  --section-muted: #2a2a2a;
+  --section-accent: #818cf8;
+  --section-muted: #1e1e3a;
 }
 
 @theme inline {
@@ -370,6 +370,49 @@
   0%, 100% { transform: translate(0, 0); }
   33% { transform: translate(30px, -20px); }
   66% { transform: translate(-20px, 15px); }
+}
+
+/* ═══════ MoodMovie Section (Lifestyle) ═══════ */
+
+.section-lifestyle {
+  background: radial-gradient(ellipse at center, #03094A 0%, #1E1E1E 100%);
+}
+
+.mood-bubble {
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  transition: all 0.5s ease;
+}
+
+.mood-bubble:hover {
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.25);
+  transform: scale(1.1);
+}
+
+/* Floating animation for mood bubbles */
+.mood-float-1 { animation: moodFloat1 6s ease-in-out infinite; }
+.mood-float-2 { animation: moodFloat2 5s ease-in-out infinite; }
+.mood-float-3 { animation: moodFloat3 7s ease-in-out infinite; }
+
+@keyframes moodFloat1 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+@keyframes moodFloat2 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-1.5deg); }
+}
+@keyframes moodFloat3 {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+/* Gradient text */
+.mood-gradient-text {
+  background: linear-gradient(to right, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* ═══════ Book Section (Tech) ═══════ */

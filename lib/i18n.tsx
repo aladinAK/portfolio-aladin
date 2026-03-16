@@ -249,6 +249,64 @@ const dict: Record<string, Record<Lang, string>> = {
     fr: "L'héroïsme, ce n'est pas l'absence de peur. C'est savoir ce qu'on perd avant de choisir.",
     en: "Heroism isn't absence of fear. It's knowing what you lose before choosing.",
   },
+
+  // MoodMovie section
+  "mood.cta": { fr: "Essayer l'app", en: "Try the app" },
+  "mood.hero.1": { fr: "Ton mood.", en: "Your mood." },
+  "mood.hero.2": { fr: "Ton contenu.", en: "Your content." },
+  "mood.hero.desc": {
+    fr: "Choisis ton humeur, découvre des films, séries, livres et musique qui matchent ce que tu ressens.",
+    en: "Choose your mood, discover movies, shows, books and music that match how you feel.",
+  },
+  "mood.joy": { fr: "Rire", en: "Laugh" },
+  "mood.sad": { fr: "Pleurer", en: "Cry" },
+  "mood.shock": { fr: "Choc", en: "Shock" },
+  "mood.scare": { fr: "Peur", en: "Scare" },
+  "mood.energy": { fr: "Énergie", en: "Energy" },
+  "mood.surprise": { fr: "Surprise", en: "Surprise" },
+  "mood.bottom.left": { fr: "Films · Séries · Livres · Musique", en: "Movies · Shows · Books · Music" },
+  "mood.bottom.right": { fr: "Basé sur l'émotion", en: "Emotion-based" },
+  "mood.feat.label": { fr: "Fonctionnalités", en: "Features" },
+  "mood.feat.title.1": { fr: "Du contenu pour", en: "Content for" },
+  "mood.feat.title.2": { fr: "chaque émotion.", en: "every emotion." },
+  "mood.feat.0.title": { fr: "Films", en: "Movies" },
+  "mood.feat.0.desc": {
+    fr: "Découvre des films adaptés à ton humeur — comédie, drame, thriller, action, horreur ou mystère.",
+    en: "Discover movies tailored to your mood — comedy, drama, thriller, action, horror or mystery.",
+  },
+  "mood.feat.1.title": { fr: "Séries", en: "Shows" },
+  "mood.feat.1.desc": {
+    fr: "Des séries TV triées par émotion — de la sitcom feel-good au crime noir.",
+    en: "TV shows sorted by emotion — from feel-good sitcoms to dark crime.",
+  },
+  "mood.feat.2.title": { fr: "Livres", en: "Books" },
+  "mood.feat.2.desc": {
+    fr: "Des recommandations de lecture basées sur ton état émotionnel du moment.",
+    en: "Reading recommendations based on your current emotional state.",
+  },
+  "mood.feat.3.title": { fr: "Musique", en: "Music" },
+  "mood.feat.3.desc": {
+    fr: "Pop dansant, soul, metal, ambient, rock — la bande-son parfaite pour ton mood.",
+    en: "Pop dance, soul, metal, ambient, rock — the perfect soundtrack for your mood.",
+  },
+  "mood.how.label": { fr: "Comment ça marche", en: "How it works" },
+  "mood.how.title": { fr: "Simple comme bonjour.", en: "Simple as that." },
+  "mood.step.0.title": { fr: "Choisis ton mood", en: "Pick your mood" },
+  "mood.step.0.desc": {
+    fr: "Sélectionne l'émotion qui correspond à ce que tu ressens en ce moment.",
+    en: "Select the emotion that matches how you feel right now.",
+  },
+  "mood.step.1.title": { fr: "Explore le contenu", en: "Explore content" },
+  "mood.step.1.desc": {
+    fr: "Browse des films, séries, livres et musique adaptés à ton humeur.",
+    en: "Browse movies, shows, books and music tailored to your mood.",
+  },
+  "mood.step.2.title": { fr: "Sauvegarde tes favoris", en: "Save your favorites" },
+  "mood.step.2.desc": {
+    fr: "Ajoute en favoris et marque ce que tu as déjà vu ou lu.",
+    en: "Add to favorites and mark what you've already watched or read.",
+  },
+  "mood.try": { fr: "Essayer MoodMovie", en: "Try MoodMovie" },
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
