@@ -1,117 +1,209 @@
 "use client"
 
-import { Leaf, Sun, Droplets, Wind } from "lucide-react"
+import { ArrowUpRight, Globe, RefreshCw, ShoppingBag, Headphones } from "lucide-react"
+import { useLang } from "@/lib/i18n"
+
+const SHAPES = [
+  { type: "circle", w: 120, h: 120, top: "8%", left: "15%", o: 0.3, d: "0.2s", drift: "22s", dx: "20px", dy: "-15px", rot: "0deg" },
+  { type: "square", w: 60, h: 60, top: "20%", left: "80%", o: 0.2, d: "0.5s", drift: "18s", dx: "-12px", dy: "18px", rot: "15deg" },
+  { type: "ring", w: 200, h: 200, top: "60%", left: "10%", o: 0.15, d: "0.3s", drift: "25s", dx: "10px", dy: "-20px", rot: "0deg" },
+  { type: "diamond", w: 50, h: 50, top: "75%", left: "85%", o: 0.25, d: "0.6s", drift: "20s", dx: "-15px", dy: "10px", rot: "45deg" },
+  { type: "circle", w: 80, h: 80, top: "40%", left: "90%", o: 0.2, d: "0.4s", drift: "23s", dx: "18px", dy: "12px", rot: "0deg" },
+  { type: "ring", w: 140, h: 140, top: "15%", left: "50%", o: 0.12, d: "0.7s", drift: "28s", dx: "-8px", dy: "-14px", rot: "0deg" },
+  { type: "square", w: 40, h: 40, top: "85%", left: "40%", o: 0.22, d: "0.8s", drift: "19s", dx: "14px", dy: "-8px", rot: "30deg" },
+  { type: "diamond", w: 70, h: 70, top: "50%", left: "25%", o: 0.18, d: "1s", drift: "24s", dx: "-20px", dy: "16px", rot: "45deg" },
+]
+
+const SERVICES = [
+  { icon: Globe, key: "agency.svc.0" },
+  { icon: RefreshCw, key: "agency.svc.1" },
+  { icon: ShoppingBag, key: "agency.svc.2" },
+  { icon: Headphones, key: "agency.svc.3" },
+]
 
 export function NatureSection() {
+  const { t } = useLang()
+
   return (
-    <div className="section-nature min-h-[300vh]" style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}>
-      {/* Hero */}
-      <section className="h-screen flex flex-col justify-between p-6 md:p-12">
-        <nav className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Leaf className="w-6 h-6" style={{ color: "var(--section-accent)" }} />
-            <span className="text-xl font-light tracking-wide">terra</span>
-          </div>
-          <div className="hidden md:flex items-center gap-8 text-sm font-light">
-            <a href="#" className="hover:opacity-70 transition-opacity">Philosophy</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">Retreats</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">Wellness</a>
-            <a href="#" className="hover:opacity-70 transition-opacity">Contact</a>
-          </div>
-          <button className="px-6 py-3 text-sm rounded-full transition-colors" style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}>
-            Book Now
-          </button>
+    <div
+      className="section-nature"
+      style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}
+    >
+      {/* Global animated background — spans full section */}
+      <div className="agency-bg" aria-hidden>
+        <div className="agency-noise" />
+        {SHAPES.map((s, i) => (
+          <div
+            key={i}
+            className={`agency-shape agency-shape--${s.type}`}
+            style={{
+              width: s.w, height: s.h, top: s.top, left: s.left,
+              "--o": s.o, "--d": s.d, "--drift-dur": s.drift,
+              "--dx": s.dx, "--dy": s.dy, "--rot": s.rot,
+            } as React.CSSProperties}
+          />
+        ))}
+        <div className="agency-orb agency-orb-1" />
+        <div className="agency-orb agency-orb-2" />
+        <div className="agency-orb agency-orb-3" />
+      </div>
+
+      {/* ═══════════════ HERO ═══════════════ */}
+      <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
+
+        {/* Nav */}
+        <nav className="relative z-10 flex items-center justify-between">
+          <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-50">
+            {t("agency.label")}
+          </span>
+          <a
+            href="https://fait-ton-site.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="agency-font flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] rounded-lg transition-all duration-300 hover:scale-105"
+            style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}
+          >
+            {t("agency.cta")}
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </nav>
 
-        <div className="flex-1 flex items-center justify-center text-center">
-          <div className="max-w-3xl">
-            <p className="text-sm tracking-[0.3em] uppercase mb-6 opacity-70">Reconnect with Nature</p>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-light leading-tight">
-              Find Your
-              <br />
-              <span className="italic" style={{ color: "var(--section-accent)" }}>Inner Peace</span>
+        {/* Center content */}
+        <div className="relative z-10 flex-1 flex items-center justify-center text-center px-6">
+          <div className="max-w-5xl">
+            <span className="agency-font text-sm md:text-base font-medium uppercase tracking-[0.2em] opacity-50 italic block mb-6">
+              {t("agency.tagline")}
+            </span>
+
+            <h1 className="flex flex-col items-center" style={{ gap: 0, lineHeight: 0.8 }}>
+              <span className="agency-font uppercase font-black" style={{ fontSize: "clamp(2rem, 10vw, 7rem)" }}>
+                {t("agency.title.1")}
+              </span>
+              <span className="flex items-baseline justify-center flex-wrap" style={{ gap: "0.3em" }}>
+                <span
+                  className="agency-font uppercase font-black"
+                  style={{
+                    fontSize: "clamp(2rem, 10vw, 7rem)",
+                    WebkitTextStroke: "2px var(--section-fg)",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  {t("agency.title.2")}
+                </span>
+                <span className="agency-font uppercase font-bold" style={{ fontSize: "clamp(2rem, 10vw, 7rem)" }}>
+                  {t("agency.title.3")}
+                </span>
+                <span
+                  className="agency-font uppercase font-black"
+                  style={{
+                    fontSize: "clamp(2rem, 10vw, 7rem)",
+                    WebkitTextStroke: "2px var(--section-fg)",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  {t("agency.title.4")}
+                </span>
+              </span>
             </h1>
-            <p className="mt-8 text-lg font-light max-w-xl mx-auto opacity-80">
-              Escape the noise. Embrace the stillness. Our wellness retreats offer a sanctuary for mind, body, and soul.
+
+            <p className="agency-font text-sm md:text-base font-medium uppercase tracking-[0.15em] opacity-40 max-w-2xl mx-auto mt-6">
+              {t("agency.desc")}
             </p>
+
+            <div className="flex items-center justify-center flex-wrap gap-4 mt-8">
+              <a
+                href="https://fait-ton-site.vercel.app/#contact"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="agency-font font-bold text-sm uppercase tracking-[0.15em] rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,77,0,0.3)]"
+                style={{ padding: "18px 44px", backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}
+              >
+                {t("agency.btn.1")}
+              </a>
+              <a
+                href="https://fait-ton-site.vercel.app/#services"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="agency-font font-bold text-sm uppercase tracking-[0.15em] rounded-lg border-2 transition-all duration-300 hover:border-[var(--section-accent)] hover:text-[var(--section-accent)]"
+                style={{ padding: "16px 42px", borderColor: "rgba(245, 240, 232, 0.2)" }}
+              >
+                Services
+              </a>
+            </div>
           </div>
         </div>
 
-        <div className="flex items-center justify-center">
+        {/* Scroll hint */}
+        <div className="relative z-10 flex justify-center">
           <div className="flex flex-col items-center gap-2">
-            <span className="text-xs tracking-widest uppercase opacity-50">Discover</span>
-            <div className="w-px h-16 bg-current opacity-30 animate-pulse"></div>
+            <div className="w-5 h-8 rounded-full border-2 border-current opacity-20 flex items-start justify-center pt-1.5">
+              <div className="w-1 h-2.5 rounded-full bg-current animate-bounce" />
+            </div>
+            <span className="agency-font text-[10px] uppercase tracking-[0.3em] opacity-20">Scroll</span>
           </div>
         </div>
       </section>
 
-      {/* Philosophy */}
-      <section className="min-h-screen p-6 md:p-12 flex items-center">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-center">
-          <div>
-            <span className="text-xs tracking-[0.3em] uppercase opacity-50 mb-4 block">Our Philosophy</span>
-            <h2 className="text-3xl md:text-5xl font-light leading-tight mb-8">
-              Dedicated to <span className="italic" style={{ color: "var(--section-accent)" }}>Creativity</span>, Culture & Growth
+      {/* ═══════════════ SERVICES ═══════════════ */}
+      <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24 flex flex-col justify-center">
+
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          <div className="text-center mb-16 md:mb-24">
+            <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-30 block mb-4">
+              {t("agency.svc.label")}
+            </span>
+            <h2 className="agency-font text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]">
+              {t("agency.svc.title.1")}<br />
+              <span style={{ color: "var(--section-accent)" }}>{t("agency.svc.title.2")}</span>
             </h2>
-            <p className="text-lg font-light leading-relaxed opacity-80 mb-6">
-              Terra is a sanctuary where brands and people come to define who they are, sharpen their vision, and carve out what's next.
-            </p>
-            <p className="text-lg font-light leading-relaxed opacity-80">
-              We believe that when life and work move in sync, the best ideas don't just happen — they flow. That's why we created a new way to pause, reset, and spark the thinking that fuels not just careers, but whole ways of being.
-            </p>
           </div>
-          <div className="grid grid-cols-2 gap-4">
-            {[
-              { icon: Sun, label: "Mindfulness" },
-              { icon: Droplets, label: "Hydration" },
-              { icon: Wind, label: "Breathwork" },
-              { icon: Leaf, label: "Nature" },
-            ].map((item, i) => (
-              <div key={i} className="aspect-square rounded-2xl p-6 flex flex-col items-center justify-center text-center" style={{ backgroundColor: "var(--section-muted)" }}>
-                <item.icon className="w-8 h-8 mb-4" style={{ color: "var(--section-accent)" }} />
-                <span className="text-sm font-light">{item.label}</span>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: "var(--section-muted)" }}>
+            {SERVICES.map((svc, i) => (
+              <div
+                key={i}
+                className="group p-8 md:p-12 transition-all duration-500 hover:bg-white/[0.03] relative"
+                style={{ backgroundColor: "var(--section-bg)" }}
+              >
+                <div className="flex items-start justify-between mb-6">
+                  <svc.icon
+                    className="w-6 h-6 opacity-40 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ color: "var(--section-accent)" }}
+                  />
+                  <span className="agency-font text-xs font-mono opacity-15">0{i + 1}</span>
+                </div>
+                <h3 className="agency-font text-xl md:text-2xl font-bold uppercase tracking-wide mb-3 group-hover:translate-x-2 transition-transform duration-500">
+                  {t(`${svc.key}.title`)}
+                </h3>
+                <p className="text-sm opacity-40 leading-relaxed max-w-sm">
+                  {t(`${svc.key}.desc`)}
+                </p>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Retreats */}
-      <section className="min-h-screen p-6 md:p-12">
-        <div className="text-center mb-16">
-          <span className="text-xs tracking-[0.3em] uppercase opacity-50 mb-4 block">Experiences</span>
-          <h2 className="text-3xl md:text-5xl font-light">Our Retreats</h2>
-        </div>
-
-        <div className="space-y-4">
-          {[
-            { title: "Mountain Sanctuary", location: "Swiss Alps", duration: "7 Days" },
-            { title: "Ocean Renewal", location: "Bali, Indonesia", duration: "5 Days" },
-            { title: "Forest Immersion", location: "Oregon, USA", duration: "4 Days" },
-            { title: "Desert Awakening", location: "Morocco", duration: "6 Days" },
-          ].map((retreat, i) => (
-            <div key={i} className="group flex items-center justify-between py-6 px-6 rounded-xl cursor-pointer transition-colors hover:bg-[var(--section-muted)]" style={{ borderBottom: "1px solid var(--section-muted)" }}>
-              <div>
-                <h3 className="text-xl md:text-2xl font-light group-hover:translate-x-2 transition-transform">{retreat.title}</h3>
-                <span className="text-sm opacity-60">{retreat.location}</span>
-              </div>
-              <div className="flex items-center gap-6">
-                <span className="text-sm opacity-60">{retreat.duration}</span>
-                <button className="px-4 py-2 text-sm rounded-full border opacity-0 group-hover:opacity-100 transition-opacity" style={{ borderColor: "var(--section-accent)", color: "var(--section-accent)" }}>
-                  Explore
-                </button>
-              </div>
-            </div>
-          ))}
+          {/* CTA bottom */}
+          <div className="mt-16 text-center">
+            <a
+              href="https://fait-ton-site.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="agency-font inline-flex items-center gap-3 font-bold text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:gap-5 opacity-60 hover:opacity-100"
+              style={{ color: "var(--section-accent)" }}
+            >
+              {t("agency.svc.cta")}
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
         </div>
 
-        <div className="mt-16 text-center">
-          <p className="text-sm opacity-50 mb-4">SWIPE RIGHT FOR NEXT SECTION</p>
-          <div className="flex items-center justify-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }}></div>
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
-            <div className="w-2 h-2 rounded-full bg-current opacity-30"></div>
+        {/* Bottom dots */}
+        <div className="relative z-10 mt-auto pt-12 flex justify-center">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }} />
+            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
+            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
           </div>
         </div>
       </section>

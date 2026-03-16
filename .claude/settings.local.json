@@ -5,7 +5,11 @@
       "Bash(npx next:*)",
       "Bash(git init:*)",
       "Bash(git branch:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:fait-ton-site.vercel.app)"
     ]
   }
 }

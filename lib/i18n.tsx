@@ -152,6 +152,50 @@ const dict: Record<string, Record<Lang, string>> = {
   "contact.label": { fr: "05 / CONTACT", en: "05 / CONTACT" },
   "contact.title.1": { fr: "Restons", en: "Let's" },
   "contact.title.2": { fr: "en contact.", en: "connect." },
+
+  // Agency (nature section)
+  "agency.label": { fr: "besoin d un site web ?", en: "Need a website?" },
+  "agency.tagline": {
+    fr: "Simple à comprendre. Facile à utiliser.",
+    en: "Easy to understand. Simple to use.",
+  },
+  "agency.title.1": { fr: "Des sites web", en: "Websites" },
+  "agency.title.2": { fr: "Simples", en: "Simple" },
+  "agency.title.3": { fr: "et", en: "&" },
+  "agency.title.4": { fr: "Pro", en: "Pro" },
+  "agency.desc": {
+    fr: "Sites vitrines, e-commerce et améliorations de sites existants pour entrepreneurs et commerces locaux. Sans jargon technique, sans stress.",
+    en: "Showcase websites, e-commerce and improvements for entrepreneurs and local businesses. No technical jargon, no stress.",
+  },
+  "agency.btn.1": { fr: "Discutons", en: "Let's Talk" },
+  "agency.cta": { fr: "Voir le site", en: "Visit Site" },
+  "agency.bottom": { fr: "Agence Web", en: "Web Agency" },
+
+  // Agency services
+  "agency.svc.label": { fr: "NOS SERVICES", en: "OUR SERVICES" },
+  "agency.svc.title.1": { fr: "Ce qu'on", en: "What we" },
+  "agency.svc.title.2": { fr: "fait.", en: "do." },
+  "agency.svc.cta": { fr: "Découvrir tous nos services", en: "Discover all our services" },
+  "agency.svc.0.title": { fr: "Création de site web", en: "Website Creation" },
+  "agency.svc.0.desc": {
+    fr: "Sites vitrines modernes et performants pour entrepreneurs et commerces locaux. Design sur mesure, responsive, optimisé SEO.",
+    en: "Modern and performant showcase websites for entrepreneurs and local businesses. Custom design, responsive, SEO optimized.",
+  },
+  "agency.svc.1.title": { fr: "Refonte de site", en: "Website Redesign" },
+  "agency.svc.1.desc": {
+    fr: "Votre site a besoin d'un coup de neuf ? On modernise le design, améliore la performance et l'expérience utilisateur.",
+    en: "Your website needs a refresh? We modernize the design, improve performance and user experience.",
+  },
+  "agency.svc.2.title": { fr: "E-commerce", en: "E-commerce" },
+  "agency.svc.2.desc": {
+    fr: "Boutiques en ligne clé en main — catalogue produit, paiement sécurisé, gestion des commandes. Prêt à vendre.",
+    en: "Turnkey online stores — product catalog, secure payment, order management. Ready to sell.",
+  },
+  "agency.svc.3.title": { fr: "Support web", en: "Web Support" },
+  "agency.svc.3.desc": {
+    fr: "Maintenance, mises à jour, corrections de bugs et améliorations continues. On s'occupe de tout pour que vous vous concentrez sur votre business.",
+    en: "Maintenance, updates, bug fixes and continuous improvements. We handle everything so you can focus on your business.",
+  },
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {

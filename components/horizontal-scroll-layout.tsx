@@ -74,13 +74,13 @@ export function HorizontalScrollLayout({ children, sectionNames }: HorizontalScr
   return (
     <div className="relative w-screen h-screen overflow-hidden">
       {/* Main Horizontal Scroll Container */}
-      <div 
+      <div
         ref={containerRef}
         className="horizontal-scroll-container"
       >
         {children.map((child, index) => (
-          <section 
-            key={index} 
+          <section
+            key={index}
             className="vertical-section"
           >
             {child}

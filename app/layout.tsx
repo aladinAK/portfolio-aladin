@@ -38,6 +38,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
+      <head>
+        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700,900&display=swap" />
+      </head>
       <body className={`font-sans antialiased ${playfair.variable}`}>
         <I18nProvider>
           {children}

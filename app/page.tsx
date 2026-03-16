@@ -5,7 +5,7 @@ import { TechSection } from "@/components/sections/tech-section"
 import { LifestyleSection } from "@/components/sections/lifestyle-section"
 
 export default function Home() {
-  const sectionNames = ["Studio", "Nature", "Tech", "Lifestyle"]
+  const sectionNames = ["Studio", "Agency", "Book", "Mood"]
   
   return (
     <main className="overflow-hidden">
