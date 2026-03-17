@@ -45,8 +45,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "exp.1.role": { fr: "Designer Web", en: "Web Designer" },
   "exp.1.type": { fr: "Freelance", en: "Freelance" },
   "exp.1.desc": {
-    fr: "Création de supports visuels pour différents clients — affiches, brochures, emballages, maquettes, conception et création de logos.",
-    en: "Visual assets creation for various clients — posters, brochures, packaging, mockups, logo design and creation.",
+    fr: "Création de supports visuels pour différents clients — affiches, brochures, emballages, maquettes, conception et création de Site Web.",
+    en: "Visual assets creation for various clients — posters, brochures, packaging, mockups, website design and creation.",
   },
   "exp.2.role": { fr: "Spécialiste en référencement", en: "SEO Specialist" },
   "exp.2.type": { fr: "Temps partiel", en: "Part-time" },

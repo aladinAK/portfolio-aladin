@@ -7,10 +7,11 @@ import { MoodSection } from "@/components/sections/mood-section"
 export default function Home() {
   const sectionNames = ["Studio", "Agency", "Book", "Mood"]
   const sectionSlugs = ["studio", "agency", "book", "mood"]
+  const sectionThemes = ["section-studio", "section-nature", "section-tech", "section-lifestyle"]
 
   return (
     <main className="overflow-hidden">
-      <HorizontalScrollLayout sectionNames={sectionNames} sectionSlugs={sectionSlugs}>
+      <HorizontalScrollLayout sectionNames={sectionNames} sectionSlugs={sectionSlugs} sectionThemes={sectionThemes}>
         <StudioSection />
         <AgencySection />
         <BookSection />

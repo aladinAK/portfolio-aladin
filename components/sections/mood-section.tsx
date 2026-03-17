@@ -47,7 +47,7 @@ export function MoodSection() {
 
         {/* Center */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] mb-4">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] mb-4 capitalize">
             {t("mood.hero.1")}<br />
             <span className="mood-gradient-text">{t("mood.hero.2")}</span>
           </h1>

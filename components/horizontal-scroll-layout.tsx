@@ -7,9 +7,10 @@ interface HorizontalScrollLayoutProps {
   children: React.ReactNode[]
   sectionNames: string[]
   sectionSlugs: string[]
+  sectionThemes: string[]
 }
 
-export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs }: HorizontalScrollLayoutProps) {
+export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, sectionThemes }: HorizontalScrollLayoutProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const [currentSection, setCurrentSection] = useState(0)
   const [canScrollLeft, setCanScrollLeft] = useState(false)
@@ -104,7 +105,7 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs }:
           <section
             key={index}
             id={sectionSlugs[index]}
-            className="vertical-section"
+            className={`vertical-section ${sectionThemes[index] ?? ''}`}
           >
             {child}
           </section>
