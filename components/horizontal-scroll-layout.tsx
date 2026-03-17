@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { ChevronLeft, ChevronRight, FileDown } from "lucide-react"
 
 interface HorizontalScrollLayoutProps {
   children: React.ReactNode[]
@@ -160,6 +160,17 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs }:
           {sectionNames[currentSection]}
         </span>
       </div>
+
+      {/* CV Download Button */}
+      <a
+        href="/cv-aladin-akkari.pdf"
+        download
+        className="fixed top-3 right-6 z-50 group flex items-center gap-2 px-3 py-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 hover:border-white/20 transition-all duration-300"
+        aria-label="Télécharger CV"
+        data-cursor="pointer"
+      >
+        <FileDown className="w-4 h-4 text-white/70 group-hover:text-white group-hover:translate-y-0.5 transition-all duration-300" />
+      </a>
 
       {/* Scroll Hint - Left */}
       {canScrollLeft && (

@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono, Playfair_Display, Special_Elite, UnifrakturMaguntia } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
+import { CustomCursor } from '@/components/custom-cursor'
 import './globals.css'
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
@@ -55,6 +56,7 @@ export default function RootLayout({
       </head>
       <body className={`font-sans antialiased ${geist.variable} ${geistMono.variable} ${playfair.variable} ${specialElite.variable} ${fraktur.variable}`}>
         <I18nProvider>
+          <CustomCursor />
           {children}
         </I18nProvider>
         <Analytics />
