@@ -28,6 +28,33 @@ export function CustomCursor() {
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`
       }
+
+      // Check hover state
+      const target = e.target as HTMLElement
+      const isLink = target.closest("a, button, [role='button'], input, textarea, select, [data-cursor='pointer']")
+      if (isLink && !hovering.current) {
+        hovering.current = true
+        if (ringRef.current) {
+          ringRef.current.style.width = "48px"
+          ringRef.current.style.height = "48px"
+          ringRef.current.style.borderColor = "var(--section-accent, #d4a843)"
+        }
+        if (dotRef.current) {
+          dotRef.current.style.width = "0px"
+          dotRef.current.style.height = "0px"
+        }
+      } else if (!isLink && hovering.current) {
+        hovering.current = false
+        if (ringRef.current) {
+          ringRef.current.style.width = "36px"
+          ringRef.current.style.height = "36px"
+          ringRef.current.style.borderColor = "var(--section-fg, #fff)"
+        }
+        if (dotRef.current) {
+          dotRef.current.style.width = "4px"
+          dotRef.current.style.height = "4px"
+        }
+      }
     }
 
     const onEnter = () => {
@@ -68,34 +95,6 @@ export function CustomCursor() {
       }
     }
 
-    const checkHover = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
-      const isLink = target.closest("a, button, [role='button'], input, textarea, select, [data-cursor='pointer']")
-      if (isLink && !hovering.current) {
-        hovering.current = true
-        if (ringRef.current) {
-          ringRef.current.style.width = "48px"
-          ringRef.current.style.height = "48px"
-          ringRef.current.style.borderColor = "var(--section-accent, #d4a843)"
-        }
-        if (dotRef.current) {
-          dotRef.current.style.width = "0px"
-          dotRef.current.style.height = "0px"
-        }
-      } else if (!isLink && hovering.current) {
-        hovering.current = false
-        if (ringRef.current) {
-          ringRef.current.style.width = "36px"
-          ringRef.current.style.height = "36px"
-          ringRef.current.style.borderColor = "var(--section-fg, #fff)"
-        }
-        if (dotRef.current) {
-          dotRef.current.style.width = "4px"
-          dotRef.current.style.height = "4px"
-        }
-      }
-    }
-
     // Ring follows with lerp
     const animate = () => {
       ringPos.current.x += (pos.current.x - ringPos.current.x) * 0.15
@@ -107,7 +106,6 @@ export function CustomCursor() {
     }
 
     document.addEventListener("mousemove", onMove)
-    document.addEventListener("mousemove", checkHover)
     document.addEventListener("mouseenter", onEnter)
     document.addEventListener("mouseleave", onLeave)
     document.addEventListener("mousedown", onDown)
@@ -117,7 +115,6 @@ export function CustomCursor() {
     return () => {
       document.documentElement.style.cursor = ""
       document.removeEventListener("mousemove", onMove)
-      document.removeEventListener("mousemove", checkHover)
       document.removeEventListener("mouseenter", onEnter)
       document.removeEventListener("mouseleave", onLeave)
       document.removeEventListener("mousedown", onDown)

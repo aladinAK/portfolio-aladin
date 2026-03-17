@@ -19,7 +19,9 @@
       "Bash(grep -rh from.*@/components/ui components/sections/ components/horizontal-scroll-layout.tsx app/ lib/)",
       "Bash(sed -i '' 's/export function NatureSection/export function AgencySection/' /Users/aladin/work/portfolio-scroll+/components/sections/agency-section.tsx)",
       "Bash(sed -i '' 's/export function TechSection/export function BookSection/' /Users/aladin/work/portfolio-scroll+/components/sections/book-section.tsx)",
-      "Bash(sed -i '' 's/export function LifestyleSection/export function MoodSection/' /Users/aladin/work/portfolio-scroll+/components/sections/mood-section.tsx)"
+      "Bash(sed -i '' 's/export function LifestyleSection/export function MoodSection/' /Users/aladin/work/portfolio-scroll+/components/sections/mood-section.tsx)",
+      "Bash(pnpm install:*)",
+      "Bash(pnpm build:*)"
     ]
   }
 }
