@@ -223,7 +223,7 @@ export function StudioSection() {
 
         <div className="s-reveal s-blur flex items-baseline justify-between mb-20 md:pl-8 lg:pl-14">
           <div>
-            <span className="text-xs font-mono tracking-widest opacity-30 block mb-4">{t("exp.label")}</span>
+            <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("exp.label")}</span>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]">
               {t("exp.title.1")}<br />
               <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("exp.title.2")}</span>
@@ -271,7 +271,7 @@ export function StudioSection() {
         <div className="hidden md:block absolute top-12 right-4 lg:right-8 w-5 h-px bg-current opacity-[0.06]" />
 
         <div className="s-reveal s-blur mb-20">
-          <span className="text-xs font-mono tracking-widest opacity-30 block mb-4">{t("svc.label")}</span>
+          <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("svc.label")}</span>
           <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]">
             {t("svc.title.1")}<br />
             <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("svc.title.2")}</span>
@@ -301,7 +301,7 @@ export function StudioSection() {
 
         <div className="s-reveal s-blur flex items-baseline justify-between mb-20">
           <div>
-            <span className="text-xs font-mono tracking-widest opacity-30 block mb-4">{t("proj.label")}</span>
+            <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("proj.label")}</span>
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]">
               {t("proj.title.1")}<br />
               <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("proj.title.2")}</span>
@@ -320,12 +320,12 @@ export function StudioSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
           <div className="s-reveal s-blur">
-            <span className="text-xs font-mono tracking-widest opacity-30 block mb-4">{t("about.label")}</span>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter leading-[0.50] mb-8">
+            <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("about.label")}</span>
+             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]">
               {t("about.title.1")}<br />
               <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("about.title.2")}</span>
             </h2>
-            <div className="space-y-4 text-sm opacity-50 leading-relaxed max-w-md">
+            <div className="space-y-4 mt-15 text-sm opacity-50 leading-relaxed max-w-md">
               <p>{t("about.p1")}</p>
               <p>{t("about.p2")}</p>
             </div>
@@ -360,13 +360,13 @@ export function StudioSection() {
         <div className="hidden md:block absolute bottom-8 right-8 w-px h-8 bg-current opacity-[0.08]" />
 
         <div className="s-reveal s-down mb-12">
-          <span className="text-xs font-mono tracking-widest opacity-30 block mb-4">{t("contact.label")}</span>
+          <span className="text-xs font-mono tracking-widest opacity-30 block">{t("contact.label")}</span>
         </div>
 
-        <h2 className="s-reveal s-blur text-[12vw] md:text-[9vw] font-bold tracking-tighter leading-[0.50] mb-16" style={{ "--delay": "100ms" } as React.CSSProperties}>
-          {t("contact.title.1")}<br />
-          <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("contact.title.2")}</span>
-        </h2>
+         <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50] mb-16">
+             {t("contact.title.1")}<br />
+              <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("contact.title.2")}</span>
+            </h2>
 
         <div className="flex flex-wrap gap-4 md:gap-6 mb-20">
           {LINKS.map((link, i) => (

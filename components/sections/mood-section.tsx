@@ -30,9 +30,9 @@ export function MoodSection() {
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
         {/* Nav */}
-        <nav className="relative z-10 flex items-center justify-between">
-          <span className="text-sm opacity-30 font-bold tracking-tight">
-            MoodMovie
+        <nav className="relative z-10 flex items-center justify-between max-sm:pt-15 max-sm:flex-col max-sm:gap-4">
+           <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+            Need a vibe?
           </span>
           <a
             href="https://moodmovie-by-aladinakkari.vercel.app/"
@@ -47,7 +47,7 @@ export function MoodSection() {
 
         {/* Center */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] mb-4 capitalize">
+          <h1 className="text-5xl agency-font md:text-7xl lg:text-8xl font-bold leading-[0.9] mb-4 capitalize">
             {t("mood.hero.1")}<br />
             <span className="mood-gradient-text">{t("mood.hero.2")}</span>
           </h1>

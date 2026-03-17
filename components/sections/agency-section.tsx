@@ -51,7 +51,7 @@ export function AgencySection() {
       <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
 
         {/* Nav */}
-        <nav className="relative z-10 flex items-center justify-between">
+        <nav className="relative z-10 flex items-center justify-between max-sm:pt-15 max-sm:flex-col max-sm:gap-4">
           <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-50">
             {t("agency.label")}
           </span>

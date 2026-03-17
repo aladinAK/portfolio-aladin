@@ -36,103 +36,103 @@ const dict: Record<string, Record<Lang, string>> = {
   "exp.date": { fr: "2017 — présent", en: "2017 — present" },
 
   // Experience items
-  "exp.0.role": { fr: "Senior Front End Developer", en: "Senior Front End Developer" },
-  "exp.0.type": { fr: "Temps plein", en: "Full-time" },
-  "exp.0.desc": {
-    fr: "Développement frontend & design web, stratégies SEO, intégration WordPress. Construction de composants réutilisables et interfaces performantes pour des campagnes gaming.",
-    en: "Frontend development & web design, SEO strategies, WordPress integration. Building reusable components and performant interfaces for gaming campaigns.",
-  },
-  "exp.1.role": { fr: "Designer Web", en: "Web Designer" },
-  "exp.1.type": { fr: "Freelance", en: "Freelance" },
-  "exp.1.desc": {
-    fr: "Création de supports visuels pour différents clients — affiches, brochures, emballages, maquettes, conception et création de Site Web.",
-    en: "Visual assets creation for various clients — posters, brochures, packaging, mockups, website design and creation.",
-  },
-  "exp.2.role": { fr: "Spécialiste en référencement", en: "SEO Specialist" },
-  "exp.2.type": { fr: "Temps partiel", en: "Part-time" },
-  "exp.2.desc": {
-    fr: "Service client et suivi dans une agence spécialisée en référencement. Appels sortants, gestion de mandats et support aux opérations.",
-    en: "Customer service and follow-up at a specialized SEO agency. Outbound calls, mandate management and operations support.",
-  },
-  "exp.3.role": { fr: "Designer graphique", en: "Graphic Designer" },
-  "exp.3.type": { fr: "Stage", en: "Internship" },
-  "exp.3.desc": {
-    fr: "Création de logos, affiches et supports de communication pour une agence de publicité.",
-    en: "Logo, poster and communication material creation for an advertising agency.",
-  },
-  "exp.4.role": { fr: "Infographiste", en: "Graphic Designer" },
-  "exp.4.type": { fr: "Stage", en: "Internship" },
-  "exp.4.desc": {
-    fr: "Création de supports selon les critères clients dans une société spécialisée en impression offset.",
-    en: "Creating materials based on client requirements at an offset printing company.",
-  },
+"exp.0.role": { fr: "Senior Front End Developer", en: "Senior Front End Developer" },
+"exp.0.type": { fr: "Temps plein", en: "Full-time" },
+"exp.0.desc": {
+  fr: "Je conçois et développe des interfaces web performantes et réactives, en alliant design et expérience utilisateur. Je crée des composants réutilisables et optimise chaque projet pour la performance et le SEO, notamment dans le secteur du gaming.",
+  en: "I design and develop responsive, high-performance web interfaces, blending design with user experience. I build reusable components and optimize every project for performance and SEO, especially in the gaming sector."
+},
+"exp.1.role": { fr: "Designer Web", en: "Web Designer" },
+"exp.1.type": { fr: "Freelance", en: "Freelance" },
+"exp.1.desc": {
+  fr: "J'accompagne mes clients dans la création d'identités visuelles impactantes — affiches, brochures, packaging, maquettes et sites web — en traduisant leurs idées en designs cohérents et esthétiques.",
+  en: "I help clients craft impactful visual identities — posters, brochures, packaging, mockups, and websites — translating their ideas into cohesive and visually appealing designs."
+},
+"exp.2.role": { fr: "Spécialiste en référencement", en: "SEO Specialist" },
+"exp.2.type": { fr: "Temps partiel", en: "Part-time" },
+"exp.2.desc": {
+  fr: "Service client et suivi dans une agence spécialisée en référencement. Appels sortants, gestion de mandats et support aux opérations.",
+  en: "Customer service and follow-up at a specialized SEO agency. Outbound calls, mandate management and operations support.",
+},
+"exp.3.role": { fr: "Designer graphique", en: "Graphic Designer" },
+"exp.3.type": { fr: "Stage", en: "Internship" },
+"exp.3.desc": {
+  fr: "Création de logos, affiches et supports de communication variés, en respectant l'identité et le ton de chaque client au sein de l'agence.",
+  en: "Creating logos, posters, and diverse communication materials, while respecting each client’s identity and tone within the agency."
+},
+"exp.4.role": { fr: "Infographiste", en: "Graphic Designer" },
+"exp.4.type": { fr: "Stage", en: "Internship" },
+"exp.4.desc": {
+  fr: "Production de supports graphiques sur mesure selon les besoins des clients dans une société spécialisée en impression offset, avec attention aux détails et à la qualité finale.",
+  en: "Producing tailored graphic materials based on client needs at an offset printing company, with careful attention to detail and final quality."
+},
 
-  // Services
-  "svc.label": { fr: "02 / SERVICES", en: "02 / SERVICES" },
-  "svc.title.1": { fr: "Ce que", en: "What" },
-  "svc.title.2": { fr: "je fais", en: "I do" },
-  "svc.0.title": { fr: "Développement Frontend", en: "Frontend Development" },
-  "svc.0.desc": {
-    fr: "React, Vue, Next.js, Nuxt — des interfaces performantes et responsives avec une attention au détail pixel-perfect.",
-    en: "React, Vue, Next.js, Nuxt — performant and responsive interfaces with pixel-perfect attention to detail.",
-  },
-  "svc.1.title": { fr: "UI / UX Design", en: "UI / UX Design" },
-  "svc.1.desc": {
-    fr: "De la recherche utilisateur au prototype Figma — des designs qui allient esthétique et fonctionnalité.",
-    en: "From user research to Figma prototypes — designs that combine aesthetics and functionality.",
-  },
-  "svc.2.title": { fr: "Animation Web", en: "Web Animation" },
-  "svc.2.desc": {
-    fr: "Transitions fluides, micro-interactions, parallax — donner vie aux interfaces avec subtilité.",
-    en: "Smooth transitions, micro-interactions, parallax — bringing interfaces to life with subtlety.",
-  },
-  "svc.3.title": { fr: "SEO & Performance", en: "SEO & Performance" },
-  "svc.3.desc": {
-    fr: "Optimisation Core Web Vitals, stratégies SEO, analytics — des sites rapides et bien référencés.",
-    en: "Core Web Vitals optimization, SEO strategies, analytics — fast and well-ranked websites.",
-  },
+// Services
+"svc.label": { fr: "02 / SERVICES", en: "02 / SERVICES" },
+"svc.title.1": { fr: "Ce que", en: "What" },
+"svc.title.2": { fr: "je fais", en: "I do" },
+"svc.0.title": { fr: "Développement Frontend", en: "Frontend Development" },
+"svc.0.desc": {
+  fr: "Création d'interfaces web réactives et performantes avec React, Vue, Next.js et Nuxt, toujours avec un souci du détail pixel-perfect.",
+  en: "Building responsive, high-performance web interfaces with React, Vue, Next.js, and Nuxt, always with pixel-perfect attention to detail."
+},
+"svc.1.title": { fr: "UI / UX Design", en: "UI / UX Design" },
+"svc.1.desc": {
+  fr: "De l'étude utilisateur à la réalisation de prototypes Figma, je conçois des interfaces qui allient esthétique, ergonomie et fonctionnalité.",
+  en: "From user research to Figma prototypes, I design interfaces that blend aesthetics, usability, and functionality."
+},
+"svc.2.title": { fr: "Animation Web", en: "Web Animation" },
+"svc.2.desc": {
+  fr: "Je crée des animations subtiles et engageantes — transitions fluides, micro-interactions, parallax — pour rendre l’expérience web vivante et intuitive.",
+  en: "I create subtle, engaging web animations — smooth transitions, micro-interactions, parallax — to make web experiences lively and intuitive."
+},
+"svc.3.title": { fr: "SEO & Performance", en: "SEO & Performance" },
+"svc.3.desc": {
+  fr: "Optimisation des Core Web Vitals, mise en place de stratégies SEO et suivi analytics pour garantir des sites rapides, visibles et performants.",
+  en: "Optimizing Core Web Vitals, implementing SEO strategies, and monitoring analytics to ensure fast, visible, and high-performing websites."
+},
 
-  // Projects
-  "proj.label": { fr: "03 / PROJETS", en: "03 / PROJECTS" },
-  "proj.title.1": { fr: "Mes", en: "Selected" },
-  "proj.title.2": { fr: "Projets", en: "Work" },
-  "proj.cta": { fr: "Voir le projet", en: "View project" },
-  "proj.0.d0": {
-    fr: "Plateforme marketing gaming — dashboard analytique complet pour améliorer la visibilité et prendre des décisions data-driven.",
-    en: "Gaming marketing platform — complete analytics dashboard to improve visibility and make data-driven decisions.",
-  },
-  "proj.0.d1": {
-    fr: "Visualisation de données en temps réel et système d'authentification sécurisé.",
-    en: "Real-time data visualization and secure authentication system.",
-  },
-  "proj.0.d2": {
-    fr: "Projet le plus ambitieux — implication frontend et backend.",
-    en: "Most ambitious project — frontend and backend involvement.",
-  },
-  "proj.1.d0": {
-    fr: "Refonte complète du site en collaboration avec l'équipe design — direction créative et implémentation technique.",
-    en: "Complete website redesign in collaboration with the design team — creative direction and technical implementation.",
-  },
-  "proj.1.d1": {
-    fr: "Conversion des maquettes en code responsive, optimisation performance et compatibilité cross-browser.",
-    en: "Converting mockups into responsive code, performance optimization and cross-browser compatibility.",
-  },
-  "proj.1.d2": {
-    fr: "Création de fonctionnalités custom et éléments interactifs pour l'engagement utilisateur.",
-    en: "Custom features and interactive elements for user engagement.",
-  },
-  "proj.2.d0": {
-    fr: "Développement de landing pages promotionnelles pour des titres majeurs — Genshin Impact, Game of Thrones, Raid: Shadow Legends.",
-    en: "Promotional landing page development for major titles — Genshin Impact, Game of Thrones, Raid: Shadow Legends.",
-  },
-  "proj.2.d1": {
-    fr: "Deux refontes complètes du site principal avec amélioration des métriques SEO.",
-    en: "Two complete website redesigns with improved SEO metrics.",
-  },
-  "proj.2.d2": {
-    fr: "Intégration Google Tag Manager et analytics, design graphique appliqué à la présentation visuelle.",
-    en: "Google Tag Manager and analytics integration, graphic design applied to visual presentation.",
-  },
+// Projects
+"proj.label": { fr: "03 / PROJETS", en: "03 / PROJECTS" },
+"proj.title.1": { fr: "Mes", en: "My" },
+"proj.title.2": { fr: "Travaux", en: "Work" },
+"proj.cta": { fr: "Voir le projet", en: "View project" },
+"proj.0.d0": {
+  fr: "Plateforme marketing gaming — dashboard analytique complet pour améliorer la visibilité et orienter les décisions grâce aux données.",
+  en: "Gaming marketing platform — comprehensive analytics dashboard to boost visibility and guide data-driven decisions."
+},
+"proj.0.d1": {
+  fr: "Visualisation des données en temps réel et système d'authentification sécurisé.",
+  en: "Real-time data visualization and secure authentication system."
+},
+"proj.0.d2": {
+  fr: "Projet ambitieux combinant développement frontend et backend pour un impact maximal.",
+  en: "Ambitious project combining frontend and backend development for maximum impact."
+},
+"proj.1.d0": {
+  fr: "Refonte complète d’un site en collaboration avec l'équipe design — de la direction créative à l’implémentation technique.",
+  en: "Complete website redesign in collaboration with the design team — from creative direction to technical implementation."
+},
+"proj.1.d1": {
+  fr: "Transformation de maquettes en code responsive, optimisation de la performance et compatibilité multi-navigateurs.",
+  en: "Converting mockups into responsive code, optimizing performance, and ensuring cross-browser compatibility."
+},
+"proj.1.d2": {
+  fr: "Création de fonctionnalités sur mesure et d’éléments interactifs pour engager l’utilisateur.",
+  en: "Developing custom features and interactive elements to enhance user engagement."
+},
+"proj.2.d0": {
+  fr: "Landing pages promotionnelles pour de grands titres — Genshin Impact, Game of Thrones, Raid: Shadow Legends.",
+  en: "Promotional landing pages for major titles — Genshin Impact, Game of Thrones, Raid: Shadow Legends."
+},
+"proj.2.d1": {
+  fr: "Deux refontes complètes du site principal avec amélioration des indicateurs SEO.",
+  en: "Two full website redesigns with improved SEO metrics."
+},
+"proj.2.d2": {
+  fr: "Intégration Google Tag Manager et analytics, avec un design graphique pensé pour la mise en valeur visuelle.",
+  en: "Google Tag Manager and analytics integration, with graphic design focused on visual impact."
+},
 
   // About
   "about.label": { fr: "04 / À PROPOS", en: "04 / ABOUT" },
