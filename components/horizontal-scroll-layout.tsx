@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect } from "react"
 import { ChevronLeft, ChevronRight, FileDown } from "lucide-react"
+import { FloatingOrb } from "@/components/floating-orb"
 
 interface HorizontalScrollLayoutProps {
   children: React.ReactNode[]
@@ -185,6 +186,9 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
           </button>
         </div>
       )}
+
+      {/* Floating Orb */}
+      <FloatingOrb currentSection={currentSection} />
 
       {/* Scroll Hint - Right */}
       {canScrollRight && (

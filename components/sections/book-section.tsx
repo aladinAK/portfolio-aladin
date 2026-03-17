@@ -123,7 +123,7 @@ export function BookSection() {
             </h1>
 
             {/* Subtitle — italic serif */}
-            <p className="book-title-font italic opacity-40 text-lg md:text-2xl mt-8 mb-10 leading-relaxed">
+            <p className="book-title-font italic opacity-40 text-lg md:text-2xl my-5 leading-relaxed">
               {t("book.subtitle")}
             </p>
 

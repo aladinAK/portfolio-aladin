@@ -1,8 +1,8 @@
-:HL["/_next/static/chunks/bf2aa215c059554a.css","style"]
+:HL["/_next/static/chunks/f3add279c961fb20.css","style"]
 :HL["/_next/static/media/2a65768255d6b625-s.p.d19752fb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/40a3cd74afdfe30c-s.p.174c66f3.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/748b8b5301d2bdb2-s.p.9ce241d2.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/797e433ab948586e-s.p.dbea232f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/caa3a2e1cccd8315-s.p.853070df.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700,900&display=swap","style"]
-0:{"buildId":"EOIk0YzC9ArZg2R4OcYph","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"8VABHWVnoxIr0gIqq_-OP","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
