@@ -16,7 +16,10 @@
       "Bash(xargs -I {} basename {} .tsx)",
       "Bash(grep -h \"from ['''']@/components/ui\" /Users/aladin/work/portfolio-scroll+/components --include=*.tsx -r)",
       "Bash(grep -h \"^import\" /Users/aladin/work/portfolio-scroll+/components/sections/*.tsx)",
-      "Bash(grep -rh from.*@/components/ui components/sections/ components/horizontal-scroll-layout.tsx app/ lib/)"
+      "Bash(grep -rh from.*@/components/ui components/sections/ components/horizontal-scroll-layout.tsx app/ lib/)",
+      "Bash(sed -i '' 's/export function NatureSection/export function AgencySection/' /Users/aladin/work/portfolio-scroll+/components/sections/agency-section.tsx)",
+      "Bash(sed -i '' 's/export function TechSection/export function BookSection/' /Users/aladin/work/portfolio-scroll+/components/sections/book-section.tsx)",
+      "Bash(sed -i '' 's/export function LifestyleSection/export function MoodSection/' /Users/aladin/work/portfolio-scroll+/components/sections/mood-section.tsx)"
     ]
   }
 }

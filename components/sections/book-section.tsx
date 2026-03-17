@@ -56,7 +56,7 @@ function Typewriter({ text, delay, steps }: { text: string; delay: string; steps
   )
 }
 
-export function TechSection() {
+export function BookSection() {
   const { t } = useLang()
 
   return (

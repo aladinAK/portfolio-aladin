@@ -19,7 +19,7 @@ const FEATURES = [
   { icon: "🎵", key: "mood.feat.3" },
 ]
 
-export function LifestyleSection() {
+export function MoodSection() {
   const { t } = useLang()
 
   return (

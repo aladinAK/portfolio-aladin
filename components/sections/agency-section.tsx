@@ -21,7 +21,7 @@ const SERVICES = [
   { icon: Headphones, key: "agency.svc.3" },
 ]
 
-export function NatureSection() {
+export function AgencySection() {
   const { t } = useLang()
 
   return (
@@ -31,7 +31,6 @@ export function NatureSection() {
     >
       {/* Global animated background — spans full section */}
       <div className="agency-bg" aria-hidden>
-        <div className="agency-noise" />
         {SHAPES.map((s, i) => (
           <div
             key={i}

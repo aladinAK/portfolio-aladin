@@ -22,7 +22,6 @@ const LINKS = [
   { label: "LinkedIn", href: "https://linkedin.com/in/aladin-akkari", icon: "Li" },
   { label: "GitHub", href: "https://github.com/aladinAK", icon: "Gh" },
   { label: "Behance", href: "https://www.behance.net/aladinakkari1", icon: "Be" },
-  { label: "Portfolio", href: "https://aladinakkari.ca", icon: "Ww" },
 ]
 
 const TOOLS = [
