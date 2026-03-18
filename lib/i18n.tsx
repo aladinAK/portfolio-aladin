@@ -17,6 +17,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "nav.role.1": { fr: "Développeur Frontend", en: "Frontend Developer" },
   "nav.role.3": { fr: "Designer", en: "Designer" },
   "nav.available": { fr: "DISPONIBLE", en: "AVAILABLE" },
+  "nav.cv.download": { fr: "Télécharger CV", en: "Download CV" },
 
   // Hero
   "hero.line1": { fr: "Développeur", en: "Frontend" },
@@ -152,6 +153,9 @@ const dict: Record<string, Record<Lang, string>> = {
   "contact.label": { fr: "05 / CONTACT", en: "05 / CONTACT" },
   "contact.title.1": { fr: "Restons", en: "Let's" },
   "contact.title.2": { fr: "en contact.", en: "connect." },
+  "contact.email.cta": { fr: "Envoyer un email", en: "Send an email" },
+  "contact.local.time": { fr: "Heure locale — Montréal", en: "Local time — Montréal" },
+  "contact.available": { fr: "Disponible", en: "Available" },
 
   // Agency (nature section)
   "agency.label": { fr: "besoin d un site web ?", en: "Need a website?" },
@@ -209,6 +213,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "agency.form.yes": { fr: "Oui", en: "Yes" },
   "agency.form.no": { fr: "Non", en: "No" },
   "agency.form.existing.url": { fr: "Lien du site actuel", en: "Current site URL" },
+  "agency.form.existing.url.ph": { fr: "https://votresite.com", en: "https://yoursite.com" },
   "agency.form.message": { fr: "Message", en: "Message" },
   "agency.form.message.ph": { fr: "Décrivez votre projet, vos besoins ou vos questions.", en: "Describe your project, needs, or questions." },
   "agency.form.submit": { fr: "Envoyer ma demande", en: "Send my request" },
@@ -237,6 +242,10 @@ const dict: Record<string, Record<Lang, string>> = {
     fr: "Maintenance, mises à jour, corrections de bugs et améliorations continues. On s'occupe de tout pour que vous vous concentrez sur votre business.",
     en: "Maintenance, updates, bug fixes and continuous improvements. We handle everything so you can focus on your business.",
   },
+
+  // Shared
+  "scroll": { fr: "Défiler", en: "Scroll" },
+  "scroll.more": { fr: "Défiler pour plus", en: "Scroll for more" },
 
   // Book section
   "book.label": { fr: "Roman", en: "Novel" },
@@ -285,13 +294,25 @@ const dict: Record<string, Record<Lang, string>> = {
   "book.t4.title": { fr: "L'Épée des Héritages Brisés", en: "The Sword of Shattered Legacies" },
   "book.t4.status": { fr: "En préparation", en: "In preparation" },
   "book.coming": { fr: "Bientôt", en: "Soon" },
+  "book.genre": { fr: "Dark Fantasy", en: "Dark Fantasy" },
+  "book.tomes.count": { fr: "IV Tomes", en: "IV Volumes" },
+  "book.tome": { fr: "Tome", en: "Volume" },
   "book.store.cta": { fr: "Pour plus d'informations", en: "For more information" },
+  "book.thought.0": { fr: "Wow...", en: "Wow..." },
+  "book.thought.1": { fr: "Incroyable", en: "Incredible" },
+  "book.thought.2": { fr: "Jez est fou", en: "Jez is insane" },
+  "book.thought.3": { fr: "Non... Oslo ?!", en: "No... Oslo?!" },
+  "book.thought.4": { fr: "Je peux pas lâcher", en: "Can't put it down" },
+  "book.thought.5": { fr: "Plot twist !", en: "Plot twist!" },
+  "book.thought.6": { fr: "C'est dark...", en: "So dark..." },
+  "book.thought.7": { fr: "Encore un chapitre", en: "One more chapter" },
   "book.author.quote": {
     fr: "L'héroïsme, ce n'est pas l'absence de peur. C'est savoir ce qu'on perd avant de choisir.",
     en: "Heroism isn't absence of fear. It's knowing what you lose before choosing.",
   },
 
   // MoodMovie section
+  "mood.vibe": { fr: "Besoin d'un vibe ?", en: "Need a vibe?" },
   "mood.cta": { fr: "Essayer l'app", en: "Try the app" },
   "mood.hero.1": { fr: "Ton mood.", en: "Your mood." },
   "mood.hero.2": { fr: "Ton contenu.", en: "Your content." },

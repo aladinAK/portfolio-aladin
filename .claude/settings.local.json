@@ -27,7 +27,14 @@
       "Bash(find /Users/aladin/work/portfolio-scroll+/lib -type f -name *.tsx -o -name *.ts)",
       "Bash(npm install:*)",
       "Bash(npm list:*)",
-      "Bash(pnpm add:*)"
+      "Bash(pnpm add:*)",
+      "Bash(find /Users/aladin/work/portfolio-scroll+/public -type f -exec ls -lh {})",
+      "Bash(2)",
+      "Read(//Users/aladin/work/portfolio-scroll+/**)",
+      "Bash(sips -s format webp form1.png --out form1.webp)",
+      "Bash(sips -s format webp form2.png --out form2.webp)",
+      "Bash(npx --yes sharp-cli -i /Users/aladin/work/portfolio-scroll+/public/book/form1.png -o /Users/aladin/work/portfolio-scroll+/public/book/form1.webp --format webp --quality 80)",
+      "Bash(npx sharp-cli:*)"
     ]
   }
 }

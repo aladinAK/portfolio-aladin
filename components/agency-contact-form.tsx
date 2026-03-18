@@ -153,7 +153,7 @@ export function AgencyContactForm() {
                 type="url"
                 id="existingSiteUrl"
                 name="existingSiteUrl"
-                placeholder="https://votresite.com"
+                placeholder={t("agency.form.existing.url.ph")}
                 className="agency-form-input"
               />
             </div>

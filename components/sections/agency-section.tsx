@@ -57,7 +57,7 @@ export function AgencySection() {
             {t("agency.label")}
           </span>
           <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-50">
-            {t("agency.bottom")}
+            {t("scroll.more")}
           </span>
         </nav>
 
@@ -120,7 +120,7 @@ export function AgencySection() {
             <div className="w-5 h-8 rounded-full border-2 border-current opacity-20 flex items-start justify-center pt-1.5">
               <div className="w-1 h-2.5 rounded-full bg-current animate-bounce" />
             </div>
-            <span className="agency-font text-[10px] uppercase tracking-[0.3em] opacity-20">Scroll</span>
+            <span className="agency-font text-[10px] uppercase tracking-[0.3em] opacity-20">{t("scroll")}</span>
           </div>
         </div>
       </section>
@@ -164,31 +164,11 @@ export function AgencySection() {
           </div>
 
         </div>
-
-        {/* Bottom dots */}
-        <div className="relative z-10 mt-auto pt-12 flex justify-center">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }} />
-            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
-            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
-          </div>
-        </div>
       </section>
 
       {/* ═══════════════ CONTACT FORM ═══════════════ */}
       <section className="relative">
         <AgencyContactForm />
-
-        {/* Bottom dots */}
-        <div className="relative z-10 pb-12 flex justify-center">
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
-            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
-            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
-            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }} />
-          </div>
-        </div>
       </section>
     </div>
   )

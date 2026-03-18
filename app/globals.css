@@ -245,6 +245,7 @@
 /* Marquee */
 .studio-marquee {
   animation: studioMarquee 20s linear infinite;
+  will-change: transform;
 }
 
 @keyframes studioMarquee {
@@ -314,6 +315,7 @@
   pointer-events: none;
   filter: blur(100px);
   z-index: 0;
+  will-change: transform;
 }
 
 .agency-orb-1 {
@@ -348,6 +350,24 @@
   0%, 100% { transform: translate(0, 0); }
   33% { transform: translate(30px, -20px); }
   66% { transform: translate(-20px, 15px); }
+}
+
+/* Reduce motion for users who prefer it + lighten mobile GPU load */
+@media (prefers-reduced-motion: reduce) {
+  .agency-shape,
+  .agency-orb-1,
+  .agency-orb-2,
+  .agency-orb-3,
+  .floating-orb-float,
+  .floating-orb-sphere,
+  .floating-orb-glow,
+  .floating-orb-specular,
+  .studio-marquee,
+  .mood-float-1,
+  .mood-float-2,
+  .mood-float-3 {
+    animation: none !important;
+  }
 }
 
 /* ═══════ MoodMovie Section (Lifestyle) ═══════ */
@@ -583,6 +603,16 @@
 }
 
 /* ═══════ Floating Orb ═══════ */
+
+/* Pause orb animations on touch devices where it's not visible */
+@media (pointer: coarse) {
+  .floating-orb-float,
+  .floating-orb-sphere,
+  .floating-orb-glow,
+  .floating-orb-specular {
+    animation: none !important;
+  }
+}
 
 .floating-orb-float {
   animation: orbFloat 6s ease-in-out infinite;

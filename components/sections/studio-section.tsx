@@ -139,6 +139,32 @@ function LangToggle() {
   )
 }
 
+function LocalClock (){
+  const [time, setTime] = useState("")
+
+  useEffect(() => {
+    const update = () => {
+      setTime(
+        new Date().toLocaleTimeString("fr-CA", {
+          timeZone: "America/Montreal",
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit",
+        })
+      )
+    }
+    update()
+    const id = setInterval(update, 1000)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <div className="flex items-center gap-3">
+      <span className="text-xs font-mono tabular-nums opacity-50">{time}</span>
+    </div>
+  )
+}
+
 export function StudioSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
@@ -149,9 +175,19 @@ export function StudioSection() {
   useEffect(() => {
     const container = sectionRef.current?.closest(".vertical-section")
     if (!container) return
-    const handleScroll = () => { setScrollY(container.scrollTop) }
+    let rafId = 0
+    const handleScroll = () => {
+      if (rafId) return
+      rafId = requestAnimationFrame(() => {
+        rafId = 0
+        setScrollY((container as HTMLElement).scrollTop)
+      })
+    }
     container.addEventListener("scroll", handleScroll, { passive: true })
-    return () => container.removeEventListener("scroll", handleScroll)
+    return () => {
+      container.removeEventListener("scroll", handleScroll)
+      cancelAnimationFrame(rafId)
+    }
   }, [])
 
   const parallax = (speed: number) => ({ transform: `translateY(${scrollY * speed}px)` })
@@ -177,7 +213,7 @@ export function StudioSection() {
               download
               className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-mono tracking-wider transition-all duration-300 hover:border-[var(--section-accent)] hover:text-[var(--section-accent)]"
               style={{ borderColor: "var(--section-muted)" }}
-              aria-label="Télécharger CV"
+              aria-label={t("nav.cv.download")}
             >
               <FileDown className="w-3 h-3" />
               <span>CV</span>
@@ -366,6 +402,7 @@ export function StudioSection() {
 
       {/* ═══════════════ CONTACT ═══════════════ */}
       <section className="min-h-screen p-6 md:p-12 lg:p-20 flex flex-col justify-center relative">
+        {/* Corner marks */}
         <div className="hidden md:block absolute top-8 left-8 w-8 h-px bg-current opacity-[0.08]" />
         <div className="hidden md:block absolute top-8 left-8 w-px h-8 bg-current opacity-[0.08]" />
         <div className="hidden md:block absolute top-8 right-8 w-8 h-px bg-current opacity-[0.08]" />
@@ -375,37 +412,44 @@ export function StudioSection() {
         <div className="hidden md:block absolute bottom-8 right-8 w-8 h-px bg-current opacity-[0.08]" />
         <div className="hidden md:block absolute bottom-8 right-8 w-px h-8 bg-current opacity-[0.08]" />
 
-        <div className="s-reveal s-down mb-12">
-          <span className="text-xs font-mono tracking-widest opacity-30 block">{t("contact.label")}</span>
-        </div>
+        <div className="flex flex-col flex-1 justify-center">
+          {/* Available badge */}
+          <div className="s-reveal s-down flex items-center gap-6 mb-12">
+            <span className="text-xs font-mono tracking-widest opacity-30">{t("contact.label")}</span>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full border" style={{ borderColor: "var(--section-muted)" }}>
+              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-xs font-mono opacity-60">{t("contact.available")}</span>
+            </div>
+          </div>
 
-         <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50] mb-16">
-             {t("contact.title.1")}<br />
-              <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("contact.title.2")}</span>
-            </h2>
+          {/* Title */}
+          <h2 className="s-reveal s-blur text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50] mb-16">
+            {t("contact.title.1")}<br />
+            <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("contact.title.2")}</span>
+          </h2>
 
-        <div className="flex flex-wrap gap-4 md:gap-6 mb-20">
-          {LINKS.map((link, i) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="s-reveal s-up group flex items-center gap-3 px-6 py-4 border rounded-full transition-all duration-500 hover:bg-[var(--section-accent)] hover:text-[var(--section-bg)] hover:border-[var(--section-accent)]"
-              style={{ borderColor: "var(--section-muted)", "--delay": `${250 + i * 100}ms` } as React.CSSProperties}
-            >
-              <span className="text-xs font-mono font-bold opacity-50 group-hover:opacity-100">{link.icon}</span>
-              <span className="text-sm font-medium">{link.label}</span>
-              <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-            </a>
-          ))}
-        </div>
+          {/* Social links */}
+          <div className="flex flex-wrap gap-4 md:gap-6 mb-16">
+            {LINKS.map((link, i) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="s-reveal s-up group flex items-center gap-3 px-6 py-4 border rounded-full transition-all duration-500 hover:bg-[var(--section-accent)] hover:text-[var(--section-bg)] hover:border-[var(--section-accent)]"
+                style={{ borderColor: "var(--section-muted)", "--delay": `${250 + i * 100}ms` } as React.CSSProperties}
+              >
+                <span className="text-xs font-mono font-bold opacity-50 group-hover:opacity-100">{link.icon}</span>
+                <span className="text-sm font-medium">{link.label}</span>
+                <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </a>
+            ))}
+          </div>
 
-        <div className="mt-auto flex items-end justify-between">
-          <div className="text-xs font-mono opacity-20">&copy; {new Date().getFullYear()} Aladin Akkari</div>
-          <div className="flex items-center gap-2">
-            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-xs font-mono opacity-50">{t("nav.available")}</span>
+          {/* Footer: copyright + local time */}
+          <div className="mt-auto flex items-end justify-between">
+            <div className="text-xs font-mono opacity-20">&copy; {new Date().getFullYear()} Aladin Akkari</div>
+            <LocalClock />
           </div>
         </div>
       </section>

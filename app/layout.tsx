@@ -83,7 +83,8 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700,900&display=swap" />
+        <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,700,900&display=swap" as="style" />
+        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,700,900&display=swap" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
       <body className={`font-sans antialiased ${geist.variable} ${geistMono.variable} ${playfair.variable} ${specialElite.variable} ${fraktur.variable}`}>

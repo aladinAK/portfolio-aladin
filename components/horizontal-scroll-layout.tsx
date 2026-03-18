@@ -17,18 +17,23 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
   const isInitialLoad = useRef(true)
+  const scrollRaf = useRef<number>(0)
 
-  const updateScrollState = () => {
-    if (!containerRef.current) return
+  const updateScrollState = useCallback(() => {
+    if (scrollRaf.current) return
+    scrollRaf.current = requestAnimationFrame(() => {
+      scrollRaf.current = 0
+      if (!containerRef.current) return
 
-    const { scrollLeft, scrollWidth, clientWidth } = containerRef.current
-    const sectionWidth = clientWidth
-    const newSection = Math.round(scrollLeft / sectionWidth)
+      const { scrollLeft, scrollWidth, clientWidth } = containerRef.current
+      const sectionWidth = clientWidth
+      const newSection = Math.round(scrollLeft / sectionWidth)
 
-    setCurrentSection(newSection)
-    setCanScrollLeft(scrollLeft > 10)
-    setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
-  }
+      setCurrentSection(newSection)
+      setCanScrollLeft(scrollLeft > 10)
+      setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10)
+    })
+  }, [])
 
   // Sync URL hash with current section
   useEffect(() => {
