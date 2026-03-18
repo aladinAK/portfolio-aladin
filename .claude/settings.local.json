@@ -24,7 +24,10 @@
       "Bash(pnpm build:*)",
       "Bash(find /Users/aladin/work/portfolio-scroll+/components -type f -name *.tsx -o -name *.ts)",
       "Bash(find /Users/aladin/work/portfolio-scroll+/app -type f -name *.tsx -o -name *.ts)",
-      "Bash(find /Users/aladin/work/portfolio-scroll+/lib -type f -name *.tsx -o -name *.ts)"
+      "Bash(find /Users/aladin/work/portfolio-scroll+/lib -type f -name *.tsx -o -name *.ts)",
+      "Bash(npm install:*)",
+      "Bash(npm list:*)",
+      "Bash(pnpm add:*)"
     ]
   }
 }

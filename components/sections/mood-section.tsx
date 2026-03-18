@@ -25,7 +25,7 @@ export function MoodSection() {
   return (
     <div
       className="section-lifestyle"
-      style={{ color: "var(--section-fg)" }}
+      style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}
     >
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
@@ -34,20 +34,14 @@ export function MoodSection() {
            <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
             Need a vibe?
           </span>
-          <a
-            href="https://moodmovie-by-aladinakkari.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-4 py-2 text-xs font-medium rounded-full border border-white/20 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:bg-white/15 hover:border-white/40"
-          >
-            {t("mood.cta")}
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+            Scroll for more           
+          </span>
         </nav>
 
         {/* Center */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center">
-          <h1 className="text-5xl agency-font md:text-7xl lg:text-8xl font-bold leading-[0.9] mb-4 capitalize">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] mb-4 capitalize">
             {t("mood.hero.1")}<br />
             <span className="mood-gradient-text">{t("mood.hero.2")}</span>
           </h1>

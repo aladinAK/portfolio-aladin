@@ -258,11 +258,6 @@
   font-family: 'Clash Display', sans-serif;
 }
 
-/* Agency animated background — contained within section-nature child only, not .vertical-section */
-.vertical-section > .section-nature {
-  position: relative;
-  overflow-x: hidden;
-}
 
 .agency-bg {
   position: absolute;
@@ -536,10 +531,67 @@
   scrollbar-width: thin;
 }
 
+/* ═══════ Agency Contact Form ═══════ */
+
+.agency-form-label {
+  display: block;
+  font-family: 'Clash Display', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  color: var(--section-fg);
+  opacity: 0.6;
+}
+
+.agency-form-input,
+.agency-form-select {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  color: var(--section-fg);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.agency-form-input::placeholder,
+.agency-form-select option[value=""] {
+  color: rgba(245, 240, 232, 0.3);
+}
+
+.agency-form-input:focus,
+.agency-form-select:focus {
+  border-color: var(--section-accent);
+  box-shadow: 0 0 20px rgba(255, 77, 0, 0.15);
+}
+
+.agency-form-select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+}
+
+.agency-form-select option {
+  background: #1a1a1a;
+  color: #f5f0e8;
+}
+
 /* ═══════ Floating Orb ═══════ */
 
-.floating-orb-container {
-  animation: orbFloat 8s ease-in-out infinite;
+.floating-orb-float {
+  animation: orbFloat 6s ease-in-out infinite;
+}
+
+@keyframes orbFloat {
+  0%, 100% { translate: 0 0; }
+  33% { translate: 0 -5px; }
+  66% { translate: 0 3px; }
 }
 
 .floating-orb-sphere {
@@ -552,13 +604,6 @@
 
 .floating-orb-specular {
   animation: orbSpecular 6s ease-in-out infinite;
-}
-
-@keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  25% { transform: translate(3px, -6px) rotate(1deg); }
-  50% { transform: translate(-2px, -10px) rotate(-0.5deg); }
-  75% { transform: translate(4px, -4px) rotate(0.5deg); }
 }
 
 @keyframes orbBreath {

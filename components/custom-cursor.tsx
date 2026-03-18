@@ -9,7 +9,6 @@ export function CustomCursor() {
   const ringPos = useRef({ x: 0, y: 0 })
   const visible = useRef(false)
   const hovering = useRef(false)
-  const clicking = useRef(false)
   const raf = useRef<number>(0)
 
   useEffect(() => {
@@ -70,7 +69,6 @@ export function CustomCursor() {
     }
 
     const onDown = () => {
-      clicking.current = true
       if (ringRef.current) {
         ringRef.current.style.width = "24px"
         ringRef.current.style.height = "24px"
@@ -83,7 +81,6 @@ export function CustomCursor() {
     }
 
     const onUp = () => {
-      clicking.current = false
       if (ringRef.current) {
         ringRef.current.style.width = hovering.current ? "48px" : "36px"
         ringRef.current.style.height = hovering.current ? "48px" : "36px"

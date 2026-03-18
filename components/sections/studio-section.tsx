@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowUpRight, ExternalLink, ChevronDown } from "lucide-react"
+import { ArrowUpRight, ExternalLink, ChevronDown, FileDown, Mail } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { useLang } from "@/lib/i18n"
 
@@ -170,12 +170,18 @@ export function StudioSection() {
             <span>&</span>
             <span>{t("nav.role.3")}</span>
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <LangToggle />
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-xs font-mono opacity-50">{t("nav.available")}</span>
-            </div>
+            <a
+              href="/cv-aladin-akkari.pdf"
+              download
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-mono tracking-wider transition-all duration-300 hover:border-[var(--section-accent)] hover:text-[var(--section-accent)]"
+              style={{ borderColor: "var(--section-muted)" }}
+              aria-label="Télécharger CV"
+            >
+              <FileDown className="w-3 h-3" />
+              <span>CV</span>
+            </a>
           </div>
         </nav>
 
@@ -190,7 +196,17 @@ export function StudioSection() {
         </div>
 
         <div className="relative z-10 flex items-end justify-between studio-fade-in" style={{ animationDelay: "0.9s" }}>
-          <p className="max-w-xs text-sm opacity-50 leading-relaxed">{t("hero.desc")}</p>
+          <div className="flex flex-col gap-4">
+            <p className="max-w-xs text-sm opacity-50 leading-relaxed">{t("hero.desc")}</p>
+            <a
+              href="mailto:aladinakdesign@gmail.com"
+              className="inline-flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:gap-3 opacity-60 hover:opacity-100"
+              style={{ color: "var(--section-accent)" }}
+            >
+              <Mail className="w-4 h-4" />
+              {t("hero.cta")}
+            </a>
+          </div>
           <div className="flex flex-col items-end gap-1">
             <span className="text-xs font-mono opacity-30">GMT-5</span>
             <div className="flex items-center gap-2 text-sm opacity-50">
@@ -387,7 +403,10 @@ export function StudioSection() {
 
         <div className="mt-auto flex items-end justify-between">
           <div className="text-xs font-mono opacity-20">&copy; {new Date().getFullYear()} Aladin Akkari</div>
-          <div className="text-xs font-mono opacity-20">GMT-5</div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-xs font-mono opacity-50">{t("nav.available")}</span>
+          </div>
         </div>
       </section>
     </div>

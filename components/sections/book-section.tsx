@@ -27,7 +27,12 @@ const TOMES = [
   { num: "IV", key: "book.t4", href: null },
 ]
 
-const INK_SPLATS = [
+interface InkSplat {
+  w: number; h: number; top: string; o: number; d: string; blur: number
+  left?: string; right?: string
+}
+
+const INK_SPLATS: InkSplat[] = [
   { w: 180, h: 160, top: "5%", left: "8%", o: 0.035, d: "0.3s", blur: 20 },
   { w: 120, h: 130, top: "70%", right: "5%", o: 0.04, d: "0.8s", blur: 15 },
   { w: 90, h: 80, top: "40%", left: "85%", o: 0.03, d: "1.2s", blur: 12 },
@@ -71,7 +76,7 @@ export function BookSection() {
             key={`splat-${i}`}
             className="ink-splat"
             style={{
-              width: s.w, height: s.h, top: s.top, left: s.left, right: (s as any).right,
+              width: s.w, height: s.h, top: s.top, left: s.left, right: s.right,
               "--ink-o": s.o, animationDelay: s.d, filter: `blur(${s.blur}px)`,
             } as React.CSSProperties}
           />

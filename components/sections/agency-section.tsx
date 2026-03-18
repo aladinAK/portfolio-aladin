@@ -1,7 +1,8 @@
 "use client"
 
-import { ArrowUpRight, Globe, RefreshCw, ShoppingBag, Headphones } from "lucide-react"
+import { Globe, RefreshCw, ShoppingBag, Headphones } from "lucide-react"
 import { useLang } from "@/lib/i18n"
+import { AgencyContactForm } from "@/components/agency-contact-form"
 
 const SHAPES = [
   { type: "circle", w: 120, h: 120, top: "8%", left: "15%", o: 0.3, d: "0.2s", drift: "22s", dx: "20px", dy: "-15px", rot: "0deg" },
@@ -55,16 +56,9 @@ export function AgencySection() {
           <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-50">
             {t("agency.label")}
           </span>
-          <a
-            href="https://fait-ton-site.vercel.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="agency-font flex items-center gap-2 px-5 py-2.5 text-xs font-bold uppercase tracking-[0.15em] rounded-lg transition-all duration-300 hover:scale-105"
-            style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}
-          >
-            {t("agency.cta")}
-            <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
+          <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-50">
+            {t("agency.bottom")}
+          </span>
         </nav>
 
         {/* Center content */}
@@ -110,24 +104,12 @@ export function AgencySection() {
             </p>
 
             <div className="flex items-center justify-center flex-wrap gap-4 mt-8">
-              <a
-                href="https://fait-ton-site.vercel.app/#contact"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="agency-font font-bold text-sm uppercase tracking-[0.15em] rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,77,0,0.3)]"
+              <span
+                className="agency-font font-bold text-sm uppercase tracking-[0.15em] rounded-lg"
                 style={{ padding: "18px 44px", backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}
               >
                 {t("agency.btn.1")}
-              </a>
-              <a
-                href="https://fait-ton-site.vercel.app/#services"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="agency-font font-bold text-sm uppercase tracking-[0.15em] rounded-lg border-2 transition-all duration-300 hover:border-[var(--section-accent)] hover:text-[var(--section-accent)]"
-                style={{ padding: "16px 42px", borderColor: "rgba(245, 240, 232, 0.2)" }}
-              >
-                Services
-              </a>
+              </span>
             </div>
           </div>
         </div>
@@ -181,19 +163,6 @@ export function AgencySection() {
             ))}
           </div>
 
-          {/* CTA bottom */}
-          <div className="mt-16 text-center">
-            <a
-              href="https://fait-ton-site.vercel.app/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="agency-font inline-flex items-center gap-3 font-bold text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:gap-5 opacity-60 hover:opacity-100"
-              style={{ color: "var(--section-accent)" }}
-            >
-              {t("agency.svc.cta")}
-              <ArrowUpRight className="w-4 h-4" />
-            </a>
-          </div>
         </div>
 
         {/* Bottom dots */}
@@ -203,6 +172,21 @@ export function AgencySection() {
             <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }} />
             <div className="w-2 h-2 rounded-full bg-current opacity-20" />
             <div className="w-2 h-2 rounded-full bg-current opacity-20" />
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════ CONTACT FORM ═══════════════ */}
+      <section className="relative">
+        <AgencyContactForm />
+
+        {/* Bottom dots */}
+        <div className="relative z-10 pb-12 flex justify-center">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
+            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
+            <div className="w-2 h-2 rounded-full bg-current opacity-20" />
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--section-accent)" }} />
           </div>
         </div>
       </section>
