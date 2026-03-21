@@ -1,10 +1,10 @@
 1:"$Sreact.fragment"
-2:I[46369,["/_next/static/chunks/c30ef9a4d21da2ca.js","/_next/static/chunks/0492b0772fbe0db2.js"],"HorizontalScrollLayout"]
-3:I[14466,["/_next/static/chunks/c30ef9a4d21da2ca.js","/_next/static/chunks/0492b0772fbe0db2.js"],"StudioSection"]
-4:I[82521,["/_next/static/chunks/c30ef9a4d21da2ca.js","/_next/static/chunks/0492b0772fbe0db2.js"],"AgencySection"]
-5:I[68976,["/_next/static/chunks/c30ef9a4d21da2ca.js","/_next/static/chunks/0492b0772fbe0db2.js"],"BookSection"]
-6:I[18101,["/_next/static/chunks/c30ef9a4d21da2ca.js","/_next/static/chunks/0492b0772fbe0db2.js"],"MoodSection"]
+2:I[46369,["/_next/static/chunks/2bee9125e6d2fc2e.js","/_next/static/chunks/16c65ff021a5f052.js"],"HorizontalScrollLayout"]
+3:I[14466,["/_next/static/chunks/2bee9125e6d2fc2e.js","/_next/static/chunks/16c65ff021a5f052.js"],"StudioSection"]
+4:I[82521,["/_next/static/chunks/2bee9125e6d2fc2e.js","/_next/static/chunks/16c65ff021a5f052.js"],"AgencySection"]
+5:I[68976,["/_next/static/chunks/2bee9125e6d2fc2e.js","/_next/static/chunks/16c65ff021a5f052.js"],"BookSection"]
+6:I[18101,["/_next/static/chunks/2bee9125e6d2fc2e.js","/_next/static/chunks/16c65ff021a5f052.js"],"MoodSection"]
 7:I[15050,["/_next/static/chunks/df7205f34ae3edf3.js"],"OutletBoundary"]
 8:"$Sreact.suspense"
-0:{"buildId":"tIyaWg2Y9nFxM4u4wS9Zn","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"overflow-hidden","children":["$","$L2",null,{"sectionNames":["Studio","Agency","Book","Mood"],"sectionSlugs":["studio","agency","book","mood"],"sectionThemes":["section-studio","section-nature","section-tech","section-lifestyle"],"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}]]}]}],[["$","script","script-0",{"src":"/_next/static/chunks/0492b0772fbe0db2.js","async":true}]],["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"lWo49EbQiT6LecTZsHWNI","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"overflow-hidden","children":["$","$L2",null,{"sectionNames":["Studio","Agency","Book","Mood"],"sectionSlugs":["studio","agency","book","mood"],"sectionThemes":["section-studio","section-nature","section-tech","section-lifestyle"],"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}],["$","$L6",null,{}]]}]}],[["$","script","script-0",{"src":"/_next/static/chunks/16c65ff021a5f052.js","async":true}]],["$","$L7",null,{"children":["$","$8",null,{"name":"Next.MetadataOutlet","children":"$@9"}]}]]}],"loading":null,"isPartial":false}
 9:null
