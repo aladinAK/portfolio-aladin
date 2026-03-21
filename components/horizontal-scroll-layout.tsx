@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { FloatingOrb } from "@/components/floating-orb"
+import { ProjectInfo } from "@/components/project-info"
 
 interface HorizontalScrollLayoutProps {
   children: React.ReactNode[]
@@ -163,6 +164,14 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
 
       {/* Floating Orb (replaces Section Name Indicator) */}
       <FloatingOrb currentSection={currentSection} />
+
+      {/* Project Info — only for agency, book, mood */}
+      {(["agency", "book", "mood"] as const).includes(sectionSlugs[currentSection] as "agency" | "book" | "mood") && (
+        <ProjectInfo
+          key={sectionSlugs[currentSection]}
+          section={sectionSlugs[currentSection] as "agency" | "book" | "mood"}
+        />
+      )}
 
       {/* Scroll Hint - Left */}
       {canScrollLeft && (

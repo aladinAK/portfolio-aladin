@@ -369,6 +369,53 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Add to favorites and mark what you've already watched or read.",
   },
   "mood.try": { fr: "Essayer MoodMovie", en: "Try MoodMovie" },
+
+  // Project Info — Overview & Stack
+  "info.overview": { fr: "Aperçu", en: "Overview" },
+  "info.visit": { fr: "Voir le projet", en: "Visit project" },
+  "info.stack": { fr: "Stack", en: "Stack" },
+
+  // Agency info
+  "agency.info.overview": {
+    fr: "Oui, c'est une vraie agence. Vous pouvez faire votre demande de site web directement via le formulaire de contact. On crée des sites vitrines, e-commerce et des refontes pour entrepreneurs et commerces locaux — sans jargon, sans stress.",
+    en: "Yes, it's a real agency. You can submit your website request directly through the contact form. We build showcase websites, e-commerce and redesigns for entrepreneurs and local businesses — no jargon, no stress.",
+  },
+  "agency.info.stack": {
+    fr: "React 19 + TypeScript · Vite 7 · Tailwind CSS 4 · Three.js (@react-three/fiber + drei) · GSAP · Formspree · Vercel · pnpm · ESLint 9",
+    en: "React 19 + TypeScript · Vite 7 · Tailwind CSS 4 · Three.js (@react-three/fiber + drei) · GSAP · Formspree · Vercel · pnpm · ESLint 9",
+  },
+  "agency.info.stack.desc": {
+    fr: "Site vitrine one-page avec 3D, animations GSAP, curseur custom, snap scroll et formulaire de contact. Stack frontend moderne orientée rendu visuel.",
+    en: "One-page showcase site with 3D, GSAP animations, custom cursor, snap scroll and contact form. Modern frontend stack focused on visual rendering.",
+  },
+
+  // Book info
+  "book.info.overview": {
+    fr: "Oui, c'est un vrai livre. Les Chroniques de Jez est une saga de dark fantasy en 4 tomes écrite par Moi :) — 3 tomes disponibles sur Amazon, le 4e en préparation. Une épopée de guerre, de secrets et de destins brisés.",
+    en: "Yes, it's a real book. The Chronicles of Jez is a 4-volume dark fantasy saga written by Me :) — 3 volumes available on Amazon, the 4th in preparation. An epic of war, secrets and shattered destiny.",
+  },
+  "book.info.stack": {
+    fr: "Next.js 14 (App Router) · React 18 · TypeScript 5 · Tailwind CSS 3.4 · Framer Motion 11 · Lucide React · pnpm",
+    en: "Next.js 14 (App Router) · React 18 · TypeScript 5 · Tailwind CSS 3.4 · Framer Motion 11 · Lucide React · pnpm",
+  },
+  "book.info.stack.desc": {
+    fr: "Landing page de la saga avec particules canvas, parallax, protection spoiler, carte SVG de l'univers et fiches personnages. Design sombre/rubis avec animations au scroll.",
+    en: "Saga landing page with canvas particles, parallax, spoiler protection, SVG universe map and character cards. Dark/ruby design with scroll animations.",
+  },
+
+  // Mood info
+  "mood.info.overview": {
+    fr: "MoodMovie est une Appli qui recommande des films, séries, livres et musique selon votre humeur. Choisissez une émotion et découvrez du contenu qui matche ce que vous ressentez — avec un système de favoris.",
+    en: "MoodMovie recommends movies, shows, books and music based on your mood. Choose an emotion and discover content that matches how you feel — with a favorites system.",
+  },
+  "mood.info.stack": {
+    fr: "Next.js 16 (App Router, Turbopack) · React 19 · TypeScript 5 · Tailwind CSS 3.4 · Radix UI + shadcn/ui · Lucide React · TMDB API · Vercel · pnpm",
+    en: "Next.js 16 (App Router, Turbopack) · React 19 · TypeScript 5 · Tailwind CSS 3.4 · Radix UI + shadcn/ui · Lucide React · TMDB API · Vercel · pnpm",
+  },
+  "mood.info.stack.desc": {
+    fr: "App de recommandation basée sur l'émotion avec APIs externes (TMDB, livres, musique), pages SEO statiques, système de favoris en localStorage et preview audio.",
+    en: "Emotion-based recommendation app with external APIs (TMDB, books, music), static SEO pages, localStorage favorites system and audio preview.",
+  },
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
