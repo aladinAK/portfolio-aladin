@@ -34,7 +34,19 @@
       "Bash(sips -s format webp form1.png --out form1.webp)",
       "Bash(sips -s format webp form2.png --out form2.webp)",
       "Bash(npx --yes sharp-cli -i /Users/aladin/work/portfolio-scroll+/public/book/form1.png -o /Users/aladin/work/portfolio-scroll+/public/book/form1.webp --format webp --quality 80)",
-      "Bash(npx sharp-cli:*)"
+      "Bash(npx sharp-cli:*)",
+      "Bash(curl -s https://illustrated-manuscript.vercel.app/)",
+      "Bash(curl -s \"https://illustrated-manuscript.vercel.app/assets/index-BjIlLrzc.js\")",
+      "Bash(node -e \":*)",
+      "WebFetch(domain:illustrated-manuscript.vercel.app)",
+      "Bash(mkdir -p public/dragon-sprites public/img)",
+      "Bash(curl -s -o public/dragon-sprites/head.png \"https://illustrated-manuscript.vercel.app/dragon-sprites/head.png\")",
+      "Bash(curl -s -o public/dragon-sprites/tongue.png \"https://illustrated-manuscript.vercel.app/dragon-sprites/tongue.png\")",
+      "Bash(curl -s -o public/dragon-sprites/wing-front.png \"https://illustrated-manuscript.vercel.app/dragon-sprites/wing-front.png\")",
+      "Bash(curl -s -o public/dragon-sprites/wing-back.png \"https://illustrated-manuscript.vercel.app/dragon-sprites/wing-back.png\")",
+      "Bash(curl -s -o public/furia-iii.ttf \"https://illustrated-manuscript.vercel.app/furia-iii.ttf\")",
+      "Bash(curl -s -o public/img/dropcap.png \"https://illustrated-manuscript.vercel.app/img/dropcap.png\")",
+      "Bash(npx tsc:*)"
     ]
   }
 }

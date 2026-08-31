@@ -1,8 +1,9 @@
 "use client"
 
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, Star } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useLang } from "@/lib/i18n"
+import { ManuscriptCanvas } from "@/components/manuscript-canvas"
 
 const THOUGHT_KEYS = [
   "book.thought.0", "book.thought.1", "book.thought.2", "book.thought.3",
@@ -52,7 +53,9 @@ function ReadingPerso() {
         alt=""
         loading="lazy"
         decoding="async"
-        className="w-50"
+        width={241}
+        height={274}
+        className="w-50 h-auto"
       />
     </div>
   )
@@ -62,15 +65,15 @@ function BrushStrokes() {
   return (
     <>
       {/* form1 — brush stroke, multiple placements */}
-      <img src="/book/form1.webp" alt="" loading="lazy" decoding="async" className="absolute top-[8%] right-[-5%] w-[400px] md:w-[550px] opacity-[0.06] rotate-[-8deg] book-brush" style={{ "--brush-d": "0.3s" } as React.CSSProperties} />
-      <img src="/book/form1.webp" alt="" loading="lazy" decoding="async" className="absolute bottom-[12%] left-[-8%] w-[350px] md:w-[450px] opacity-[0.04] rotate-[175deg] book-brush" style={{ "--brush-d": "1s" } as React.CSSProperties} />
-      <img src="/book/form1.webp" alt="" loading="lazy" decoding="async" className="absolute top-[110vh] right-[2%] w-[300px] md:w-[400px] opacity-[0.05] rotate-[-20deg] book-brush" style={{ "--brush-d": "1.8s" } as React.CSSProperties} />
-      <img src="/book/form1.webp" alt="" loading="lazy" decoding="async" className="absolute top-[220vh] left-[-3%] w-[350px] opacity-[0.04] rotate-[10deg] book-brush" style={{ "--brush-d": "2.5s" } as React.CSSProperties} />
+      <img src="/book/form1.webp" alt="" loading="lazy" decoding="async" className="absolute top-[8%] right-[-5%] w-[400px] md:w-[550px] rotate-[-8deg] book-brush" style={{ "--brush-d": "0.3s", "--brush-o": 0.06 } as React.CSSProperties} />
+      <img src="/book/form1.webp" alt="" loading="lazy" decoding="async" className="absolute bottom-[12%] left-[-8%] w-[350px] md:w-[450px] rotate-[175deg] book-brush" style={{ "--brush-d": "1s", "--brush-o": 0.04 } as React.CSSProperties} />
+      <img src="/book/form1.webp" alt="" loading="lazy" decoding="async" className="absolute top-[110vh] right-[2%] w-[300px] md:w-[400px] rotate-[-20deg] book-brush" style={{ "--brush-d": "1.8s", "--brush-o": 0.05 } as React.CSSProperties} />
+      <img src="/book/form1.webp" alt="" loading="lazy" decoding="async" className="absolute top-[220vh] left-[-3%] w-[350px] rotate-[10deg] book-brush" style={{ "--brush-d": "2.5s", "--brush-o": 0.04 } as React.CSSProperties} />
 
       {/* form2 — ink splatter, multiple placements */}
-      <img src="/book/form2.webp" alt="" loading="lazy" decoding="async" className="absolute top-[25%] left-[5%] w-[180px] md:w-[250px] opacity-[0.05] book-brush" style={{ "--brush-d": "0.6s" } as React.CSSProperties} />
-      <img src="/book/form2.webp" alt="" loading="lazy" decoding="async" className="absolute top-[65%] right-[8%] w-[150px] md:w-[200px] opacity-[0.04] rotate-[90deg] book-brush" style={{ "--brush-d": "1.3s" } as React.CSSProperties} />
-      <img src="/book/form2.webp" alt="" loading="lazy" decoding="async" className="absolute top-[150vh] left-[50%] w-[200px] opacity-[0.035] rotate-[45deg] book-brush" style={{ "--brush-d": "2.2s" } as React.CSSProperties} />
+      <img src="/book/form2.webp" alt="" loading="lazy" decoding="async" className="absolute top-[25%] left-[5%] w-[180px] md:w-[250px] book-brush" style={{ "--brush-d": "0.6s", "--brush-o": 0.05 } as React.CSSProperties} />
+      <img src="/book/form2.webp" alt="" loading="lazy" decoding="async" className="absolute top-[65%] right-[8%] w-[150px] md:w-[200px] rotate-[90deg] book-brush" style={{ "--brush-d": "1.3s", "--brush-o": 0.04 } as React.CSSProperties} />
+      <img src="/book/form2.webp" alt="" loading="lazy" decoding="async" className="absolute top-[150vh] left-[50%] w-[200px] rotate-[45deg] book-brush" style={{ "--brush-d": "2.2s", "--brush-o": 0.035 } as React.CSSProperties} />
     </>
   )
 }
@@ -116,12 +119,167 @@ function Typewriter({ text, delay, steps }: { text: string; delay: string; steps
   )
 }
 
+/**
+ * Genuine Amazon reviews, copied verbatim. Review bodies are intentionally not
+ * translated: these are the readers' own words, only the surrounding chrome
+ * goes through i18n. `verified` mirrors the real badge on the product page —
+ * the "Do" review does not carry it.
+ */
+const REVIEWS = [
+  {
+    author: "Ahmed",
+    title: "j\u2019ai adoré !",
+    date: "2025-11-26",
+    verified: true,
+    body: [
+      "Une histoire courte mais super prenante, qui se lit vraiment toute seule. On s\u2019attache vite à Jez et Marv, leur duo est intrigant et plein d\u2019émotion.",
+      "L\u2019action ne s\u2019arrête jamais et on a envie d\u2019en savoir plus à chaque page. j\u2019ai hâte de lire la suite !",
+    ],
+  },
+  {
+    author: "Aïmane EL HAJRI",
+    title: "Intriguant, captivant !",
+    date: "2025-11-27",
+    verified: true,
+    body: [
+      "Un récit intriguant, un début de livre qui se lit bien et qui donne envie de connaître la suite. Chapeau à l\u2019auteur pour ce premier essai, c\u2019est le début d\u2019une belle aventure.",
+    ],
+  },
+  {
+    author: "Elisabeth",
+    title: "Lecture intrigante",
+    date: "2025-11-26",
+    verified: true,
+    body: [
+      "Une lecture rapide, mais intense et riche en action. Aladin écrit de façon imagée et percutante. Aucun temps mort, des personnages auxquels on s\u2019attache vite\u2026 J\u2019ai vraiment hâte de découvrir la suite !",
+    ],
+  },
+  {
+    author: "Do",
+    title: "J\u2019ai vraiment aimé",
+    date: "2025-11-26",
+    verified: false,
+    body: [
+      "J\u2019ai vraiment aimé. L\u2019histoire est facile à suivre, les personnages sont attachants et on se laisse prendre au jeu très rapidement. Jez est un perso mystérieux qui donne envie de savoir ce qui va lui arriver.",
+      "C\u2019est un livre qui se lit tout seul, parfait pour se détendre en fin de journée. Je recommande !",
+    ],
+  },
+] as const
+
+const AMAZON_REVIEWS_URL = "https://www.amazon.ca/-/fr/dp/B0G4KNMJ42"
+
+function Stars({ label }: { label: string }) {
+  return (
+    <span className="flex items-center gap-0.5" role="img" aria-label={label}>
+      {Array.from({ length: 5 }, (_, i) => (
+        <Star key={i} className="w-3.5 h-3.5" style={{ color: "#C41E3A" }} fill="currentColor" strokeWidth={0} />
+      ))}
+    </span>
+  )
+}
+
+function ReviewCard({
+  review,
+  dateFmt,
+  t,
+}: {
+  review: (typeof REVIEWS)[number]
+  dateFmt: Intl.DateTimeFormat
+  t: (key: string) => string
+}) {
+  return (
+    <article
+      className="book-review-card shrink-0 w-[300px] md:w-[340px] border p-6 flex flex-col"
+      style={{ borderColor: "var(--section-muted)" }}
+    >
+      <Stars label={t("book.reviews.stars")} />
+      <cite className="book-title-font text-xl md:text-2xl not-italic mt-3 mb-3">{review.title}</cite>
+
+      {review.body.map((paragraph, i) => (
+        <p key={i} className="book-font text-sm leading-loose opacity-60 mb-3">
+          {paragraph}
+        </p>
+      ))}
+
+      <footer className="book-font text-[10px] tracking-[0.12em] uppercase opacity-35 mt-auto pt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
+        <span className="opacity-100">{review.author}</span>
+        <span aria-hidden>·</span>
+        <span>{dateFmt.format(new Date(`${review.date}T12:00:00`))}</span>
+        <span aria-hidden>·</span>
+        <span>{t("book.reviews.format")}</span>
+        {review.verified && (
+          <>
+            <span aria-hidden>·</span>
+            <span style={{ color: "#C41E3A" }}>{t("book.reviews.verified")}</span>
+          </>
+        )}
+      </footer>
+    </article>
+  )
+}
+
+function ReaderReviews() {
+  const { t, lang } = useLang()
+  const dateFmt = new Intl.DateTimeFormat(lang === "fr" ? "fr-CA" : "en-CA", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+  })
+
+  return (
+    <section className="relative py-24">
+      <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16">
+        <span className="book-font text-xs tracking-[0.3em] uppercase opacity-40 block mb-6">
+          {t("book.reviews.label")}
+        </span>
+
+        <div className="flex flex-wrap items-baseline gap-x-5 gap-y-2 mb-6">
+          <h2 className="book-font text-2xl md:text-3xl lg:text-4xl leading-[1.3] opacity-85">
+            {t("book.reviews.title")}
+          </h2>
+          <span className="flex items-center gap-2.5">
+            <Stars label={t("book.reviews.stars")} />
+            <span className="book-font text-sm opacity-50">{t("book.reviews.summary")}</span>
+          </span>
+        </div>
+        <div className="w-10 h-px bg-current opacity-15" />
+      </div>
+
+      {/* Looping marquee — two identical copies, the second hidden from screen
+          readers. Pauses on hover and focus so a review can actually be read. */}
+      <div className="book-marquee-viewport mt-12">
+        <div className="book-marquee flex w-max items-stretch gap-6 px-6">
+          {[0, 1].map((copy) => (
+            <div key={copy} className="flex items-stretch gap-6" aria-hidden={copy === 1}>
+              {REVIEWS.map((review) => (
+                <ReviewCard key={review.author} review={review} dateFmt={dateFmt} t={t} />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-16">
+        <a
+          href={AMAZON_REVIEWS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="book-font inline-flex items-center gap-2 mt-12 text-sm tracking-[0.15em] uppercase opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
+        >
+          {t("book.reviews.cta")}
+          <ArrowUpRight className="w-4 h-4" />
+        </a>
+      </div>
+    </section>
+  )
+}
+
 export function BookSection() {
   const { t } = useLang()
 
   return (
     <div
-      className="section-tech"
+      className="section-tech relative"
       style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}
     >
       {/* Vintage overlay — grain + vignette */}
@@ -154,14 +312,8 @@ export function BookSection() {
 
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
-        {/* Thin decorative border — like a page */}
-        <div className="absolute inset-8 md:inset-14 lg:inset-20 border border-current opacity-[0.06] pointer-events-none" />
-
-        {/* Corner ornaments */}
-        <div className="absolute top-8 left-8 md:top-14 md:left-14 lg:top-20 lg:left-20 w-4 h-4 border-t border-l border-current opacity-[0.15]" />
-        <div className="absolute top-8 right-8 md:top-14 md:right-14 lg:top-20 lg:right-20 w-4 h-4 border-t border-r border-current opacity-[0.15]" />
-        <div className="absolute bottom-8 left-8 md:bottom-14 md:left-14 lg:bottom-20 lg:left-20 w-4 h-4 border-b border-l border-current opacity-[0.15]" />
-        <div className="absolute bottom-8 right-8 md:bottom-14 md:right-14 lg:bottom-20 lg:right-20 w-4 h-4 border-b border-r border-current opacity-[0.15]" />
+        {/* Interactive dragon — follows the cursor, breathes fire on click */}
+        <ManuscriptCanvas className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }} />
 
         {/* Nav */}
         <nav className="relative z-10 flex items-center justify-between">
@@ -182,21 +334,13 @@ export function BookSection() {
         <div className="relative z-10 flex-1 flex items-center justify-center text-center">
           <div className="max-w-3xl">
             {/* Main title — like the book store */}
-            <h1 className="book-title-font text-center font-black leading-[0.85] mb-6" style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}>
+            <h2 className="book-title-font text-center font-black leading-[0.85] mb-20" style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}>
               {t("book.main.1")}<br />
               <span className="italic book-ruby-glow">{t("book.main.2")}</span><br />
               {t("book.main.3")}
-            </h1>
+            </h2>
 
-            {/* Subtitle — italic serif */}
-            <p className="book-title-font italic opacity-55 text-xl md:text-2xl my-5 leading-relaxed">
-              {t("book.subtitle")}
-            </p>
-
-            {/* Typewriter author */}
-            <div className="h-5 flex justify-center mb-10">
-              <Typewriter text={`Aladin Akkari`} delay="1.5s" steps={25} />
-            </div>
+        
 
             {/* CTA */}
             <a
@@ -226,6 +370,9 @@ export function BookSection() {
           </span>
         </div>
       </section>
+
+      {/* ═══════════════ AVIS LECTEURS ═══════════════ */}
+      <ReaderReviews />
 
       {/* ═══════════════ SYNOPSIS ═══════════════ */}
       <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24 flex items-center">

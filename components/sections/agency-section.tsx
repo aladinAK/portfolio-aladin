@@ -1,6 +1,7 @@
 "use client"
 
-import { Globe, RefreshCw, ShoppingBag, Headphones } from "lucide-react"
+import { ArrowUpRight, Globe, Headphones, RefreshCw, ShoppingBag } from "lucide-react"
+import { useRef } from "react"
 import { useLang } from "@/lib/i18n"
 import { AgencyContactForm } from "@/components/agency-contact-form"
 
@@ -22,12 +23,45 @@ const SERVICES = [
   { icon: Headphones, key: "agency.svc.3" },
 ]
 
+/**
+ * Concept sites — self-initiated, not client commissions. Labelled as such on
+ * purpose: a recruiter who contacts "the bakery" and finds no client behind it
+ * loses trust in everything else on the page.
+ */
+const WORK = [
+  {
+    name: "Maison Délice",
+    key: "agency.work.0",
+    href: "https://v0-patisserie-website-mtl.vercel.app/",
+    image: "/work/maison-delice.jpg",
+  },
+  {
+    name: "Clinique Lumea",
+    key: "agency.work.1",
+    href: "https://esthetic-service-website.vercel.app/",
+    image: "/work/clinique-lumea.jpg",
+  },
+  {
+    name: "FORMA",
+    key: "agency.work.2",
+    href: "https://forma-studio-tau.vercel.app/",
+    image: "/work/forma-studio.jpg",
+  },
+]
+
 export function AgencySection() {
   const { t } = useLang()
+  const formRef = useRef<HTMLElement>(null)
+
+  // scrollIntoView rather than an href="#anchor": writing to location.hash
+  // would interfere with HorizontalScrollLayout's own section navigation.
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
   return (
     <div
-      className="section-nature"
+      className="section-nature relative"
       style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}
     >
       {/* Global animated background — spans full section */}
@@ -68,7 +102,7 @@ export function AgencySection() {
               {t("agency.tagline")}
             </span>
 
-            <h1 className="flex flex-col items-center" style={{ gap: 0, lineHeight: 0.8 }}>
+            <h2 className="flex flex-col items-center" style={{ gap: 0, lineHeight: 0.8 }}>
               <span className="agency-font uppercase font-black" style={{ fontSize: "clamp(2rem, 10vw, 7rem)" }}>
                 {t("agency.title.1")}
               </span>
@@ -97,19 +131,21 @@ export function AgencySection() {
                   {t("agency.title.4")}
                 </span>
               </span>
-            </h1>
+            </h2>
 
             <p className="agency-font text-sm md:text-base font-medium uppercase tracking-[0.15em] opacity-40 max-w-2xl mx-auto mt-6">
               {t("agency.desc")}
             </p>
 
             <div className="flex items-center justify-center flex-wrap gap-4 mt-8">
-              <span
-                className="agency-font font-bold text-sm uppercase tracking-[0.15em] rounded-lg"
+              <button
+                type="button"
+                onClick={scrollToForm}
+                className="agency-font font-bold text-sm uppercase tracking-[0.15em] transition-transform duration-300 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
                 style={{ padding: "18px 44px", backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}
               >
                 {t("agency.btn.1")}
-              </span>
+              </button>
             </div>
           </div>
         </div>
@@ -139,13 +175,9 @@ export function AgencySection() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: "var(--section-muted)" }}>
+          <div className="agency-svc-grid grid grid-cols-1 md:grid-cols-2 gap-px">
             {SERVICES.map((svc, i) => (
-              <div
-                key={i}
-                className="group p-8 md:p-12 transition-all duration-500 hover:bg-white/[0.03] relative"
-                style={{ backgroundColor: "var(--section-bg)" }}
-              >
+              <div key={i} className="agency-svc-card group p-8 md:p-12 relative">
                 <div className="flex items-start justify-between mb-6">
                   <svc.icon
                     className="w-6 h-6 opacity-40 group-hover:opacity-100 transition-opacity duration-500"
@@ -166,8 +198,69 @@ export function AgencySection() {
         </div>
       </section>
 
+      {/* ═══════════════ RÉALISATIONS ═══════════════ */}
+      <section className="relative p-6 md:p-12 lg:p-16 py-24">
+        <div className="relative z-10 max-w-6xl mx-auto w-full">
+          <div className="text-center mb-16">
+            <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-30 block mb-4">
+              {t("agency.work.label")}
+            </span>
+            <h2 className="agency-font text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]">
+              {t("agency.work.title.1")}<br />
+              <span style={{ color: "var(--section-accent)" }}>{t("agency.work.title.2")}</span>
+            </h2>
+            <p className="text-sm opacity-40 leading-relaxed max-w-xl mx-auto mt-6">
+              {t("agency.work.note")}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {WORK.map((project) => (
+              <a
+                key={project.name}
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block border transition-colors duration-500"
+                style={{ borderColor: "var(--section-muted)" }}
+              >
+                <div className="relative overflow-hidden aspect-[16/9]">
+                  <img
+                    src={project.image}
+                    alt={t(`${project.key}.alt`)}
+                    loading="lazy"
+                    decoding="async"
+                    width={900}
+                    height={506}
+                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <span
+                    className="agency-font absolute top-3 left-3 text-[10px] font-bold uppercase tracking-[0.15em] px-2.5 py-1"
+                    style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}
+                  >
+                    {t("agency.work.concept")}
+                  </span>
+                </div>
+
+                <div className="p-6 md:p-8">
+                  <div className="flex items-start justify-between gap-4">
+                    <h3 className="agency-font text-xl md:text-2xl font-bold uppercase tracking-wide group-hover:translate-x-1 transition-transform duration-500">
+                      {project.name}
+                    </h3>
+                    <ArrowUpRight className="w-5 h-5 shrink-0 opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+                  <p className="text-sm opacity-40 leading-relaxed mt-3">
+                    {t(`${project.key}.desc`)}
+                  </p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════ CONTACT FORM ═══════════════ */}
-      <section className="relative">
+      <section ref={formRef} className="relative">
         <AgencyContactForm />
       </section>
     </div>

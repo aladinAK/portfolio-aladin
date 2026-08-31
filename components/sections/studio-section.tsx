@@ -3,6 +3,7 @@
 import { ArrowUpRight, ExternalLink, ChevronDown, FileDown, Mail } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { useLang } from "@/lib/i18n"
+import { useScrollReveal } from "@/lib/use-scroll-reveal"
 
 const EXPERIENCE_META = [
   { company: "Gameaddik", location: "Montréal, QC", period: "2020 — présent", stack: ["Vue", "Nuxt", "Tailwind", "Node.js", "WordPress", "SEO"] },
@@ -103,25 +104,6 @@ function ProjectAccordion() {
       })}
     </div>
   )
-}
-
-function useScrollReveal(ref: React.RefObject<HTMLDivElement | null>) {
-  useEffect(() => {
-    const root = ref.current?.closest(".vertical-section")
-    if (!root) return
-    const els = ref.current?.querySelectorAll(".s-reveal")
-    if (!els?.length) return
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) { e.target.classList.add("s-visible"); io.unobserve(e.target) }
-        })
-      },
-      { root, threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    )
-    els.forEach((el) => io.observe(el))
-    return () => io.disconnect()
-  }, [ref])
 }
 
 function LangToggle() {
@@ -334,8 +316,8 @@ export function StudioSection() {
           {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
-              className="s-reveal s-scale group p-8 md:p-12 transition-colors duration-500 hover:bg-white/[0.03]"
-              style={{ backgroundColor: "var(--section-bg)", "--delay": `${i * 120}ms` } as React.CSSProperties}
+              className="studio-svc-card s-reveal s-scale group p-8 md:p-12"
+              style={{ "--delay": `${i * 120}ms` } as React.CSSProperties}
             >
               <span className="text-xs font-mono opacity-20 block mb-6">0{i + 1}</span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:translate-x-2 transition-transform duration-500">
@@ -367,7 +349,9 @@ export function StudioSection() {
       </section>
 
       {/* ═══════════════ ABOUT ═══════════════ */}
-      <section className="relative p-6 md:p-12 lg:p-20 py-24">
+      {/* overflow-hidden: `.s-reveal.s-left` offsets its children 40px to the
+          right until they are revealed, which widened the section. */}
+      <section className="relative p-6 md:p-12 lg:p-20 py-24 overflow-hidden">
         <div className="hidden md:block absolute top-12 left-1/2 w-px h-[calc(100%-6rem)] bg-current opacity-[0.06]" />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">

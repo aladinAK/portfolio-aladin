@@ -181,7 +181,7 @@ export function AgencyContactForm() {
             <button
               type="submit"
               disabled={state.submitting}
-              className="agency-font font-bold text-sm uppercase tracking-[0.15em] rounded-lg transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,77,0,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="agency-font font-bold text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,77,0,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
               style={{
                 padding: "18px 44px",
                 backgroundColor: "var(--section-accent)",

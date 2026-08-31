@@ -1,6 +1,14 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/mxmp6265/public_html/
+    # $HOME plutôt qu'un chemin absolu : le dépôt est public, et coder
+    # /home/<utilisateur>/ en dur y publiait l'identifiant cPanel.
+    # cPanel exécute ces tâches en tant que l'utilisateur du compte.
+    - export DEPLOYPATH=$HOME/public_html/
+    # Purge le contenu du site. `*` ne touche pas aux fichiers cachés du
+    # serveur — c'est voulu : .well-known/ sert au renouvellement du
+    # certificat SSL et ne doit jamais être supprimé.
     - /bin/rm -rf $DEPLOYPATH/*
-    - /bin/cp -R out/* $DEPLOYPATH
+    # `out/.` et non `out/*` : la seconde forme ignore les fichiers cachés,
+    # donc .htaccess (compression, cache, 404) n'était jamais déployé.
+    - /bin/cp -R out/. $DEPLOYPATH

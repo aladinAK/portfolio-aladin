@@ -19,14 +19,48 @@ const FEATURES = [
   { icon: "🎵", key: "mood.feat.3" },
 ]
 
+// Subtle drifting particles — the lifestyle section had no ambient layer.
+// Kept low-contrast so they read as atmosphere, never as content.
+const PARTICLES = [
+  { size: 4, top: "12%", left: "18%", o: 0.30, d: "0.2s", drift: "26s", dx: "18px", dy: "-22px" },
+  { size: 2, top: "24%", left: "72%", o: 0.22, d: "1.1s", drift: "31s", dx: "-14px", dy: "16px" },
+  { size: 6, top: "38%", left: "8%", o: 0.16, d: "0.6s", drift: "34s", dx: "12px", dy: "20px" },
+  { size: 3, top: "9%", left: "55%", o: 0.26, d: "1.6s", drift: "24s", dx: "-16px", dy: "-12px" },
+  { size: 5, top: "61%", left: "88%", o: 0.18, d: "0.9s", drift: "29s", dx: "-20px", dy: "-18px" },
+  { size: 2, top: "73%", left: "31%", o: 0.28, d: "2.1s", drift: "27s", dx: "15px", dy: "-14px" },
+  { size: 4, top: "47%", left: "64%", o: 0.14, d: "1.4s", drift: "36s", dx: "-11px", dy: "22px" },
+  { size: 3, top: "85%", left: "76%", o: 0.24, d: "0.4s", drift: "22s", dx: "17px", dy: "13px" },
+  { size: 2, top: "31%", left: "42%", o: 0.20, d: "2.4s", drift: "33s", dx: "-13px", dy: "-19px" },
+  { size: 5, top: "68%", left: "14%", o: 0.15, d: "1.8s", drift: "28s", dx: "19px", dy: "-16px" },
+  { size: 3, top: "54%", left: "95%", o: 0.21, d: "0.7s", drift: "30s", dx: "-18px", dy: "11px" },
+  { size: 2, top: "91%", left: "48%", o: 0.25, d: "1.3s", drift: "25s", dx: "14px", dy: "-21px" },
+  { size: 4, top: "17%", left: "86%", o: 0.17, d: "2.7s", drift: "35s", dx: "-15px", dy: "17px" },
+  { size: 3, top: "79%", left: "58%", o: 0.23, d: "0.3s", drift: "23s", dx: "16px", dy: "-13px" },
+]
+
 export function MoodSection() {
   const { t } = useLang()
 
   return (
     <div
-      className="section-lifestyle"
+      className="section-lifestyle relative"
       style={{ color: "var(--section-fg)" }}
     >
+      {/* Ambient particles — spans the whole section */}
+      <div className="mood-bg" aria-hidden>
+        {PARTICLES.map((p, i) => (
+          <div
+            key={i}
+            className="mood-particle"
+            style={{
+              width: p.size, height: p.size, top: p.top, left: p.left,
+              "--o": p.o, "--d": p.d, "--drift-dur": p.drift,
+              "--dx": p.dx, "--dy": p.dy,
+            } as React.CSSProperties}
+          />
+        ))}
+      </div>
+
       {/* ═══════════════ HERO ═══════════════ */}
       <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
         {/* Nav */}
@@ -41,10 +75,10 @@ export function MoodSection() {
 
         {/* Center */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center">
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-[0.9] mb-4 capitalize">
+          <h2 className="mood-font text-5xl md:text-7xl  font-extrabold leading-[0.9] tracking-tight mb-4 capitalize">
             {t("mood.hero.1")}<br />
             <span className="mood-gradient-text">{t("mood.hero.2")}</span>
-          </h1>
+          </h2>
 
           <p className="text-sm md:text-base opacity-50 max-w-md mt-6 leading-relaxed">
             {t("mood.hero.desc")}
@@ -97,7 +131,7 @@ export function MoodSection() {
             <span className="text-xs font-mono tracking-widest uppercase opacity-30 block mb-4">
               {t("mood.feat.label")}
             </span>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-[0.9]">
+            <h2 className="mood-font text-3xl md:text-5xl lg:text-6xl font-extrabold leading-[0.9] tracking-tight">
               {t("mood.feat.title.1")}<br />
               <span className="mood-gradient-text">{t("mood.feat.title.2")}</span>
             </h2>
@@ -110,7 +144,7 @@ export function MoodSection() {
                 className="group p-8 md:p-10 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.06] hover:border-white/20"
               >
                 <span className="text-3xl mb-4 block">{feat.icon}</span>
-                <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:translate-x-2 transition-transform duration-500">
+                <h3 className="mood-font text-xl md:text-2xl font-bold mb-2 group-hover:translate-x-2 transition-transform duration-500">
                   {t(`${feat.key}.title`)}
                 </h3>
                 <p className="text-sm opacity-40 leading-relaxed">
@@ -125,7 +159,7 @@ export function MoodSection() {
             <span className="text-xs font-mono tracking-widest uppercase opacity-30 block mb-4">
               {t("mood.how.label")}
             </span>
-            <h2 className="text-2xl md:text-4xl font-bold mb-16">
+            <h2 className="mood-font text-2xl md:text-4xl font-extrabold tracking-tight mb-16">
               {t("mood.how.title")}
             </h2>
 
@@ -135,7 +169,7 @@ export function MoodSection() {
                   <div className="w-12 h-12 rounded-full border border-white/20 bg-white/5 flex items-center justify-center text-sm font-bold mb-4 mood-gradient-text">
                     0{i + 1}
                   </div>
-                  <h3 className="font-bold mb-2">{t(`mood.step.${i}.title`)}</h3>
+                  <h3 className="mood-font font-bold mb-2">{t(`mood.step.${i}.title`)}</h3>
                   <p className="text-sm opacity-40 max-w-xs">{t(`mood.step.${i}.desc`)}</p>
                 </div>
               ))}

@@ -1,0 +1,68 @@
+# ─────────────────────────────────────────────────────────────
+# Site statique Next.js (output: 'export') servi par Apache/cPanel.
+# Ce fichier vit dans public/ : Next le recopie dans out/ à chaque build,
+# il est donc versionné et déployé avec le reste du site.
+# ─────────────────────────────────────────────────────────────
+
+# Page d'erreur générée par Next
+ErrorDocument 404 /404.html
+
+# ── Compression ──
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml
+  AddOutputFilterByType DEFLATE image/svg+xml font/ttf font/otf
+</IfModule>
+
+# ── Cache ──
+<IfModule mod_expires.c>
+  ExpiresActive On
+
+  # Les fichiers de /_next/static portent un hash dans leur nom :
+  # ils peuvent être mis en cache indéfiniment.
+  <FilesMatch "\.(js|css|woff2|woff|ttf|otf)$">
+    ExpiresDefault "access plus 1 year"
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico|avif)$">
+    ExpiresDefault "access plus 6 months"
+  </FilesMatch>
+
+  # Le HTML doit être revalidé : c'est lui qui pointe vers les hashs à jour.
+  <FilesMatch "\.(html|xml|txt|json)$">
+    ExpiresDefault "access plus 0 seconds"
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
+# ── En-têtes de sécurité ──
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
+
+# ── Types MIME utiles ──
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType image/avif .avif
+  AddType image/webp .webp
+</IfModule>
+
+# ── Fichiers à ne jamais servir ──
+# Les source maps exposent le code d'origine ; les fichiers de config et de
+# sauvegarde n'ont rien à faire dans une réponse HTTP.
+<FilesMatch "\.(map|yml|yaml|json5|bak|log|orig|swp|ts|tsx)$">
+  <IfModule mod_authz_core.c>
+    Require all denied
+  </IfModule>
+  <IfModule !mod_authz_core.c>
+    Order allow,deny
+    Deny from all
+  </IfModule>
+</FilesMatch>
+
+# Empêche l'indexation des dossiers
+Options -Indexes

@@ -1,6 +1,6 @@
 "use client"
 
-import { createContext, useContext, useState, useCallback } from "react"
+import { createContext, useContext, useState, useCallback, useEffect } from "react"
 
 export type Lang = "fr" | "en"
 
@@ -16,7 +16,6 @@ const dict: Record<string, Record<Lang, string>> = {
   // Nav
   "nav.role.1": { fr: "Développeur Frontend", en: "Frontend Developer" },
   "nav.role.3": { fr: "Designer", en: "Designer" },
-  "nav.available": { fr: "DISPONIBLE", en: "AVAILABLE" },
   "nav.cv.download": { fr: "Télécharger CV", en: "Download CV" },
 
   // Hero
@@ -153,8 +152,6 @@ const dict: Record<string, Record<Lang, string>> = {
   "contact.label": { fr: "05 / CONTACT", en: "05 / CONTACT" },
   "contact.title.1": { fr: "Restons", en: "Let's" },
   "contact.title.2": { fr: "en contact.", en: "connect." },
-  "contact.email.cta": { fr: "Envoyer un email", en: "Send an email" },
-  "contact.local.time": { fr: "Heure locale — Montréal", en: "Local time — Montréal" },
   "contact.available": { fr: "Disponible", en: "Available" },
 
   // Agency (nature section)
@@ -172,14 +169,44 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Showcase websites, e-commerce and improvements for entrepreneurs and local businesses. No technical jargon, no stress.",
   },
   "agency.btn.1": { fr: "Discutons", en: "Let's Talk" },
-  "agency.cta": { fr: "Voir le site", en: "Visit Site" },
-  "agency.bottom": { fr: "Agence Web", en: "Web Agency" },
 
   // Agency services
+  // Agency — réalisations (concepts personnels, pas des commandes clients)
+  "agency.work.label": { fr: "Réalisations", en: "Selected work" },
+  "agency.work.title.1": { fr: "Des sites", en: "Sites that" },
+  "agency.work.title.2": { fr: "qui convertissent", en: "convert" },
+  "agency.work.note": {
+    fr: "Concepts personnels — des sites complets conçus et développés de bout en bout pour explorer des univers de marque. Cliquez pour les parcourir.",
+    en: "Self-initiated concepts — complete sites designed and built end to end to explore brand territories. Click through to browse them.",
+  },
+  "agency.work.concept": { fr: "Concept", en: "Concept" },
+  "agency.work.0.desc": {
+    fr: "Pâtisserie artisanale montréalaise. Direction artistique éditoriale, carte des créations et tunnel de commande.",
+    en: "Montréal artisanal patisserie. Editorial art direction, creations menu and ordering flow.",
+  },
+  "agency.work.0.alt": {
+    fr: "Page d'accueil du site Maison Délice, pâtisserie artisanale",
+    en: "Maison Délice homepage, an artisanal patisserie site",
+  },
+  "agency.work.1.desc": {
+    fr: "Clinique esthétique premium. Parcours de prise de rendez-vous, présentation des soins et témoignages.",
+    en: "Premium aesthetic clinic. Appointment flow, treatment showcase and testimonials.",
+  },
+  "agency.work.1.alt": {
+    fr: "Page d'accueil du site Clinique Lumea, centre esthétique",
+    en: "Clinique Lumea homepage, an aesthetic clinic site",
+  },
+  "agency.work.2.desc": {
+    fr: "Studio de coiffure montréalaise. Typographie affirmée, galerie de réalisations et prise de rendez-vous.",
+    en: "Montréal hair studio. Bold typography, work gallery and appointment booking.",
+  },
+  "agency.work.2.alt": {
+    fr: "Page d'accueil du site FORMA, studio de coiffure à Montréal",
+    en: "FORMA homepage, a Montréal hair studio site",
+  },
   "agency.svc.label": { fr: "NOS SERVICES", en: "OUR SERVICES" },
   "agency.svc.title.1": { fr: "Ce qu'on", en: "What we" },
   "agency.svc.title.2": { fr: "fait.", en: "do." },
-  "agency.svc.cta": { fr: "Découvrir tous nos services", en: "Discover all our services" },
 
   // Agency contact form
   "agency.form.label": { fr: "CONTACT", en: "CONTACT" },
@@ -250,7 +277,6 @@ const dict: Record<string, Record<Lang, string>> = {
   // Book section
   "book.label": { fr: "Roman", en: "Novel" },
   "book.store": { fr: "Librairie", en: "Bookstore" },
-  "book.series": { fr: "Les Chroniques de Jez", en: "The Chronicles of Jez" },
   "book.main.1": { fr: "Les", en: "The" },
   "book.main.2": { fr: "Chroniques", en: "Chronicles" },
   "book.main.3": { fr: "de Jez", en: "of Jez" },
@@ -258,13 +284,19 @@ const dict: Record<string, Record<Lang, string>> = {
     fr: "Une épopée de guerre, de secrets et de destinée brisée.",
     en: "An epic of war, secrets and shattered destiny.",
   },
-  "book.by": { fr: "par", en: "by" },
   "book.cta": { fr: "Découvrir la saga", en: "Discover the saga" },
-  "book.quote": {
-    fr: "Une épopée de guerre, de secrets et de destins brisés.",
-    en: "An epic of war, secrets and shattered destiny.",
-  },
   "book.scroll": { fr: "Défiler", en: "Scroll" },
+  // Avis lecteurs — le corps des avis reste en VO dans le composant
+  "book.reviews.label": { fr: "Avis des lecteurs", en: "Reader reviews" },
+  "book.reviews.title": {
+    fr: "Ce qu\u2019en disent les premiers lecteurs",
+    en: "What the first readers are saying",
+  },
+  "book.reviews.stars": { fr: "5 étoiles sur 5", en: "5 out of 5 stars" },
+  "book.reviews.summary": { fr: "5,0 sur 5 \u00b7 4 avis Amazon", en: "5.0 out of 5 \u00b7 4 Amazon reviews" },
+  "book.reviews.format": { fr: "Format Kindle", en: "Kindle Edition" },
+  "book.reviews.verified": { fr: "Achat vérifié", en: "Verified purchase" },
+  "book.reviews.cta": { fr: "Lire les avis sur Amazon", en: "Read the reviews on Amazon" },
   "book.synopsis.label": { fr: "Synopsis", en: "Synopsis" },
   "book.synopsis.title": {
     fr: "Un voleur, une épée légendaire, un destin maudit",
@@ -313,7 +345,6 @@ const dict: Record<string, Record<Lang, string>> = {
 
   // MoodMovie section
   "mood.vibe": { fr: "Besoin d'un vibe ?", en: "Need a vibe?" },
-  "mood.cta": { fr: "Essayer l'app", en: "Try the app" },
   "mood.hero.1": { fr: "Ton mood.", en: "Your mood." },
   "mood.hero.2": { fr: "Ton contenu.", en: "Your content." },
   "mood.hero.desc": {
@@ -416,6 +447,223 @@ const dict: Record<string, Record<Lang, string>> = {
     fr: "App de recommandation basée sur l'émotion avec APIs externes (TMDB, livres, musique), pages SEO statiques, système de favoris en localStorage et preview audio.",
     en: "Emotion-based recommendation app with external APIs (TMDB, books, music), static SEO pages, localStorage favorites system and audio preview.",
   },
+
+  // ═══════ Design System overlay ═══════
+  "ds.badge": { fr: "Mon design system", en: "My design system" },
+  "ds.ghost.label": { fr: "Clique-moi 👋", en: "Click me 👋" },
+  "ds.title": { fr: "Design System", en: "Design System" },
+  "ds.close": { fr: "Fermer", en: "Close" },
+  "ds.copied": { fr: "Copié —", en: "Copied —" },
+  "ds.footer": { fr: "Documentation vivante de ce portfolio.", en: "Living documentation of this portfolio." },
+
+  "ds.nav.foundations": { fr: "Fondations", en: "Foundations" },
+  "ds.nav.components": { fr: "Composants", en: "Components" },
+  "ds.nav.states": { fr: "États", en: "States" },
+  "ds.nav.motion": { fr: "Motion", en: "Motion" },
+  "ds.nav.responsive": { fr: "Responsive", en: "Responsive" },
+  "ds.nav.process": { fr: "Méthode", en: "Method" },
+  "ds.nav.governance": { fr: "Gouvernance", en: "Governance" },
+
+  // Hero
+  "ds.canvas.hint": { fr: "Survolez un calque · cliquez pour copier", en: "Hover a layer · click to copy" },
+  "ds.canvas.peer.design": { fr: "Design", en: "Design" },
+  "ds.canvas.peer.dev": { fr: "Front-end", en: "Front-end" },
+  "ds.hero.kicker": { fr: "Design system · portfolio 2026", en: "Design system · portfolio 2026" },
+  "ds.hero.title.1": { fr: "Un système,", en: "A system," },
+  "ds.hero.title.2": { fr: "pas une collection d'écrans.", en: "not a pile of screens." },
+  "ds.hero.desc": {
+    fr: "Cette page documente les décisions derrière ce portfolio : jetons, composants, états, mouvement et méthode. Chaque bloc ci-dessous est le composant réel, pas une capture d'écran.",
+    en: "This page documents the decisions behind this portfolio — tokens, components, states, motion and method. Every block below is the live component, not a screenshot.",
+  },
+  "ds.hero.cta.1": { fr: "Parcourir le système", en: "Browse the system" },
+  "ds.hero.cta.2": { fr: "Voir la méthode", en: "See the method" },
+  "ds.hero.stat": { fr: "4 thèmes · 5 familles · 6 pas d'espacement", en: "4 themes · 5 type families · 6 spacing steps" },
+
+  // 01 Fondations
+  "ds.f.kicker": { fr: "FONDATIONS", en: "FOUNDATIONS" },
+  "ds.f.title.1": { fr: "Les", en: "The" },
+  "ds.f.title.2": { fr: "Fondations", en: "Foundations" },
+  "ds.f.lead": {
+    fr: "Aucune couleur n'est écrite en dur dans un composant. Chaque section du portfolio expose quatre rôles — fond, texte, accent, atténué — et tout le reste s'y branche. Cliquez un échantillon pour copier son jeton.",
+    en: "No color is hard-coded in a component. Every portfolio section exposes four roles — background, text, accent, muted — and everything else plugs into them. Click a swatch to copy its token.",
+  },
+  "ds.f.neutral": { fr: "Rampe neutre — OKLCH", en: "Neutral ramp — OKLCH" },
+  "ds.f.type": { fr: "Typographie — 5 familles", en: "Type — 5 families" },
+  "ds.f.type.body": { fr: "Corps & interface", en: "Body & interface" },
+  "ds.f.type.editorial": { fr: "Accent éditorial", en: "Editorial accent" },
+  "ds.f.type.agency": { fr: "Titres agence", en: "Agency headings" },
+  "ds.f.type.book": { fr: "Machine à écrire", en: "Typewriter" },
+  "ds.f.type.novel": { fr: "Le roman", en: "The novel" },
+  "ds.f.space": { fr: "Espacement — 6 pas", en: "Spacing — 6 steps" },
+  "ds.f.space.desc": {
+    fr: "4 · 8 · 12 · 16 · 24 · 32. Six pas suffisent. Au-delà, c'est une nouvelle mise en page, pas un nouvel espacement.",
+    en: "4 · 8 · 12 · 16 · 24 · 32. Six steps are enough. Beyond that it's a new layout, not a new spacing value.",
+  },
+  "ds.f.radius": { fr: "Rayon & élévation", en: "Radius & elevation" },
+
+  // 02 Composants
+  "ds.c.kicker": { fr: "BIBLIOTHÈQUE", en: "LIBRARY" },
+  "ds.c.title.1": { fr: "Ma", en: "My" },
+  "ds.c.title.2": { fr: "Bibliothèque", en: "Library" },
+  "ds.c.lead": {
+    fr: "Six composants couvrent tout le portfolio. Chacun a une seule raison d'exister ; si deux se ressemblent, l'un des deux est une variante.",
+    en: "Six components cover the whole portfolio. Each has one reason to exist; if two look alike, one of them is a variant.",
+  },
+  "ds.c.actions": { fr: "Actions", en: "Actions" },
+  "ds.c.actions.desc": {
+    fr: "Une seule action primaire par vue. Le ghost ne porte jamais une action destructive.",
+    en: "One primary action per view. Ghost never carries a destructive action.",
+  },
+  "ds.c.primary": { fr: "Primaire", en: "Primary" },
+  "ds.c.secondary": { fr: "Secondaire", en: "Secondary" },
+  "ds.c.tags": { fr: "Étiquettes", en: "Tags" },
+  "ds.c.tags.desc": {
+    fr: "Les étiquettes décrivent, elles ne cliquent pas. Un filtre cliquable est un bouton.",
+    en: "Tags describe, they don't click. A clickable filter is a button.",
+  },
+  "ds.c.form": { fr: "Formulaire", en: "Form" },
+  "ds.c.form.email": { fr: "Adresse e-mail", en: "Email address" },
+  "ds.c.form.mission": { fr: "Mission", en: "Project" },
+  "ds.c.form.collab": { fr: "Collaboration", en: "Collaboration" },
+  "ds.c.card": { fr: "Carte projet", en: "Project card" },
+  "ds.c.card.title": { fr: "MoodMovie", en: "MoodMovie" },
+  "ds.c.card.body": {
+    fr: "Recommandation de films et musique selon l'humeur. Next.js 16, API TMDB, favoris en localStorage.",
+    en: "Mood-based movie and music recommendations. Next.js 16, TMDB API, localStorage favorites.",
+  },
+  "ds.c.card.meta": { fr: "Application · 2025", en: "Application · 2025" },
+  "ds.c.inventory": { fr: "Inventaire des composants", en: "Component inventory" },
+  "ds.c.th.component": { fr: "Composant", en: "Component" },
+  "ds.c.th.variants": { fr: "Variantes", en: "Variants" },
+  "ds.c.th.usage": { fr: "Usage", en: "Usage" },
+  "ds.c.th.status": { fr: "Statut", en: "Status" },
+  "ds.status.stable": { fr: "Stable", en: "Stable" },
+  "ds.status.review": { fr: "Révision", en: "Review" },
+  "ds.status.beta": { fr: "Beta", en: "Beta" },
+  "ds.inv.usage.global": { fr: "Toutes les pages", en: "Every page" },
+  "ds.inv.usage.shell": { fr: "Coquille du site", en: "Site shell" },
+  "ds.inv.usage.nav": { fr: "Navigation", en: "Navigation" },
+  "ds.inv.usage.projects": { fr: "Sections projets", en: "Project sections" },
+  "ds.inv.usage.contact": { fr: "Contact", en: "Contact" },
+  "ds.inv.usage.docs": { fr: "Documentation", en: "Documentation" },
+
+  // 03 États & accessibilité
+  "ds.s.kicker": { fr: "ÉTATS & A11Y", en: "STATES & A11Y" },
+  "ds.s.title.1": { fr: "Les", en: "The" },
+  "ds.s.title.2": { fr: "États", en: "States" },
+  "ds.s.lead": {
+    fr: "Un composant sans ses états n'est pas terminé. Les cinq états sont définis avant la première maquette, et le focus clavier est un choix de design, jamais un anneau bleu par défaut.",
+    en: "A component without its states isn't finished. All five are defined before the first mockup, and keyboard focus is a design decision — never a default blue ring.",
+  },
+  "ds.s.five": { fr: "Les cinq états", en: "The five states" },
+  "ds.s.send": { fr: "Envoyer", en: "Send" },
+  "ds.s.contrast": { fr: "Contraste mesuré", en: "Measured contrast" },
+  "ds.s.contrast.desc": {
+    fr: "Ratios calculés sur la luminance relative WCAG 2.1, pas estimés à l'œil. Chaque paire texte / fond du portfolio passe au minimum AA.",
+    en: "Ratios computed from WCAG 2.1 relative luminance, not eyeballed. Every text / background pair in the portfolio clears AA at minimum.",
+  },
+  "ds.s.checklist": { fr: "Checklist livraison", en: "Shipping checklist" },
+  "ds.s.a11y.1": { fr: "Cible tactile ≥ 44 px", en: "Touch target ≥ 44 px" },
+  "ds.s.a11y.2": { fr: "Ordre de tabulation suivant la lecture", en: "Tab order follows reading order" },
+  "ds.s.a11y.3": { fr: "Libellé associé à chaque champ", en: "Every field has a bound label" },
+  "ds.s.a11y.4": { fr: "Erreur annoncée par texte, pas par couleur seule", en: "Errors announced by text, never color alone" },
+  "ds.s.a11y.5": { fr: "prefers-reduced-motion respecté partout", en: "prefers-reduced-motion honored everywhere" },
+
+  // 04 Motion
+  "ds.m.kicker": { fr: "MOTION", en: "MOTION" },
+  "ds.m.title.1": { fr: "Le", en: "The" },
+  "ds.m.title.2": { fr: "Mouvement", en: "Motion" },
+  "ds.m.lead": {
+    fr: "Trois durées, deux courbes — les valeurs réellement utilisées dans ce portfolio. Le mouvement explique une relation entre deux états ; il ne décore pas.",
+    en: "Three durations, two curves — the values actually used across this portfolio. Motion explains a relationship between two states; it doesn't decorate.",
+  },
+  "ds.m.tokens": { fr: "Jetons de mouvement", en: "Motion tokens" },
+  "ds.m.fast": { fr: "retour d'état", en: "state feedback" },
+  "ds.m.base": { fr: "entrée au scroll", en: "scroll reveal" },
+  "ds.m.slow": { fr: "entrée de titre", en: "title reveal" },
+  "ds.m.demo": { fr: "Démonstration", en: "Demo" },
+  "ds.m.demo.enter": { fr: "entrée", en: "enter" },
+  "ds.m.demo.feedback": { fr: "retour", en: "feedback" },
+  "ds.m.demo.loading": { fr: "chargement", en: "loading" },
+  "ds.m.replay": { fr: "Rejouer", en: "Replay" },
+
+  // 05 Responsive
+  "ds.r.kicker": { fr: "RESPONSIVE", en: "RESPONSIVE" },
+  "ds.r.title.1": { fr: "Le", en: "The" },
+  "ds.r.title.2": { fr: "Responsive", en: "Responsive" },
+  "ds.r.lead": {
+    fr: "Deux points de rupture, une seule grille — ceux de Tailwind, aucun breakpoint maison. Faites glisser pour voir la grille projets se réorganiser.",
+    en: "Two breakpoints, one grid — Tailwind's own, no custom ones. Drag the handle to watch the project grid reflow.",
+  },
+  "ds.r.slider": { fr: "Largeur de la fenêtre simulée", en: "Simulated viewport width" },
+  "ds.r.compact": { fr: "compact", en: "compact" },
+  "ds.r.medium": { fr: "médium", en: "medium" },
+  "ds.r.large": { fr: "large", en: "large" },
+  "ds.r.compact.desc": { fr: "1 colonne, marges 20 px, titres réduits.", en: "1 column, 20 px gutters, smaller headings." },
+  "ds.r.medium.desc": { fr: "2 colonnes, navigation repliée.", en: "2 columns, collapsed navigation." },
+  "ds.r.large.desc": { fr: "4 colonnes, marges 32 px.", en: "4 columns, 32 px gutters." },
+
+  // 06 Méthode
+  "ds.p.kicker": { fr: "MÉTHODE", en: "METHOD" },
+  "ds.p.title.1": { fr: "Ma", en: "My" },
+  "ds.p.title.2": { fr: "Méthode", en: "Method" },
+  "ds.p.lead": {
+    fr: "Le système ne commence pas par une couleur. Il commence par ce que les gens essaient de faire.",
+    en: "The system doesn't start with a color. It starts with what people are trying to do.",
+  },
+  "ds.p.1.title": { fr: "Recherche", en: "Research" },
+  "ds.p.1.desc": {
+    fr: "Entretiens, tri de cartes, analytics existante. Sortie : trois tâches prioritaires et deux irritants récurrents.",
+    en: "Interviews, card sorting, existing analytics. Output: three priority tasks and two recurring pain points.",
+  },
+  "ds.p.2.title": { fr: "Wireframes", en: "Wireframes" },
+  "ds.p.2.desc": {
+    fr: "Gris, rapides, jetables. On valide la hiérarchie avant d'ouvrir la palette.",
+    en: "Grey, fast, disposable. Hierarchy gets validated before the palette opens.",
+  },
+  "ds.p.3.title": { fr: "Prototype", en: "Prototype" },
+  "ds.p.3.desc": {
+    fr: "Cliquable, testé sur cinq personnes. Ce qui casse ici ne part pas en développement.",
+    en: "Clickable, tested on five people. What breaks here doesn't reach development.",
+  },
+  "ds.p.4.title": { fr: "Système", en: "System" },
+  "ds.p.4.desc": {
+    fr: "Les motifs qui se répètent trois fois deviennent des composants documentés.",
+    en: "Patterns that repeat three times become documented components.",
+  },
+  "ds.p.flow": { fr: "Flow — prise de contact", en: "Flow — getting in touch" },
+  "ds.p.flow.1": { fr: "Grille projets", en: "Project grid" },
+  "ds.p.flow.2": { fr: "Étude de cas", en: "Case study" },
+  "ds.p.flow.3": { fr: "Formulaire (3 champs)", en: "Form (3 fields)" },
+  "ds.p.flow.4": { fr: "Confirmation + délai de réponse", en: "Confirmation + response time" },
+  "ds.p.flow.desc": {
+    fr: "Quatre écrans, aucune impasse : chaque état d'erreur renvoie à l'étape précédente sans perdre la saisie.",
+    en: "Four screens, no dead ends: every error state returns to the previous step without losing input.",
+  },
+
+  // 07 Gouvernance
+  "ds.g.kicker": { fr: "GOUVERNANCE", en: "GOVERNANCE" },
+  "ds.g.title.1": { fr: "La", en: "The" },
+  "ds.g.title.2": { fr: "Gouvernance", en: "Governance" },
+  "ds.g.lead": {
+    fr: "Un système vit ou meurt selon la facilité qu'on a à y contribuer. Voici les règles que je m'impose.",
+    en: "A system lives or dies by how easy it is to contribute to. These are the rules I hold myself to.",
+  },
+  "ds.g.do": { fr: "À faire", en: "Do" },
+  "ds.g.do.1": { fr: "Passer par les jetons de section — jamais un hex dans un composant.", en: "Go through section tokens — never a hex inside a component." },
+  "ds.g.do.2": { fr: "Une police par rôle : Geist porte l'interface, les autres portent un contexte.", en: "One family per role: Geist carries the UI, the others carry a context." },
+  "ds.g.do.3": { fr: "Documenter une variante au moment où elle est créée, pas après.", en: "Document a variant the moment it's created, not later." },
+  "ds.g.do.4": { fr: "Vérifier le contraste au calcul, pas à l'œil.", en: "Verify contrast by computation, not by eye." },
+  "ds.g.dont": { fr: "À éviter", en: "Avoid" },
+  "ds.g.dont.1": { fr: "Une cinquième famille typographique.", en: "A fifth type family." },
+  "ds.g.dont.2": { fr: "Une animation sans garde prefers-reduced-motion.", en: "An animation with no prefers-reduced-motion guard." },
+  "ds.g.dont.3": { fr: "Un accent hors des quatre thèmes de section.", en: "An accent outside the four section themes." },
+  "ds.g.dont.4": { fr: "Une couleur porteuse de sens sans doublon textuel.", en: "Meaning carried by color with no text equivalent." },
+  "ds.g.versions": { fr: "Cycle de version", en: "Release cycle" },
+  "ds.g.v12": { fr: "Panneau de documentation, rampe neutre OKLCH, contrastes recalculés.", en: "Documentation panel, OKLCH neutral ramp, contrasts recomputed." },
+  "ds.g.v11": { fr: "Jetons de mouvement extraits, focus visible normalisé.", en: "Motion tokens extracted, visible focus normalized." },
+  "ds.g.v10": { fr: "Quatre thèmes de section et composants de base.", en: "Four section themes and base components." },
+
 }
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
@@ -424,6 +672,11 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
   const toggle = useCallback(() => {
     setLang((prev) => (prev === "fr" ? "en" : "fr"))
   }, [])
+
+  // Tient <html lang> aligné sur la langue affichée.
+  useEffect(() => {
+    document.documentElement.lang = lang === "fr" ? "fr-CA" : "en-CA"
+  }, [lang])
 
   const t = useCallback(
     (key: string) => dict[key]?.[lang] ?? key,

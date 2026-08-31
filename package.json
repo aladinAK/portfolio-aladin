@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "deploy": "next build && git add -A out public && echo '\\n✓ out/ regénéré et indexé — commite puis pousse pour déclencher le déploiement cPanel.'"
   },
   "dependencies": {
     "@formspree/react": "^3.0.0",

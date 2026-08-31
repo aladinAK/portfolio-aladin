@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+<loc>https://aladinakkari.ca</loc>
+<lastmod>2026-08-31T20:24:16.264Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>1</priority>
+</url>
+<url>
+<loc>https://aladinakkari.ca/#agency</loc>
+<lastmod>2026-08-31T20:24:16.264Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.8</priority>
+</url>
+<url>
+<loc>https://aladinakkari.ca/#book</loc>
+<lastmod>2026-08-31T20:24:16.264Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+<url>
+<loc>https://aladinakkari.ca/#mood</loc>
+<lastmod>2026-08-31T20:24:16.264Z</lastmod>
+<changefreq>monthly</changefreq>
+<priority>0.6</priority>
+</url>
+</urlset>

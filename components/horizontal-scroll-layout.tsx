@@ -90,6 +90,10 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Un panneau modal ouvert capte les flèches : sans ça le portfolio
+      // défilerait derrière lui.
+      if (document.documentElement.hasAttribute('data-overlay-open')) return
+
       if (e.key === 'ArrowLeft') {
         scrollLeft()
       } else if (e.key === 'ArrowRight') {

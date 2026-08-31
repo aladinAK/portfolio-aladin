@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Playfair_Display, Special_Elite, UnifrakturMaguntia } from 'next/font/google'
+import { Geist, Geist_Mono, Playfair_Display, Special_Elite, UnifrakturMaguntia, Syne } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
 import { CustomCursor } from '@/components/custom-cursor'
+import { DsLauncher } from '@/components/design-system/ds-launcher'
 import './globals.css'
 
 const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
@@ -10,6 +11,7 @@ const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono"
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", weight: ["400", "700", "900"] });
 const specialElite = Special_Elite({ subsets: ["latin"], variable: "--font-typewriter", weight: "400" });
 const fraktur = UnifrakturMaguntia({ subsets: ["latin"], variable: "--font-fantasy", weight: "400" });
+const syne = Syne({ subsets: ["latin"], variable: "--font-syne", weight: ["600", "700", "800"] });
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://aladinakkari.ca'),
@@ -17,7 +19,7 @@ export const metadata: Metadata = {
     default: 'Aladin Akkari — Développeur Frontend & Designer | Montréal',
     template: '%s | Aladin Akkari',
   },
-  description: 'Portfolio de Aladin Akkari — Développeur Frontend Senior & Designer basé à Montréal. 5+ ans d\'expérience en React, Vue, Next.js, Tailwind. Projets gaming, agence web, roman fantasy.',
+  description: 'Développeur frontend senior et designer UI/UX à Montréal. 5+ ans en React, Next.js, Vue et Tailwind. Sites vitrines, e-commerce et design systems.',
   keywords: ['développeur frontend', 'designer web', 'portfolio', 'React', 'Vue', 'Next.js', 'Tailwind', 'Montréal', 'freelance', 'Aladin Akkari', 'frontend developer', 'web designer', 'Gameaddik'],
   authors: [{ name: 'Aladin Akkari', url: 'https://aladinakkari.ca' }],
   creator: 'Aladin Akkari',
@@ -59,20 +61,49 @@ export const metadata: Metadata = {
   },
 }
 
-const jsonLd = {
-  '@context': 'https://schema.org',
+const person = {
   '@type': 'Person',
+  '@id': 'https://aladinakkari.ca/#aladin',
   name: 'Aladin Akkari',
   url: 'https://aladinakkari.ca',
-  jobTitle: 'Senior Frontend Developer & Designer',
+  image: 'https://aladinakkari.ca/perso.png',
+  jobTitle: 'Senior Frontend Developer & UI/UX Designer',
+  description:
+    "Développeur frontend et designer UI/UX basé à Montréal. Sites vitrines, e-commerce, design systems et interfaces sur mesure.",
+  email: 'mailto:aladinakdesign@gmail.com',
   worksFor: { '@type': 'Organization', name: 'Gameaddik' },
   address: { '@type': 'PostalAddress', addressLocality: 'Montréal', addressRegion: 'QC', addressCountry: 'CA' },
+  knowsLanguage: ['fr-CA', 'en-CA'],
   sameAs: [
     'https://linkedin.com/in/aladin-akkari',
     'https://github.com/aladinAK',
     'https://www.behance.net/aladinakkari1',
   ],
-  knowsAbout: ['React', 'Vue', 'Next.js', 'Nuxt', 'TypeScript', 'Tailwind CSS', 'UI/UX Design', 'Figma', 'SEO'],
+  knowsAbout: [
+    'React', 'Next.js', 'Vue', 'Nuxt', 'TypeScript', 'Tailwind CSS',
+    'UI/UX Design', 'Design System', 'Figma', 'E-commerce', 'Shopify',
+    'WordPress', 'Webflow', 'SEO', 'Accessibilité web',
+  ],
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'Développeur frontend et designer UI/UX',
+    occupationLocation: { '@type': 'City', name: 'Montréal' },
+    skills: 'React, Next.js, Vue, TypeScript, Tailwind CSS, Figma, design system, e-commerce, Shopify, SEO',
+  },
+}
+
+const website = {
+  '@type': 'WebSite',
+  '@id': 'https://aladinakkari.ca/#site',
+  url: 'https://aladinakkari.ca',
+  name: 'Aladin Akkari — Portfolio',
+  inLanguage: ['fr-CA', 'en-CA'],
+  publisher: { '@id': 'https://aladinakkari.ca/#aladin' },
+}
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [person, website],
 }
 
 export default function RootLayout({
@@ -87,9 +118,10 @@ export default function RootLayout({
         <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,700,900&display=swap" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className={`font-sans antialiased ${geist.variable} ${geistMono.variable} ${playfair.variable} ${specialElite.variable} ${fraktur.variable}`}>
+      <body className={`font-sans antialiased ${geist.variable} ${geistMono.variable} ${playfair.variable} ${specialElite.variable} ${fraktur.variable} ${syne.variable}`}>
         <I18nProvider>
           <CustomCursor />
+          <DsLauncher />
           {children}
         </I18nProvider>
         <Analytics />

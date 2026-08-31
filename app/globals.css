@@ -376,6 +376,10 @@
   background: radial-gradient(ellipse at center, #03094A 0%, #1E1E1E 100%);
 }
 
+.mood-font {
+  font-family: var(--font-syne), 'Syne', sans-serif;
+}
+
 .mood-bubble {
   backdrop-filter: blur(12px);
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
@@ -468,7 +472,7 @@
 .book-ruby-glow {
   color: #C41E3A;
   text-shadow: 0 0 20px rgba(196, 30, 58, 0.3), 0 0 40px rgba(196, 30, 58, 0.1);
-  animation: rubyPulse 4s ease-in-out 2s infinite;
+  animation: rubyPulse 4s ease-in-out 2s 3 both;
 }
 
 @keyframes rubyPulse {
@@ -484,7 +488,7 @@
 
 @keyframes brushReveal {
   from { opacity: 0; transform: scale(0.8); }
-  to { opacity: 1; transform: scale(1); }
+  to { opacity: var(--brush-o, 1); transform: scale(1); }
 }
 
 /* Typewriter effect */
@@ -494,7 +498,7 @@
   border-right: 2px solid rgba(26, 26, 26, 0.4);
   width: 0;
   animation: typewrite var(--tw-dur, 3s) steps(var(--tw-steps, 30)) var(--tw-d, 0.5s) forwards,
-             blink 0.8s step-end infinite;
+             blink 0.8s step-end var(--tw-d, 0.5s) 7 forwards;
 }
 
 @keyframes typewrite {
@@ -502,7 +506,9 @@
 }
 
 @keyframes blink {
+  0% { border-color: rgba(26, 26, 26, 0.4); }
   50% { border-color: transparent; }
+  100% { border-color: transparent; }
 }
 
 /* ═══════ Scroll Reveal System ═══════ */
@@ -571,7 +577,9 @@
   padding: 14px 18px;
   background: rgba(0, 0, 0, 0.4);
   border: 1.5px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  /* Angles droits : la section aligne cartes, boutons et champs sur la même
+     géométrie que la grille de services. */
+  border-radius: 0;
   color: var(--section-fg);
   font-size: 0.9rem;
   outline: none;
@@ -658,4 +666,696 @@
 @keyframes orbSpecular {
   0%, 100% { opacity: 0.7; transform: translate(0, 0); }
   50% { opacity: 1; transform: translate(1px, -1px); }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Design System Overlay
+   Tous les jetons sont préfixés --ds-* : le portfolio expose
+   déjà --color-accent / --accent via @theme inline, un nom nu
+   entrerait en collision avec la génération d'utilitaires Tailwind.
+   ═══════════════════════════════════════════════════════════ */
+
+.ds-root {
+  /* Rampe neutre — OKLCH, clarté régulière */
+  --ds-n-100: oklch(0.98 0 0);
+  --ds-n-200: oklch(0.92 0 0);
+  --ds-n-300: oklch(0.84 0 0);
+  --ds-n-400: oklch(0.72 0 0);
+  --ds-n-500: oklch(0.60 0 0);
+  --ds-n-600: oklch(0.48 0 0);
+  --ds-n-700: oklch(0.36 0 0);
+  --ds-n-800: oklch(0.24 0 0);
+  --ds-n-900: oklch(0.14 0 0);
+
+  /* Rôles de surface */
+  --ds-bg: oklch(0.13 0 0);
+  --ds-surface: rgba(255, 255, 255, 0.035);
+  --ds-surface-hi: rgba(255, 255, 255, 0.07);
+  --ds-fg: #fafafa;
+  --ds-fg-muted: rgba(250, 250, 250, 0.55);
+  --ds-fg-faint: rgba(250, 250, 250, 0.32);
+  --ds-divider: rgba(250, 250, 250, 0.1);
+
+  /* Accent — injecté au runtime depuis la section visible */
+  --ds-accent: #c8ff00;
+  --ds-accent-fg: #0a0a0a;
+
+  /* Espacement — 6 pas */
+  --ds-space-1: 4px;
+  --ds-space-2: 8px;
+  --ds-space-3: 12px;
+  --ds-space-4: 16px;
+  --ds-space-6: 24px;
+  --ds-space-8: 32px;
+
+  /* Rayon */
+  --ds-radius-sm: 8px;
+  --ds-radius-md: 16px;
+  --ds-radius-lg: 28px;
+
+  /* Élévation */
+  --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --ds-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --ds-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
+
+  /* Mouvement — valeurs réellement utilisées dans ce portfolio */
+  --ds-dur-fast: 300ms;
+  --ds-dur-base: 900ms;
+  --ds-dur-slow: 1200ms;
+  --ds-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ds-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  color: var(--ds-fg);
+  background: var(--ds-bg);
+}
+
+/* ─── Primitives ─── */
+
+.ds-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ds-space-2);
+  min-height: 44px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1.5px solid transparent;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--ds-dur-fast) var(--ds-ease-out),
+    border-color var(--ds-dur-fast) var(--ds-ease-out),
+    color var(--ds-dur-fast) var(--ds-ease-out),
+    transform var(--ds-dur-fast) var(--ds-ease-out);
+}
+
+.ds-btn:focus-visible {
+  outline: 2px solid var(--ds-accent);
+  outline-offset: 3px;
+}
+
+.ds-btn:active { transform: translateY(1px); }
+.ds-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+.ds-btn--primary {
+  background: var(--ds-accent);
+  color: var(--ds-accent-fg);
+}
+.ds-btn--primary:hover:not(:disabled) { filter: brightness(1.12); }
+
+.ds-btn--secondary {
+  border-color: var(--ds-divider);
+  color: var(--ds-fg);
+}
+.ds-btn--secondary:hover:not(:disabled) {
+  border-color: var(--ds-accent);
+  color: var(--ds-accent);
+}
+
+.ds-btn--ghost { color: var(--ds-fg-muted); }
+.ds-btn--ghost:hover:not(:disabled) {
+  background: var(--ds-surface-hi);
+  color: var(--ds-fg);
+}
+
+.ds-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.ds-tag--accent { background: var(--ds-accent); color: var(--ds-accent-fg); }
+.ds-tag--soft { background: var(--ds-surface-hi); color: var(--ds-fg); }
+.ds-tag--outline { border-color: var(--ds-divider); color: var(--ds-fg-muted); }
+
+.ds-card {
+  border: 1px solid var(--ds-divider);
+  border-radius: var(--ds-radius-md);
+  background: var(--ds-surface);
+}
+
+.ds-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ds-accent);
+}
+
+.ds-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 12px 16px;
+  border-radius: var(--ds-radius-sm);
+  border: 1.5px solid var(--ds-divider);
+  background: rgba(0, 0, 0, 0.35);
+  color: var(--ds-fg);
+  font-size: 14px;
+  outline: none;
+  transition: border-color var(--ds-dur-fast) var(--ds-ease-out);
+}
+
+.ds-input::placeholder { color: var(--ds-fg-faint); }
+.ds-input:focus { border-color: var(--ds-accent); }
+
+.ds-swatch {
+  height: 56px;
+  border-radius: var(--ds-radius-sm);
+  border: 1px solid var(--ds-divider);
+  cursor: pointer;
+  transition: transform var(--ds-dur-fast) var(--ds-ease-out);
+}
+
+.ds-swatch:hover { transform: translateY(-3px); }
+.ds-swatch:focus-visible { outline: 2px solid var(--ds-accent); outline-offset: 3px; }
+
+.ds-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ds-table th {
+  text-align: left;
+  padding: 0 12px 10px 0;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ds-fg-faint);
+  font-weight: 700;
+}
+.ds-table td {
+  padding: 12px 12px 12px 0;
+  border-top: 1px solid var(--ds-divider);
+  vertical-align: middle;
+}
+
+/* ─── Animations ─── */
+
+@keyframes dsOverlayIn {
+  from { opacity: 0; transform: translateY(24px) scale(0.985); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes dsRise {
+  from { opacity: 0; transform: translateY(18px) scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes dsPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes dsSpin { to { transform: rotate(360deg); } }
+
+@keyframes dsMarquee { to { transform: translateX(-50%); } }
+
+@keyframes dsBadgeIn {
+  0% { opacity: 0; transform: scale(0.6); }
+  60% { transform: scale(1.08); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes dsBadgeHalo {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.18); }
+  50% { box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
+}
+
+.ds-overlay-in { animation: dsOverlayIn 420ms var(--ds-ease-out) both; }
+.ds-badge-in { animation: dsBadgeIn 520ms cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+.ds-badge-halo { animation: dsBadgeHalo 3s ease-in-out 700ms 3; }
+.ds-marquee { animation: dsMarquee 28s linear infinite; will-change: transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-overlay-in,
+  .ds-badge-in,
+  .ds-badge-halo,
+  .ds-marquee {
+    animation: none !important;
+  }
+  .ds-root *,
+  .ds-root *::before,
+  .ds-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Design system : états au survol ─── */
+
+.ds-card {
+  transition: border-color var(--ds-dur-fast) var(--ds-ease-out),
+    background-color var(--ds-dur-fast) var(--ds-ease-out),
+    transform var(--ds-dur-fast) var(--ds-ease-out);
+}
+
+.ds-card:hover {
+  border-color: color-mix(in srgb, var(--ds-accent) 45%, transparent);
+  background: var(--ds-surface-hi);
+  transform: translateY(-2px);
+}
+
+.ds-orb {
+  transition: transform var(--ds-dur-fast) var(--ds-ease-spring);
+}
+
+.ds-orb:hover { transform: scale(1.06); }
+
+.ds-close {
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--ds-accent) 35%, transparent);
+}
+
+/* `.s-reveal` porte opacity:0 : sans transition, le contenu resterait
+   invisible. On garde donc une transition courte plutôt que de la couper. */
+@media (prefers-reduced-motion: reduce) {
+  .ds-root .s-reveal {
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* ═══════ Book — reader reviews carousel ═══════ */
+
+.book-marquee-viewport {
+  overflow: hidden;
+  /* Cards fade in and out at the edges instead of being cut off. */
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+
+.book-marquee {
+  animation: bookMarquee 60s linear infinite;
+  will-change: transform;
+}
+
+/* A scrolling review cannot be read: hover and keyboard focus
+   suspend the marquee. */
+.book-marquee-viewport:hover .book-marquee,
+.book-marquee-viewport:focus-within .book-marquee {
+  animation-play-state: paused;
+}
+
+@keyframes bookMarquee {
+  to { transform: translateX(-50%); }
+}
+
+.book-review-card {
+  background: color-mix(in srgb, var(--section-bg) 45%, transparent);
+  transition: border-color 300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.book-review-card:hover {
+  border-color: color-mix(in srgb, #c41e3a 45%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .book-marquee {
+    animation: none !important;
+    width: auto;
+  }
+  /* With no marquee, reading happens by swipe or wheel. */
+  .book-marquee-viewport {
+    overflow-x: auto;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}
+
+/* ═══════ Mood — ambient particles ═══════ */
+
+.mood-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.mood-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffff 0%, #818cf8 60%, transparent 100%);
+  opacity: 0;
+  animation:
+    moodParticleIn 1.4s ease-out forwards,
+    moodParticleDrift var(--drift-dur, 28s) ease-in-out infinite;
+  animation-delay: var(--d, 0s), var(--d, 0s);
+}
+
+@keyframes moodParticleIn {
+  to { opacity: var(--o, 0.2); }
+}
+
+@keyframes moodParticleDrift {
+  0%, 100% { translate: 0 0; }
+  33% { translate: var(--dx, 15px) var(--dy, -15px); }
+  66% { translate: calc(var(--dx, 15px) * -0.6) calc(var(--dy, -15px) * 0.8); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mood-particle {
+    animation: moodParticleIn 1ms linear forwards !important;
+  }
+}
+
+/* ═══════ Agency — services grid ═══════ */
+
+/* Opaque backgrounds hid the animated orbs behind them, which read as a flat
+   slab cut out of the section. Both layers are now translucent so the ambient
+   background carries through, while the 1px gaps still draw the dividers. */
+.agency-svc-grid {
+  background: color-mix(in srgb, var(--section-muted) 45%, transparent);
+}
+
+.agency-svc-card {
+  background: color-mix(in srgb, var(--section-bg) 55%, transparent);
+  transition: background-color 500ms ease;
+}
+
+/* The previous hover lived in a utility class that an inline `style`
+   attribute always overrode — it never actually fired. */
+.agency-svc-card:hover {
+  background: color-mix(in srgb, var(--section-bg) 38%, transparent);
+}
+
+/* ═══════ Design system badge ═══════ */
+
+/* FloatingOrb occupies top-5 (20–60px, centred), so the badge sits below it. */
+.ds-badge-dock {
+  position: fixed;
+  top: 72px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
+}
+
+/* Slow, shallow drift: enough to catch the eye in peripheral vision, not
+   enough to compete with the section's own content. */
+.ds-badge-float {
+  animation: dsBadgeFloat 6s ease-in-out infinite;
+}
+
+@keyframes dsBadgeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+.ds-badge {
+  /* Held back until aimed at — on busy sections it competed with the title. */
+  opacity: 0.55;
+  transition:
+    opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    border-color 400ms cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 400ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.ds-badge:hover,
+.ds-badge:focus-visible {
+  opacity: 1;
+  transform: scale(1.05);
+  border-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.ds-badge:active { transform: scale(0.98); }
+
+.ds-badge-icon {
+  transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ds-badge:hover .ds-badge-icon {
+  transform: translateY(-1px) rotate(-8deg);
+}
+
+.ds-badge-dot {
+  transition: transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 400ms ease;
+}
+
+.ds-badge:hover .ds-badge-dot {
+  transform: scale(1.5);
+  box-shadow: 0 0 10px 2px rgba(110, 86, 248, 0.6);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-badge-float { animation: none !important; }
+}
+
+/* Same defect as the agency grid: an inline `style` background always beat the
+   hover utility class, so the hover never fired. */
+.studio-svc-card {
+  background: var(--section-bg);
+  transition: background-color 500ms ease;
+}
+
+.studio-svc-card:hover {
+  background: color-mix(in srgb, var(--section-fg) 3%, var(--section-bg));
+}
+
+/* ═══════ Design system — hero collaborative canvas ═══════ */
+
+.ds-canvas {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--ds-radius-lg);
+  border: 1px solid var(--ds-divider);
+  /* Noir plus profond que le panneau, grille très discrète : l'artboard doit
+     ressortir, pas le quadrillage. */
+  --ds-grid: rgba(255, 255, 255, 0.028);
+  background:
+    linear-gradient(var(--ds-grid) 1px, transparent 1px) 0 0 / 32px 32px,
+    linear-gradient(90deg, var(--ds-grid) 1px, transparent 1px) 0 0 / 32px 32px,
+    oklch(0.08 0 0);
+  cursor: crosshair;
+}
+
+.ds-canvas-label {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ds-fg-faint);
+  pointer-events: none;
+}
+
+/* ── Artboard ── */
+
+.ds-art {
+  position: absolute;
+  inset: 30px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 14px;
+  border-radius: var(--ds-radius-sm);
+  background: oklch(0.145 0 0);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.5);
+}
+
+.ds-art-name {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ds-accent);
+  pointer-events: none;
+}
+
+/* ── Calques : contour et nom, comme dans un éditeur de maquette ── */
+
+.ds-layer {
+  position: relative;
+  outline: 1px solid var(--peer, transparent);
+  outline-offset: 2px;
+  transition: outline-color 200ms ease;
+}
+
+.ds-layer:hover,
+.ds-layer:focus-visible {
+  outline-color: var(--ds-accent);
+}
+
+/* Étiquette du calque, révélée au survol */
+.ds-layer::after {
+  content: attr(data-name);
+  position: absolute;
+  left: -1px;
+  bottom: calc(100% + 5px);
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--ds-accent);
+  color: var(--ds-accent-fg);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.ds-layer:hover::after,
+.ds-layer:focus-visible::after {
+  opacity: 1;
+}
+
+button.ds-layer {
+  cursor: pointer;
+  border: 0;
+  background: none;
+  padding: 0;
+  text-align: left;
+}
+
+/* ── Éléments de la maquette ── */
+
+.ds-art-nav {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--ds-divider);
+}
+
+.ds-art-logo {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  background: var(--ds-accent);
+}
+
+.ds-art-links {
+  display: flex;
+  gap: 5px;
+  margin-left: 2px;
+}
+
+.ds-art-links i {
+  width: 20px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ds-fg-faint);
+}
+
+.ds-art-navbtn {
+  width: 30px;
+  height: 11px;
+  border-radius: 999px;
+  margin-left: auto;
+  background: var(--ds-surface-hi);
+}
+
+.ds-art-title {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.ds-art-title i {
+  height: 11px;
+  border-radius: 3px;
+  background: var(--ds-fg);
+  opacity: 0.9;
+}
+
+.ds-art-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ds-art-body i {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ds-fg-faint);
+}
+
+.ds-art-cta i {
+  display: block;
+  width: 52px;
+  height: 15px;
+  border-radius: 999px;
+  background: var(--ds-accent);
+}
+
+.ds-art-hero {
+  flex: 1;
+  min-height: 40px;
+  margin-top: 2px;
+}
+
+.ds-art-hero i {
+  display: block;
+  height: 100%;
+  border-radius: 5px;
+  background: linear-gradient(135deg, var(--ds-surface-hi), oklch(0.2 0 0));
+}
+
+.ds-art-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 7px;
+}
+
+.ds-art-card {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 5px;
+  border-radius: 5px;
+  background: var(--ds-surface-hi);
+}
+
+.ds-art-card span {
+  display: block;
+  height: 26px;
+  border-radius: 3px;
+}
+
+.ds-art-card i {
+  height: 3px;
+  border-radius: 2px;
+  background: var(--ds-fg-faint);
+}
+
+/* ── Curseurs des collègues ── */
+
+.ds-canvas-peer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  gap: 2px;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.ds-canvas-peer span {
+  margin-top: 7px;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #fff;
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Sans mouvement, les collègues n'ont plus de rôle. */
+  .ds-canvas-peer { display: none; }
+  .ds-canvas { cursor: default; }
 }
