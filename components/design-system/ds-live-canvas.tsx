@@ -26,6 +26,28 @@ const PEERS = [
 /** Calques que les collègues visitent, dans l'ordre. */
 const VISITED = ["cta", "card-1", "title", "hero", "card-3", "nav", "card-2"] as const
 
+/** Profil de vitesse minimum-jerk : départ et arrivée doux, pic au milieu. */
+const minJerk = (u: number) => u * u * u * (10 - 15 * u + 6 * u * u)
+
+const rand = (a: number, b: number) => a + Math.random() * (b - a)
+
+/** Un collègue en mouvement : un segment de geste à la fois. */
+interface Peer {
+  x: number
+  y: number
+  step: number
+  phase: "move" | "pause"
+  /** Segment courant : départ (a), point de contrôle (c), arrivée (b). */
+  ax: number; ay: number; cx: number; cy: number; bx: number; by: number
+  t: number
+  dur: number
+  pause: number
+  pauseDur: number
+  /** Posé sur le calque : conditionne la sélection affichée. */
+  onTarget: boolean
+  seed: number
+}
+
 interface DsLiveCanvasProps {
   onCopy: (message: string) => void
 }
@@ -55,12 +77,50 @@ export function DsLiveCanvas({ onCopy }: DsLiveCanvasProps) {
     if (!zone) return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
-    const peers = PEERS.map((_, i) => ({
-      x: 40,
-      y: 40,
+    const peers: Peer[] = PEERS.map((_, i) => ({
+      x: 34 + i * 96,
+      y: 26 + i * 44,
       step: i * 3,
-      hold: 0,
+      phase: "pause",
+      ax: 0, ay: 0, cx: 0, cy: 0, bx: 0, by: 0,
+      t: 0,
+      dur: 0,
+      pause: 0,
+      pauseDur: 420 + i * 760,
+      onTarget: false,
+      seed: Math.random() * 100,
     }))
+
+    // Prépare le geste vers le calque courant. Deux écarts à la ligne droite
+    // suffisent à le faire lire comme une main : une cible décentrée dans le
+    // calque, et une trajectoire courbe.
+    const aim = (p: Peer, zoneBox: DOMRect) => {
+      const name = VISITED[p.step % VISITED.length]
+      const layer = zone.querySelector<HTMLElement>(`[data-layer="${name}"]`)
+      if (!layer) return false
+
+      const box = layer.getBoundingClientRect()
+      p.bx = box.left - zoneBox.left + box.width * rand(0.32, 0.68)
+      p.by = box.top - zoneBox.top + box.height * rand(0.32, 0.68)
+
+      const dx = p.bx - p.x
+      const dy = p.by - p.y
+      const dist = Math.hypot(dx, dy) || 1
+
+      p.ax = p.x
+      p.ay = p.y
+
+      // Courbure perpendiculaire, d'un côté ou de l'autre au hasard.
+      const bend = dist * rand(0.08, 0.2) * (Math.random() < 0.5 ? -1 : 1)
+      p.cx = (p.ax + p.bx) / 2 - (dy / dist) * bend
+      p.cy = (p.ay + p.by) / 2 + (dx / dist) * bend
+
+      // Loi de Fitts : la durée croît avec le log de la distance, pas avec elle.
+      p.dur = (170 + 230 * Math.log2(1 + dist / 45)) * rand(0.85, 1.25)
+      p.t = 0
+      p.phase = "move"
+      return true
+    }
 
     let last = performance.now()
 
@@ -80,37 +140,45 @@ export function DsLiveCanvas({ onCopy }: DsLiveCanvasProps) {
         const el = peerRefs.current[i]
         if (!el) return
 
-        const name = VISITED[p.step % VISITED.length]
-        const layer = zone.querySelector<HTMLElement>(`[data-layer="${name}"]`)
-        if (!layer) return
-
-        const box = layer.getBoundingClientRect()
-        const tx = box.left - zoneBox.left + box.width * 0.5
-        const ty = box.top - zoneBox.top + box.height * 0.5
-
-        const vx = tx - p.x
-        const vy = ty - p.y
-        const dist = Math.hypot(vx, vy)
-
-        if (dist < 6) {
-          p.hold += dt
-          claimed.set(name, PEERS[i].color)
-          if (p.hold > 1700) {
-            p.hold = 0
-            let next = (p.step + 1) % VISITED.length
-            // Ne pas viser le calque que l'autre occupe déjà.
-            if (peers.some((o, j) => j !== i && o.step % VISITED.length === next)) {
-              next = (next + 1) % VISITED.length
-            }
-            p.step = next
+        if (p.phase === "move") {
+          p.t += dt
+          const u = Math.min(1, p.t / p.dur)
+          const e = minJerk(u)
+          const v = 1 - e
+          p.x = v * v * p.ax + 2 * v * e * p.cx + e * e * p.bx
+          p.y = v * v * p.ay + 2 * v * e * p.cy + e * e * p.by
+          if (u >= 1) {
+            p.phase = "pause"
+            p.pause = 0
+            p.pauseDur = rand(1100, 2500)
+            p.onTarget = true
           }
         } else {
-          const speed = Math.min(dist, dist * 0.04 + 0.5)
-          p.x += (vx / dist) * speed
-          p.y += (vy / dist) * speed
+          p.pause += dt
+          if (p.onTarget) claimed.set(VISITED[p.step % VISITED.length], PEERS[i].color)
+          if (p.pause > p.pauseDur) {
+            if (p.onTarget) {
+              let next = (p.step + 1) % VISITED.length
+              // Ne pas viser le calque que l'autre occupe déjà.
+              if (peers.some((o, j) => j !== i && o.step % VISITED.length === next)) {
+                next = (next + 1) % VISITED.length
+              }
+              p.step = next
+            }
+            p.onTarget = false
+            if (!aim(p, zoneBox)) p.pause = 0
+          }
         }
 
-        el.style.transform = `translate(${p.x.toFixed(2)}px, ${p.y.toFixed(2)}px)`
+        // Micro-tremblement permanent : une main ne tient jamais parfaitement
+        // immobile, et c'est ce détail qui sépare un pointeur d'un script.
+        const amp = p.phase === "pause" ? 1 : 0.45
+        const jx = (Math.sin(now * 0.0021 + p.seed) * 0.6 + Math.sin(now * 0.0057 + p.seed * 2.3) * 0.3) * amp
+        const jy = (Math.cos(now * 0.0019 + p.seed * 1.7) * 0.6 + Math.sin(now * 0.0043 + p.seed) * 0.3) * amp
+        // Dérive lente à l'arrêt : le curseur respire au lieu de se figer.
+        const drift = p.phase === "pause" ? Math.sin(now * 0.0006 + p.seed) * 1.4 : 0
+
+        el.style.transform = `translate(${(p.x + jx + drift).toFixed(2)}px, ${(p.y + jy).toFixed(2)}px)`
       })
 
       // Applique (ou retire) la sélection sur tous les calques d'un coup.

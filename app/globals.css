@@ -1023,22 +1023,22 @@
 
 /* ═══════ Agency — services grid ═══════ */
 
-/* Opaque backgrounds hid the animated orbs behind them, which read as a flat
-   slab cut out of the section. Both layers are now translucent so the ambient
-   background carries through, while the 1px gaps still draw the dividers. */
-.agency-svc-grid {
-  background: color-mix(in srgb, var(--section-muted) 45%, transparent);
-}
-
+/* The section's animated shapes and orbs run behind this grid. Filling the
+   cards read as a flat slab cut out of them, so the cards are glass: the
+   shapes carry through, softened. The 1px rules come from a box-shadow, not
+   from a grid gap over a coloured background — with translucent cards that
+   background would show through as a flat veil over the whole block. */
 .agency-svc-card {
-  background: color-mix(in srgb, var(--section-bg) 55%, transparent);
+  background: color-mix(in srgb, var(--section-bg) 18%, transparent);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--section-fg) 8%, transparent);
   transition: background-color 500ms ease;
 }
 
 /* The previous hover lived in a utility class that an inline `style`
    attribute always overrode — it never actually fired. */
 .agency-svc-card:hover {
-  background: color-mix(in srgb, var(--section-bg) 38%, transparent);
+  background: color-mix(in srgb, var(--section-bg) 34%, transparent);
 }
 
 /* ═══════ Design system badge ═══════ */

@@ -175,7 +175,7 @@ export function AgencySection() {
             </h2>
           </div>
 
-          <div className="agency-svc-grid grid grid-cols-1 md:grid-cols-2 gap-px">
+          <div className="grid grid-cols-1 md:grid-cols-2">
             {SERVICES.map((svc, i) => (
               <div key={i} className="agency-svc-card group p-8 md:p-12 relative">
                 <div className="flex items-start justify-between mb-6">
