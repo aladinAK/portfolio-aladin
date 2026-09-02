@@ -4,14 +4,21 @@ import { Info, X, ArrowUpRight } from "lucide-react"
 import { useState } from "react"
 import { useLang } from "@/lib/i18n"
 
-const PROJECT_LINKS: Record<string, string> = {
+/** Sections dotées d'un panneau d'infos projet. */
+export const PROJECT_SECTIONS = ["agency", "book", "mood"] as const
+export type ProjectSection = (typeof PROJECT_SECTIONS)[number]
+
+export const isProjectSection = (slug: string | undefined): slug is ProjectSection =>
+  PROJECT_SECTIONS.includes(slug as ProjectSection)
+
+const PROJECT_LINKS: Record<ProjectSection, string> = {
   agency: "https://ak-agency.vercel.app/",
   book: "https://aladin-akkari-book-store.vercel.app/",
   mood: "https://moodmovie-by-aladinakkari.vercel.app/",
 }
 
 interface ProjectInfoProps {
-  section: "agency" | "book" | "mood"
+  section: ProjectSection
 }
 
 export function ProjectInfo({ section }: ProjectInfoProps) {
@@ -39,17 +46,17 @@ export function ProjectInfo({ section }: ProjectInfoProps) {
       >
         {/* Toggle tabs */}
         <div className="flex border-b" style={{ borderColor: "rgba(255, 255, 255, 0.08)" }}>
-          {(["overview", "stack"] as const).map((t2) => (
+          {(["overview", "stack"] as const).map((id) => (
             <button
-              key={t2}
-              onClick={() => setTab(t2)}
+              key={id}
+              onClick={() => setTab(id)}
               className="flex-1 py-3 text-xs font-medium uppercase tracking-widest transition-all duration-200"
               style={{
-                color: tab === t2 ? "#fff" : "rgba(255, 255, 255, 0.35)",
-                borderBottom: tab === t2 ? "2px solid rgba(255, 255, 255, 0.5)" : "2px solid transparent",
+                color: tab === id ? "#fff" : "rgba(255, 255, 255, 0.35)",
+                borderBottom: tab === id ? "2px solid rgba(255, 255, 255, 0.5)" : "2px solid transparent",
               }}
             >
-              {t(`info.${t2}`)}
+              {t(`info.${id}`)}
             </button>
           ))}
         </div>
@@ -85,7 +92,7 @@ export function ProjectInfo({ section }: ProjectInfoProps) {
                 href={projectLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider transition-opacity hover:opacity-100"
+                className="mt-4 inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider"
                 style={{ color: "rgba(255, 255, 255, 0.5)" }}
               >
                 {t("info.visit")}

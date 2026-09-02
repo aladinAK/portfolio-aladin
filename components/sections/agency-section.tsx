@@ -3,6 +3,8 @@
 import { ArrowUpRight, Globe, Headphones, RefreshCw, ShoppingBag } from "lucide-react"
 import { useRef } from "react"
 import { useLang } from "@/lib/i18n"
+import { SectionHead } from "@/components/primitives/section-head"
+import { SectionButton } from "@/components/primitives/section-button"
 import { AgencyContactForm } from "@/components/agency-contact-form"
 
 const SHAPES = [
@@ -87,10 +89,10 @@ export function AgencySection() {
 
         {/* Nav */}
         <nav className="relative z-10 flex items-center justify-between max-sm:pt-15 max-sm:flex-col max-sm:gap-4">
-          <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-50">
+          <span className="section-kicker section-kicker--strong">
             {t("agency.label")}
           </span>
-          <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-50">
+          <span className="section-kicker section-kicker--strong">
             {t("scroll.more")}
           </span>
         </nav>
@@ -138,14 +140,13 @@ export function AgencySection() {
             </p>
 
             <div className="flex items-center justify-center flex-wrap gap-4 mt-8">
-              <button
+              <SectionButton
                 type="button"
                 onClick={scrollToForm}
-                className="agency-font font-bold text-sm uppercase tracking-[0.15em] transition-transform duration-300 hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
-                style={{ padding: "18px 44px", backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}
+                className="agency-font focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
               >
                 {t("agency.btn.1")}
-              </button>
+              </SectionButton>
             </div>
           </div>
         </div>
@@ -166,13 +167,13 @@ export function AgencySection() {
 
         <div className="relative z-10 max-w-6xl mx-auto w-full">
           <div className="text-center mb-16 md:mb-24">
-            <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-30 block mb-4">
-              {t("agency.svc.label")}
-            </span>
-            <h2 className="agency-font text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]">
-              {t("agency.svc.title.1")}<br />
-              <span style={{ color: "var(--section-accent)" }}>{t("agency.svc.title.2")}</span>
-            </h2>
+            <SectionHead
+              kicker={t("agency.svc.label")}
+              title={t("agency.svc.title.1")}
+              accent={t("agency.svc.title.2")}
+              kickerClassName="mb-4"
+              titleClassName="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2">
@@ -202,13 +203,13 @@ export function AgencySection() {
       <section className="relative p-6 md:p-12 lg:p-16 py-24">
         <div className="relative z-10 max-w-6xl mx-auto w-full">
           <div className="text-center mb-16">
-            <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-30 block mb-4">
-              {t("agency.work.label")}
-            </span>
-            <h2 className="agency-font text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]">
-              {t("agency.work.title.1")}<br />
-              <span style={{ color: "var(--section-accent)" }}>{t("agency.work.title.2")}</span>
-            </h2>
+            <SectionHead
+              kicker={t("agency.work.label")}
+              title={t("agency.work.title.1")}
+              accent={t("agency.work.title.2")}
+              kickerClassName="mb-4"
+              titleClassName="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]"
+            />
             <p className="text-sm opacity-40 leading-relaxed max-w-xl mx-auto mt-6">
               {t("agency.work.note")}
             </p>

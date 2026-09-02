@@ -3,6 +3,8 @@
 import { useCallback, useRef, useState } from "react"
 import { useLang } from "@/lib/i18n"
 import { DsLiveCanvas } from "@/components/design-system/ds-live-canvas"
+import { SectionKicker } from "@/components/primitives/section-head"
+import { SectionButton } from "@/components/primitives/section-button"
 
 export const DS_SECTIONS = [
   { id: "ds-fondations", key: "ds.nav.foundations" },
@@ -58,6 +60,14 @@ const THEMES = [
 
 const NEUTRAL_STEPS = [100, 200, 300, 400, 500, 600, 700, 800, 900] as const
 
+/** Sections du portfolio, avec la classe de thème qui porte leurs jetons. */
+const PREVIEW_THEMES = [
+  { label: "Studio", cls: "section-studio" },
+  { label: "Agency", cls: "section-nature" },
+  { label: "Book", cls: "section-tech" },
+  { label: "Mood", cls: "section-lifestyle" },
+] as const
+
 /** Ratios calculés (WCAG 2.1 relative luminance), pas estimés. */
 const CONTRASTS = [
   { pair: "#fafafa / #0a0a0a", ratio: "18.97:1", grade: "AAA" },
@@ -65,6 +75,8 @@ const CONTRASTS = [
   { pair: "#ff4d00 / #0a0a0a", ratio: "5.95:1", grade: "AA" },
   { pair: "#818cf8 / #03094A", ratio: "6.17:1", grade: "AA" },
   { pair: "#1a1a1a / #e3dacb", ratio: "12.56:1", grade: "AAA" },
+  { pair: "#c41e3a / #e3dacb", ratio: "4.22:1", grade: "AA large" },
+  { pair: "#ffffff / #155dfc", ratio: "5.25:1", grade: "AA" },
 ] as const
 
 const INVENTORY = [
@@ -73,7 +85,10 @@ const INVENTORY = [
   { name: "FloatingOrb", variants: "4", usage: "ds.inv.usage.nav", status: "stable" },
   { name: "ProjectInfo", variants: "3", usage: "ds.inv.usage.projects", status: "stable" },
   { name: "AgencyContactForm", variants: "1", usage: "ds.inv.usage.contact", status: "review" },
-  { name: "DesignSystemOverlay", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
+  { name: "ManuscriptCanvas", variants: "1", usage: "ds.inv.usage.book", status: "stable" },
+  { name: "DsOverlay", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
+  { name: "DsLiveCanvas", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
+  { name: "DsGhostCursor", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
 ] as const
 
 const MARQUEE_WORDS = [
@@ -130,11 +145,14 @@ function Panel({
 interface DsContentProps {
   onNavigate: (id: string) => void
   onCopy: (message: string) => void
+  /** Thème de la section depuis laquelle le panneau a été ouvert. */
+  theme: string
 }
 
-export function DsContent({ onNavigate, onCopy }: DsContentProps) {
+export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
   const { t } = useLang()
   const [vw, setVw] = useState(1180)
+  const [preview, setPreview] = useState(theme)
   const riseRef = useRef<HTMLDivElement>(null)
   const pulseRef = useRef<HTMLDivElement>(null)
   const spinRef = useRef<HTMLDivElement>(null)
@@ -167,7 +185,8 @@ export function DsContent({ onNavigate, onCopy }: DsContentProps) {
     play(spinRef.current, "dsSpin 1200ms linear 2")
   }, [])
 
-  const breakpoint = vw < 768 ? t("ds.r.compact") : vw < 1024 ? t("ds.r.medium") : t("ds.r.large")
+  const breakpoint =
+    vw < 640 ? t("ds.r.xs") : vw < 768 ? t("ds.r.compact") : vw < 1024 ? t("ds.r.medium") : t("ds.r.large")
   const gridCols = vw < 768 ? "1fr" : vw < 1024 ? "repeat(2, 1fr)" : "repeat(4, 1fr)"
 
   return (
@@ -280,10 +299,12 @@ export function DsContent({ onNavigate, onCopy }: DsContentProps) {
             <div className="grid gap-3">
               {[
                 { label: "--font-geist", cls: "font-sans text-xl", sample: t("ds.f.type.body") },
+                { label: "--font-geist-mono", cls: "font-mono text-base", sample: t("ds.f.type.mono") },
                 { label: "--font-playfair", cls: "font-[family-name:var(--font-playfair)] italic text-xl", sample: t("ds.f.type.editorial") },
                 { label: "Clash Display", cls: "agency-font text-xl", sample: t("ds.f.type.agency") },
                 { label: "--font-typewriter", cls: "book-font text-base", sample: t("ds.f.type.book") },
                 { label: "--font-fantasy", cls: "book-title-font text-xl", sample: t("ds.f.type.novel") },
+                { label: "--font-syne", cls: "mood-font text-xl", sample: t("ds.f.type.mood") },
               ].map((row) => (
                 <div key={row.label} className="flex items-baseline gap-3 border-b border-[var(--ds-divider)] pb-2.5 last:border-0 last:pb-0">
                   <code className="w-[118px] shrink-0 text-[11px] text-[var(--ds-fg-faint)]">{row.label}</code>
@@ -293,7 +314,7 @@ export function DsContent({ onNavigate, onCopy }: DsContentProps) {
             </div>
           </Panel>
 
-          <div className="grid gap-3">
+          <div className="grid h-full grid-rows-2 gap-3">
             <Panel title={t("ds.f.space")} step={1}>
               <div className="flex items-end gap-2">
                 {[1, 2, 3, 4, 6, 8].map((step) => (
@@ -331,6 +352,37 @@ export function DsContent({ onNavigate, onCopy }: DsContentProps) {
             </Panel>
           </div>
         </div>
+
+        <Panel title={t("ds.f.extra")} className="mt-3" step={3}>
+          <div className="grid gap-4 text-[13px] sm:grid-cols-3 sm:gap-5">
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--section-accent-alt, #c41e3a)" }} />
+                <code className="text-[11px] text-[var(--ds-fg-faint)]">--section-accent-alt</code>
+              </div>
+              <p className="mt-1.5 leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.f.extra.alt.desc")}</p>
+            </div>
+
+            <div className="border-t border-[var(--ds-divider)] pt-3.5 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--state-success)" }} />
+                <code className="text-[11px] text-[var(--ds-fg-faint)]">--state-success</code>
+                <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--state-error)" }} />
+                <code className="text-[11px] text-[var(--ds-fg-faint)]">--state-error</code>
+              </div>
+              <p className="mt-1.5 leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.f.extra.state.desc")}</p>
+            </div>
+
+            <div className="border-t border-[var(--ds-divider)] pt-3.5 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0">
+              <div className="flex gap-2">
+                <span className="section-lifestyle h-5 flex-1 rounded-[3px]" style={{ background: "var(--section-gradient)" }} />
+                <span className="section-lifestyle h-5 flex-1 rounded-[3px]" style={{ background: "var(--section-gradient-text)" }} />
+              </div>
+              <p className="mt-1.5 leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.f.extra.grad.desc")}</p>
+            </div>
+          </div>
+        </Panel>
+
       </section>
 
       {/* ───────── 02 Composants ───────── */}
@@ -389,7 +441,47 @@ export function DsContent({ onNavigate, onCopy }: DsContentProps) {
             <div className="mt-2.5 text-[11px] uppercase tracking-[0.1em] text-[var(--ds-fg-faint)]">{t("ds.c.card.meta")}</div>
           </Panel>
 
-          <Panel title={t("ds.c.inventory")} className="md:col-span-2" step={4}>
+          <Panel title={t("ds.c.live")} className="md:col-span-2" step={4}>
+            <p className="mb-4 text-[13px] leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.c.live.desc")}</p>
+
+            <div role="group" aria-label={t("ds.c.live.picker")} className="mb-4 flex flex-wrap gap-1.5">
+              {PREVIEW_THEMES.map(({ label, cls }) => {
+                const on = preview === cls
+                return (
+                  <button
+                    key={cls}
+                    type="button"
+                    onClick={() => setPreview(cls)}
+                    aria-pressed={on}
+                    className="rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-colors duration-300"
+                    style={{
+                      borderColor: on ? "var(--ds-accent)" : "var(--ds-divider)",
+                      background: on ? "var(--ds-accent)" : "transparent",
+                      color: on ? "var(--ds-accent-fg)" : "var(--ds-fg-muted)",
+                    }}
+                  >
+                    {label}
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className={`ds-theme-demo ${preview} rounded-[var(--ds-radius-sm)] p-5`}>
+              <SectionKicker className="mb-3">{t("ds.c.live.kicker")}</SectionKicker>
+              <h3 className="section-title mb-5 text-2xl leading-tight md:text-3xl">
+                {t("ds.c.live.title")}{" "}
+                <span className="section-title-accent">{t("ds.c.live.accent")}</span>
+              </h3>
+              <div className="flex flex-wrap items-center gap-3">
+                <SectionButton role="primary" className="text-sm">{t("ds.c.primary")}</SectionButton>
+                <SectionButton role="outline" className="text-sm">{t("ds.c.secondary")}</SectionButton>
+                <SectionButton role="pill" className="tap-44">FR / EN</SectionButton>
+              </div>
+              <code className="mt-4 block text-[11px] opacity-45">.{preview}</code>
+            </div>
+          </Panel>
+
+          <Panel title={t("ds.c.inventory")} className="md:col-span-2" step={5}>
             <div className="overflow-x-auto">
               <table className="ds-table min-w-[560px]">
                 <thead>
@@ -520,6 +612,7 @@ export function DsContent({ onNavigate, onCopy }: DsContentProps) {
                 </div>
               ))}
             </div>
+            <p className="mt-4 text-[13px] leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.m.note")}</p>
           </Panel>
 
           <Panel title={t("ds.m.demo")} step={1}>
@@ -590,9 +683,10 @@ export function DsContent({ onNavigate, onCopy }: DsContentProps) {
             </div>
           </div>
 
-          <div className="mt-4 grid gap-4 text-[13px] leading-relaxed sm:grid-cols-3">
+          <div className="mt-4 grid gap-4 text-[13px] leading-relaxed sm:grid-cols-2 lg:grid-cols-4">
             {[
-              ["≤ 767 · compact", "ds.r.compact.desc"],
+              ["≤ 639 · max-sm", "ds.r.xs.desc"],
+              ["640 – 767 · compact", "ds.r.compact.desc"],
               ["768 – 1023 · md", "ds.r.medium.desc"],
               ["≥ 1024 · lg", "ds.r.large.desc"],
             ].map(([label, key]) => (
@@ -686,7 +780,7 @@ export function DsContent({ onNavigate, onCopy }: DsContentProps) {
 
           <Panel title={t("ds.g.versions")} step={2}>
             <div className="grid gap-3 text-[13px] leading-relaxed">
-              {["1.2", "1.1", "1.0"].map((version) => (
+              {["1.3", "1.2", "1.1", "1.0"].map((version) => (
                 <div key={version} className="flex gap-2.5">
                   <span className="ds-tag ds-tag--outline shrink-0">v{version}</span>
                   <span className="text-[var(--ds-fg-muted)]">{t(`ds.g.v${version.replace(".", "")}`)}</span>

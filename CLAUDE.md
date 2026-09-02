@@ -118,8 +118,35 @@ jetons.
    pas alors que le fichier est correct, redémarrer `next dev` — et valider sur le
    build de production (`npx next build` + servir `out/`).
 7. **`@keyframes` avec `forwards`** écrase les opacités utilitaires : `brushReveal`
-   affichait les traits de pinceau à 100 % au lieu de 4-6 %. Passer par une variable
-   (`--brush-o`).
+   affichait les traits de pinceau à 100 % au lieu de leur opacité voulue. Passer par
+   une variable (`--brush-o`).
+
+---
+
+## Dosage des couches ambiantes
+
+Chaque section porte une couche décorative de fond. Son opacité est un réglage
+transverse : lu section par section, un chiffre isolé ne dit rien, c'est la
+comparaison entre sections qui compte.
+
+| Section | Couche | Opacités | Écart au fond |
+|---|---|---|---|
+| `studio` | 4 lignes, 9 marques d'angle | 4 – 8 % | identité volontairement graphique, sans ambiance |
+| `agency` | 8 formes géométriques + 3 orbes | 12 – 30 % | 1,31 – 2,42:1 |
+| `book` | 6 taches, 4 coulures, 7 pinceaux | 10 – 17 % | 1,22 – 1,39:1 |
+| `mood` | 14 particules | 14 – 30 % | 1,39 – 2,41:1 |
+
+Le seuil où l'œil distingue un aplat d'un fond uni est autour de **1,05:1**. Les
+couches de `book` étaient à 2,5 – 6 % (1,05 – 1,12:1) : dix-sept éléments que
+personne ne voyait. Elles sont montées à 10 – 17 %, ce qui aligne leur écart au
+fond sur celui d'`agency`. Attention au piège : à opacité égale, une couche ne
+se voit pas pareil sur le parchemin de `book` que sur le noir d'`agency` — c'est
+l'écart au fond qui doit correspondre, pas le pourcentage.
+
+Trois leviers pour `book`, à ne pas oublier ensemble : `o:` des `INK_SPLATS`,
+`--brush-o` des `BrushStrokes`, et l'alpha du dégradé de `.ink-drip` — dont
+l'opacité effective est le **produit** du dégradé et de l'opacité finale de
+`inkDripDown` (0,26 × 0,5 = 13 %).
 
 ---
 

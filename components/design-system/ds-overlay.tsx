@@ -18,11 +18,11 @@ import { DsContent, DS_SECTIONS } from "@/components/design-system/ds-content"
 const ACCENT_BY_THEME: Record<string, { accent: string; fg: string }> = {
   "section-studio": { accent: "#c8ff00", fg: "#0a0a0a" },
   "section-nature": { accent: "#ff4d00", fg: "#0a0a0a" },
-  "section-tech": { accent: "#C41E3A", fg: "#ffffff" },
+  "section-tech": { accent: "#c41e3a", fg: "#ffffff" },
   "section-lifestyle": { accent: "#818cf8", fg: "#0a0a0a" },
 }
 
-const FALLBACK_ACCENT = ACCENT_BY_THEME["section-studio"]
+const FALLBACK_ACCENT = { ...ACCENT_BY_THEME["section-studio"], theme: "section-studio" }
 
 const FOCUSABLE =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
@@ -32,7 +32,7 @@ const readVisibleAccent = () => {
   const section = el?.closest(".vertical-section")
   if (!section) return FALLBACK_ACCENT
   for (const cls of Array.from(section.classList)) {
-    if (ACCENT_BY_THEME[cls]) return ACCENT_BY_THEME[cls]
+    if (ACCENT_BY_THEME[cls]) return { ...ACCENT_BY_THEME[cls], theme: cls }
   }
   return FALLBACK_ACCENT
 }
@@ -175,7 +175,7 @@ export function DsOverlay({ onClose }: DsOverlayProps) {
       role="dialog"
       aria-modal="true"
       aria-label={t("ds.title")}
-      className="ds-root ds-overlay-in fixed inset-0 z-[100] font-sans"
+      className="ds-root ds-overlay-in fixed inset-0 z-100 font-sans"
       style={
         {
           "--ds-accent": theme.accent,
@@ -184,10 +184,10 @@ export function DsOverlay({ onClose }: DsOverlayProps) {
       }
     >
       {/* Jauge de progression */}
-      <div className="pointer-events-none fixed inset-x-0 top-0 z-[104] h-0.5 bg-[var(--ds-divider)]">
+      <div className="pointer-events-none fixed inset-x-0 top-0 z-104 h-0.5 bg-(--ds-divider)">
         <div
           ref={progressRef}
-          className="h-full origin-left bg-[var(--ds-accent)]"
+          className="h-full origin-left bg-(--ds-accent)"
           style={{ transform: "scaleX(0)" }}
         />
       </div>
@@ -197,12 +197,12 @@ export function DsOverlay({ onClose }: DsOverlayProps) {
       <nav
         ref={navRef}
         aria-label={t("ds.title")}
-        className="fixed left-1/2 top-3 z-[103] flex max-w-[calc(100vw-7rem)] -translate-x-1/2 items-center gap-0.5 overflow-x-auto rounded-full border border-[var(--ds-divider)] bg-[color-mix(in_srgb,var(--ds-bg)_82%,transparent)] p-1 backdrop-blur-xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="fixed left-1/2 top-3 z-103 flex max-w-[calc(100vw-7rem)] -translate-x-1/2 items-center gap-0.5 overflow-x-auto rounded-full border border-(--ds-divider) bg-[color-mix(in_srgb,var(--ds-bg)_82%,transparent)] p-1 backdrop-blur-xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         <span
           data-pill
           aria-hidden
-          className="absolute left-1 top-1 h-[calc(100%-0.5rem)] rounded-full bg-[var(--ds-surface-hi)] opacity-0 transition-[transform,width,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          className="absolute left-1 top-1 h-[calc(100%-0.5rem)] rounded-full bg-(--ds-surface-hi) opacity-0 transition-[transform,width,opacity] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
         />
         {DS_SECTIONS.map(({ id, key }) => (
           <button
@@ -225,21 +225,21 @@ export function DsOverlay({ onClose }: DsOverlayProps) {
         type="button"
         onClick={onClose}
         aria-label={t("ds.close")}
-        className="ds-close fixed right-4 top-3 z-[103] grid h-11 w-11 place-items-center rounded-full transition-transform duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--ds-accent)]"
+        className="ds-close fixed right-4 top-3.5 z-103 grid h-10 max-sm:h-8 max-sm:w-8 w-10 place-items-center rounded-full transition-transform duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--ds-accent)"
         style={{ background: "var(--ds-accent)", color: "var(--ds-accent-fg)" }}
       >
         <X className="h-5 w-5" strokeWidth={2.5} />
       </button>
 
       <div ref={scrollRef} className="h-full overflow-y-auto overscroll-contain scroll-smooth">
-        <DsContent onNavigate={goTo} onCopy={notify} />
+        <DsContent onNavigate={goTo} onCopy={notify} theme={theme.theme} />
       </div>
 
       {toast && (
         <div
           role="status"
           aria-live="polite"
-          className="pointer-events-none fixed bottom-6 left-1/2 z-[110] -translate-x-1/2 rounded-full px-5 py-3 text-xs font-semibold shadow-[var(--ds-shadow-lg)]"
+          className="pointer-events-none fixed bottom-6 left-1/2 z-110 -translate-x-1/2 rounded-full px-5 py-3 text-xs font-semibold shadow-(--ds-shadow-lg)"
           style={{ background: "var(--ds-n-100)", color: "var(--ds-n-900)" }}
         >
           {toast}

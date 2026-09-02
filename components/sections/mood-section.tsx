@@ -2,6 +2,7 @@
 
 import { ArrowUpRight } from "lucide-react"
 import { useLang } from "@/lib/i18n"
+import { SectionHead, SectionKicker } from "@/components/primitives/section-head"
 
 const MOODS = [
   { emoji: "😄", key: "mood.joy", float: "mood-float-1" },
@@ -65,7 +66,7 @@ export function MoodSection() {
       <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
         {/* Nav */}
         <nav className="relative z-10 flex items-center justify-between max-sm:pt-15 max-sm:flex-col max-sm:gap-4">
-           <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+          <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
             {t("mood.vibe")}
           </span>
           <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
@@ -75,9 +76,9 @@ export function MoodSection() {
 
         {/* Center */}
         <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center">
-          <h2 className="mood-font text-5xl md:text-7xl  font-extrabold leading-[0.9] tracking-tight mb-4 capitalize">
+          <h2 className="section-title text-5xl md:text-7xl font-extrabold leading-[0.9] tracking-tight mb-4 capitalize">
             {t("mood.hero.1")}<br />
-            <span className="mood-gradient-text">{t("mood.hero.2")}</span>
+            <span className="section-title-accent">{t("mood.hero.2")}</span>
           </h2>
 
           <p className="text-sm md:text-base opacity-50 max-w-md mt-6 leading-relaxed">
@@ -89,7 +90,7 @@ export function MoodSection() {
             href="https://moodmovie-by-aladinakkari.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-4 mt-8 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(129,140,248,0.25)] bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+            className="section-btn section-btn--primary mt-8 text-sm font-medium"
           >
             {t("mood.try")}
             <ArrowUpRight className="w-4 h-4" />
@@ -128,13 +129,13 @@ export function MoodSection() {
       <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24 flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full">
           <div className="text-center mb-16 md:mb-24">
-            <span className="text-xs font-mono tracking-widest uppercase opacity-30 block mb-4">
-              {t("mood.feat.label")}
-            </span>
-            <h2 className="mood-font text-3xl md:text-5xl lg:text-6xl font-extrabold leading-[0.9] tracking-tight">
-              {t("mood.feat.title.1")}<br />
-              <span className="mood-gradient-text">{t("mood.feat.title.2")}</span>
-            </h2>
+            <SectionHead
+              kicker={t("mood.feat.label")}
+              title={t("mood.feat.title.1")}
+              accent={t("mood.feat.title.2")}
+              kickerClassName="mb-4"
+              titleClassName="text-3xl md:text-5xl lg:text-6xl font-extrabold leading-[0.9] tracking-tight"
+            />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -156,10 +157,10 @@ export function MoodSection() {
 
           {/* How it works */}
           <div className="mt-24 text-center">
-            <span className="text-xs font-mono tracking-widest uppercase opacity-30 block mb-4">
+            <SectionKicker className="mb-4">
               {t("mood.how.label")}
-            </span>
-            <h2 className="mood-font text-2xl md:text-4xl font-extrabold tracking-tight mb-16">
+            </SectionKicker>
+            <h2 className="section-title text-2xl md:text-4xl font-extrabold tracking-tight mb-16">
               {t("mood.how.title")}
             </h2>
 
@@ -182,7 +183,7 @@ export function MoodSection() {
               href="https://moodmovie-by-aladinakkari.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-8 py-4 text-sm font-medium rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(129,140,248,0.25)] bg-gradient-to-r from-blue-500 to-purple-600 text-white"
+              className="section-btn section-btn--primary text-sm font-medium"
             >
               {t("mood.try")}
               <ArrowUpRight className="w-4 h-4" />

@@ -17,6 +17,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "nav.role.1": { fr: "Développeur Frontend", en: "Frontend Developer" },
   "nav.role.3": { fr: "Designer", en: "Designer" },
   "nav.cv.download": { fr: "Télécharger CV", en: "Download CV" },
+  "nav.lang": { fr: "Changer de langue", en: "Switch language" },
 
   // Hero
   "hero.line1": { fr: "Développeur", en: "Frontend" },
@@ -36,103 +37,103 @@ const dict: Record<string, Record<Lang, string>> = {
   "exp.date": { fr: "2017 — présent", en: "2017 — present" },
 
   // Experience items
-"exp.0.role": { fr: "Senior Front End Developer", en: "Senior Front End Developer" },
-"exp.0.type": { fr: "Temps plein", en: "Full-time" },
-"exp.0.desc": {
-  fr: "Je conçois et développe des interfaces web performantes et réactives, en alliant design et expérience utilisateur. Je crée des composants réutilisables et optimise chaque projet pour la performance et le SEO, notamment dans le secteur du gaming.",
-  en: "I design and develop responsive, high-performance web interfaces, blending design with user experience. I build reusable components and optimize every project for performance and SEO, especially in the gaming sector."
-},
-"exp.1.role": { fr: "Designer Web", en: "Web Designer" },
-"exp.1.type": { fr: "Freelance", en: "Freelance" },
-"exp.1.desc": {
-  fr: "J'accompagne mes clients dans la création d'identités visuelles impactantes — affiches, brochures, packaging, maquettes et sites web — en traduisant leurs idées en designs cohérents et esthétiques.",
-  en: "I help clients craft impactful visual identities — posters, brochures, packaging, mockups, and websites — translating their ideas into cohesive and visually appealing designs."
-},
-"exp.2.role": { fr: "Spécialiste en référencement", en: "SEO Specialist" },
-"exp.2.type": { fr: "Temps partiel", en: "Part-time" },
-"exp.2.desc": {
-  fr: "Service client et suivi dans une agence spécialisée en référencement. Appels sortants, gestion de mandats et support aux opérations.",
-  en: "Customer service and follow-up at a specialized SEO agency. Outbound calls, mandate management and operations support.",
-},
-"exp.3.role": { fr: "Designer graphique", en: "Graphic Designer" },
-"exp.3.type": { fr: "Stage", en: "Internship" },
-"exp.3.desc": {
-  fr: "Création de logos, affiches et supports de communication variés, en respectant l'identité et le ton de chaque client au sein de l'agence.",
-  en: "Creating logos, posters, and diverse communication materials, while respecting each client’s identity and tone within the agency."
-},
-"exp.4.role": { fr: "Infographiste", en: "Graphic Designer" },
-"exp.4.type": { fr: "Stage", en: "Internship" },
-"exp.4.desc": {
-  fr: "Production de supports graphiques sur mesure selon les besoins des clients dans une société spécialisée en impression offset, avec attention aux détails et à la qualité finale.",
-  en: "Producing tailored graphic materials based on client needs at an offset printing company, with careful attention to detail and final quality."
-},
+  "exp.0.role": { fr: "Senior Front End Developer", en: "Senior Front End Developer" },
+  "exp.0.type": { fr: "Temps plein", en: "Full-time" },
+  "exp.0.desc": {
+    fr: "Je conçois et développe des interfaces web performantes et réactives, en alliant design et expérience utilisateur. Je crée des composants réutilisables et optimise chaque projet pour la performance et le SEO, notamment dans le secteur du gaming.",
+    en: "I design and develop responsive, high-performance web interfaces, blending design with user experience. I build reusable components and optimize every project for performance and SEO, especially in the gaming sector."
+  },
+  "exp.1.role": { fr: "Designer Web", en: "Web Designer" },
+  "exp.1.type": { fr: "Freelance", en: "Freelance" },
+  "exp.1.desc": {
+    fr: "J'accompagne mes clients dans la création d'identités visuelles impactantes — affiches, brochures, packaging, maquettes et sites web — en traduisant leurs idées en designs cohérents et esthétiques.",
+    en: "I help clients craft impactful visual identities — posters, brochures, packaging, mockups, and websites — translating their ideas into cohesive and visually appealing designs."
+  },
+  "exp.2.role": { fr: "Spécialiste en référencement", en: "SEO Specialist" },
+  "exp.2.type": { fr: "Temps partiel", en: "Part-time" },
+  "exp.2.desc": {
+    fr: "Service client et suivi dans une agence spécialisée en référencement. Appels sortants, gestion de mandats et support aux opérations.",
+    en: "Customer service and follow-up at a specialized SEO agency. Outbound calls, mandate management and operations support.",
+  },
+  "exp.3.role": { fr: "Designer graphique", en: "Graphic Designer" },
+  "exp.3.type": { fr: "Stage", en: "Internship" },
+  "exp.3.desc": {
+    fr: "Création de logos, affiches et supports de communication variés, en respectant l'identité et le ton de chaque client au sein de l'agence.",
+    en: "Creating logos, posters, and diverse communication materials, while respecting each client’s identity and tone within the agency."
+  },
+  "exp.4.role": { fr: "Infographiste", en: "Graphic Designer" },
+  "exp.4.type": { fr: "Stage", en: "Internship" },
+  "exp.4.desc": {
+    fr: "Production de supports graphiques sur mesure selon les besoins des clients dans une société spécialisée en impression offset, avec attention aux détails et à la qualité finale.",
+    en: "Producing tailored graphic materials based on client needs at an offset printing company, with careful attention to detail and final quality."
+  },
 
-// Services
-"svc.label": { fr: "02 / SERVICES", en: "02 / SERVICES" },
-"svc.title.1": { fr: "Ce que", en: "What" },
-"svc.title.2": { fr: "je fais", en: "I do" },
-"svc.0.title": { fr: "Développement Frontend", en: "Frontend Development" },
-"svc.0.desc": {
-  fr: "Création d'interfaces web réactives et performantes avec React, Vue, Next.js et Nuxt, toujours avec un souci du détail pixel-perfect.",
-  en: "Building responsive, high-performance web interfaces with React, Vue, Next.js, and Nuxt, always with pixel-perfect attention to detail."
-},
-"svc.1.title": { fr: "UI / UX Design", en: "UI / UX Design" },
-"svc.1.desc": {
-  fr: "De l'étude utilisateur à la réalisation de prototypes Figma, je conçois des interfaces qui allient esthétique, ergonomie et fonctionnalité.",
-  en: "From user research to Figma prototypes, I design interfaces that blend aesthetics, usability, and functionality."
-},
-"svc.2.title": { fr: "Animation Web", en: "Web Animation" },
-"svc.2.desc": {
-  fr: "Je crée des animations subtiles et engageantes — transitions fluides, micro-interactions, parallax — pour rendre l’expérience web vivante et intuitive.",
-  en: "I create subtle, engaging web animations — smooth transitions, micro-interactions, parallax — to make web experiences lively and intuitive."
-},
-"svc.3.title": { fr: "SEO & Performance", en: "SEO & Performance" },
-"svc.3.desc": {
-  fr: "Optimisation des Core Web Vitals, mise en place de stratégies SEO et suivi analytics pour garantir des sites rapides, visibles et performants.",
-  en: "Optimizing Core Web Vitals, implementing SEO strategies, and monitoring analytics to ensure fast, visible, and high-performing websites."
-},
+  // Services
+  "svc.label": { fr: "02 / SERVICES", en: "02 / SERVICES" },
+  "svc.title.1": { fr: "Ce que", en: "What" },
+  "svc.title.2": { fr: "je fais", en: "I do" },
+  "svc.0.title": { fr: "Développement Frontend", en: "Frontend Development" },
+  "svc.0.desc": {
+    fr: "Création d'interfaces web réactives et performantes avec React, Vue, Next.js et Nuxt, toujours avec un souci du détail pixel-perfect.",
+    en: "Building responsive, high-performance web interfaces with React, Vue, Next.js, and Nuxt, always with pixel-perfect attention to detail."
+  },
+  "svc.1.title": { fr: "UI / UX Design", en: "UI / UX Design" },
+  "svc.1.desc": {
+    fr: "De l'étude utilisateur à la réalisation de prototypes Figma, je conçois des interfaces qui allient esthétique, ergonomie et fonctionnalité.",
+    en: "From user research to Figma prototypes, I design interfaces that blend aesthetics, usability, and functionality."
+  },
+  "svc.2.title": { fr: "Animation Web", en: "Web Animation" },
+  "svc.2.desc": {
+    fr: "Je crée des animations subtiles et engageantes — transitions fluides, micro-interactions, parallax — pour rendre l’expérience web vivante et intuitive.",
+    en: "I create subtle, engaging web animations — smooth transitions, micro-interactions, parallax — to make web experiences lively and intuitive."
+  },
+  "svc.3.title": { fr: "SEO & Performance", en: "SEO & Performance" },
+  "svc.3.desc": {
+    fr: "Optimisation des Core Web Vitals, mise en place de stratégies SEO et suivi analytics pour garantir des sites rapides, visibles et performants.",
+    en: "Optimizing Core Web Vitals, implementing SEO strategies, and monitoring analytics to ensure fast, visible, and high-performing websites."
+  },
 
-// Projects
-"proj.label": { fr: "03 / PROJETS", en: "03 / PROJECTS" },
-"proj.title.1": { fr: "Mes", en: "My" },
-"proj.title.2": { fr: "Travaux", en: "Work" },
-"proj.cta": { fr: "Voir le projet", en: "View project" },
-"proj.0.d0": {
-  fr: "Plateforme marketing gaming — dashboard analytique complet pour améliorer la visibilité et orienter les décisions grâce aux données.",
-  en: "Gaming marketing platform — comprehensive analytics dashboard to boost visibility and guide data-driven decisions."
-},
-"proj.0.d1": {
-  fr: "Visualisation des données en temps réel et système d'authentification sécurisé.",
-  en: "Real-time data visualization and secure authentication system."
-},
-"proj.0.d2": {
-  fr: "Projet ambitieux combinant développement frontend et backend pour un impact maximal.",
-  en: "Ambitious project combining frontend and backend development for maximum impact."
-},
-"proj.1.d0": {
-  fr: "Refonte complète d’un site en collaboration avec l'équipe design — de la direction créative à l’implémentation technique.",
-  en: "Complete website redesign in collaboration with the design team — from creative direction to technical implementation."
-},
-"proj.1.d1": {
-  fr: "Transformation de maquettes en code responsive, optimisation de la performance et compatibilité multi-navigateurs.",
-  en: "Converting mockups into responsive code, optimizing performance, and ensuring cross-browser compatibility."
-},
-"proj.1.d2": {
-  fr: "Création de fonctionnalités sur mesure et d’éléments interactifs pour engager l’utilisateur.",
-  en: "Developing custom features and interactive elements to enhance user engagement."
-},
-"proj.2.d0": {
-  fr: "Landing pages promotionnelles pour de grands titres — Genshin Impact, Game of Thrones, Raid: Shadow Legends.",
-  en: "Promotional landing pages for major titles — Genshin Impact, Game of Thrones, Raid: Shadow Legends."
-},
-"proj.2.d1": {
-  fr: "Deux refontes complètes du site principal avec amélioration des indicateurs SEO.",
-  en: "Two full website redesigns with improved SEO metrics."
-},
-"proj.2.d2": {
-  fr: "Intégration Google Tag Manager et analytics, avec un design graphique pensé pour la mise en valeur visuelle.",
-  en: "Google Tag Manager and analytics integration, with graphic design focused on visual impact."
-},
+  // Projects
+  "proj.label": { fr: "03 / PROJETS", en: "03 / PROJECTS" },
+  "proj.title.1": { fr: "Mes", en: "My" },
+  "proj.title.2": { fr: "Travaux", en: "Work" },
+  "proj.cta": { fr: "Voir le projet", en: "View project" },
+  "proj.0.d0": {
+    fr: "Plateforme marketing gaming — dashboard analytique complet pour améliorer la visibilité et orienter les décisions grâce aux données.",
+    en: "Gaming marketing platform — comprehensive analytics dashboard to boost visibility and guide data-driven decisions."
+  },
+  "proj.0.d1": {
+    fr: "Visualisation des données en temps réel et système d'authentification sécurisé.",
+    en: "Real-time data visualization and secure authentication system."
+  },
+  "proj.0.d2": {
+    fr: "Projet ambitieux combinant développement frontend et backend pour un impact maximal.",
+    en: "Ambitious project combining frontend and backend development for maximum impact."
+  },
+  "proj.1.d0": {
+    fr: "Refonte complète d’un site en collaboration avec l'équipe design — de la direction créative à l’implémentation technique.",
+    en: "Complete website redesign in collaboration with the design team — from creative direction to technical implementation."
+  },
+  "proj.1.d1": {
+    fr: "Transformation de maquettes en code responsive, optimisation de la performance et compatibilité multi-navigateurs.",
+    en: "Converting mockups into responsive code, optimizing performance, and ensuring cross-browser compatibility."
+  },
+  "proj.1.d2": {
+    fr: "Création de fonctionnalités sur mesure et d’éléments interactifs pour engager l’utilisateur.",
+    en: "Developing custom features and interactive elements to enhance user engagement."
+  },
+  "proj.2.d0": {
+    fr: "Landing pages promotionnelles pour de grands titres — Genshin Impact, Game of Thrones, Raid: Shadow Legends.",
+    en: "Promotional landing pages for major titles — Genshin Impact, Game of Thrones, Raid: Shadow Legends."
+  },
+  "proj.2.d1": {
+    fr: "Deux refontes complètes du site principal avec amélioration des indicateurs SEO.",
+    en: "Two full website redesigns with improved SEO metrics."
+  },
+  "proj.2.d2": {
+    fr: "Intégration Google Tag Manager et analytics, avec un design graphique pensé pour la mise en valeur visuelle.",
+    en: "Google Tag Manager and analytics integration, with graphic design focused on visual impact."
+  },
 
   // About
   "about.label": { fr: "04 / À PROPOS", en: "04 / ABOUT" },
@@ -293,7 +294,7 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "What the first readers are saying",
   },
   "book.reviews.stars": { fr: "5 étoiles sur 5", en: "5 out of 5 stars" },
-  "book.reviews.summary": { fr: "5,0 sur 5 \u00b7 4 avis Amazon", en: "5.0 out of 5 \u00b7 4 Amazon reviews" },
+  "book.reviews.summary": { fr: "5,0 sur 5 \u00b7 10+ avis Amazon", en: "5.0 out of 5 \u00b7 10+ Amazon reviews" },
   "book.reviews.format": { fr: "Format Kindle", en: "Kindle Edition" },
   "book.reviews.verified": { fr: "Achat vérifié", en: "Verified purchase" },
   "book.reviews.cta": { fr: "Lire les avis sur Amazon", en: "Read the reviews on Amazon" },
@@ -477,7 +478,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.hero.cta.1": { fr: "Parcourir le système", en: "Browse the system" },
   "ds.hero.cta.2": { fr: "Voir la méthode", en: "See the method" },
-  "ds.hero.stat": { fr: "4 thèmes · 5 familles · 6 pas d'espacement", en: "4 themes · 5 type families · 6 spacing steps" },
+  "ds.hero.stat": { fr: "4 thèmes · 7 familles · 6 pas d'espacement", en: "4 themes · 7 type families · 6 spacing steps" },
 
   // 01 Fondations
   "ds.f.kicker": { fr: "FONDATIONS", en: "FOUNDATIONS" },
@@ -488,12 +489,31 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "No color is hard-coded in a component. Every portfolio section exposes four roles — background, text, accent, muted — and everything else plugs into them. Click a swatch to copy its token.",
   },
   "ds.f.neutral": { fr: "Rampe neutre — OKLCH", en: "Neutral ramp — OKLCH" },
-  "ds.f.type": { fr: "Typographie — 5 familles", en: "Type — 5 families" },
+  "ds.f.type": { fr: "Typographie — 7 familles", en: "Type — 7 families" },
+  "ds.f.extra": { fr: "Jetons complémentaires", en: "Additional tokens" },
+  "ds.f.extra.alt": { fr: "Accent secondaire", en: "Secondary accent" },
+  "ds.f.extra.alt.desc": {
+    fr: "Le roman porte un rubis en plus de son accent principal — étoiles, mention « vérifié », bouton d'achat. Les trois autres thèmes déclarent le rôle mais le font retomber sur --section-accent : le système gagne un rôle, pas une couleur inventée.",
+    en: "The novel carries a ruby alongside its main accent — stars, the “verified” note, the buy button. The other three themes declare the role but fall back to --section-accent: the system gains a role, not an invented colour.",
+  },
+  "ds.f.extra.state": { fr: "États de validation", en: "Validation states" },
+  "ds.f.extra.state.desc": {
+    fr: "Hors thème, volontairement : une erreur ne change pas de sens d'une section à l'autre. Le formulaire portait deux verts différents pour un même succès — il n'en reste qu'un.",
+    en: "Deliberately outside the themes: an error does not change meaning from one section to the next. The form carried two different greens for one success state — only one remains.",
+  },
+  "ds.f.extra.grad": { fr: "Dégradés MoodMovie", en: "MoodMovie gradients" },
+  "ds.f.extra.grad.desc": {
+    fr: "Deux dégradés distincts : l'un pour les boutons, l'autre pour les titres. Propres à cette section, ils ne sont pas déclinés dans les autres thèmes — aucun composant partagé ne les consomme.",
+    en: "Two distinct gradients: one for buttons, one for headings. Specific to this section, they are not declined across the other themes — no shared component consumes them.",
+  },
+
   "ds.f.type.body": { fr: "Corps & interface", en: "Body & interface" },
+  "ds.f.type.mono": { fr: "Données & numéros", en: "Data & numerals" },
   "ds.f.type.editorial": { fr: "Accent éditorial", en: "Editorial accent" },
   "ds.f.type.agency": { fr: "Titres agence", en: "Agency headings" },
   "ds.f.type.book": { fr: "Machine à écrire", en: "Typewriter" },
   "ds.f.type.novel": { fr: "Le roman", en: "The novel" },
+  "ds.f.type.mood": { fr: "Titres MoodMovie", en: "MoodMovie headings" },
   "ds.f.space": { fr: "Espacement — 6 pas", en: "Spacing — 6 steps" },
   "ds.f.space.desc": {
     fr: "4 · 8 · 12 · 16 · 24 · 32. Six pas suffisent. Au-delà, c'est une nouvelle mise en page, pas un nouvel espacement.",
@@ -506,8 +526,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.c.title.1": { fr: "Ma", en: "My" },
   "ds.c.title.2": { fr: "Bibliothèque", en: "Library" },
   "ds.c.lead": {
-    fr: "Six composants couvrent tout le portfolio. Chacun a une seule raison d'exister ; si deux se ressemblent, l'un des deux est une variante.",
-    en: "Six components cover the whole portfolio. Each has one reason to exist; if two look alike, one of them is a variant.",
+    fr: "Neuf composants portent le portfolio et cette documentation. Les primitives ci-dessous — bouton, étiquette, champ, carte — sont celles du panneau : les sections du portfolio composent encore leurs propres variantes en utilitaires. Les unifier est le chantier ouvert.",
+    en: "Nine components carry the portfolio and this documentation. The primitives below — button, tag, field, card — are the panel's own: the portfolio sections still compose their own variants from utilities. Unifying them is the open piece of work.",
   },
   "ds.c.actions": { fr: "Actions", en: "Actions" },
   "ds.c.actions.desc": {
@@ -532,6 +552,15 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Mood-based movie and music recommendations. Next.js 16, TMDB API, localStorage favorites.",
   },
   "ds.c.card.meta": { fr: "Application · 2025", en: "Application · 2025" },
+  "ds.c.live": { fr: "Les primitives du portfolio, en direct", en: "The portfolio's primitives, live" },
+  "ds.c.live.desc": {
+    fr: "Ce bloc n'est pas une maquette : ce sont les composants que les quatre sections utilisent vraiment. Le sélecteur part du thème depuis lequel vous avez ouvert ce panneau — changez-en et regardez la police, le rayon et le traitement de l'accent basculer. Chaque section garde son identité ; c'est le rôle qui ne bouge pas.",
+    en: "This block is not a mock-up: these are the components the four sections actually use. The picker starts on the theme you opened this panel from — switch it and watch the family, the radius and the accent treatment change. Each section keeps its identity; it is the role that stays put.",
+  },
+  "ds.c.live.kicker": { fr: "Libellé de section", en: "Section label" },
+  "ds.c.live.picker": { fr: "Prévisualiser dans le thème", en: "Preview in theme" },
+  "ds.c.live.title": { fr: "Un rôle,", en: "One role," },
+  "ds.c.live.accent": { fr: "quatre identités.", en: "four identities." },
   "ds.c.inventory": { fr: "Inventaire des composants", en: "Component inventory" },
   "ds.c.th.component": { fr: "Composant", en: "Component" },
   "ds.c.th.variants": { fr: "Variantes", en: "Variants" },
@@ -546,6 +575,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.inv.usage.projects": { fr: "Sections projets", en: "Project sections" },
   "ds.inv.usage.contact": { fr: "Contact", en: "Contact" },
   "ds.inv.usage.docs": { fr: "Documentation", en: "Documentation" },
+  "ds.inv.usage.book": { fr: "Section livre", en: "Book section" },
 
   // 03 États & accessibilité
   "ds.s.kicker": { fr: "ÉTATS & A11Y", en: "STATES & A11Y" },
@@ -578,6 +608,10 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Three durations, two curves — the values actually used across this portfolio. Motion explains a relationship between two states; it doesn't decorate.",
   },
   "ds.m.tokens": { fr: "Jetons de mouvement", en: "Motion tokens" },
+  "ds.m.note": {
+    fr: "Ces trois jetons cadencent le panneau. Les quatre sections du portfolio s'appuient encore sur les durées utilitaires de Tailwind — 300, 400, 500 et 700 ms — avec la même courbe de sortie. Unifier les deux échelles est le prochain chantier.",
+    en: "These three tokens pace this panel. The four portfolio sections still rely on Tailwind's utility durations — 300, 400, 500 and 700 ms — with the same easing curve. Unifying both scales is the next piece of work.",
+  },
   "ds.m.fast": { fr: "retour d'état", en: "state feedback" },
   "ds.m.base": { fr: "entrée au scroll", en: "scroll reveal" },
   "ds.m.slow": { fr: "entrée de titre", en: "title reveal" },
@@ -597,8 +631,13 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.r.slider": { fr: "Largeur de la fenêtre simulée", en: "Simulated viewport width" },
   "ds.r.compact": { fr: "compact", en: "compact" },
+  "ds.r.xs": { fr: "Très compact", en: "Extra compact" },
   "ds.r.medium": { fr: "médium", en: "medium" },
   "ds.r.large": { fr: "large", en: "large" },
+  "ds.r.xs.desc": {
+    fr: "Nav empilée, panneau d'infos rétréci, bouton de fermeture réduit — les seuls écarts que max-sm porte.",
+    en: "Stacked nav, narrower info panel, smaller close button — the only shifts max-sm carries.",
+  },
   "ds.r.compact.desc": { fr: "1 colonne, marges 20 px, titres réduits.", en: "1 column, 20 px gutters, smaller headings." },
   "ds.r.medium.desc": { fr: "2 colonnes, navigation repliée.", en: "2 columns, collapsed navigation." },
   "ds.r.large.desc": { fr: "4 colonnes, marges 32 px.", en: "4 columns, 32 px gutters." },
@@ -655,11 +694,15 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.g.do.3": { fr: "Documenter une variante au moment où elle est créée, pas après.", en: "Document a variant the moment it's created, not later." },
   "ds.g.do.4": { fr: "Vérifier le contraste au calcul, pas à l'œil.", en: "Verify contrast by computation, not by eye." },
   "ds.g.dont": { fr: "À éviter", en: "Avoid" },
-  "ds.g.dont.1": { fr: "Une cinquième famille typographique.", en: "A fifth type family." },
+  "ds.g.dont.1": { fr: "Une cinquième identité typographique de section.", en: "A fifth per-section type identity." },
   "ds.g.dont.2": { fr: "Une animation sans garde prefers-reduced-motion.", en: "An animation with no prefers-reduced-motion guard." },
   "ds.g.dont.3": { fr: "Un accent hors des quatre thèmes de section.", en: "An accent outside the four section themes." },
   "ds.g.dont.4": { fr: "Une couleur porteuse de sens sans doublon textuel.", en: "Meaning carried by color with no text equivalent." },
   "ds.g.versions": { fr: "Cycle de version", en: "Release cycle" },
+  "ds.g.v13": {
+    fr: "Primitives partagées par les quatre sections (libellé, titre, trois rôles de bouton), accent secondaire et états de validation extraits en jetons, cibles tactiles à 44 px, garde de mouvement sur 100 % des animations.",
+    en: "Primitives shared by all four sections (label, heading, three button roles), secondary accent and validation states extracted into tokens, 44 px touch targets, motion guard on 100% of animations.",
+  },
   "ds.g.v12": { fr: "Panneau de documentation, rampe neutre OKLCH, contrastes recalculés.", en: "Documentation panel, OKLCH neutral ramp, contrasts recomputed." },
   "ds.g.v11": { fr: "Jetons de mouvement extraits, focus visible normalisé.", en: "Motion tokens extracted, visible focus normalized." },
   "ds.g.v10": { fr: "Quatre thèmes de section et composants de base.", en: "Four section themes and base components." },

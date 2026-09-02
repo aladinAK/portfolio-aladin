@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { useForm, ValidationError } from "@formspree/react"
 import { useLang } from "@/lib/i18n"
+import { SectionHead } from "@/components/primitives/section-head"
 
 export function AgencyContactForm() {
   const { t } = useLang()
@@ -15,9 +16,12 @@ export function AgencyContactForm() {
         <div className="flex flex-col items-center text-center gap-5">
           <div
             className="flex items-center justify-center w-20 h-20 rounded-full"
-            style={{ background: "rgba(34, 197, 94, 0.2)", border: "2px solid #22c55e" }}
+            style={{
+              background: "color-mix(in srgb, var(--state-success) 20%, transparent)",
+              border: "2px solid var(--state-success)",
+            }}
           >
-            <span className="text-4xl text-green-400">✓</span>
+            <span className="text-4xl" style={{ color: "var(--state-success)" }}>✓</span>
           </div>
           <h2 className="agency-font text-3xl md:text-4xl font-bold uppercase" style={{ color: "var(--section-fg)" }}>
             {t("agency.form.success")}
@@ -36,13 +40,13 @@ export function AgencyContactForm() {
 
         {/* Header */}
         <div>
-          <span className="agency-font text-xs font-medium uppercase tracking-[0.3em] opacity-30 block mb-4">
-            {t("agency.form.label")}
-          </span>
-          <h2 className="agency-font text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]">
-            {t("agency.form.title.1")}<br />
-            <span style={{ color: "var(--section-accent)" }}>{t("agency.form.title.2")}</span>
-          </h2>
+          <SectionHead
+              kicker={t("agency.form.label")}
+              title={t("agency.form.title.1")}
+              accent={t("agency.form.title.2")}
+              kickerClassName="mb-4"
+              titleClassName="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]"
+            />
           <p className="agency-font text-sm font-medium uppercase tracking-[0.15em] opacity-40 mt-4 max-w-2xl">
             {t("agency.form.desc")}
           </p>
@@ -65,7 +69,7 @@ export function AgencyContactForm() {
                 required
                 className="agency-form-input"
               />
-              <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-xs mt-1" />
+              <ValidationError prefix="Name" field="name" errors={state.errors} className="form-error" />
             </div>
             <div className="flex-1">
               <label htmlFor="email" className="agency-form-label">
@@ -79,7 +83,7 @@ export function AgencyContactForm() {
                 required
                 className="agency-form-input"
               />
-              <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-xs mt-1" />
+              <ValidationError prefix="Email" field="email" errors={state.errors} className="form-error" />
             </div>
           </div>
 
@@ -173,7 +177,7 @@ export function AgencyContactForm() {
               className="agency-form-input resize-y"
               style={{ minHeight: "120px" }}
             />
-            <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-xs mt-1" />
+            <ValidationError prefix="Message" field="message" errors={state.errors} className="form-error" />
           </div>
 
           {/* Submit */}
@@ -181,12 +185,7 @@ export function AgencyContactForm() {
             <button
               type="submit"
               disabled={state.submitting}
-              className="agency-font font-bold text-sm uppercase tracking-[0.15em] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(255,77,0,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
-              style={{
-                padding: "18px 44px",
-                backgroundColor: "var(--section-accent)",
-                color: "var(--section-bg)",
-              }}
+              className="section-btn section-btn--primary agency-font font-bold text-sm uppercase tracking-[0.15em] hover:shadow-[0_0_30px_rgba(255,77,0,0.3)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {state.submitting ? t("agency.form.sending") : t("agency.form.submit")}
             </button>

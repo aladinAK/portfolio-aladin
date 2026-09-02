@@ -1,77 +1,24 @@
 @import 'tailwindcss';
-@import 'tw-animate-css';
 
-@custom-variant dark (&:is(.dark *));
+/* out/ is committed to the repo (cPanel deploys it verbatim), so Tailwind's
+   automatic source detection — which only skips gitignored paths — scans the
+   previous build's CSS and revives every class we just deleted. Without this,
+   dead utilities are recycled from one build to the next and the stylesheet
+   never shrinks. */
+@source not "../out";
 
 :root {
   --background: oklch(0% 0 0);
   --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  /* Validation states — semantic, shared by every theme: an error does not
+     change meaning from one section to the next. Values are Tailwind's
+     green-400 / red-400, the ones already rendered before tokenising. */
+  --state-success: #05df72;
+  --state-error: #ff6568;
 }
 
 /* Section Themes */
@@ -80,6 +27,10 @@
   --section-fg: #fafafa;
   --section-accent: #c8ff00;
   --section-muted: #262626;
+  --section-accent-alt: var(--section-accent);
+  --section-accent-alt-fg: var(--section-bg);
+  --section-font-kicker: var(--font-geist-mono), monospace;
+  --section-btn-radius: 0px;
 }
 
 .section-nature {
@@ -87,6 +38,10 @@
   --section-fg: #f5f0e8;
   --section-accent: #ff4d00;
   --section-muted: #2d2d2d;
+  --section-accent-alt: var(--section-accent);
+  --section-accent-alt-fg: var(--section-bg);
+  --section-font-kicker: 'Clash Display', sans-serif;
+  --section-btn-radius: 0px;
 }
 
 .section-tech {
@@ -94,6 +49,10 @@
   --section-fg: #1a1a1a;
   --section-accent: #1a1a1a;
   --section-muted: #d4cec4;
+  --section-accent-alt: #c41e3a;
+  --section-accent-alt-fg: #f5f2eb;
+  --section-font-kicker: var(--font-typewriter), 'Special Elite', monospace;
+  --section-btn-radius: 0px;
 }
 
 .section-lifestyle {
@@ -101,6 +60,17 @@
   --section-fg: #f5f5f5;
   --section-accent: #818cf8;
   --section-muted: #1e1e3a;
+  --section-accent-alt: var(--section-accent);
+  --section-accent-alt-fg: var(--section-bg);
+  /* Two distinct gradients, both MoodMovie's own: one for calls to action,
+     one for headings. The CTA gradient starts on blue-600 rather than the
+     blue-500 it used to: white on #3080ff measured 3.71:1, below the 4.5
+     AA floor for 14 px text. #155dfc gives 5.25:1 and keeps the same hue.
+     Not declined in the other themes: no shared component consumes them. */
+  --section-gradient: linear-gradient(to right, #155dfc, #9810fa);
+  --section-gradient-text: linear-gradient(to right, #60a5fa, #a78bfa);
+  --section-font-kicker: var(--font-geist-mono), monospace;
+  --section-btn-radius: 999px;
 }
 
 @theme inline {
@@ -108,40 +78,9 @@
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
-  --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
@@ -354,6 +293,7 @@
 
 /* Reduce motion for users who prefer it + lighten mobile GPU load */
 @media (prefers-reduced-motion: reduce) {
+  /* Looping ambience — nothing of substance is lost by stopping it. */
   .agency-shape,
   .agency-orb-1,
   .agency-orb-2,
@@ -365,8 +305,25 @@
   .studio-marquee,
   .mood-float-1,
   .mood-float-2,
-  .mood-float-3 {
+  .mood-float-3,
+  .project-info-pulse,
+  .studio-scroll-line,
+  .book-ruby-glow,
+  .studio-glow::after {
     animation: none !important;
+  }
+
+  /* Entrance animations: land on the final frame instead of being cancelled.
+     `animation: none` would leave what they reveal invisible — the hero
+     headline, the brush strokes, the ink drips. */
+  .studio-fade-in,
+  .studio-line-reveal,
+  .book-brush,
+  .ink-splat,
+  .ink-drip {
+    animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
   }
 }
 
@@ -411,10 +368,18 @@
 
 /* Gradient text */
 .mood-gradient-text {
-  background: linear-gradient(to right, #60a5fa, #a78bfa);
+  background: var(--section-gradient-text);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Validation message shared by every form field. */
+.form-error {
+  color: var(--state-error);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-top: 0.25rem;
 }
 
 /* ═══════ Book Section (Tech) ═══════ */
@@ -449,14 +414,14 @@
 @keyframes inkDrip {
   0% { transform: scale(0); opacity: 0; }
   40% { opacity: 0.08; }
-  100% { transform: scale(1); opacity: var(--ink-o, 0.04); }
+  100% { transform: scale(1); opacity: var(--ink-o, 0.13); }
 }
 
 /* Ink drip that runs down */
 .ink-drip {
   position: absolute;
   width: 2px;
-  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.06), transparent);
+  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.26), transparent);
   pointer-events: none;
   opacity: 0;
   animation: inkDripDown 2s ease-in var(--drip-d, 1s) forwards;
@@ -470,7 +435,7 @@
 
 /* Ruby glow on "Chroniques" */
 .book-ruby-glow {
-  color: #C41E3A;
+  color: #c41e3a;
   text-shadow: 0 0 20px rgba(196, 30, 58, 0.3), 0 0 40px rgba(196, 30, 58, 0.1);
   animation: rubyPulse 4s ease-in-out 2s 3 both;
 }
@@ -491,24 +456,159 @@
   to { opacity: var(--brush-o, 1); transform: scale(1); }
 }
 
-/* Typewriter effect */
-.typewriter {
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid rgba(26, 26, 26, 0.4);
-  width: 0;
-  animation: typewrite var(--tw-dur, 3s) steps(var(--tw-steps, 30)) var(--tw-d, 0.5s) forwards,
-             blink 0.8s step-end var(--tw-d, 0.5s) 7 forwards;
+/* ═══════ Shared portfolio primitives ═══════
+   The panel documents .ds-* for its own pages; these are their portfolio
+   counterparts. Structure lives here, personality comes from the section
+   theme — so one component survives all four identities.
+   No font-weight on the kicker: Special Elite ships a single weight, and
+   asking for 500 would make the browser synthesise a fake bold. */
+
+.section-kicker {
+  display: block;
+  font-family: var(--section-font-kicker);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.3;
 }
 
-@keyframes typewrite {
-  to { width: 100%; }
+/* Agency's nav labels want a more present kicker — a named modifier rather
+   than an !important utility at the call site. */
+.section-kicker--strong {
+  opacity: 0.5;
 }
 
-@keyframes blink {
-  0% { border-color: rgba(26, 26, 26, 0.4); }
-  50% { border-color: transparent; }
-  100% { border-color: transparent; }
+.section-title-accent {
+  color: var(--section-accent);
+}
+
+/* Per-theme identity only — family and how the accent is painted. Sizes stay
+   with the call site: a hero title and a sub-section title legitimately differ,
+   and a design system has no business flattening that. */
+.section-studio .section-title-accent {
+  font-family: var(--font-playfair), serif;
+  font-style: italic;
+}
+
+.section-nature .section-title {
+  font-family: 'Clash Display', sans-serif;
+  text-transform: uppercase;
+}
+
+.section-tech .section-title {
+  font-family: var(--font-typewriter), 'Special Elite', monospace;
+}
+
+.section-lifestyle .section-title {
+  font-family: var(--font-syne), 'Syne', sans-serif;
+}
+
+.section-lifestyle .section-title-accent {
+  background: var(--section-gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ═══════ Shared action button ═══════ */
+
+.section-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  min-height: 44px;
+  border: 1.5px solid transparent;
+  border-radius: var(--section-btn-radius, 0px);
+  font-size: 0.875rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color var(--ds-dur-fast) var(--ds-ease-out),
+    border-color var(--ds-dur-fast) var(--ds-ease-out),
+    color var(--ds-dur-fast) var(--ds-ease-out),
+    transform var(--ds-dur-fast) var(--ds-ease-out);
+}
+
+/* Structure and colour only. Weight, case and tracking stay at the call site:
+   Special Elite ships a single weight (700 would synthesise a fake bold) and
+   MoodMovie's CTA is deliberately sentence case. */
+.section-btn--primary {
+  padding: 0 2rem;
+  min-height: 52px;
+  background-color: var(--section-accent);
+  color: var(--section-bg);
+}
+
+.section-btn--primary:hover { transform: scale(1.05); }
+
+/* Per-theme CTA colour: the novel uses its ruby, MoodMovie its gradient. */
+.section-tech .section-btn--primary {
+  background: var(--section-accent-alt);
+  color: var(--section-accent-alt-fg);
+}
+
+.section-tech .section-btn--primary:hover {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--section-accent-alt) 25%, transparent);
+}
+
+.section-lifestyle .section-btn--primary {
+  background: var(--section-gradient);
+  color: #fff;
+}
+
+.section-lifestyle .section-btn--primary:hover {
+  box-shadow: 0 0 30px color-mix(in srgb, var(--section-accent) 25%, transparent);
+}
+
+.section-btn--outline {
+  padding: 0 1.5rem;
+  min-height: 52px;
+  border-color: var(--section-muted);
+  border-radius: 999px;
+  font-weight: 500;
+}
+
+.section-btn--outline:hover {
+  background-color: var(--section-accent);
+  border-color: var(--section-accent);
+  color: var(--section-bg);
+}
+
+.section-btn--pill {
+  position: relative;
+  gap: 0.375rem;
+  min-height: 28px;
+  padding: 0 0.75rem;
+  border-color: var(--section-muted);
+  border-radius: 999px;
+  font-family: var(--section-font-kicker);
+  font-size: 0.625rem;
+  letter-spacing: 0.05em;
+}
+
+.section-btn--pill:hover { border-color: var(--section-accent); }
+
+/* The panel's a11y checklist promises a 44 px touch target. A pill is 28 px
+   tall by design, so the target is widened behind it rather than around it:
+   the hit area meets the promise, the pixels do not move. */
+.tap-44 {
+  position: relative;
+}
+
+.tap-44::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  min-width: 44px;
+  min-height: 44px;
+  width: 100%;
+  height: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-btn--primary:hover { transform: none; }
 }
 
 /* ═══════ Scroll Reveal System ═══════ */
@@ -526,10 +626,8 @@
 .s-reveal.s-up { transform: translateY(50px); }
 .s-reveal.s-down { transform: translateY(-30px); }
 .s-reveal.s-left { transform: translateX(40px); }
-.s-reveal.s-right { transform: translateX(-40px); }
 .s-reveal.s-blur { filter: blur(8px); transform: translateY(20px); }
 .s-reveal.s-scale { transform: scale(0.95); }
-.s-reveal.s-line-x { transform: scaleX(0); transform-origin: left; }
 
 .s-reveal.s-visible {
   opacity: 1;
@@ -670,9 +768,9 @@
 
 /* ═══════════════════════════════════════════════════════════
    Design System Overlay
-   Tous les jetons sont préfixés --ds-* : le portfolio expose
-   déjà --color-accent / --accent via @theme inline, un nom nu
-   entrerait en collision avec la génération d'utilitaires Tailwind.
+   Tous les jetons sont préfixés --ds-* : un nom nu entrerait en
+   collision avec la génération d'utilitaires Tailwind, qui lit les
+   variables déclarées dans @theme inline.
    ═══════════════════════════════════════════════════════════ */
 
 .ds-root {
@@ -918,11 +1016,19 @@
   transform: translateY(-2px);
 }
 
-.ds-orb {
-  transition: transform var(--ds-dur-fast) var(--ds-ease-spring);
+/* Aperçu des primitives dans le panneau : la classe de thème est là pour ses
+   jetons, pas pour les fonds décoratifs de la section (grain du papier,
+   dégradé radial). Déclaré après les thèmes, donc il gagne à spécificité
+   égale. */
+.ds-theme-demo {
+  /* Le fond de la section, pas celui du panneau : le --section-fg du thème
+     « tech » vaut #1a1a1a, illisible sur un fond sombre. Le raccourci
+     `background` écrase au passage les décors de section (grain, dégradé
+     radial), qui n'ont rien à faire dans un aperçu de composant. */
+  background: var(--section-bg);
+  border: 1px solid var(--ds-divider);
+  color: var(--section-fg);
 }
-
-.ds-orb:hover { transform: scale(1.06); }
 
 .ds-close {
   box-shadow: 0 6px 20px color-mix(in srgb, var(--ds-accent) 35%, transparent);

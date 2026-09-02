@@ -3,7 +3,7 @@
 import { useRef, useState, useEffect, useCallback } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { FloatingOrb } from "@/components/floating-orb"
-import { ProjectInfo } from "@/components/project-info"
+import { ProjectInfo, isProjectSection } from "@/components/project-info"
 
 interface HorizontalScrollLayoutProps {
   children: React.ReactNode[]
@@ -27,8 +27,7 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
       if (!containerRef.current) return
 
       const { scrollLeft, scrollWidth, clientWidth } = containerRef.current
-      const sectionWidth = clientWidth
-      const newSection = Math.round(scrollLeft / sectionWidth)
+      const newSection = Math.round(scrollLeft / clientWidth)
 
       setCurrentSection(newSection)
       setCanScrollLeft(scrollLeft > 10)
@@ -126,10 +125,10 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
       {/* Navigation UI */}
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-4 py-3 rounded-full bg-black/50 backdrop-blur-md">
         {/* Previous Button */}
-        <button 
+        <button
           onClick={scrollLeft}
           disabled={!canScrollLeft}
-          className="w-8 h-8 rounded-full flex items-center justify-center transition-all disabled:opacity-30 hover:bg-white/10"
+          className="tap-44 w-8 h-8 rounded-full flex items-center justify-center transition-all disabled:opacity-30 hover:bg-white/10"
           aria-label="Previous section"
         >
           <ChevronLeft className="w-5 h-5 text-white" />
@@ -141,13 +140,13 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
             <button
               key={index}
               onClick={() => scrollToSection(index)}
-              className="group flex items-center gap-2"
+              className="tap-44 group flex items-center gap-2"
               aria-label={`Go to ${name}`}
             >
-              <div 
+              <div
                 className={`w-2 h-2 rounded-full transition-all ${
-                  currentSection === index 
-                    ? 'w-8 bg-white' 
+                  currentSection === index
+                    ? 'w-8 bg-white'
                     : 'bg-white/40 group-hover:bg-white/70'
                 }`}
               />
@@ -156,10 +155,10 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
         </div>
 
         {/* Next Button */}
-        <button 
+        <button
           onClick={scrollRight}
           disabled={!canScrollRight}
-          className="w-8 h-8 rounded-full flex items-center justify-center transition-all disabled:opacity-30 hover:bg-white/10"
+          className="tap-44 w-8 h-8 rounded-full flex items-center justify-center transition-all disabled:opacity-30 hover:bg-white/10"
           aria-label="Next section"
         >
           <ChevronRight className="w-5 h-5 text-white" />
@@ -170,17 +169,14 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
       <FloatingOrb currentSection={currentSection} />
 
       {/* Project Info — only for agency, book, mood */}
-      {(["agency", "book", "mood"] as const).includes(sectionSlugs[currentSection] as "agency" | "book" | "mood") && (
-        <ProjectInfo
-          key={sectionSlugs[currentSection]}
-          section={sectionSlugs[currentSection] as "agency" | "book" | "mood"}
-        />
+      {isProjectSection(sectionSlugs[currentSection]) && (
+        <ProjectInfo key={sectionSlugs[currentSection]} section={sectionSlugs[currentSection]} />
       )}
 
       {/* Scroll Hint - Left */}
       {canScrollLeft && (
         <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40 opacity-50 hover:opacity-100 transition-opacity">
-          <button 
+          <button
             onClick={scrollLeft}
             className="w-12 h-24 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-black/40 transition-colors"
             aria-label="Scroll left"
@@ -193,7 +189,7 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
       {/* Scroll Hint - Right */}
       {canScrollRight && (
         <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 opacity-50 hover:opacity-100 transition-opacity">
-          <button 
+          <button
             onClick={scrollRight}
             className="w-12 h-24 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-black/40 transition-colors"
             aria-label="Scroll right"

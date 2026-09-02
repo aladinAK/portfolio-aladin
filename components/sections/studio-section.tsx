@@ -4,6 +4,8 @@ import { ArrowUpRight, ExternalLink, ChevronDown, FileDown, Mail } from "lucide-
 import { useEffect, useRef, useState } from "react"
 import { useLang } from "@/lib/i18n"
 import { useScrollReveal } from "@/lib/use-scroll-reveal"
+import { SectionHead, SectionKicker } from "@/components/primitives/section-head"
+import { SectionButton, SectionLink } from "@/components/primitives/section-button"
 
 const EXPERIENCE_META = [
   { company: "Gameaddik", location: "Montréal, QC", period: "2020 — présent", stack: ["Vue", "Nuxt", "Tailwind", "Node.js", "WordPress", "SEO"] },
@@ -107,21 +109,17 @@ function ProjectAccordion() {
 }
 
 function LangToggle() {
-  const { lang, toggle } = useLang()
+  const { lang, toggle, t } = useLang()
   return (
-    <button
-      onClick={toggle}
-      className="relative flex items-center gap-1 px-3 py-1.5 rounded-full border text-[10px] font-mono tracking-wider transition-all duration-300 hover:border-[var(--section-accent)]"
-      style={{ borderColor: "var(--section-muted)" }}
-    >
+    <SectionButton role="pill" onClick={toggle} className="tap-44" aria-label={t("nav.lang")}>
       <span className={`transition-opacity duration-300 ${lang === "fr" ? "opacity-100" : "opacity-30"}`}>FR</span>
       <span className="opacity-20">/</span>
       <span className={`transition-opacity duration-300 ${lang === "en" ? "opacity-100" : "opacity-30"}`}>EN</span>
-    </button>
+    </SectionButton>
   )
 }
 
-function LocalClock (){
+function LocalClock() {
   const [time, setTime] = useState("")
 
   useEffect(() => {
@@ -140,11 +138,7 @@ function LocalClock (){
     return () => clearInterval(id)
   }, [])
 
-  return (
-    <div className="flex items-center gap-3">
-      <span className="text-xs font-mono tabular-nums opacity-50">{time}</span>
-    </div>
-  )
+  return <span className="text-xs font-mono tabular-nums opacity-50">{time}</span>
 }
 
 export function StudioSection() {
@@ -190,16 +184,16 @@ export function StudioSection() {
           </div>
           <div className="flex items-center gap-3">
             <LangToggle />
-            <a
+            <SectionLink
+              role="pill"
               href="/cv-aladin-akkari.pdf"
               download
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[10px] font-mono tracking-wider transition-all duration-300 hover:border-[var(--section-accent)] hover:text-[var(--section-accent)]"
-              style={{ borderColor: "var(--section-muted)" }}
+              className="tap-44 hover:text-[var(--section-accent)]"
               aria-label={t("nav.cv.download")}
             >
               <FileDown className="w-3 h-3" />
               <span>CV</span>
-            </a>
+            </SectionLink>
           </div>
         </nav>
 
@@ -257,11 +251,12 @@ export function StudioSection() {
 
         <div className="s-reveal s-blur flex items-baseline justify-between mb-20 md:pl-8 lg:pl-14">
           <div>
-            <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("exp.label")}</span>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]">
-              {t("exp.title.1")}<br />
-              <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("exp.title.2")}</span>
-            </h2>
+            <SectionHead
+              kicker={t("exp.label")}
+              title={t("exp.title.1")}
+              accent={t("exp.title.2")}
+              titleClassName="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]"
+            />
           </div>
           <span className="hidden md:block text-sm opacity-30 font-mono">{t("exp.date")}</span>
         </div>
@@ -305,11 +300,12 @@ export function StudioSection() {
         <div className="hidden md:block absolute top-12 right-4 lg:right-8 w-5 h-px bg-current opacity-[0.06]" />
 
         <div className="s-reveal s-blur mb-20">
-          <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("svc.label")}</span>
-          <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]">
-            {t("svc.title.1")}<br />
-            <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("svc.title.2")}</span>
-          </h2>
+          <SectionHead
+              kicker={t("svc.label")}
+              title={t("svc.title.1")}
+              accent={t("svc.title.2")}
+              titleClassName="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]"
+            />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: "var(--section-muted)" }}>
@@ -335,11 +331,12 @@ export function StudioSection() {
 
         <div className="s-reveal s-blur flex items-baseline justify-between mb-20">
           <div>
-            <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("proj.label")}</span>
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]">
-              {t("proj.title.1")}<br />
-              <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("proj.title.2")}</span>
-            </h2>
+            <SectionHead
+              kicker={t("proj.label")}
+              title={t("proj.title.1")}
+              accent={t("proj.title.2")}
+              titleClassName="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]"
+            />
           </div>
         </div>
 
@@ -356,11 +353,12 @@ export function StudioSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
           <div className="s-reveal s-blur">
-            <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("about.label")}</span>
-             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]">
-              {t("about.title.1")}<br />
-              <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("about.title.2")}</span>
-            </h2>
+            <SectionHead
+              kicker={t("about.label")}
+              title={t("about.title.1")}
+              accent={t("about.title.2")}
+              titleClassName="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]"
+            />
             <div className="space-y-4 mt-15 text-sm opacity-50 leading-relaxed max-w-md">
               <p>{t("about.p1")}</p>
               <p>{t("about.p2")}</p>
@@ -368,7 +366,7 @@ export function StudioSection() {
           </div>
 
           <div className="s-reveal s-up flex flex-col justify-end" style={{ "--delay": "200ms" } as React.CSSProperties}>
-            <span className="text-xs font-mono tracking-widest opacity-30 block mb-8">{t("about.tools")}</span>
+            <SectionKicker className="mb-8">{t("about.tools")}</SectionKicker>
             <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm opacity-40">
               {TOOLS.map((tool, i) => (
                 <span
@@ -399,17 +397,17 @@ export function StudioSection() {
         <div className="flex flex-col flex-1 justify-center">
           {/* Available badge */}
           <div className="s-reveal s-down flex items-center gap-6 mb-12">
-            <span className="text-xs font-mono tracking-widest opacity-30">{t("contact.label")}</span>
+            <SectionKicker>{t("contact.label")}</SectionKicker>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full border" style={{ borderColor: "var(--section-muted)" }}>
-              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "var(--state-success)" }} />
               <span className="text-xs font-mono opacity-60">{t("contact.available")}</span>
             </div>
           </div>
 
           {/* Title */}
-          <h2 className="s-reveal s-blur text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50] mb-16">
+          <h2 className="section-title s-reveal s-blur text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50] mb-16">
             {t("contact.title.1")}<br />
-            <span className="font-(family-name:--font-playfair) italic" style={{ color: "var(--section-accent)" }}>{t("contact.title.2")}</span>
+            <span className="section-title-accent">{t("contact.title.2")}</span>
           </h2>
 
           {/* Social links */}
@@ -420,8 +418,8 @@ export function StudioSection() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="s-reveal s-up group flex items-center gap-3 px-6 py-4 border rounded-full transition-all duration-500 hover:bg-[var(--section-accent)] hover:text-[var(--section-bg)] hover:border-[var(--section-accent)]"
-                style={{ borderColor: "var(--section-muted)", "--delay": `${250 + i * 100}ms` } as React.CSSProperties}
+                className="section-btn section-btn--outline s-reveal s-up group"
+                style={{ "--delay": `${250 + i * 100}ms` } as React.CSSProperties}
               >
                 <span className="text-xs font-mono font-bold opacity-50 group-hover:opacity-100">{link.icon}</span>
                 <span className="text-sm font-medium">{link.label}</span>
