@@ -63,14 +63,18 @@ export function DsOverlay({ onClose }: DsOverlayProps) {
     const prevOverflow = document.body.style.overflow
     document.documentElement.setAttribute("data-overlay-open", "")
     document.body.style.overflow = "hidden"
+    // CustomCursor lit --section-accent, absent hors des sections : sans ça son
+    // anneau retombe sur le doré du repli au lieu de l'accent du panneau.
+    document.documentElement.style.setProperty("--section-accent", theme.accent)
     closeRef.current?.focus()
 
     return () => {
       document.documentElement.removeAttribute("data-overlay-open")
+      document.documentElement.style.removeProperty("--section-accent")
       document.body.style.overflow = prevOverflow
       opener?.focus?.()
     }
-  }, [])
+  }, [theme.accent])
 
   // Échap pour fermer + piège à focus
   useEffect(() => {

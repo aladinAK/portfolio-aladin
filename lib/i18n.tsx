@@ -24,8 +24,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "hero.line2": { fr: "Frontend", en: "Developer" },
   "hero.line3": { fr: "& Designer", en: "& Designer" },
   "hero.desc": {
-    fr: "5+ ans à créer des expériences digitales visuellement engageantes et performantes.",
-    en: "5+ years crafting visually engaging and high-performing digital experiences.",
+    fr: "La maquette et le code sortent de la même main. Cinq ans à Montréal, du site vitrine à la plateforme d'analytics.",
+    en: "Mockup and code come from the same hand. Five years in Montréal, from brochure sites to analytics platforms.",
   },
   "hero.cta": { fr: "Me contacter", en: "Get in touch" },
   "hero.scroll": { fr: "Défiler", en: "Scroll" },
@@ -99,20 +99,20 @@ const dict: Record<string, Record<Lang, string>> = {
   "proj.title.2": { fr: "Travaux", en: "Work" },
   "proj.cta": { fr: "Voir le projet", en: "View project" },
   "proj.0.d0": {
-    fr: "Plateforme marketing gaming — dashboard analytique complet pour améliorer la visibilité et orienter les décisions grâce aux données.",
-    en: "Gaming marketing platform — comprehensive analytics dashboard to boost visibility and guide data-driven decisions."
+    fr: "Plateforme d'intelligence de marché pour l'industrie du jeu — plus de 250 000 titres Steam et 60 000 jeux mobiles suivis : revenus, téléchargements, joueurs actifs, sentiment.",
+    en: "Market intelligence platform for the games industry — over 250,000 Steam titles and 60,000 mobile games tracked: revenue, downloads, active players, sentiment.",
   },
   "proj.0.d1": {
-    fr: "Visualisation des données en temps réel et système d'authentification sécurisé.",
-    en: "Real-time data visualization and secure authentication system."
+    fr: "Interfaces des profils de jeu : métriques et chronologies historiques, score MPI détaillé en cinq piliers, outil d'analyse de sentiment (thèmes, tonalité émotionnelle, termes classés par impact).",
+    en: "Game profile interfaces: metrics and historical timelines, MPI score broken down across five pillars, sentiment analysis tool (themes, emotional tone, terms ranked by impact).",
   },
   "proj.0.d2": {
-    fr: "Projet ambitieux combinant développement frontend et backend pour un impact maximal.",
-    en: "Ambitious project combining frontend and backend development for maximum impact."
+    fr: "Tableaux de bord des analytics remontés par SDK — DAU/MAU, rétention D1/D7/D30, entonnoirs d'engagement et cohortes — présentés à côté des données de marché.",
+    en: "Dashboards for SDK-reported analytics — DAU/MAU, D1/D7/D30 retention, engagement funnels and cohorts — shown alongside market data.",
   },
   "proj.1.d0": {
-    fr: "Refonte complète d’un site en collaboration avec l'équipe design — de la direction créative à l’implémentation technique.",
-    en: "Complete website redesign in collaboration with the design team — from creative direction to technical implementation."
+    fr: "Refonte complète du site d'un réseau CPA de performance pour le gaming PC, qui sert plus de 250 studios annonceurs.",
+    en: "Full redesign of the site of a CPA performance network for PC gaming, serving over 250 advertiser studios.",
   },
   "proj.1.d1": {
     fr: "Transformation de maquettes en code responsive, optimisation de la performance et compatibilité multi-navigateurs.",
@@ -124,11 +124,11 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "proj.2.d0": {
     fr: "Landing pages promotionnelles pour de grands titres — Genshin Impact, Game of Thrones, Raid: Shadow Legends.",
-    en: "Promotional landing pages for major titles — Genshin Impact, Game of Thrones, Raid: Shadow Legends."
+    en: "Promotional landing pages for major titles — Genshin Impact, Game of Thrones, Raid: Shadow Legends.",
   },
   "proj.2.d1": {
-    fr: "Deux refontes complètes du site principal avec amélioration des indicateurs SEO.",
-    en: "Two full website redesigns with improved SEO metrics."
+    fr: "Deux refontes complètes du site d'une agence qui revendique 110+ partenaires — dont Tencent, Roblox, NetEase et Square Enix — et 200+ campagnes depuis 2015, avec amélioration des indicateurs SEO.",
+    en: "Two full redesigns of the site of an agency claiming 110+ partners — including Tencent, Roblox, NetEase and Square Enix — and 200+ campaigns since 2015, with improved SEO metrics.",
   },
   "proj.2.d2": {
     fr: "Intégration Google Tag Manager et analytics, avec un design graphique pensé pour la mise en valeur visuelle.",

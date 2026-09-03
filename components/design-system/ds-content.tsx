@@ -192,7 +192,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
   return (
     <div className="mx-auto w-full max-w-[1120px] px-4 pb-20 md:px-7">
       {/* ───────── Hero ───────── */}
-      <header className="grid items-end gap-8 pb-10 pt-20 md:grid-cols-[1.35fr_1fr] md:pb-12">
+      <header className="grid grid-cols-1 items-end gap-8 pb-10 pt-20 md:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] md:pb-12">
         <div className="s-reveal s-blur">
           <div className="flex items-center gap-2.5">
             <span className="h-0.5 w-5 rounded-full" style={{ background: "var(--ds-accent)" }} />
@@ -250,7 +250,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           lead={t("ds.f.lead")}
         />
 
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {THEMES.map((theme, i) => (
             <div key={theme.name} className="ds-card s-reveal s-up p-4" style={delay(i * 70)}>
               <div className="mb-3 flex items-baseline justify-between">
@@ -294,7 +294,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           </div>
         </div>
 
-        <div className="mt-3 grid gap-3 lg:grid-cols-[1.2fr_1fr]">
+        <div className="mt-3 grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
           <Panel title={t("ds.f.type")}>
             <div className="grid gap-3">
               {[
@@ -354,7 +354,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
         </div>
 
         <Panel title={t("ds.f.extra")} className="mt-3" step={3}>
-          <div className="grid gap-4 text-[13px] sm:grid-cols-3 sm:gap-5">
+          <div className="grid grid-cols-1 gap-4 text-[13px] sm:grid-cols-3 sm:gap-5">
             <div>
               <div className="flex items-center gap-2">
                 <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--section-accent-alt, #c41e3a)" }} />
@@ -395,7 +395,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           lead={t("ds.c.lead")}
         />
 
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <Panel title={t("ds.c.actions")}>
             <div className="flex flex-wrap gap-2.5">
               <button type="button" className="ds-btn ds-btn--primary">{t("ds.c.primary")}</button>
@@ -522,7 +522,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           lead={t("ds.s.lead")}
         />
 
-        <div className="grid gap-3 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
           <Panel title={t("ds.s.five")}>
             <div className="grid gap-2.5">
               {[
@@ -593,7 +593,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           lead={t("ds.m.lead")}
         />
 
-        <div className="grid gap-3 lg:grid-cols-2">
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
           <Panel title={t("ds.m.tokens")}>
             <div className="grid gap-2 text-[13px]">
               {[
@@ -683,7 +683,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
             </div>
           </div>
 
-          <div className="mt-4 grid gap-4 text-[13px] leading-relaxed sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-4 grid grid-cols-1 gap-4 text-[13px] leading-relaxed sm:grid-cols-2 lg:grid-cols-4">
             {[
               ["≤ 639 · max-sm", "ds.r.xs.desc"],
               ["640 – 767 · compact", "ds.r.compact.desc"],
@@ -710,7 +710,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           lead={t("ds.p.lead")}
         />
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {["1", "2", "3", "4"].map((step, i) => (
             <div key={step} className="ds-card s-reveal s-up p-4" style={delay(i * 70)}>
               <div
@@ -761,7 +761,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           lead={t("ds.g.lead")}
         />
 
-        <div className="grid gap-3 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
           <Panel title={t("ds.g.do")}>
             <ul className="grid gap-2.5 text-[13px] leading-relaxed">
               {["do.1", "do.2", "do.3", "do.4"].map((key) => (

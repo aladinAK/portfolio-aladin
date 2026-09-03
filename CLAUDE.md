@@ -27,10 +27,19 @@ dépôt.
 > **`out/` est versionné. Un push sans rebuild déploie l'ancienne version du site.**
 
 ```bash
-pnpm deploy      # = next build + git add out public
+pnpm run deploy  # = next build + git add out public
+git add app components lib   # le script n'indexe QUE out/ et public/
 git commit -m "…"
 git push         # cPanel déploie automatiquement
 ```
+
+> `pnpm run deploy`, pas `pnpm deploy` : `deploy` est une commande réservée de
+> pnpm (déploiement de workspace) et échoue avec `ERR_PNPM_CANNOT_DEPLOY`
+> avant même d'atteindre le script.
+>
+> Le script s'arrête à `git add -A out public`. Commiter `out/` sans les
+> sources qui l'ont produit laisse un dépôt incapable de reproduire son
+> propre build.
 
 `.cpanel.yml` exécute :
 

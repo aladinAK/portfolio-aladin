@@ -75,13 +75,13 @@ export function MoodSection() {
         </nav>
 
         {/* Center */}
-        <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center">
+        <div className="relative z-10 flex-1 flex flex-col items-center justify-center text-center mood-hero-center">
           <h2 className="section-title text-5xl md:text-7xl font-extrabold leading-[0.9] tracking-tight mb-4 capitalize">
             {t("mood.hero.1")}<br />
             <span className="section-title-accent">{t("mood.hero.2")}</span>
           </h2>
 
-          <p className="text-sm md:text-base opacity-50 max-w-md mt-6 leading-relaxed">
+          <p className="mood-hero-desc text-sm md:text-base opacity-50 max-w-md mt-6 leading-relaxed">
             {t("mood.hero.desc")}
           </p>
 
@@ -90,14 +90,14 @@ export function MoodSection() {
             href="https://moodmovie-by-aladinakkari.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="section-btn section-btn--primary mt-8 text-sm font-medium"
+            className="mood-hero-cta section-btn section-btn--primary mt-8 text-sm font-medium"
           >
             {t("mood.try")}
             <ArrowUpRight className="w-4 h-4" />
           </a>
 
           {/* Mood bubbles */}
-          <div className="flex flex-wrap justify-center gap-4 mt-10">
+          <div className="mood-bubbles flex flex-wrap justify-center gap-4 mt-10">
             {MOODS.map((mood, i) => (
               <div
                 key={i}

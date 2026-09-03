@@ -1,3 +1,3 @@
-:HL["/_next/static/chunks/6e64e4b77e86de0e.css","style"]
+:HL["/_next/static/chunks/2781bb6eaa7dd840.css","style"]
 :HL["https://api.fontshare.com/v2/css?f[]=clash-display@400,700,900&display=swap","style"]
-0:{"buildId":"rsbtv_C6sVbE95Ry_GvEO","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"/_not-found","paramType":null,"paramKey":"/_not-found","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"Xu4c5T7I1ToDUhZRppPzV","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"/_not-found","paramType":null,"paramKey":"/_not-found","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

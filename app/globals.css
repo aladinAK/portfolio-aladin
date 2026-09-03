@@ -382,6 +382,38 @@
   margin-top: 0.25rem;
 }
 
+/* MoodMovie's hero is the busiest of the four: a two-line title, a description,
+   a call to action and six mood bubbles. The top band is taken by the orb and
+   the design system badge (down to 107px), so the content has to start below
+   it — but under 720px of height, reserving that band pushes the bottom of the
+   hero off screen. Compact rather than push. */
+.mood-hero-center {
+  padding-top: 2.5rem;
+}
+
+@media (max-height: 720px) {
+  .mood-hero-center {
+    padding-top: 1.5rem;
+  }
+
+  .mood-hero-desc {
+    margin-top: 1rem;
+  }
+
+  .mood-hero-cta {
+    margin-top: 1.25rem;
+  }
+
+  .mood-bubbles {
+    margin-top: 1rem;
+  }
+
+  .mood-bubble {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
 /* ═══════ Book Section (Tech) ═══════ */
 
 .book-font {

@@ -16,7 +16,7 @@ const EXPERIENCE_META = [
 ]
 
 const PROJECTS = [
-  { title: "GameRebellion", type: "Analytics Platform", role: "Senior Frontend Developer", year: "2023", href: "https://gamerebellion.com/", stack: ["React", "Node.js", "Next", "Tailwind", "TypeScript"] },
+  { title: "GameRebellion", type: "Market Intelligence Platform", role: "Senior Frontend Developer", year: "2023", href: "https://gamerebellion.com/", stack: ["React", "Node.js", "Next", "Tailwind", "TypeScript"] },
   { title: "PwnGames", type: "Website Redesign", role: "Designer & Frontend Developer", year: "2023", href: "https://pwngames.com", stack: ["React", "Tailwind", "TypeScript", "Figma"] },
   { title: "GameAddik", type: "Landing Pages & Redesign", role: "Frontend Developer & Designer", year: "2018 — 2023", href: "https://gameaddik.com/", stack: ["HTML/CSS", "Vue", "JavaScript", "WordPress", "SEO"] },
 ]
@@ -36,6 +36,17 @@ const TOOLS = [
 function ProjectAccordion() {
   const { t } = useLang()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([])
+
+  const toggle = (i: number, isOpen: boolean) => {
+    setOpenIndex(isOpen ? null : i)
+    if (isOpen) return
+    // The panel takes 700ms to open; wait for its real height before scrolling
+    // it into view, otherwise we scroll towards a box that is still flat.
+    window.setTimeout(() => {
+      panelRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+    }, 380)
+  }
 
   return (
     <div className="space-y-0">
@@ -45,7 +56,7 @@ function ProjectAccordion() {
         return (
           <div key={i} className="border-t" style={{ borderColor: "var(--section-muted)" }}>
             <button
-              onClick={() => setOpenIndex(isOpen ? null : i)}
+              onClick={() => toggle(i, isOpen)}
               className="group w-full flex items-center justify-between py-8 md:py-10 px-2 text-left transition-colors duration-500 hover:bg-white/[0.02]"
             >
               <div className="flex items-baseline gap-4 md:gap-8">
@@ -64,10 +75,11 @@ function ProjectAccordion() {
               </div>
             </button>
             <div
-              className="overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
-              style={{ maxHeight: isOpen ? "500px" : "0px", opacity: isOpen ? 1 : 0 }}
+              ref={(el) => { panelRefs.current[i] = el }}
+              className="overflow-hidden scroll-mb-28 transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)]"
+              style={{ maxHeight: isOpen ? "620px" : "0px", opacity: isOpen ? 1 : 0 }}
             >
-              <div className="px-2 pt-2.5 pb-10 md:pb-12 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
+              <div className="px-2 pt-2.5 pb-12 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
                 <div className="md:col-span-1" />
                 <div className="md:col-span-5">
                   <span className="text-xs font-mono opacity-30 block mb-1">{project.role}</span>
@@ -209,7 +221,7 @@ export function StudioSection() {
 
         <div className="relative z-10 flex items-end justify-between studio-fade-in" style={{ animationDelay: "0.9s" }}>
           <div className="flex flex-col gap-4">
-            <p className="max-w-xs text-sm opacity-50 leading-relaxed">{t("hero.desc")}</p>
+            <p className="max-w-sm text-sm opacity-70 leading-relaxed">{t("hero.desc")}</p>
             <a
               href="mailto:aladinakdesign@gmail.com"
               className="inline-flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:gap-3 opacity-60 hover:opacity-100"
