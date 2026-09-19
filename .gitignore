@@ -17,3 +17,6 @@ node_modules/
 .DS_Store
 # Cache TypeScript incrémental
 *.tsbuildinfo
+
+# Notes personnelles (audits, CV, candidatures) — jamais versionnées
+.claude/*.md
