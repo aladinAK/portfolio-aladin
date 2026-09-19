@@ -274,7 +274,7 @@ export function StudioSection() {
       </section>
 
       {/* ═══════════════ EXPERIENCE ═══════════════ */}
-      <section className="relative min-h-screen p-6 md:p-12 lg:p-20 py-24">
+      <section className="relative p-6 md:p-12 lg:p-20 py-24">
         <div className="hidden md:block absolute top-12 left-6 lg:left-10 w-px h-[calc(100%-6rem)] bg-current opacity-[0.06]" />
         <div className="hidden md:block absolute top-12 left-4 lg:left-8 w-5 h-px bg-current opacity-[0.06]" />
 
@@ -324,7 +324,7 @@ export function StudioSection() {
       </section>
 
       {/* ═══════════════ WHAT I DO ═══════════════ */}
-      <section className="min-h-screen p-6 md:p-12 lg:p-20 py-24 relative">
+      <section className="p-6 md:p-12 lg:p-20 py-24 relative">
         <div className="hidden md:block absolute top-12 right-6 lg:right-10 w-px h-[calc(100%-6rem)] bg-current opacity-[0.06]" />
         <div className="hidden md:block absolute top-12 right-4 lg:right-8 w-5 h-px bg-current opacity-[0.06]" />
 
@@ -355,7 +355,7 @@ export function StudioSection() {
       </section>
 
       {/* ═══════════════ SELECTED PROJECTS ═══════════════ */}
-      <section className="relative min-h-screen p-6 md:p-12 lg:p-20 py-24">
+      <section className="relative p-6 md:p-12 lg:p-20 py-24">
         <div className="hidden md:block absolute top-0 left-1/2 w-px h-full bg-current opacity-[0.04]" />
 
         <div className="s-reveal s-blur flex items-baseline justify-between mb-20">
@@ -375,7 +375,7 @@ export function StudioSection() {
       </section>
 
       {/* ═══════════════ METHOD ═══════════════ */}
-      <section className="relative min-h-screen p-6 md:p-12 lg:p-20 py-24">
+      <section className="relative p-6 md:p-12 lg:p-20 py-24">
         <div className="hidden md:block absolute top-12 right-6 lg:right-10 w-px h-[calc(100%-6rem)] bg-current opacity-[0.06]" />
         <div className="hidden md:block absolute top-12 right-4 lg:right-8 w-5 h-px bg-current opacity-[0.06]" />
 
