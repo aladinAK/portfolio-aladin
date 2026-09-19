@@ -73,8 +73,10 @@ components/
   agency-contact-form.tsx        Formulaire Formspree
   sections/{studio,agency,book,mood}-section.tsx
   design-system/                 Panneau de documentation du design system
+    doc-overlay.tsx              Coque plein écran partagée (focus, Échap, jauge, nav, accent de section)
+    doc-primitives.tsx           SectionHead / Panel des panneaux
 
-lib/i18n.tsx            Dictionnaire FR/EN (~327 clés) + useLang()
+lib/i18n.tsx            Dictionnaire FR/EN (~420 clés) + useLang()
 lib/use-scroll-reveal.ts Hook partagé des révélations au scroll
 ```
 

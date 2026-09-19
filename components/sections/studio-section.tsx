@@ -1,25 +1,33 @@
 "use client"
 
-import { ArrowUpRight, ExternalLink, ChevronDown, FileDown, Mail } from "lucide-react"
+import { ArrowRight, ArrowUpRight, ExternalLink, ChevronDown, FileDown, Mail } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { useLang } from "@/lib/i18n"
 import { useScrollReveal } from "@/lib/use-scroll-reveal"
 import { SectionHead, SectionKicker } from "@/components/primitives/section-head"
 import { SectionButton, SectionLink } from "@/components/primitives/section-button"
+import { openDesignSystem } from "@/components/design-system/ds-launcher"
 
 const EXPERIENCE_META = [
-  { company: "Gameaddik", location: "Montréal, QC", period: "2020 — présent", stack: ["Vue", "Nuxt", "Tailwind", "Node.js", "WordPress", "SEO"] },
+  { company: "Gameaddik", location: "Montréal, QC", period: "2020 — présent", stack: ["Vue", "Nuxt", "Tailwind", "NestJS", "MongoDB", "AWS Athena", "Docker", "WordPress", "SEO"] },
   { company: "Freelance", location: "Montréal, QC", period: "2020 — présent", stack: ["Figma", "Photoshop", "Illustrator"] },
   { company: "XpertSource.com", location: "Montréal, QC", period: "Fév. — Mai 2019", stack: ["SEO", "Service client"] },
   { company: "Imagine Concept", location: "Tunis, Tunisie", period: "Déc. 2017 — Jan. 2018", stack: ["Illustrator", "Photoshop"] },
   { company: "Flashprint", location: "Tunis, Tunisie", period: "Juin — Août 2017", stack: ["Illustrator", "Photoshop", "Print"] },
 ]
 
+/**
+ * `key` is the i18n prefix of the project's details, decoupled from its
+ * position so the list can be reordered.
+ */
 const PROJECTS = [
-  { title: "GameRebellion", type: "Market Intelligence Platform", role: "Senior Frontend Developer", year: "2023", href: "https://gamerebellion.com/", stack: ["React", "Node.js", "Next", "Tailwind", "TypeScript"] },
-  { title: "PwnGames", type: "Website Redesign", role: "Designer & Frontend Developer", year: "2023", href: "https://pwngames.com", stack: ["React", "Tailwind", "TypeScript", "Figma"] },
-  { title: "GameAddik", type: "Landing Pages & Redesign", role: "Frontend Developer & Designer", year: "2018 — 2023", href: "https://gameaddik.com/", stack: ["HTML/CSS", "Vue", "JavaScript", "WordPress", "SEO"] },
+  { key: "proj.0", title: "GameRebellion", type: "Market Intelligence Platform", role: "Senior Frontend Developer", year: "2023", href: "https://gamerebellion.com/", stack: ["React", "Node.js", "Next", "Tailwind", "TypeScript"] },
+  { key: "proj.1", title: "PwnGames", type: "Website Redesign", role: "Designer & Frontend Developer", year: "2023", href: "https://pwngames.com", stack: ["React", "Tailwind", "TypeScript", "Figma"] },
+  { key: "proj.2", title: "GameAddik", type: "Landing Pages & Redesign", role: "Frontend Developer & Designer", year: "2020 — 2023", href: "https://gameaddik.com/", stack: ["HTML/CSS", "Vue", "JavaScript", "WordPress", "SEO"] },
 ]
+
+/** General method, from brief to launch. */
+const METHOD_STEPS = ["0", "1", "2", "3", "4"] as const
 
 const LINKS = [
   { label: "LinkedIn", href: "https://linkedin.com/in/aladin-akkari", icon: "Li" },
@@ -29,8 +37,17 @@ const LINKS = [
 
 const TOOLS = [
   "React / Next.js", "Vue / Nuxt", "TypeScript", "Tailwind CSS",
-  "Figma", "Photoshop", "Illustrator", "Node.js",
-  "WordPress", "Webflow", "Git", "Analytics",
+  "Figma", "Photoshop", "Illustrator", "GSAP",
+  "Node.js / NestJS", "MongoDB", "Docker", "AWS Athena",
+  "Shopify", "WordPress", "Webflow", "Git",
+]
+
+/** Schools are proper nouns; the programme and city go through i18n. */
+const EDUCATION = [
+  { key: "about.edu.0", school: "Collège de Maisonneuve" },
+  { key: "about.edu.1", school: "CDI College" },
+  { key: "about.edu.2", school: "LaSalle College" },
+  { key: "about.edu.3", school: "" },
 ]
 
 function ProjectAccordion() {
@@ -52,7 +69,7 @@ function ProjectAccordion() {
     <div className="space-y-0">
       {PROJECTS.map((project, i) => {
         const isOpen = openIndex === i
-        const details = [t(`proj.${i}.d0`), t(`proj.${i}.d1`), t(`proj.${i}.d2`)]
+        const details = [t(`${project.key}.d0`), t(`${project.key}.d1`), t(`${project.key}.d2`)]
         return (
           <div key={i} className="border-t" style={{ borderColor: "var(--section-muted)" }}>
             <button
@@ -154,8 +171,8 @@ function LocalClock() {
 }
 
 export function StudioSection() {
-  const sectionRef = useRef<HTMLDivElement>(null)
   const [scrollY, setScrollY] = useState(0)
+  const sectionRef = useRef<HTMLDivElement>(null)
   const { t } = useLang()
 
   useScrollReveal(sectionRef)
@@ -250,7 +267,7 @@ export function StudioSection() {
         <div className="studio-marquee flex whitespace-nowrap" style={parallax(-0.05)}>
           {[...Array(3)].map((_, i) => (
             <span key={i} className="text-[8vw] font-bold tracking-tighter opacity-[0.06] uppercase mx-8">
-              HTML/CSS — JavaScript — TypeScript — React — Vue — Next.js — Nuxt — Tailwind — Figma — Node.js —&nbsp;
+              HTML/CSS — JavaScript — TypeScript — React — Vue — Next.js — Nuxt — Tailwind — Figma — Shopify — NestJS —&nbsp;
             </span>
           ))}
         </div>
@@ -357,6 +374,50 @@ export function StudioSection() {
         </div>
       </section>
 
+      {/* ═══════════════ METHOD ═══════════════ */}
+      <section className="relative min-h-screen p-6 md:p-12 lg:p-20 py-24">
+        <div className="hidden md:block absolute top-12 right-6 lg:right-10 w-px h-[calc(100%-6rem)] bg-current opacity-[0.06]" />
+        <div className="hidden md:block absolute top-12 right-4 lg:right-8 w-5 h-px bg-current opacity-[0.06]" />
+
+        <div className="s-reveal s-blur mb-10">
+          <SectionHead
+            kicker={t("method.label")}
+            title={t("method.title.1")}
+            accent={t("method.title.2")}
+            titleClassName="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]"
+          />
+        </div>
+        <p className="s-reveal s-up text-sm opacity-50 leading-relaxed max-w-xl mb-16">{t("method.lead")}</p>
+
+        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+          {METHOD_STEPS.map((step, i) => (
+            <li
+              key={step}
+              className="studio-method-card s-reveal s-scale group flex flex-col p-6"
+              style={{ "--delay": `${i * 120}ms` } as React.CSSProperties}
+            >
+              <span className="text-xs font-mono opacity-20 block mb-6">0{i + 1}</span>
+              <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform duration-500">
+                {t(`method.${step}.title`)}
+              </h3>
+              <p className="text-sm opacity-50 leading-relaxed">{t(`method.${step}.desc`)}</p>
+              <div className="mt-auto pt-6">
+                <span className="text-[10px] font-mono uppercase tracking-[0.15em] block mb-1" style={{ color: "var(--section-accent)" }}>
+                  {t("method.output")}
+                </span>
+                <span className="text-xs opacity-60">{t(`method.${step}.output`)}</span>
+              </div>
+            </li>
+          ))}
+        </ol>
+
+        <div className="s-reveal s-up flex flex-wrap items-center gap-4 mt-12">
+          <SectionButton type="button" role="outline" onClick={openDesignSystem} aria-haspopup="dialog">
+            {t("method.cta.ds")} <ArrowRight className="w-4 h-4" />
+          </SectionButton>
+        </div>
+      </section>
+
       {/* ═══════════════ ABOUT ═══════════════ */}
       {/* overflow-hidden: `.s-reveal.s-left` offsets its children 40px to the
           right until they are revealed, which widened the section. */}
@@ -375,6 +436,19 @@ export function StudioSection() {
               <p>{t("about.p1")}</p>
               <p>{t("about.p2")}</p>
             </div>
+
+            <SectionKicker className="mt-14 mb-6 block">{t("about.edu")}</SectionKicker>
+            <ul className="max-w-md">
+              {EDUCATION.map((edu) => (
+                <li key={edu.key} className="flex items-baseline justify-between gap-4 py-3 border-b text-sm" style={{ borderColor: "var(--section-muted)" }}>
+                  <span className="font-medium">{t(`${edu.key}.title`)}</span>
+                  <span className="text-xs font-mono opacity-40 text-right">
+                    {edu.school && `${edu.school} · `}
+                    {t(`${edu.key}.place`)}
+                  </span>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <div className="s-reveal s-up flex flex-col justify-end" style={{ "--delay": "200ms" } as React.CSSProperties}>

@@ -40,8 +40,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "exp.0.role": { fr: "Senior Front End Developer", en: "Senior Front End Developer" },
   "exp.0.type": { fr: "Temps plein", en: "Full-time" },
   "exp.0.desc": {
-    fr: "Je conçois et développe des interfaces web performantes et réactives, en alliant design et expérience utilisateur. Je crée des composants réutilisables et optimise chaque projet pour la performance et le SEO, notamment dans le secteur du gaming.",
-    en: "I design and develop responsive, high-performance web interfaces, blending design with user experience. I build reusable components and optimize every project for performance and SEO, especially in the gaming sector."
+    fr: "Je conçois et développe des interfaces web performantes et réactives, en alliant design et expérience utilisateur. Je crée des composants réutilisables et optimise chaque projet pour la performance et le SEO, notamment dans le secteur du gaming. Côté back-end, j'ai construit une API REST complète d'analytics SDK avec NestJS, MongoDB, AWS Athena et Docker.",
+    en: "I design and develop responsive, high-performance web interfaces, blending design with user experience. I build reusable components and optimize every project for performance and SEO, especially in the gaming sector. On the back end, I built a complete REST API for SDK analytics with NestJS, MongoDB, AWS Athena and Docker."
   },
   "exp.1.role": { fr: "Designer Web", en: "Web Designer" },
   "exp.1.type": { fr: "Freelance", en: "Freelance" },
@@ -79,18 +79,18 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "svc.1.title": { fr: "UI / UX Design", en: "UI / UX Design" },
   "svc.1.desc": {
-    fr: "De l'étude utilisateur à la réalisation de prototypes Figma, je conçois des interfaces qui allient esthétique, ergonomie et fonctionnalité.",
-    en: "From user research to Figma prototypes, I design interfaces that blend aesthetics, usability, and functionality."
+    fr: "De l'étude utilisateur au prototype Figma, je conçois des interfaces qui allient esthétique, ergonomie et fonctionnalité — avec des design systems faits de composants, de variantes et d'auto-layout.",
+    en: "From user research to Figma prototypes, I design interfaces that blend aesthetics, usability and functionality — backed by design systems built from components, variants and auto-layout."
   },
   "svc.2.title": { fr: "Animation Web", en: "Web Animation" },
   "svc.2.desc": {
-    fr: "Je crée des animations subtiles et engageantes — transitions fluides, micro-interactions, parallax — pour rendre l’expérience web vivante et intuitive.",
-    en: "I create subtle, engaging web animations — smooth transitions, micro-interactions, parallax — to make web experiences lively and intuitive."
+    fr: "Je crée des animations subtiles et engageantes — transitions fluides, micro-interactions, parallax — avec GSAP, ScrollTrigger et Framer Motion, pour rendre l'expérience web vivante et intuitive.",
+    en: "I create subtle, engaging web animations — smooth transitions, micro-interactions, parallax — with GSAP, ScrollTrigger and Framer Motion, to make web experiences lively and intuitive."
   },
   "svc.3.title": { fr: "SEO & Performance", en: "SEO & Performance" },
   "svc.3.desc": {
-    fr: "Optimisation des Core Web Vitals, mise en place de stratégies SEO et suivi analytics pour garantir des sites rapides, visibles et performants.",
-    en: "Optimizing Core Web Vitals, implementing SEO strategies, and monitoring analytics to ensure fast, visible, and high-performing websites."
+    fr: "Audits techniques (balises, hiérarchie Hn, maillage interne), optimisation des Core Web Vitals et suivi avec GA4, SEMrush et Hotjar, pour des sites rapides, visibles et performants.",
+    en: "Technical audits (tags, heading hierarchy, internal linking), Core Web Vitals optimization and tracking with GA4, SEMrush and Hotjar, for fast, visible, high-performing websites."
   },
 
   // Projects
@@ -136,24 +136,74 @@ const dict: Record<string, Record<Lang, string>> = {
   },
 
   // About
-  "about.label": { fr: "04 / À PROPOS", en: "04 / ABOUT" },
+  // Method — general process from brief to launch
+  "method.label": { fr: "04 / MÉTHODE", en: "04 / METHOD" },
+  "method.title.1": { fr: "Ma façon", en: "How I" },
+  "method.title.2": { fr: "de travailler", en: "work" },
+  "method.lead": {
+    fr: "Du brief au lancement, cinq étapes qui se suivent dans cet ordre. Aucune ne commence avant que la précédente soit validée.",
+    en: "From brief to launch, five steps in this order. None starts before the previous one is signed off.",
+  },
+  "method.output": { fr: "Livrable", en: "Deliverable" },
+  "method.0.title": { fr: "Comprendre", en: "Understand" },
+  "method.0.desc": {
+    fr: "Entretiens, analytics et audit de l'existant. Les objectifs sont écrits avant le premier écran.",
+    en: "Interviews, analytics and an audit of what exists. Goals are written down before the first screen.",
+  },
+  "method.0.output": { fr: "Tâches prioritaires + plan par phases", en: "Priority tasks + phased plan" },
+  "method.1.title": { fr: "Structurer", en: "Structure" },
+  "method.1.desc": {
+    fr: "Arborescence, parcours clés, wireframes en gris. La hiérarchie avant la couleur.",
+    en: "Site map, key journeys, grey wireframes. Hierarchy before color.",
+  },
+  "method.1.output": { fr: "Sitemap + wireframes", en: "Sitemap + wireframes" },
+  "method.2.title": { fr: "Concevoir et tester", en: "Design and test" },
+  "method.2.desc": {
+    fr: "Charte, jetons et prototype Figma testé. Ce qui casse au test ne part pas en développement.",
+    en: "Guidelines, tokens and a tested Figma prototype. What breaks in testing doesn't reach development.",
+  },
+  "method.2.output": { fr: "Prototype testé et approuvé", en: "Tested, approved prototype" },
+  "method.3.title": { fr: "Développer", en: "Build" },
+  "method.3.desc": {
+    fr: "Composants réutilisables, responsive et accessibles. L'équipe peut modifier sans moi.",
+    en: "Reusable, responsive, accessible components. The team can edit without me.",
+  },
+  "method.3.output": { fr: "Site en préproduction", en: "Site on staging" },
+  "method.4.title": { fr: "Lancer", en: "Launch" },
+  "method.4.desc": {
+    fr: "Tests, SEO, redirections et analytics, formation, puis suivi après la mise en ligne.",
+    en: "Testing, SEO, redirects and analytics, training, then follow-up after go-live.",
+  },
+  "method.4.output": { fr: "Mise en ligne + mesures", en: "Go-live + metrics" },
+  "method.cta.ds": { fr: "Voir mon design system", en: "See my design system" },
+
+  "about.label": { fr: "05 / À PROPOS", en: "05 / ABOUT" },
   "about.title.1": { fr: "Un peu", en: "A bit" },
   "about.title.2": { fr: "plus sur moi", en: "more about me" },
   "about.p1": {
-    fr: "Créatif dans l'âme, je combine design et développement depuis plus de 5 ans. Mon approche : des expériences digitales où chaque pixel compte.",
-    en: "Creative at heart, I've been combining design and development for over 5 years. My approach: digital experiences where every pixel matters.",
+    fr: "Je suis venu au web par le design graphique — identités, affiches, print — puis je me suis formé à l'UX/UI et au développement à Montréal. Depuis plus de cinq ans, je conçois des interfaces et je les code moi-même : ce que je dessine dans Figma, je sais ce que ça coûte à construire.",
+    en: "I came to the web through graphic design — identities, posters, print — then trained in UX/UI and development in Montréal. For over five years I've designed interfaces and built them myself: whatever I draw in Figma, I know what it takes to build.",
   },
   "about.p2": {
-    fr: "En dehors du code, je dessine, je lis de la fantasy, et je créé des palettes de couleurs. J'ai aussi publié un roman fantasy — L'Épée de la Dernière Chance — disponible sur Amazon.",
-    en: "Outside of code, I sketch, read fantasy novels, and create color palettes. I also published a fantasy novel — L'Épée de la Dernière Chance — available on Amazon.",
+    fr: "Ce double regard évite les allers-retours : une maquette qui tient compte du code, un code qui respecte la maquette. Hors écran, j'écris — Les Chroniques de Jez, une saga de dark fantasy dont trois tomes sont disponibles sur Amazon.",
+    en: "Seeing both sides cuts out the back-and-forth: a mockup that accounts for the code, code that respects the mockup. Off screen, I write — Les Chroniques de Jez, a dark fantasy saga with three volumes out on Amazon.",
   },
   "about.tools": { fr: "OUTILS QUOTIDIENS", en: "DAILY TOOLS" },
+  "about.edu": { fr: "FORMATION", en: "EDUCATION" },
+  "about.edu.0.title": { fr: "Design UX/UI", en: "UX/UI Design" },
+  "about.edu.0.place": { fr: "Montréal", en: "Montréal" },
+  "about.edu.1.title": { fr: "Design Web", en: "Web Design" },
+  "about.edu.1.place": { fr: "Montréal", en: "Montréal" },
+  "about.edu.2.title": { fr: "Design graphique", en: "Graphic Design" },
+  "about.edu.2.place": { fr: "Tunis", en: "Tunis" },
+  "about.edu.3.title": { fr: "Baccalauréat en économie et gestion", en: "Bachelor in Economics and Management" },
+  "about.edu.3.place": { fr: "Tunisie", en: "Tunisia" },
 
   // Contact
-  "contact.label": { fr: "05 / CONTACT", en: "05 / CONTACT" },
+  "contact.label": { fr: "06 / CONTACT", en: "06 / CONTACT" },
   "contact.title.1": { fr: "Restons", en: "Let's" },
   "contact.title.2": { fr: "en contact.", en: "connect." },
-  "contact.available": { fr: "Disponible", en: "Available" },
+  "contact.available": { fr: "Ouvert aux postes et aux mandats", en: "Open to roles and contracts" },
 
   // Agency (nature section)
   "agency.label": { fr: "besoin d un site web ?", en: "Need a website?" },
@@ -699,6 +749,10 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.g.dont.3": { fr: "Un accent hors des quatre thèmes de section.", en: "An accent outside the four section themes." },
   "ds.g.dont.4": { fr: "Une couleur porteuse de sens sans doublon textuel.", en: "Meaning carried by color with no text equivalent." },
   "ds.g.versions": { fr: "Cycle de version", en: "Release cycle" },
+  "ds.g.v14": {
+    fr: "Coque de panneau plein écran extraite en composant réutilisable, accent qui suit la section d'ouverture, section Méthode dans le studio.",
+    en: "Full-screen panel shell extracted into a reusable component, accent that follows the opening section, Method section in the studio.",
+  },
   "ds.g.v13": {
     fr: "Primitives partagées par les quatre sections (libellé, titre, trois rôles de bouton), accent secondaire et états de validation extraits en jetons, cibles tactiles à 44 px, garde de mouvement sur 100 % des animations.",
     en: "Primitives shared by all four sections (label, heading, three button roles), secondary accent and validation states extracted into tokens, 44 px touch targets, motion guard on 100% of animations.",

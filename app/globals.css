@@ -1253,6 +1253,19 @@
   background: color-mix(in srgb, var(--section-fg) 3%, var(--section-bg));
 }
 
+/* Method steps: outlined cards. Border colour in the class, not inline, so
+   the hover can change it (pitfall #1). */
+.studio-method-card {
+  border: 1px solid var(--section-muted);
+  background: var(--section-bg);
+  transition: border-color 500ms ease, background-color 500ms ease;
+}
+
+.studio-method-card:hover {
+  border-color: color-mix(in srgb, var(--section-accent) 60%, transparent);
+  background: color-mix(in srgb, var(--section-fg) 3%, var(--section-bg));
+}
+
 /* ═══════ Design system — hero collaborative canvas ═══════ */
 
 .ds-canvas {

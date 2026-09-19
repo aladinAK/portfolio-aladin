@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react"
 import { useLang } from "@/lib/i18n"
 import { DsLiveCanvas } from "@/components/design-system/ds-live-canvas"
+import { Panel, SectionHead, delay } from "@/components/design-system/doc-primitives"
 import { SectionKicker } from "@/components/primitives/section-head"
 import { SectionButton } from "@/components/primitives/section-button"
 
@@ -86,6 +87,7 @@ const INVENTORY = [
   { name: "ProjectInfo", variants: "3", usage: "ds.inv.usage.projects", status: "stable" },
   { name: "AgencyContactForm", variants: "1", usage: "ds.inv.usage.contact", status: "review" },
   { name: "ManuscriptCanvas", variants: "1", usage: "ds.inv.usage.book", status: "stable" },
+  { name: "DocOverlay", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
   { name: "DsOverlay", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
   { name: "DsLiveCanvas", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
   { name: "DsGhostCursor", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
@@ -95,50 +97,6 @@ const MARQUEE_WORDS = [
   "Tokens", "OKLCH", "Geist", "Playfair", "Clash Display", "Spacing",
   "Components", "States", "A11y", "Motion", "Responsive", "Governance",
 ]
-
-const delay = (ms: number) => ({ "--delay": `${ms}ms` }) as React.CSSProperties
-
-// ─────────────────────────── Primitives locales ───────────────────────────
-
-function SectionHead({ index, kicker, title, accent, lead }: { index: string; kicker: string; title: string; accent: string; lead: string }) {
-  return (
-    <div className="s-reveal s-blur mb-6">
-      <div className="flex items-center gap-2.5">
-        <span className="h-0.5 w-5 rounded-full" style={{ background: "var(--ds-accent)" }} />
-        <span className="ds-kicker">
-          {index} / {kicker}
-        </span>
-      </div>
-      <h2 className="mt-2.5 text-2xl font-bold leading-[1.05] tracking-tight md:text-4xl">
-        {title}{" "}
-        <span className="font-[family-name:var(--font-playfair)] italic" style={{ color: "var(--ds-accent)" }}>
-          {accent}
-        </span>
-      </h2>
-      <p className="mt-3 max-w-[64ch] text-sm leading-relaxed text-[var(--ds-fg-muted)]">{lead}</p>
-    </div>
-  )
-}
-
-function Panel({
-  title,
-  children,
-  className = "",
-  step = 0,
-}: {
-  title?: string
-  children: React.ReactNode
-  className?: string
-  /** Décale la révélation pour créer une cascade dans une grille. */
-  step?: number
-}) {
-  return (
-    <div className={`ds-card s-reveal s-up p-5 ${className}`} style={delay(step * 70)}>
-      {title && <div className="ds-kicker mb-4">{title}</div>}
-      {children}
-    </div>
-  )
-}
 
 // ─────────────────────────────── Contenu ───────────────────────────────
 
@@ -780,7 +738,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
 
           <Panel title={t("ds.g.versions")} step={2}>
             <div className="grid gap-3 text-[13px] leading-relaxed">
-              {["1.3", "1.2", "1.1", "1.0"].map((version) => (
+              {["1.4", "1.3", "1.2", "1.1", "1.0"].map((version) => (
                 <div key={version} className="flex gap-2.5">
                   <span className="ds-tag ds-tag--outline shrink-0">v{version}</span>
                   <span className="text-[var(--ds-fg-muted)]">{t(`ds.g.v${version.replace(".", "")}`)}</span>

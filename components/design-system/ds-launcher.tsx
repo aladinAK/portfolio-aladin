@@ -13,6 +13,10 @@ const DsOverlay = dynamic(() => import("@/components/design-system/ds-overlay").
 
 const GHOST_DELAY_MS = 1100
 const SEEN_KEY = "ds-intro-seen"
+const OPEN_EVENT = "ds:open"
+
+/** Ouvre le panneau depuis n'importe quelle section, sans remonter d'état. */
+export const openDesignSystem = () => window.dispatchEvent(new Event(OPEN_EVENT))
 
 /** sessionStorage lève dans certains contextes (navigation privée stricte). */
 const readSeen = () => {
@@ -53,6 +57,12 @@ export function DsLauncher() {
     const id = window.setTimeout(() => setGhostMounted(true), GHOST_DELAY_MS)
 
     return () => window.clearTimeout(id)
+  }, [])
+
+  useEffect(() => {
+    const onOpen = () => setOpen(true)
+    window.addEventListener(OPEN_EVENT, onOpen)
+    return () => window.removeEventListener(OPEN_EVENT, onOpen)
   }, [])
 
   const handleArrive = useCallback(() => {
