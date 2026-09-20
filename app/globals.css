@@ -1179,6 +1179,41 @@
   background: color-mix(in srgb, var(--section-bg) 34%, transparent);
 }
 
+/* ═══════ Mobile — piles de cartes collantes ═══════ */
+
+/* Sur téléphone, quatre ou cinq cartes à la suite font un très long
+   défilement. Chaque carte se colle en haut, un cran plus bas que la
+   précédente : le haut des cartes déjà lues reste visible, comme un paquet
+   de cartes qu'on étale. Aucun JavaScript, uniquement `position: sticky`
+   dans le conteneur défilant de la section. */
+@media (max-width: 639px) {
+  .stack-cards > * {
+    position: sticky;
+    top: calc(16px + var(--stack-i, 0) * 14px);
+    /* Hauteur libre : une hauteur imposée creusait un grand vide sous un texte
+       court, et la carte suivante venait couper le texte en plein milieu. */
+    min-height: 0;
+    /* Fond opaque obligatoire : une carte translucide laisserait voir celle
+       qui passe dessous. */
+    background: var(--section-bg);
+    border-top: 1px solid var(--section-muted);
+    box-shadow: 0 -12px 30px rgb(0 0 0 / 0.5);
+  }
+
+  /* Rien ne passe encore sous la première. */
+  .stack-cards > *:first-child {
+    box-shadow: none;
+  }
+}
+
+/* Mouvement non voulu : les cartes se suivent simplement. */
+@media (max-width: 639px) and (prefers-reduced-motion: reduce) {
+  .stack-cards > * {
+    position: static;
+    box-shadow: none;
+  }
+}
+
 /* ═══════ Design system badge ═══════ */
 
 /* FloatingOrb occupies top-5 (20–60px, centred), so the badge sits below it. */
@@ -1188,6 +1223,18 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 60;
+}
+
+/* On a phone the centred badge sat on top of every section heading. The bottom
+   left corner is the only one still free: the section nav is centred and
+   ProjectInfo holds the bottom right. */
+@media (max-width: 767px) {
+  .ds-badge-dock {
+    top: auto;
+    bottom: 22px;
+    left: 12px;
+    transform: none;
+  }
 }
 
 /* Slow, shallow drift: enough to catch the eye in peripheral vision, not

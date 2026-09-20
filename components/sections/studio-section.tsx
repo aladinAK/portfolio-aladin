@@ -121,7 +121,7 @@ function ProjectAccordion() {
                     href={project.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 mt-6 text-sm font-medium transition-opacity hover:opacity-100 opacity-60"
+                    className="tap-44 inline-flex items-center gap-2 mt-6 text-sm font-medium transition-opacity hover:opacity-100 opacity-60"
                     style={{ color: "var(--section-accent)" }}
                   >
                     {t("proj.cta")} <ArrowUpRight className="w-4 h-4" />
@@ -241,7 +241,7 @@ export function StudioSection() {
             <p className="max-w-sm text-sm opacity-70 leading-relaxed">{t("hero.desc")}</p>
             <a
               href="mailto:aladinakdesign@gmail.com"
-              className="inline-flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:gap-3 opacity-60 hover:opacity-100"
+              className="tap-44 inline-flex items-center gap-2 text-sm font-medium transition-all duration-300 hover:gap-3 opacity-60 hover:opacity-100"
               style={{ color: "var(--section-accent)" }}
             >
               <Mail className="w-4 h-4" />
@@ -337,12 +337,12 @@ export function StudioSection() {
             />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px" style={{ backgroundColor: "var(--section-muted)" }}>
+        <div className="stack-cards grid grid-cols-1 gap-0 md:grid-cols-2 md:gap-px" style={{ backgroundColor: "var(--section-muted)" }}>
           {[0, 1, 2, 3].map((i) => (
             <div
               key={i}
               className="studio-svc-card s-reveal s-scale group p-8 md:p-12"
-              style={{ "--delay": `${i * 120}ms` } as React.CSSProperties}
+              style={{ "--delay": `${i * 120}ms`, "--stack-i": i } as React.CSSProperties}
             >
               <span className="text-xs font-mono opacity-20 block mb-6">0{i + 1}</span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:translate-x-2 transition-transform duration-500">
@@ -389,12 +389,12 @@ export function StudioSection() {
         </div>
         <p className="s-reveal s-up text-sm opacity-50 leading-relaxed max-w-xl mb-16">{t("method.lead")}</p>
 
-        <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        <ol className="stack-cards grid grid-cols-1 gap-0 sm:grid-cols-2 sm:gap-3 lg:grid-cols-5">
           {METHOD_STEPS.map((step, i) => (
             <li
               key={step}
               className="studio-method-card s-reveal s-scale group flex flex-col p-6"
-              style={{ "--delay": `${i * 120}ms` } as React.CSSProperties}
+              style={{ "--delay": `${i * 120}ms`, "--stack-i": i } as React.CSSProperties}
             >
               <span className="text-xs font-mono opacity-20 block mb-6">0{i + 1}</span>
               <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform duration-500">

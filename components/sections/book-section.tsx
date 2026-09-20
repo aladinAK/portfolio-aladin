@@ -250,7 +250,7 @@ function ReaderReviews() {
           href={AMAZON_REVIEWS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="book-font inline-flex items-center gap-2 mt-12 text-sm tracking-[0.15em] uppercase opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
+          className="tap-44 book-font inline-flex items-center gap-2 mt-12 text-sm tracking-[0.15em] uppercase opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
         >
           {t("book.reviews.cta")}
           <ArrowUpRight className="w-4 h-4" />
@@ -310,7 +310,7 @@ export function BookSection() {
             href="https://aladin-akkari-book-store.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="book-font text-sm tracking-[0.2em] uppercase opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
+            className="tap-44 book-font text-sm tracking-[0.2em] uppercase opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
           >
             {t("book.store")}
           </a>
@@ -462,7 +462,7 @@ export function BookSection() {
               href="https://aladin-akkari-book-store.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="book-font inline-flex items-center gap-2 text-base tracking-widest opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
+              className="tap-44 book-font inline-flex items-center gap-2 text-base tracking-widest opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
             >
               {t("book.store.cta")}
               <ArrowUpRight className="w-3.5 h-3.5" />

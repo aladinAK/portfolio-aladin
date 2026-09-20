@@ -87,8 +87,8 @@ export function DsLauncher() {
             aria-haspopup="dialog"
             aria-expanded={open}
             className={[
-              "ds-badge group flex items-center gap-2 rounded-full border border-white/15",
-              "bg-black/60 px-4 py-2 text-[11px] font-semibold tracking-wide text-white backdrop-blur-md",
+              "ds-badge tap-44 group flex items-center gap-2 rounded-full border border-white/15",
+              "bg-black/60 px-4 max-md:px-3 py-2 text-[11px] font-semibold tracking-wide text-white backdrop-blur-md",
               "focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white",
               badgeShown ? "" : "pointer-events-none opacity-0",
               animateBadge ? "ds-badge-in ds-badge-halo" : "",
@@ -98,7 +98,9 @@ export function DsLauncher() {
             aria-hidden={!badgeShown}
           >
             <Layers className="ds-badge-icon h-3.5 w-3.5" />
-            <span>{t("ds.badge")}</span>
+            {/* Phone: icon only, otherwise the badge runs into the section nav.
+                sr-only keeps the label as the button's accessible name. */}
+            <span className="max-md:sr-only">{t("ds.badge")}</span>
             <span className="ds-badge-dot h-1.5 w-1.5 rounded-full bg-[#6E56F8]" />
           </button>
         </div>

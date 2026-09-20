@@ -175,7 +175,7 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
 
       {/* Scroll Hint - Left */}
       {canScrollLeft && (
-        <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40 opacity-50 hover:opacity-100 transition-opacity">
+        <div className="hidden md:block fixed left-4 top-1/2 -translate-y-1/2 z-40 opacity-50 hover:opacity-100 transition-opacity">
           <button
             onClick={scrollLeft}
             className="w-12 h-24 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-black/40 transition-colors"
@@ -188,7 +188,7 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
 
       {/* Scroll Hint - Right */}
       {canScrollRight && (
-        <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 opacity-50 hover:opacity-100 transition-opacity">
+        <div className="hidden md:block fixed right-4 top-1/2 -translate-y-1/2 z-40 opacity-50 hover:opacity-100 transition-opacity">
           <button
             onClick={scrollRight}
             className="w-12 h-24 rounded-full bg-black/20 backdrop-blur-sm flex items-center justify-center hover:bg-black/40 transition-colors"
