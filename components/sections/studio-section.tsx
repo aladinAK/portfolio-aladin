@@ -42,6 +42,9 @@ const TOOLS = [
   "Shopify", "WordPress", "Webflow", "Git",
 ]
 
+/** Quick facts a recruiter looks for first; they live nowhere else on the site. */
+const FACTS = ["location", "langs", "exp", "availability"] as const
+
 /** Schools are proper nouns; the programme and city go through i18n. */
 const EDUCATION = [
   { key: "about.edu.0", school: "Collège de Maisonneuve" },
@@ -452,6 +455,16 @@ export function StudioSection() {
           </div>
 
           <div className="s-reveal s-up flex flex-col justify-end" style={{ "--delay": "200ms" } as React.CSSProperties}>
+            <SectionKicker className="mb-6 block">{t("about.facts")}</SectionKicker>
+            <ul className="mb-14">
+              {FACTS.map((fact) => (
+                <li key={fact} className="flex items-baseline justify-between gap-4 py-3 border-b text-sm" style={{ borderColor: "var(--section-muted)" }}>
+                  <span className="font-mono text-xs opacity-40">{t(`about.facts.${fact}`)}</span>
+                  <span className="font-medium text-right">{t(`about.facts.${fact}.value`)}</span>
+                </li>
+              ))}
+            </ul>
+
             <SectionKicker className="mb-8">{t("about.tools")}</SectionKicker>
             <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm opacity-40">
               {TOOLS.map((tool, i) => (

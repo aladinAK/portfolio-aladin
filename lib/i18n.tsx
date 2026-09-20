@@ -95,8 +95,8 @@ const dict: Record<string, Record<Lang, string>> = {
 
   // Projects
   "proj.label": { fr: "03 / PROJETS", en: "03 / PROJECTS" },
-  "proj.title.1": { fr: "Mes", en: "My" },
-  "proj.title.2": { fr: "Travaux", en: "Work" },
+  "proj.title.1": { fr: "Sur quoi", en: "What I've" },
+  "proj.title.2": { fr: "j'ai travaillé", en: "worked on" },
   "proj.cta": { fr: "Voir le projet", en: "View project" },
   "proj.0.d0": {
     fr: "Plateforme d'intelligence de marché pour l'industrie du jeu — plus de 250 000 titres Steam et 60 000 jeux mobiles suivis : revenus, téléchargements, joueurs actifs, sentiment.",
@@ -189,6 +189,15 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Seeing both sides cuts out the back-and-forth: a mockup that accounts for the code, code that respects the mockup. Off screen, I write — Les Chroniques de Jez, a dark fantasy saga with three volumes out on Amazon.",
   },
   "about.tools": { fr: "OUTILS QUOTIDIENS", en: "DAILY TOOLS" },
+  "about.facts": { fr: "REPÈRES", en: "AT A GLANCE" },
+  "about.facts.location": { fr: "Basé à", en: "Based in" },
+  "about.facts.location.value": { fr: "Montréal, QC", en: "Montréal, QC" },
+  "about.facts.langs": { fr: "Langues", en: "Languages" },
+  "about.facts.langs.value": { fr: "Français · Anglais", en: "French · English" },
+  "about.facts.exp": { fr: "Expérience", en: "Experience" },
+  "about.facts.exp.value": { fr: "5+ ans", en: "5+ years" },
+  "about.facts.availability": { fr: "Disponibilité", en: "Availability" },
+  "about.facts.availability.value": { fr: "Postes et mandats", en: "Roles and contracts" },
   "about.edu": { fr: "FORMATION", en: "EDUCATION" },
   "about.edu.0.title": { fr: "Design UX/UI", en: "UX/UI Design" },
   "about.edu.0.place": { fr: "Montréal", en: "Montréal" },
@@ -576,8 +585,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.c.title.1": { fr: "Ma", en: "My" },
   "ds.c.title.2": { fr: "Bibliothèque", en: "Library" },
   "ds.c.lead": {
-    fr: "Neuf composants portent le portfolio et cette documentation. Les primitives ci-dessous — bouton, étiquette, champ, carte — sont celles du panneau : les sections du portfolio composent encore leurs propres variantes en utilitaires. Les unifier est le chantier ouvert.",
-    en: "Nine components carry the portfolio and this documentation. The primitives below — button, tag, field, card — are the panel's own: the portfolio sections still compose their own variants from utilities. Unifying them is the open piece of work.",
+    fr: "Treize composants portent le portfolio et cette documentation. Quatre primitives partagées — libellé, titre, et trois rôles de bouton — habillent les quatre sections ; celles présentées ci-dessous (bouton, étiquette, champ, carte) sont propres au panneau. Unifier les deux familles reste le chantier ouvert.",
+    en: "Thirteen components carry the portfolio and this documentation. Four shared primitives — label, heading, and three button roles — dress all four sections; the ones shown below (button, tag, field, card) belong to the panel. Unifying both families is the open piece of work.",
   },
   "ds.c.actions": { fr: "Actions", en: "Actions" },
   "ds.c.actions.desc": {
@@ -626,6 +635,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.inv.usage.contact": { fr: "Contact", en: "Contact" },
   "ds.inv.usage.docs": { fr: "Documentation", en: "Documentation" },
   "ds.inv.usage.book": { fr: "Section livre", en: "Book section" },
+  "ds.inv.usage.sections": { fr: "Les quatre sections", en: "All four sections" },
 
   // 03 États & accessibilité
   "ds.s.kicker": { fr: "ÉTATS & A11Y", en: "STATES & A11Y" },
@@ -659,8 +669,8 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.m.tokens": { fr: "Jetons de mouvement", en: "Motion tokens" },
   "ds.m.note": {
-    fr: "Ces trois jetons cadencent le panneau. Les quatre sections du portfolio s'appuient encore sur les durées utilitaires de Tailwind — 300, 400, 500 et 700 ms — avec la même courbe de sortie. Unifier les deux échelles est le prochain chantier.",
-    en: "These three tokens pace this panel. The four portfolio sections still rely on Tailwind's utility durations — 300, 400, 500 and 700 ms — with the same easing curve. Unifying both scales is the next piece of work.",
+    fr: "Ces trois jetons cadencent le panneau. Les quatre sections du portfolio s'appuient encore sur les durées utilitaires de Tailwind — de 200 à 700 ms, le plus souvent 500 — avec la même courbe de sortie. Unifier les deux échelles est le prochain chantier.",
+    en: "These three tokens pace this panel. The four portfolio sections still rely on Tailwind's utility durations — 200 to 700 ms, most often 500 — with the same easing curve. Unifying both scales is the next piece of work.",
   },
   "ds.m.fast": { fr: "retour d'état", en: "state feedback" },
   "ds.m.base": { fr: "entrée au scroll", en: "scroll reveal" },
@@ -685,8 +695,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.r.medium": { fr: "médium", en: "medium" },
   "ds.r.large": { fr: "large", en: "large" },
   "ds.r.xs.desc": {
-    fr: "Nav empilée, panneau d'infos rétréci, bouton de fermeture réduit — les seuls écarts que max-sm porte.",
-    en: "Stacked nav, narrower info panel, smaller close button — the only shifts max-sm carries.",
+    fr: "Nav empilée, panneau d'infos rétréci, bouton de fermeture réduit. Sous 640 px, les cartes de services et de méthode s'empilent en paquet collant ; sous 768 px, les flèches latérales disparaissent et le badge du système passe en bas à gauche.",
+    en: "Stacked nav, narrower info panel, smaller close button. Under 640 px the service and method cards turn into a sticky deck; under 768 px the side arrows disappear and the system badge moves to the bottom left.",
   },
   "ds.r.compact.desc": { fr: "1 colonne, marges 20 px, titres réduits.", en: "1 column, 20 px gutters, smaller headings." },
   "ds.r.medium.desc": { fr: "2 colonnes, navigation repliée.", en: "2 columns, collapsed navigation." },

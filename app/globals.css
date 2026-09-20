@@ -1179,34 +1179,33 @@
   background: color-mix(in srgb, var(--section-bg) 34%, transparent);
 }
 
-/* ═══════ Mobile — piles de cartes collantes ═══════ */
+/* ═══════ Mobile — sticky card deck ═══════ */
 
-/* Sur téléphone, quatre ou cinq cartes à la suite font un très long
-   défilement. Chaque carte se colle en haut, un cran plus bas que la
-   précédente : le haut des cartes déjà lues reste visible, comme un paquet
-   de cartes qu'on étale. Aucun JavaScript, uniquement `position: sticky`
-   dans le conteneur défilant de la section. */
+/* On a phone, four or five cards in a row make for a very long scroll. Each
+   card sticks to the top one notch below the previous one, so the top edge of
+   the cards already read stays visible, like a deck being spread out. No
+   JavaScript — just `position: sticky` inside the section's own scroller. */
 @media (max-width: 639px) {
   .stack-cards > * {
     position: sticky;
     top: calc(16px + var(--stack-i, 0) * 14px);
-    /* Hauteur libre : une hauteur imposée creusait un grand vide sous un texte
-       court, et la carte suivante venait couper le texte en plein milieu. */
+    /* Free height: a fixed one dug a large gap under short copy, and the next
+       card cut the text mid-sentence. */
     min-height: 0;
-    /* Fond opaque obligatoire : une carte translucide laisserait voir celle
-       qui passe dessous. */
+    /* Opaque background required: a translucent card would show the one
+       sliding underneath. */
     background: var(--section-bg);
     border-top: 1px solid var(--section-muted);
     box-shadow: 0 -12px 30px rgb(0 0 0 / 0.5);
   }
 
-  /* Rien ne passe encore sous la première. */
+  /* Nothing slides under the first one yet. */
   .stack-cards > *:first-child {
     box-shadow: none;
   }
 }
 
-/* Mouvement non voulu : les cartes se suivent simplement. */
+/* Motion not wanted: the cards simply follow one another. */
 @media (max-width: 639px) and (prefers-reduced-motion: reduce) {
   .stack-cards > * {
     position: static;
