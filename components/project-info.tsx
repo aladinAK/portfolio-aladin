@@ -12,7 +12,7 @@ export const isProjectSection = (slug: string | undefined): slug is ProjectSecti
   PROJECT_SECTIONS.includes(slug as ProjectSection)
 
 const PROJECT_LINKS: Record<ProjectSection, string> = {
-  agency: "https://ak-agency.vercel.app/",
+  agency: "https://fait-ton-site.vercel.app/",
   book: "https://aladin-akkari-book-store.vercel.app/",
   mood: "https://moodmovie-by-aladinakkari.vercel.app/",
 }
