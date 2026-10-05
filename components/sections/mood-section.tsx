@@ -13,11 +13,13 @@ const MOODS = [
   { emoji: "😲", key: "mood.surprise", float: "mood-float-3" },
 ]
 
+/* Bubbles, like the hero: each one gets its own size, drift and vertical
+   offset so the four never line up as a grid. */
 const FEATURES = [
-  { icon: "🎬", key: "mood.feat.0" },
-  { icon: "📺", key: "mood.feat.1" },
-  { icon: "📚", key: "mood.feat.2" },
-  { icon: "🎵", key: "mood.feat.3" },
+  { icon: "🎬", key: "mood.feat.0", size: "9.5rem", float: "mood-float-1", offset: "0rem" },
+  { icon: "📺", key: "mood.feat.1", size: "8rem", float: "mood-float-2", offset: "4rem" },
+  { icon: "📚", key: "mood.feat.2", size: "8.75rem", float: "mood-float-3", offset: "1.5rem" },
+  { icon: "🎵", key: "mood.feat.3", size: "7.5rem", float: "mood-float-2", offset: "6rem" },
 ]
 
 // Subtle drifting particles — the lifestyle section had no ambient layer.
@@ -138,22 +140,23 @@ export function MoodSection() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ul className="mood-feats">
             {FEATURES.map((feat, i) => (
-              <div
+              <li
                 key={i}
-                className="group p-8 md:p-10 rounded-xl border border-white/10 bg-white/[0.03] backdrop-blur-sm transition-all duration-500 hover:bg-white/[0.06] hover:border-white/20"
+                className="mood-feat group"
+                style={{ "--size": feat.size, "--offset": feat.offset } as React.CSSProperties}
               >
-                <span className="text-3xl mb-4 block">{feat.icon}</span>
-                <h3 className="mood-font text-xl md:text-2xl font-bold mb-2 group-hover:translate-x-2 transition-transform duration-500">
-                  {t(`${feat.key}.title`)}
-                </h3>
-                <p className="text-sm opacity-40 leading-relaxed">
-                  {t(`${feat.key}.desc`)}
-                </p>
-              </div>
+                <span className={`mood-feat-bubble ${feat.float}`}>
+                  <span aria-hidden className="text-3xl">{feat.icon}</span>
+                  <span className="mood-font text-sm font-bold uppercase tracking-wide">
+                    {t(`${feat.key}.title`)}
+                  </span>
+                </span>
+                <p className="mood-feat-desc">{t(`${feat.key}.desc`)}</p>
+              </li>
             ))}
-          </div>
+          </ul>
 
           {/* How it works */}
           <div className="mt-24 text-center">

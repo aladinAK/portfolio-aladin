@@ -17,6 +17,11 @@ const dict: Record<string, Record<Lang, string>> = {
   "nav.role.1": { fr: "Développeur Frontend", en: "Frontend Developer" },
   "nav.role.3": { fr: "Designer", en: "Designer" },
   "nav.cv.download": { fr: "Télécharger CV", en: "Download CV" },
+  "nav.lab": { fr: "design-lab", en: "design-lab" },
+  "nav.lab.tip": {
+    fr: "Un labo pour tester des idées visuelles avant qu'elles deviennent propres. Chaque expérimentation est une page indépendante, sans framework : HTML, CSS et JavaScript, servis par Vite.",
+    en: "A lab for testing visual ideas before they get polished. Each experiment is a standalone page, no framework: HTML, CSS and JavaScript, served by Vite.",
+  },
   "nav.lang": { fr: "Changer de langue", en: "Switch language" },
 
   // Hero
@@ -176,6 +181,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "method.4.output": { fr: "Mise en ligne + mesures", en: "Go-live + metrics" },
   "method.cta.ds": { fr: "Voir mon design system", en: "See my design system" },
+  "method.cta.lab": { fr: "Explorer le design-lab", en: "Explore the design-lab" },
 
   "about.label": { fr: "05 / À PROPOS", en: "05 / ABOUT" },
   "about.title.1": { fr: "Un peu", en: "A bit" },

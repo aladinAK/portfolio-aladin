@@ -3,6 +3,7 @@
 import { ArrowUpRight, Globe, Headphones, RefreshCw, ShoppingBag } from "lucide-react"
 import { useRef } from "react"
 import { useLang } from "@/lib/i18n"
+import { useScrollReveal } from "@/lib/use-scroll-reveal"
 import { SectionHead } from "@/components/primitives/section-head"
 import { SectionButton } from "@/components/primitives/section-button"
 import { AgencyContactForm } from "@/components/agency-contact-form"
@@ -53,7 +54,10 @@ const WORK = [
 
 export function AgencySection() {
   const { t } = useLang()
+  const sectionRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLElement>(null)
+
+  useScrollReveal(sectionRef)
 
   // scrollIntoView rather than an href="#anchor": writing to location.hash
   // would interfere with HorizontalScrollLayout's own section navigation.
@@ -63,6 +67,7 @@ export function AgencySection() {
 
   return (
     <div
+      ref={sectionRef}
       className="section-nature relative"
       style={{ backgroundColor: "var(--section-bg)", color: "var(--section-fg)" }}
     >
@@ -163,10 +168,11 @@ export function AgencySection() {
       </section>
 
       {/* ═══════════════ SERVICES ═══════════════ */}
-      <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24 flex flex-col justify-center">
-
+      {/* Rows, not a 2x2 of identical boxes: the index carries the scale
+          contrast and the description sits off to the right. */}
+      <section className="relative p-6 md:p-12 lg:p-16 py-24 md:py-32">
         <div className="relative z-10 max-w-6xl mx-auto w-full">
-          <div className="text-center mb-16 md:mb-24">
+          <div className="s-reveal s-up mb-12 md:mb-20">
             <SectionHead
               kicker={t("agency.svc.label")}
               title={t("agency.svc.title.1")}
@@ -176,86 +182,113 @@ export function AgencySection() {
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2">
+          <div>
             {SERVICES.map((svc, i) => (
-              <div key={i} className="agency-svc-card group p-8 md:p-12 relative">
-                <div className="flex items-start justify-between mb-6">
-                  <svc.icon
-                    className="w-6 h-6 opacity-40 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ color: "var(--section-accent)" }}
-                  />
-                  <span className="agency-font text-xs font-mono opacity-15">0{i + 1}</span>
+              <div
+                key={i}
+                className="agency-row s-reveal s-up group grid grid-cols-1 items-baseline gap-x-8 gap-y-4 py-8 md:grid-cols-12 md:py-12"
+                style={{ "--delay": `${i * 90}ms` } as React.CSSProperties}
+              >
+                <span className="agency-row__index agency-font col-span-2 text-5xl font-black leading-none md:text-7xl">
+                  0{i + 1}
+                </span>
+
+                <div className="md:col-span-5">
+                  <h3 className="agency-font text-2xl font-bold uppercase tracking-wide transition-transform duration-500 group-hover:translate-x-2 md:text-4xl">
+                    {t(`${svc.key}.title`)}
+                  </h3>
                 </div>
-                <h3 className="agency-font text-xl md:text-2xl font-bold uppercase tracking-wide mb-3 group-hover:translate-x-2 transition-transform duration-500">
-                  {t(`${svc.key}.title`)}
-                </h3>
-                <p className="text-sm opacity-40 leading-relaxed max-w-sm">
-                  {t(`${svc.key}.desc`)}
-                </p>
+
+                <div className="flex items-start gap-4 md:col-span-5">
+                  <svc.icon className="mt-1 h-5 w-5 shrink-0 opacity-40 transition-opacity duration-500 group-hover:opacity-100" />
+                  <p className="agency-row__desc text-sm leading-relaxed opacity-40 transition-opacity duration-500">
+                    {t(`${svc.key}.desc`)}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
       {/* ═══════════════ RÉALISATIONS ═══════════════ */}
-      <section className="relative p-6 md:p-12 lg:p-16 py-24">
+      {/* Asymmetric bento: the first concept leads at double width with its
+          title laid over the shot, the two others stack beside it. Three cells
+          over a 3x2 grid, so nothing is left empty. */}
+      <section className="relative p-6 md:p-12 lg:p-16 py-24 md:py-32">
         <div className="relative z-10 max-w-6xl mx-auto w-full">
-          <div className="text-center mb-16">
-            <SectionHead
-              kicker={t("agency.work.label")}
-              title={t("agency.work.title.1")}
-              accent={t("agency.work.title.2")}
-              kickerClassName="mb-4"
-              titleClassName="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]"
-            />
-            <p className="text-sm opacity-40 leading-relaxed max-w-xl mx-auto mt-6">
+          <div className="s-reveal s-up mb-12 grid grid-cols-1 items-end gap-6 md:mb-16 md:grid-cols-12">
+            <div className="md:col-span-7">
+              <SectionHead
+                kicker={t("agency.work.label")}
+                title={t("agency.work.title.1")}
+                accent={t("agency.work.title.2")}
+                kickerClassName="mb-4"
+                titleClassName="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.85]"
+              />
+            </div>
+            <p className="text-sm leading-relaxed opacity-40 md:col-span-5">
               {t("agency.work.note")}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {WORK.map((project) => (
-              <a
-                key={project.name}
-                href={project.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block border transition-colors duration-500"
-                style={{ borderColor: "var(--section-muted)" }}
-              >
-                <div className="relative overflow-hidden aspect-[16/9]">
-                  <img
-                    src={project.image}
-                    alt={t(`${project.key}.alt`)}
-                    loading="lazy"
-                    decoding="async"
-                    width={900}
-                    height={506}
-                    className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                  <span
-                    className="agency-font absolute top-3 left-3 text-[10px] font-bold uppercase tracking-[0.15em] px-2.5 py-1"
-                    style={{ backgroundColor: "var(--section-accent)", color: "var(--section-bg)" }}
-                  >
-                    {t("agency.work.concept")}
-                  </span>
-                </div>
-
-                <div className="p-6 md:p-8">
-                  <div className="flex items-start justify-between gap-4">
-                    <h3 className="agency-font text-xl md:text-2xl font-bold uppercase tracking-wide group-hover:translate-x-1 transition-transform duration-500">
-                      {project.name}
-                    </h3>
-                    <ArrowUpRight className="w-5 h-5 shrink-0 opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="grid grid-flow-dense grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2">
+            {WORK.map((project, i) => {
+              const lead = i === 0
+              return (
+                <a
+                  key={project.name}
+                  href={project.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`agency-work s-reveal s-up group flex flex-col ${lead ? "md:col-span-2 md:row-span-2" : ""}`}
+                  style={{ "--delay": `${i * 90}ms` } as React.CSSProperties}
+                >
+                  {/* 16/10 on the lead, 16/9 on the compact ones: the box stays
+                      close to the screenshot ratio, so nothing is cropped away. */}
+                  <div className={`relative overflow-hidden ${lead ? "aspect-[16/10]" : "aspect-[16/9]"}`}>
+                    <img
+                      src={project.image}
+                      alt={t(`${project.key}.alt`)}
+                      loading="lazy"
+                      decoding="async"
+                      width={900}
+                      height={506}
+                      className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
+                    />
                   </div>
-                  <p className="text-sm opacity-40 leading-relaxed mt-3">
-                    {t(`${project.key}.desc`)}
-                  </p>
-                </div>
-              </a>
-            ))}
+
+                  <div className={`flex flex-1 flex-col ${lead ? "p-6 md:p-8" : "p-5"}`}>
+                    <span
+                      className="agency-font text-[10px] font-bold uppercase tracking-[0.2em]"
+                      style={{ color: "var(--section-accent)" }}
+                    >
+                      {t("agency.work.concept")}
+                    </span>
+
+                    <div className="mt-2 flex items-center justify-between gap-4">
+                      <h3
+                        className={`agency-font font-bold uppercase tracking-wide transition-transform duration-500 group-hover:translate-x-1 ${
+                          lead ? "text-2xl md:text-4xl" : "text-xl"
+                        }`}
+                      >
+                        {project.name}
+                      </h3>
+                      <ArrowUpRight className="h-5 w-5 shrink-0 opacity-30 transition-opacity duration-500 group-hover:opacity-100" />
+                    </div>
+
+                    {/* The pitch only on the lead: the compact cards are read as
+                        a list, and three identical paragraphs is the grid we
+                        just left behind. */}
+                    {lead && (
+                      <p className="mt-3 max-w-md text-sm leading-relaxed opacity-40">
+                        {t(`${project.key}.desc`)}
+                      </p>
+                    )}
+                  </div>
+                </a>
+              )
+            })}
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 "use client"
 
-import { ArrowRight, ArrowUpRight, ExternalLink, ChevronDown, FileDown, Mail } from "lucide-react"
+import { ArrowRight, ArrowUpRight, ExternalLink, ChevronDown, FileDown, FlaskConical, Mail } from "lucide-react"
 import { useEffect, useRef, useState } from "react"
 import { useLang } from "@/lib/i18n"
 import { useScrollReveal } from "@/lib/use-scroll-reveal"
@@ -29,10 +29,13 @@ const PROJECTS = [
 /** General method, from brief to launch. */
 const METHOD_STEPS = ["0", "1", "2", "3", "4"] as const
 
+const LAB_URL = "https://design-lab-aladin-akkari.netlify.app/"
+
 const LINKS = [
   { label: "LinkedIn", href: "https://linkedin.com/in/aladin-akkari", icon: "Li" },
   { label: "GitHub", href: "https://github.com/aladinAK", icon: "Gh" },
   { label: "Behance", href: "https://www.behance.net/aladinakkari1", icon: "Be" },
+  { label: "design-lab", href: LAB_URL, icon: "DL" },
 ]
 
 const TOOLS = [
@@ -214,8 +217,29 @@ export function StudioSection() {
             <span>&</span>
             <span>{t("nav.role.3")}</span>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="ml-auto flex flex-col items-end gap-2 md:ml-0 md:flex-row md:items-center md:gap-3">
             <LangToggle />
+
+            {/* The lab lives on its own domain, so the pill says where it goes
+                and the tooltip says what it is before anyone leaves the page. */}
+            <span className="lab-wrap group relative">
+              <SectionLink
+                role="pill"
+                href={LAB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="tap-44 hover:text-[var(--section-accent)]"
+                aria-describedby="lab-tip"
+              >
+                <FlaskConical className="w-3 h-3" />
+                <span>{t("nav.lab")}</span>
+              </SectionLink>
+
+              <span id="lab-tip" role="tooltip" className="lab-tip">
+                {t("nav.lab.tip")}
+              </span>
+            </span>
+
             <SectionLink
               role="pill"
               href="/cv-aladin-akkari.pdf"
@@ -418,6 +442,9 @@ export function StudioSection() {
           <SectionButton type="button" role="outline" onClick={openDesignSystem} aria-haspopup="dialog">
             {t("method.cta.ds")} <ArrowRight className="w-4 h-4" />
           </SectionButton>
+          <SectionLink role="outline" href={LAB_URL} target="_blank" rel="noopener noreferrer">
+            {t("method.cta.lab")} <ArrowUpRight className="w-4 h-4" />
+          </SectionLink>
         </div>
       </section>
 

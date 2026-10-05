@@ -412,6 +412,7 @@
     width: 4rem;
     height: 4rem;
   }
+
 }
 
 /* ═══════ Book Section (Tech) ═══════ */
@@ -641,6 +642,43 @@
 
 @media (prefers-reduced-motion: reduce) {
   .section-btn--primary:hover { transform: none; }
+}
+
+/* ═══════ Tooltip — nav pills ═══════ */
+
+/* Shown on hover and on keyboard focus. Opacity rather than `visibility` or
+   `display`, so the text stays in the accessibility tree for the
+   aria-describedby that points at it. */
+.lab-tip {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 30;
+  width: max-content;
+  max-width: min(280px, calc(100vw - 3rem));
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--section-muted);
+  background-color: var(--section-bg);
+  color: var(--section-fg);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: left;
+  text-transform: none;
+  letter-spacing: normal;
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.lab-wrap:hover .lab-tip,
+.lab-wrap:focus-within .lab-tip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lab-tip { transition: none; }
 }
 
 /* ═══════ Scroll Reveal System ═══════ */
@@ -1122,6 +1160,74 @@
   }
 }
 
+/* ═══════ Mood — feature bubbles ═══════ */
+
+/* The section already speaks in bubbles, so the four content types are
+   bubbles too, each with its own size and drift. The copy stays outside the
+   circle: three lines squeezed into a disc is either unreadable or enormous. */
+.mood-feats {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.mood-feat {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  /* The zigzag on phones, the vertical stagger on wider screens. */
+  margin-left: var(--offset, 0);
+}
+
+.mood-feat-bubble {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  flex: 0 0 auto;
+  width: var(--size, 8.5rem);
+  height: var(--size, 8.5rem);
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--section-fg) 18%, transparent);
+  border-radius: 999px;
+  background-color: color-mix(in srgb, var(--section-fg) 8%, transparent);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 0 15px rgb(255 255 255 / 0.1);
+  text-align: center;
+  transition: box-shadow 500ms ease, border-color 500ms ease;
+}
+
+.mood-feat:hover .mood-feat-bubble {
+  border-color: color-mix(in srgb, var(--section-accent) 70%, transparent);
+  box-shadow: 0 0 25px rgb(255 255 255 / 0.25);
+}
+
+.mood-feat-desc {
+  max-width: 22rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  opacity: 0.4;
+}
+
+@media (min-width: 768px) {
+  .mood-feats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 2.5rem;
+    row-gap: 4rem;
+  }
+
+  .mood-feat {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.75rem;
+    margin-left: 0;
+    /* Same offsets, now vertical: the two columns stop lining up. */
+    margin-top: var(--offset, 0);
+  }
+}
+
 /* ═══════ Mood — ambient particles ═══════ */
 
 .mood-bg {
@@ -1159,24 +1265,54 @@
   }
 }
 
-/* ═══════ Agency — services grid ═══════ */
+/* ═══════ Agency — service rows ═══════ */
 
-/* The section's animated shapes and orbs run behind this grid. Filling the
-   cards read as a flat slab cut out of them, so the cards are glass: the
-   shapes carry through, softened. The 1px rules come from a box-shadow, not
-   from a grid gap over a coloured background — with translucent cards that
-   background would show through as a flat veil over the whole block. */
-.agency-svc-card {
-  background: color-mix(in srgb, var(--section-bg) 18%, transparent);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--section-fg) 8%, transparent);
-  transition: background-color 500ms ease;
+/* An editorial row list rather than a grid of identical boxes: the index is
+   stroked like the hero wordmark, and the whole row inverts on hover. Colours
+   live here, not in an inline style, so the hover actually fires (pitfall 1). */
+.agency-row {
+  border-top: 1px solid var(--section-muted);
+  transition: background-color 500ms ease, color 500ms ease;
 }
 
-/* The previous hover lived in a utility class that an inline `style`
-   attribute always overrode — it never actually fired. */
-.agency-svc-card:hover {
-  background: color-mix(in srgb, var(--section-bg) 34%, transparent);
+.agency-row:last-child {
+  border-bottom: 1px solid var(--section-muted);
+}
+
+.agency-row:hover,
+.agency-row:focus-within {
+  background-color: var(--section-accent);
+  color: var(--section-bg);
+}
+
+/* #0a0a0a on #ff4d00 is 5.95:1, so the copy stays readable once inverted. */
+.agency-row:hover .agency-row__desc,
+.agency-row:focus-within .agency-row__desc {
+  opacity: 1;
+}
+
+.agency-row__index {
+  -webkit-text-stroke: 1.5px var(--section-fg);
+  color: transparent;
+  transition: -webkit-text-stroke-color 500ms ease, color 500ms ease;
+}
+
+.agency-row:hover .agency-row__index,
+.agency-row:focus-within .agency-row__index {
+  -webkit-text-stroke-color: var(--section-bg);
+  color: var(--section-bg);
+}
+
+/* ═══════ Agency — work bento ═══════ */
+
+.agency-work {
+  border: 1px solid var(--section-muted);
+  transition: border-color 500ms ease;
+}
+
+.agency-work:hover,
+.agency-work:focus-visible {
+  border-color: var(--section-accent);
 }
 
 /* ═══════ Mobile — sticky card deck ═══════ */
