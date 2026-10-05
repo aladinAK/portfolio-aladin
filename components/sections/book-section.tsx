@@ -83,7 +83,7 @@ const TOMES = [
   { num: "I", key: "book.t1", href: "https://www.amazon.ca/Aladin-Akkari-ebook/dp/B0G3XJ9QHV/" },
   { num: "II", key: "book.t2", href: "https://www.amazon.ca/-/fr/Aladin-Akkari-ebook/dp/B0GCK5T59R" },
   { num: "III", key: "book.t3", href: "https://www.amazon.ca/-/fr/Aladin-Akkari-ebook/dp/B0GRC8PPGC" },
-  { num: "IV", key: "book.t4", href: null },
+  { num: "IV", key: "book.t4", href: "https://www.amazon.ca/-/fr/Aladin-Akkari-ebook/dp/B0HC7TWSB5" },
 ]
 
 interface InkSplat {
@@ -430,18 +430,14 @@ export function BookSection() {
                 </div>
                 <div className="flex items-center gap-4 md:pl-4">
                   <span className="book-font text-xs uppercase tracking-wider opacity-40">{t(`${tome.key}.status`)}</span>
-                  {tome.href ? (
-                    <a
-                      href={tome.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="section-btn section-btn--outline book-font text-sm tracking-wide opacity-50 group-hover:opacity-100"
-                    >
-                      Amazon <ArrowUpRight className="w-3 h-3" />
-                    </a>
-                  ) : (
-                    <span className="book-font text-sm opacity-35 italic px-4 py-2">{t("book.coming")}</span>
-                  )}
+                  <a
+                    href={tome.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="section-btn section-btn--outline book-font text-sm tracking-wide opacity-50 group-hover:opacity-100"
+                  >
+                    Amazon <ArrowUpRight className="w-3 h-3" />
+                  </a>
                 </div>
               </div>
             ))}

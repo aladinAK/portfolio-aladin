@@ -25,20 +25,20 @@ const FEATURES = [
 // Subtle drifting particles — the lifestyle section had no ambient layer.
 // Kept low-contrast so they read as atmosphere, never as content.
 const PARTICLES = [
-  { size: 4, top: "12%", left: "18%", o: 0.30, d: "0.2s", drift: "26s", dx: "18px", dy: "-22px" },
-  { size: 2, top: "24%", left: "72%", o: 0.22, d: "1.1s", drift: "31s", dx: "-14px", dy: "16px" },
-  { size: 6, top: "38%", left: "8%", o: 0.16, d: "0.6s", drift: "34s", dx: "12px", dy: "20px" },
-  { size: 3, top: "9%", left: "55%", o: 0.26, d: "1.6s", drift: "24s", dx: "-16px", dy: "-12px" },
-  { size: 5, top: "61%", left: "88%", o: 0.18, d: "0.9s", drift: "29s", dx: "-20px", dy: "-18px" },
-  { size: 2, top: "73%", left: "31%", o: 0.28, d: "2.1s", drift: "27s", dx: "15px", dy: "-14px" },
-  { size: 4, top: "47%", left: "64%", o: 0.14, d: "1.4s", drift: "36s", dx: "-11px", dy: "22px" },
-  { size: 3, top: "85%", left: "76%", o: 0.24, d: "0.4s", drift: "22s", dx: "17px", dy: "13px" },
-  { size: 2, top: "31%", left: "42%", o: 0.20, d: "2.4s", drift: "33s", dx: "-13px", dy: "-19px" },
-  { size: 5, top: "68%", left: "14%", o: 0.15, d: "1.8s", drift: "28s", dx: "19px", dy: "-16px" },
-  { size: 3, top: "54%", left: "95%", o: 0.21, d: "0.7s", drift: "30s", dx: "-18px", dy: "11px" },
-  { size: 2, top: "91%", left: "48%", o: 0.25, d: "1.3s", drift: "25s", dx: "14px", dy: "-21px" },
-  { size: 4, top: "17%", left: "86%", o: 0.17, d: "2.7s", drift: "35s", dx: "-15px", dy: "17px" },
-  { size: 3, top: "79%", left: "58%", o: 0.23, d: "0.3s", drift: "23s", dx: "16px", dy: "-13px" },
+  { size: 4, top: "12%", left: "18%", o: 0.42, d: "0.2s", drift: "26s", dx: "18px", dy: "-22px" },
+  { size: 2, top: "24%", left: "72%", o: 0.308, d: "1.1s", drift: "31s", dx: "-14px", dy: "16px" },
+  { size: 6, top: "38%", left: "8%", o: 0.224, d: "0.6s", drift: "34s", dx: "12px", dy: "20px" },
+  { size: 3, top: "9%", left: "55%", o: 0.364, d: "1.6s", drift: "24s", dx: "-16px", dy: "-12px" },
+  { size: 5, top: "61%", left: "88%", o: 0.252, d: "0.9s", drift: "29s", dx: "-20px", dy: "-18px" },
+  { size: 2, top: "73%", left: "31%", o: 0.392, d: "2.1s", drift: "27s", dx: "15px", dy: "-14px" },
+  { size: 4, top: "47%", left: "64%", o: 0.196, d: "1.4s", drift: "36s", dx: "-11px", dy: "22px" },
+  { size: 3, top: "85%", left: "76%", o: 0.336, d: "0.4s", drift: "22s", dx: "17px", dy: "13px" },
+  { size: 2, top: "31%", left: "42%", o: 0.28, d: "2.4s", drift: "33s", dx: "-13px", dy: "-19px" },
+  { size: 5, top: "68%", left: "14%", o: 0.21, d: "1.8s", drift: "28s", dx: "19px", dy: "-16px" },
+  { size: 3, top: "54%", left: "95%", o: 0.294, d: "0.7s", drift: "30s", dx: "-18px", dy: "11px" },
+  { size: 2, top: "91%", left: "48%", o: 0.35, d: "1.3s", drift: "25s", dx: "14px", dy: "-21px" },
+  { size: 4, top: "17%", left: "86%", o: 0.238, d: "2.7s", drift: "35s", dx: "-15px", dy: "17px" },
+  { size: 3, top: "79%", left: "58%", o: 0.322, d: "0.3s", drift: "23s", dx: "16px", dy: "-13px" },
 ]
 
 export function MoodSection() {

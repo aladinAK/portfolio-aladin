@@ -9,14 +9,14 @@ import { SectionButton } from "@/components/primitives/section-button"
 import { AgencyContactForm } from "@/components/agency-contact-form"
 
 const SHAPES = [
-  { type: "circle", w: 120, h: 120, top: "8%", left: "15%", o: 0.3, d: "0.2s", drift: "22s", dx: "20px", dy: "-15px", rot: "0deg" },
-  { type: "square", w: 60, h: 60, top: "20%", left: "80%", o: 0.2, d: "0.5s", drift: "18s", dx: "-12px", dy: "18px", rot: "15deg" },
-  { type: "ring", w: 200, h: 200, top: "60%", left: "10%", o: 0.15, d: "0.3s", drift: "25s", dx: "10px", dy: "-20px", rot: "0deg" },
-  { type: "diamond", w: 50, h: 50, top: "75%", left: "85%", o: 0.25, d: "0.6s", drift: "20s", dx: "-15px", dy: "10px", rot: "45deg" },
-  { type: "circle", w: 80, h: 80, top: "40%", left: "90%", o: 0.2, d: "0.4s", drift: "23s", dx: "18px", dy: "12px", rot: "0deg" },
-  { type: "ring", w: 140, h: 140, top: "15%", left: "50%", o: 0.12, d: "0.7s", drift: "28s", dx: "-8px", dy: "-14px", rot: "0deg" },
-  { type: "square", w: 40, h: 40, top: "85%", left: "40%", o: 0.22, d: "0.8s", drift: "19s", dx: "14px", dy: "-8px", rot: "30deg" },
-  { type: "diamond", w: 70, h: 70, top: "50%", left: "25%", o: 0.18, d: "1s", drift: "24s", dx: "-20px", dy: "16px", rot: "45deg" },
+  { type: "circle", w: 120, h: 120, top: "8%", left: "15%", o: 0.42, d: "0.2s", drift: "22s", dx: "20px", dy: "-15px", rot: "0deg" },
+  { type: "square", w: 60, h: 60, top: "20%", left: "80%", o: 0.28, d: "0.5s", drift: "18s", dx: "-12px", dy: "18px", rot: "15deg" },
+  { type: "ring", w: 200, h: 200, top: "60%", left: "10%", o: 0.21, d: "0.3s", drift: "25s", dx: "10px", dy: "-20px", rot: "0deg" },
+  { type: "diamond", w: 50, h: 50, top: "75%", left: "85%", o: 0.35, d: "0.6s", drift: "20s", dx: "-15px", dy: "10px", rot: "45deg" },
+  { type: "circle", w: 80, h: 80, top: "40%", left: "90%", o: 0.28, d: "0.4s", drift: "23s", dx: "18px", dy: "12px", rot: "0deg" },
+  { type: "ring", w: 140, h: 140, top: "15%", left: "50%", o: 0.168, d: "0.7s", drift: "28s", dx: "-8px", dy: "-14px", rot: "0deg" },
+  { type: "square", w: 40, h: 40, top: "85%", left: "40%", o: 0.308, d: "0.8s", drift: "19s", dx: "14px", dy: "-8px", rot: "30deg" },
+  { type: "diamond", w: 70, h: 70, top: "50%", left: "25%", o: 0.252, d: "1s", drift: "24s", dx: "-20px", dy: "16px", rot: "45deg" },
 ]
 
 const SERVICES = [

@@ -191,8 +191,8 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "I came to the web through graphic design — identities, posters, print — then trained in UX/UI and development in Montréal. For over five years I've designed interfaces and built them myself: whatever I draw in Figma, I know what it takes to build.",
   },
   "about.p2": {
-    fr: "Ce double regard évite les allers-retours : une maquette qui tient compte du code, un code qui respecte la maquette. Hors écran, j'écris — Les Chroniques de Jez, une saga de dark fantasy dont trois tomes sont disponibles sur Amazon.",
-    en: "Seeing both sides cuts out the back-and-forth: a mockup that accounts for the code, code that respects the mockup. Off screen, I write — Les Chroniques de Jez, a dark fantasy saga with three volumes out on Amazon.",
+    fr: "Ce double regard évite les allers-retours : une maquette qui tient compte du code, un code qui respecte la maquette. Hors écran, j'écris — Les Chroniques de Jez, une saga de dark fantasy en quatre tomes, aujourd'hui complète et disponible sur Amazon.",
+    en: "Seeing both sides cuts out the back-and-forth: a mockup that accounts for the code, code that respects the mockup. Off screen, I write — Les Chroniques de Jez, a four-volume dark fantasy saga, now complete and out on Amazon.",
   },
   "about.tools": { fr: "OUTILS QUOTIDIENS", en: "DAILY TOOLS" },
   "about.facts": { fr: "REPÈRES", en: "AT A GLANCE" },
@@ -390,8 +390,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "book.t3.title": { fr: "L'Épée des Mensonges Tissés", en: "The Sword of Woven Lies" },
   "book.t3.status": { fr: "Disponible", en: "Available" },
   "book.t4.title": { fr: "L'Épée des Héritages Brisés", en: "The Sword of Shattered Legacies" },
-  "book.t4.status": { fr: "En préparation", en: "In preparation" },
-  "book.coming": { fr: "Bientôt", en: "Soon" },
+  "book.t4.status": { fr: "Disponible", en: "Available" },
   "book.genre": { fr: "Dark Fantasy", en: "Dark Fantasy" },
   "book.tomes.count": { fr: "IV Tomes", en: "IV Volumes" },
   "book.tome": { fr: "Tome", en: "Volume" },
@@ -488,8 +487,8 @@ const dict: Record<string, Record<Lang, string>> = {
 
   // Book info
   "book.info.overview": {
-    fr: "Oui, c'est un vrai livre. Les Chroniques de Jez est une saga de dark fantasy en 4 tomes écrite par Moi :) — 3 tomes disponibles sur Amazon, le 4e en préparation. Une épopée de guerre, de secrets et de destins brisés.",
-    en: "Yes, it's a real book. The Chronicles of Jez is a 4-volume dark fantasy saga written by Me :) — 3 volumes available on Amazon, the 4th in preparation. An epic of war, secrets and shattered destiny.",
+    fr: "Oui, c'est un vrai livre. Les Chroniques de Jez est une saga de dark fantasy en 4 tomes écrite par Moi :) — la saga est complète, les 4 tomes sont disponibles sur Amazon. Une épopée de guerre, de secrets et de destins brisés.",
+    en: "Yes, it's a real book. The Chronicles of Jez is a 4-volume dark fantasy saga written by Me :) — the saga is complete, all 4 volumes are available on Amazon. An epic of war, secrets and shattered destiny.",
   },
   "book.info.stack": {
     fr: "Next.js 14 (App Router) · React 18 · TypeScript 5 · Tailwind CSS 3.4 · Framer Motion 11 · Lucide React · pnpm",

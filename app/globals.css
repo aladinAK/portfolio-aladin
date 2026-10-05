@@ -210,7 +210,7 @@
 /* Geometric shapes */
 .agency-shape {
   position: absolute;
-  border: 1.5px solid rgba(255, 77, 0, 0.35);
+  border: 1.5px solid rgba(255, 77, 0, 0.5);
   opacity: 0;
   animation: agencyShapeIn 1s ease-out forwards, agencyShapeDrift var(--drift-dur, 20s) ease-in-out infinite;
   animation-delay: var(--d, 0s), var(--d, 0s);
@@ -260,7 +260,7 @@
 .agency-orb-1 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(255, 77, 0, 0.15) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 77, 0, 0.21) 0%, transparent 70%);
   top: -10%;
   right: -10%;
   animation: agencyOrbDrift 20s ease-in-out infinite;
@@ -269,7 +269,7 @@
 .agency-orb-2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(255, 122, 61, 0.12) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 122, 61, 0.17) 0%, transparent 70%);
   bottom: -5%;
   left: -5%;
   animation: agencyOrbDrift 25s ease-in-out infinite reverse;
@@ -278,7 +278,7 @@
 .agency-orb-3 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(255, 77, 0, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(255, 77, 0, 0.14) 0%, transparent 70%);
   top: 20%;
   left: 50%;
   transform: translateX(-50%);

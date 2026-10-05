@@ -143,9 +143,21 @@ comparaison entre sections qui compte.
 | Section | Couche | Opacités | Écart au fond |
 |---|---|---|---|
 | `studio` | 4 lignes, 9 marques d'angle | 4 – 8 % | identité volontairement graphique, sans ambiance |
-| `agency` | 8 formes géométriques + 3 orbes | 12 – 30 % | 1,31 – 2,42:1 |
+| `agency` | 8 formes géométriques + 3 orbes | 17 – 42 % | 1,07 – 1,26:1 |
 | `book` | 6 taches, 4 coulures, 7 pinceaux | 10 – 17 % | 1,22 – 1,39:1 |
-| `mood` | 14 particules | 14 – 30 % | 1,39 – 2,41:1 |
+| `mood` | 14 particules | 20 – 42 % | 1,32 – 2,03:1 |
+
+> Montées le 05/10/2026 : `agency` et `mood` étaient trop discrètes. Les
+> opacités des formes et des particules ont été multipliées par 1,4, la bordure
+> des formes est passée de 35 % à 50 % d'alpha et les trois orbes de 10/12/15 %
+> à 14/17/21 %.
+
+**Comment l'écart est calculé** : couleur de la couche composée sur le fond de
+section avec son alpha effectif — pour `agency`, l'alpha de la **bordure**
+(0,5) multiplié par l'opacité de la forme — puis ratio WCAG contre le fond nu.
+Les valeurs d'`agency` étaient auparavant annoncées entre 1,31 et 2,42:1 : ce
+chiffre ne tenait pas compte de l'alpha de la bordure, les formes se situaient
+en réalité à 1,03 – 1,09:1, soit au niveau du seuil de perception.
 
 Le seuil où l'œil distingue un aplat d'un fond uni est autour de **1,05:1**. Les
 couches de `book` étaient à 2,5 – 6 % (1,05 – 1,12:1) : dix-sept éléments que
