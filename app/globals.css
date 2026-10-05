@@ -1268,39 +1268,40 @@
 /* ═══════ Agency — service rows ═══════ */
 
 /* An editorial row list rather than a grid of identical boxes: the index is
-   stroked like the hero wordmark, and the whole row inverts on hover. Colours
-   live here, not in an inline style, so the hover actually fires (pitfall 1). */
+   stroked like the hero wordmark. Colours live here, not in an inline style,
+   so the hover actually fires (pitfall 1). */
 .agency-row {
   border-top: 1px solid var(--section-muted);
-  transition: background-color 500ms ease, color 500ms ease;
+  transition: background-color 500ms ease, border-color 500ms ease;
 }
 
 .agency-row:last-child {
   border-bottom: 1px solid var(--section-muted);
 }
 
+/* Restrained hover: the rule picks up the accent and the row warms by a few
+   percent. Filling the whole row with orange read as a banner, not as a list. */
 .agency-row:hover,
 .agency-row:focus-within {
-  background-color: var(--section-accent);
-  color: var(--section-bg);
+  border-top-color: var(--section-accent);
+  background-color: color-mix(in srgb, var(--section-accent) 7%, transparent);
 }
 
-/* #0a0a0a on #ff4d00 is 5.95:1, so the copy stays readable once inverted. */
 .agency-row:hover .agency-row__desc,
 .agency-row:focus-within .agency-row__desc {
-  opacity: 1;
+  opacity: 0.65;
 }
 
 .agency-row__index {
   -webkit-text-stroke: 1.5px var(--section-fg);
   color: transparent;
-  transition: -webkit-text-stroke-color 500ms ease, color 500ms ease;
+  transition: -webkit-text-stroke-color 500ms ease;
 }
 
+/* #ff4d00 on #0a0a0a is 5.95:1. */
 .agency-row:hover .agency-row__index,
 .agency-row:focus-within .agency-row__index {
-  -webkit-text-stroke-color: var(--section-bg);
-  color: var(--section-bg);
+  -webkit-text-stroke-color: var(--section-accent);
 }
 
 /* ═══════ Agency — work bento ═══════ */

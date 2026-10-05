@@ -189,7 +189,7 @@ export function AgencySection() {
                 className="agency-row s-reveal s-up group grid grid-cols-1 items-baseline gap-x-8 gap-y-4 py-8 md:grid-cols-12 md:py-12"
                 style={{ "--delay": `${i * 90}ms` } as React.CSSProperties}
               >
-                <span className="agency-row__index agency-font col-span-2 text-5xl font-black leading-none md:text-7xl">
+                <span className="agency-row__index agency-font text-5xl font-black leading-none md:col-span-2 md:text-7xl">
                   0{i + 1}
                 </span>
 
