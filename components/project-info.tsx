@@ -5,14 +5,13 @@ import { useState } from "react"
 import { useLang } from "@/lib/i18n"
 
 /** Sections dotées d'un panneau d'infos projet. */
-export const PROJECT_SECTIONS = ["agency", "book", "mood"] as const
+export const PROJECT_SECTIONS = ["book", "mood"] as const
 export type ProjectSection = (typeof PROJECT_SECTIONS)[number]
 
 export const isProjectSection = (slug: string | undefined): slug is ProjectSection =>
   PROJECT_SECTIONS.includes(slug as ProjectSection)
 
 const PROJECT_LINKS: Record<ProjectSection, string> = {
-  agency: "https://fait-ton-site.vercel.app/",
   book: "https://aladin-akkari-book-store.vercel.app/",
   mood: "https://moodmovie-by-aladinakkari.vercel.app/",
 }

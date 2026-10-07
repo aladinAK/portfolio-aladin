@@ -1,9 +1,9 @@
-:HL["/_next/static/chunks/64da67285cc07111.css","style"]
+:HL["/_next/static/chunks/b5e91aeae57adf76.css","style"]
+:HL["/_next/static/media/0b7c5b993c1057ea-s.p.aec188af.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/0c795a286deabae8-s.p.b6c48e4e.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/2a65768255d6b625-s.p.d19752fb.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/media/40a3cd74afdfe30c-s.p.174c66f3.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/3cabd365f8c28a7b-s.p.bb3268b7.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/748b8b5301d2bdb2-s.p.9ce241d2.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/797e433ab948586e-s.p.29207c2f.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/caa3a2e1cccd8315-s.p.3b6cae6d.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["https://api.fontshare.com/v2/css?f[]=clash-display@400,700,900&display=swap","style"]
-0:{"buildId":"ba_akTr7XmMfkVuh_bJnT","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}
+0:{"buildId":"LoPjWRgRwFObEpPzQ9XEf","tree":{"name":"","paramType":null,"paramKey":"","hasRuntimePrefetch":false,"slots":{"children":{"name":"__PAGE__","paramType":null,"paramKey":"__PAGE__","hasRuntimePrefetch":false,"slots":null,"isRootLayout":false}},"isRootLayout":true},"staleTime":300}

@@ -18,12 +18,50 @@ const EXPERIENCE_META = [
 
 /**
  * `key` is the i18n prefix of the project's details, decoupled from its
- * position so the list can be reordered.
+ * position so the list can be reordered. `lines` is how many detail lines that
+ * key carries.
+ *
+ * The Freelance entry holds the concept sites instead of detail lines: they
+ * are self-initiated, so they sit together under one heading and are flagged
+ * as concepts — a recruiter who went looking for a client behind them would
+ * stop trusting the rest of the page.
  */
-const PROJECTS = [
-  { key: "proj.0", title: "GameRebellion", type: "Market Intelligence Platform", role: "Senior Frontend Developer", year: "2023", href: "https://gamerebellion.com/", stack: ["React", "Node.js", "Next", "Tailwind", "TypeScript"] },
-  { key: "proj.1", title: "PwnGames", type: "Website Redesign", role: "Designer & Frontend Developer", year: "2023", href: "https://pwngames.com", stack: ["React", "Tailwind", "TypeScript", "Figma"] },
-  { key: "proj.2", title: "GameAddik", type: "Landing Pages & Redesign", role: "Frontend Developer & Designer", year: "2020 — 2023", href: "https://gameaddik.com/", stack: ["HTML/CSS", "Vue", "JavaScript", "WordPress", "SEO"] },
+interface Concept {
+  name: string
+  key: string
+  href: string
+}
+
+interface Project {
+  key: string
+  title: string
+  type: string
+  role: string
+  year: string
+  href?: string
+  stack: string[]
+  lines: number
+  concepts?: Concept[]
+}
+
+const PROJECTS: Project[] = [
+  { key: "proj.0", title: "GameRebellion", type: "Market Intelligence Platform", role: "Senior Frontend Developer", year: "2023", href: "https://gamerebellion.com/", stack: ["React", "Node.js", "Next", "Tailwind", "TypeScript"], lines: 3 },
+  { key: "proj.1", title: "PwnGames", type: "Website Redesign", role: "Designer & Frontend Developer", year: "2023", href: "https://pwngames.com", stack: ["React", "Tailwind", "TypeScript", "Figma"], lines: 3 },
+  { key: "proj.2", title: "GameAddik", type: "Landing Pages & Redesign", role: "Frontend Developer & Designer", year: "2020 — 2023", href: "https://gameaddik.com/", stack: ["HTML/CSS", "Vue", "JavaScript", "WordPress", "SEO"], lines: 3 },
+  {
+    key: "proj.freelance",
+    title: "Freelance",
+    type: "Concept Sites",
+    role: "Designer & Frontend Developer",
+    year: "2020 — présent",
+    stack: [],
+    lines: 0,
+    concepts: [
+      { name: "Maison Délice", key: "proj.concept.0", href: "https://v0-patisserie-website-mtl.vercel.app/" },
+      { name: "Clinique Lumea", key: "proj.concept.1", href: "https://esthetic-service-website.vercel.app/" },
+      { name: "FORMA", key: "proj.concept.2", href: "https://forma-studio-tau.vercel.app/" },
+    ],
+  },
 ]
 
 /** General method, from brief to launch. */
@@ -75,7 +113,7 @@ function ProjectAccordion() {
     <div className="space-y-0">
       {PROJECTS.map((project, i) => {
         const isOpen = openIndex === i
-        const details = [t(`${project.key}.d0`), t(`${project.key}.d1`), t(`${project.key}.d2`)]
+        const details = Array.from({ length: project.lines }, (_, n) => t(`${project.key}.d${n}`))
         return (
           <div key={i} className="border-t" style={{ borderColor: "var(--section-muted)" }}>
             <button
@@ -105,6 +143,14 @@ function ProjectAccordion() {
               <div className="px-2 pt-2.5 pb-12 grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8">
                 <div className="md:col-span-1" />
                 <div className="md:col-span-5">
+                  {project.concepts && (
+                    <span
+                      className="text-[10px] font-mono uppercase tracking-wider block mb-2"
+                      style={{ color: "var(--section-accent)" }}
+                    >
+                      {t("proj.concept.tag")}
+                    </span>
+                  )}
                   <span className="text-xs font-mono opacity-30 block mb-1">{project.role}</span>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {project.stack.map((tech) => (
@@ -115,23 +161,46 @@ function ProjectAccordion() {
                   </div>
                 </div>
                 <div className="md:col-span-5">
-                  <ul className="space-y-3">
-                    {details.map((detail, j) => (
-                      <li key={j} className="text-sm opacity-50 leading-relaxed flex gap-3">
-                        <span className="shrink-0 w-1 h-1 rounded-full mt-2 bg-current opacity-30" />
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                  <a
-                    href={project.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="tap-44 inline-flex items-center gap-2 mt-6 text-sm font-medium transition-opacity hover:opacity-100 opacity-60"
-                    style={{ color: "var(--section-accent)" }}
-                  >
-                    {t("proj.cta")} <ArrowUpRight className="w-4 h-4" />
-                  </a>
+                  {project.concepts ? (
+                    <ul className="space-y-6">
+                      {project.concepts.map((concept) => (
+                        <li key={concept.name}>
+                          <a
+                            href={concept.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group/concept block"
+                          >
+                            <span className="flex items-center gap-2 text-base font-semibold transition-colors duration-300 group-hover/concept:text-[var(--section-accent)]">
+                              {concept.name}
+                              <ArrowUpRight className="h-4 w-4 opacity-50 transition-opacity duration-300 group-hover/concept:opacity-100" />
+                            </span>
+                            <span className="mt-1 block text-sm leading-relaxed opacity-50">{t(`${concept.key}.d0`)}</span>
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <>
+                      <ul className="space-y-3">
+                        {details.map((detail, j) => (
+                          <li key={j} className="text-sm opacity-50 leading-relaxed flex gap-3">
+                            <span className="shrink-0 w-1 h-1 rounded-full mt-2 bg-current opacity-30" />
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                      <a
+                        href={project.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="tap-44 inline-flex items-center gap-2 mt-6 text-sm font-medium transition-opacity hover:opacity-100 opacity-60"
+                        style={{ color: "var(--section-accent)" }}
+                      >
+                        {t("proj.cta")} <ArrowUpRight className="w-4 h-4" />
+                      </a>
+                    </>
+                  )}
                 </div>
                 <div className="md:col-span-1" />
               </div>

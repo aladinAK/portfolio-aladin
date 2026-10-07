@@ -168,7 +168,7 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
       {/* Floating Orb (replaces Section Name Indicator) */}
       <FloatingOrb currentSection={currentSection} />
 
-      {/* Project Info — only for agency, book, mood */}
+      {/* Project Info — only for book and mood */}
       {isProjectSection(sectionSlugs[currentSection]) && (
         <ProjectInfo key={sectionSlugs[currentSection]} section={sectionSlugs[currentSection]} />
       )}

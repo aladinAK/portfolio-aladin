@@ -103,6 +103,19 @@ const dict: Record<string, Record<Lang, string>> = {
   "proj.title.1": { fr: "Sur quoi", en: "What I've" },
   "proj.title.2": { fr: "j'ai travaillé", en: "worked on" },
   "proj.cta": { fr: "Voir le projet", en: "View project" },
+  "proj.concept.tag": { fr: "Freelance · concepts personnels", en: "Freelance · personal concepts" },
+  "proj.concept.0.d0": {
+    fr: "Pâtisserie artisanale montréalaise. Direction artistique éditoriale, carte des créations et tunnel de commande.",
+    en: "Montréal artisanal patisserie. Editorial art direction, creations menu and ordering flow.",
+  },
+  "proj.concept.1.d0": {
+    fr: "Clinique esthétique premium. Parcours de prise de rendez-vous, présentation des soins et témoignages.",
+    en: "Premium aesthetic clinic. Appointment flow, treatment showcase and testimonials.",
+  },
+  "proj.concept.2.d0": {
+    fr: "Studio de coiffure montréalaise. Typographie affirmée, galerie de réalisations et prise de rendez-vous.",
+    en: "Montréal hair studio. Bold typography, work gallery and appointment booking.",
+  },
   "proj.0.d0": {
     fr: "Plateforme d'intelligence de marché pour l'industrie du jeu — plus de 250 000 titres Steam et 60 000 jeux mobiles suivis : revenus, téléchargements, joueurs actifs, sentiment.",
     en: "Market intelligence platform for the games industry — over 250,000 Steam titles and 60,000 mobile games tracked: revenue, downloads, active players, sentiment.",
@@ -220,121 +233,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "contact.title.2": { fr: "en contact.", en: "connect." },
   "contact.available": { fr: "Ouvert aux postes et aux mandats", en: "Open to roles and contracts" },
 
-  // Agency (nature section)
-  "agency.label": { fr: "besoin d un site web ?", en: "Need a website?" },
-  "agency.tagline": {
-    fr: "Simple à comprendre. Facile à utiliser.",
-    en: "Easy to understand. Simple to use.",
-  },
-  "agency.title.1": { fr: "Des sites web", en: "Websites" },
-  "agency.title.2": { fr: "Simples", en: "Simple" },
-  "agency.title.3": { fr: "et", en: "&" },
-  "agency.title.4": { fr: "Pro", en: "Pro" },
-  "agency.desc": {
-    fr: "Sites vitrines, e-commerce et améliorations de sites existants pour entrepreneurs et commerces locaux. Sans jargon technique, sans stress.",
-    en: "Showcase websites, e-commerce and improvements for entrepreneurs and local businesses. No technical jargon, no stress.",
-  },
-  "agency.btn.1": { fr: "Discutons", en: "Let's Talk" },
 
-  // Agency services
-  // Agency — réalisations (concepts personnels, pas des commandes clients)
-  "agency.work.label": { fr: "Réalisations", en: "Selected work" },
-  "agency.work.title.1": { fr: "Des sites", en: "Sites that" },
-  "agency.work.title.2": { fr: "qui convertissent", en: "convert" },
-  "agency.work.note": {
-    fr: "Concepts personnels — des sites complets conçus et développés de bout en bout pour explorer des univers de marque. Cliquez pour les parcourir.",
-    en: "Self-initiated concepts — complete sites designed and built end to end to explore brand territories. Click through to browse them.",
-  },
-  "agency.work.concept": { fr: "Concept", en: "Concept" },
-  "agency.work.0.desc": {
-    fr: "Pâtisserie artisanale montréalaise. Direction artistique éditoriale, carte des créations et tunnel de commande.",
-    en: "Montréal artisanal patisserie. Editorial art direction, creations menu and ordering flow.",
-  },
-  "agency.work.0.alt": {
-    fr: "Page d'accueil du site Maison Délice, pâtisserie artisanale",
-    en: "Maison Délice homepage, an artisanal patisserie site",
-  },
-  "agency.work.1.desc": {
-    fr: "Clinique esthétique premium. Parcours de prise de rendez-vous, présentation des soins et témoignages.",
-    en: "Premium aesthetic clinic. Appointment flow, treatment showcase and testimonials.",
-  },
-  "agency.work.1.alt": {
-    fr: "Page d'accueil du site Clinique Lumea, centre esthétique",
-    en: "Clinique Lumea homepage, an aesthetic clinic site",
-  },
-  "agency.work.2.desc": {
-    fr: "Studio de coiffure montréalaise. Typographie affirmée, galerie de réalisations et prise de rendez-vous.",
-    en: "Montréal hair studio. Bold typography, work gallery and appointment booking.",
-  },
-  "agency.work.2.alt": {
-    fr: "Page d'accueil du site FORMA, studio de coiffure à Montréal",
-    en: "FORMA homepage, a Montréal hair studio site",
-  },
-  "agency.svc.label": { fr: "NOS SERVICES", en: "OUR SERVICES" },
-  "agency.svc.title.1": { fr: "Ce qu'on", en: "What we" },
-  "agency.svc.title.2": { fr: "fait.", en: "do." },
 
-  // Agency contact form
-  "agency.form.label": { fr: "CONTACT", en: "CONTACT" },
-  "agency.form.title.1": { fr: "Parlons de", en: "Let's talk" },
-  "agency.form.title.2": { fr: "votre projet.", en: "about your project." },
-  "agency.form.desc": { fr: "Expliquez-moi votre besoin et je vous répondrai rapidement.", en: "Tell me about your needs and I'll get back to you quickly." },
-  "agency.form.name": { fr: "Nom", en: "Name" },
-  "agency.form.name.ph": { fr: "Votre nom", en: "Your name" },
-  "agency.form.email": { fr: "Email", en: "Email" },
-  "agency.form.email.ph": { fr: "Votre adresse email", en: "Your email address" },
-  "agency.form.type": { fr: "Type de projet", en: "Project type" },
-  "agency.form.type.ph": { fr: "Sélectionnez un type", en: "Select a type" },
-  "agency.form.type.1": { fr: "Création de site web", en: "Website creation" },
-  "agency.form.type.2": { fr: "Refonte / améliorations", en: "Redesign / improvements" },
-  "agency.form.type.3": { fr: "E-commerce", en: "E-commerce" },
-  "agency.form.type.4": { fr: "Autre", en: "Other" },
-  "agency.form.budget": { fr: "Budget estimé", en: "Estimated budget" },
-  "agency.form.budget.ph": { fr: "Sélectionnez un budget", en: "Select a budget" },
-  "agency.form.budget.1": { fr: "Moins de 1 000 $", en: "Under $1,000" },
-  "agency.form.budget.2": { fr: "1 000 $ – 2 000 $", en: "$1,000 – $2,000" },
-  "agency.form.budget.3": { fr: "2 000 $ – 4 000 $", en: "$2,000 – $4,000" },
-  "agency.form.budget.4": { fr: "Plus de 4 000 $", en: "Over $4,000" },
-  "agency.form.budget.5": { fr: "À discuter", en: "To discuss" },
-  "agency.form.delay": { fr: "Délai souhaité", en: "Desired timeline" },
-  "agency.form.delay.ph": { fr: "Sélectionnez un délai", en: "Select a timeline" },
-  "agency.form.delay.1": { fr: "Dès que possible", en: "As soon as possible" },
-  "agency.form.delay.2": { fr: "Dans les prochaines semaines", en: "In the coming weeks" },
-  "agency.form.delay.3": { fr: "Pas pressé", en: "No rush" },
-  "agency.form.existing": { fr: "Site existant ?", en: "Existing site?" },
-  "agency.form.existing.ph": { fr: "Avez-vous déjà un site ?", en: "Do you already have a site?" },
-  "agency.form.yes": { fr: "Oui", en: "Yes" },
-  "agency.form.no": { fr: "Non", en: "No" },
-  "agency.form.existing.url": { fr: "Lien du site actuel", en: "Current site URL" },
-  "agency.form.existing.url.ph": { fr: "https://votresite.com", en: "https://yoursite.com" },
-  "agency.form.message": { fr: "Message", en: "Message" },
-  "agency.form.message.ph": { fr: "Décrivez votre projet, vos besoins ou vos questions.", en: "Describe your project, needs, or questions." },
-  "agency.form.submit": { fr: "Envoyer ma demande", en: "Send my request" },
-  "agency.form.sending": { fr: "Envoi en cours...", en: "Sending..." },
-  "agency.form.note": { fr: "Réponse rapide. Aucun engagement.", en: "Quick response. No commitment." },
-  "agency.form.optional": { fr: "optionnel", en: "optional" },
-  "agency.form.success": { fr: "Message envoyé !", en: "Message sent!" },
-  "agency.form.success.desc": { fr: "Merci pour votre message. Je vous répondrai dans les plus brefs délais.", en: "Thank you for your message. I'll get back to you as soon as possible." },
-  "agency.svc.0.title": { fr: "Création de site web", en: "Website Creation" },
-  "agency.svc.0.desc": {
-    fr: "Sites vitrines modernes et performants pour entrepreneurs et commerces locaux. Design sur mesure, responsive, optimisé SEO.",
-    en: "Modern and performant showcase websites for entrepreneurs and local businesses. Custom design, responsive, SEO optimized.",
-  },
-  "agency.svc.1.title": { fr: "Refonte de site", en: "Website Redesign" },
-  "agency.svc.1.desc": {
-    fr: "Votre site a besoin d'un coup de neuf ? On modernise le design, améliore la performance et l'expérience utilisateur.",
-    en: "Your website needs a refresh? We modernize the design, improve performance and user experience.",
-  },
-  "agency.svc.2.title": { fr: "E-commerce", en: "E-commerce" },
-  "agency.svc.2.desc": {
-    fr: "Boutiques en ligne clé en main — catalogue produit, paiement sécurisé, gestion des commandes. Prêt à vendre.",
-    en: "Turnkey online stores — product catalog, secure payment, order management. Ready to sell.",
-  },
-  "agency.svc.3.title": { fr: "Support web", en: "Web Support" },
-  "agency.svc.3.desc": {
-    fr: "Maintenance, mises à jour, corrections de bugs et améliorations continues. On s'occupe de tout pour que vous vous concentrez sur votre business.",
-    en: "Maintenance, updates, bug fixes and continuous improvements. We handle everything so you can focus on your business.",
-  },
 
   // Shared
   "scroll": { fr: "Défiler", en: "Scroll" },
@@ -471,19 +371,6 @@ const dict: Record<string, Record<Lang, string>> = {
   "info.visit": { fr: "Voir le projet", en: "Visit project" },
   "info.stack": { fr: "Stack", en: "Stack" },
 
-  // Agency info
-  "agency.info.overview": {
-    fr: "Oui, c'est une vraie agence. Vous pouvez faire votre demande de site web directement via le formulaire de contact. On crée des sites vitrines, e-commerce et des refontes pour entrepreneurs et commerces locaux — sans jargon, sans stress.",
-    en: "Yes, it's a real agency. You can submit your website request directly through the contact form. We build showcase websites, e-commerce and redesigns for entrepreneurs and local businesses — no jargon, no stress.",
-  },
-  "agency.info.stack": {
-    fr: "React 19 + TypeScript · Vite 7 · Tailwind CSS 4 · Three.js (@react-three/fiber + drei) · GSAP · Formspree · Vercel · pnpm · ESLint 9",
-    en: "React 19 + TypeScript · Vite 7 · Tailwind CSS 4 · Three.js (@react-three/fiber + drei) · GSAP · Formspree · Vercel · pnpm · ESLint 9",
-  },
-  "agency.info.stack.desc": {
-    fr: "Site vitrine one-page avec 3D, animations GSAP, curseur custom, snap scroll et formulaire de contact. Stack frontend moderne orientée rendu visuel.",
-    en: "One-page showcase site with 3D, GSAP animations, custom cursor, snap scroll and contact form. Modern frontend stack focused on visual rendering.",
-  },
 
   // Book info
   "book.info.overview": {
@@ -542,7 +429,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.hero.cta.1": { fr: "Parcourir le système", en: "Browse the system" },
   "ds.hero.cta.2": { fr: "Voir la méthode", en: "See the method" },
-  "ds.hero.stat": { fr: "4 thèmes · 7 familles · 6 pas d'espacement", en: "4 themes · 7 type families · 6 spacing steps" },
+  "ds.hero.stat": { fr: "3 thèmes · 6 familles · 6 pas d'espacement", en: "3 themes · 6 type families · 6 spacing steps" },
 
   // 01 Fondations
   "ds.f.kicker": { fr: "FONDATIONS", en: "FOUNDATIONS" },
@@ -553,17 +440,17 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "No color is hard-coded in a component. Every portfolio section exposes four roles — background, text, accent, muted — and everything else plugs into them. Click a swatch to copy its token.",
   },
   "ds.f.neutral": { fr: "Rampe neutre — OKLCH", en: "Neutral ramp — OKLCH" },
-  "ds.f.type": { fr: "Typographie — 7 familles", en: "Type — 7 families" },
+  "ds.f.type": { fr: "Typographie — 6 familles", en: "Type — 6 families" },
   "ds.f.extra": { fr: "Jetons complémentaires", en: "Additional tokens" },
   "ds.f.extra.alt": { fr: "Accent secondaire", en: "Secondary accent" },
   "ds.f.extra.alt.desc": {
-    fr: "Le roman porte un rubis en plus de son accent principal — étoiles, mention « vérifié », bouton d'achat. Les trois autres thèmes déclarent le rôle mais le font retomber sur --section-accent : le système gagne un rôle, pas une couleur inventée.",
-    en: "The novel carries a ruby alongside its main accent — stars, the “verified” note, the buy button. The other three themes declare the role but fall back to --section-accent: the system gains a role, not an invented colour.",
+    fr: "Le roman porte un rubis en plus de son accent principal — étoiles, mention « vérifié », bouton d'achat. Les deux autres thèmes déclarent le rôle mais le font retomber sur --section-accent : le système gagne un rôle, pas une couleur inventée.",
+    en: "The novel carries a ruby alongside its main accent — stars, the “verified” note, the buy button. The other two themes declare the role but fall back to --section-accent: the system gains a role, not an invented colour.",
   },
   "ds.f.extra.state": { fr: "États de validation", en: "Validation states" },
   "ds.f.extra.state.desc": {
-    fr: "Hors thème, volontairement : une erreur ne change pas de sens d'une section à l'autre. Le formulaire portait deux verts différents pour un même succès — il n'en reste qu'un.",
-    en: "Deliberately outside the themes: an error does not change meaning from one section to the next. The form carried two different greens for one success state — only one remains.",
+    fr: "Hors thème, volontairement : un état ne change pas de sens d'une section à l'autre. Le vert porte aujourd'hui le statut de disponibilité ; le rouge reste réservé aux erreurs de validation, sans formulaire sur le site pour l'instant.",
+    en: "Deliberately outside the themes: a state does not change meaning from one section to the next. Green currently carries the availability status; red stays reserved for validation errors, with no form on the site for now.",
   },
   "ds.f.extra.grad": { fr: "Dégradés MoodMovie", en: "MoodMovie gradients" },
   "ds.f.extra.grad.desc": {
@@ -574,7 +461,6 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.f.type.body": { fr: "Corps & interface", en: "Body & interface" },
   "ds.f.type.mono": { fr: "Données & numéros", en: "Data & numerals" },
   "ds.f.type.editorial": { fr: "Accent éditorial", en: "Editorial accent" },
-  "ds.f.type.agency": { fr: "Titres agence", en: "Agency headings" },
   "ds.f.type.book": { fr: "Machine à écrire", en: "Typewriter" },
   "ds.f.type.novel": { fr: "Le roman", en: "The novel" },
   "ds.f.type.mood": { fr: "Titres MoodMovie", en: "MoodMovie headings" },
@@ -590,8 +476,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.c.title.1": { fr: "Ma", en: "My" },
   "ds.c.title.2": { fr: "Bibliothèque", en: "Library" },
   "ds.c.lead": {
-    fr: "Treize composants portent le portfolio et cette documentation. Quatre primitives partagées — libellé, titre, et trois rôles de bouton — habillent les quatre sections ; celles présentées ci-dessous (bouton, étiquette, champ, carte) sont propres au panneau. Unifier les deux familles reste le chantier ouvert.",
-    en: "Thirteen components carry the portfolio and this documentation. Four shared primitives — label, heading, and three button roles — dress all four sections; the ones shown below (button, tag, field, card) belong to the panel. Unifying both families is the open piece of work.",
+    fr: "Douze composants portent le portfolio et cette documentation. Quatre primitives partagées — libellé, titre, et trois rôles de bouton — habillent les trois sections ; celles présentées ci-dessous (bouton, étiquette, champ, carte) sont propres au panneau. Unifier les deux familles reste le chantier ouvert.",
+    en: "Twelve components carry the portfolio and this documentation. Four shared primitives — label, heading, and three button roles — dress all three sections; the ones shown below (button, tag, field, card) belong to the panel. Unifying both families is the open piece of work.",
   },
   "ds.c.actions": { fr: "Actions", en: "Actions" },
   "ds.c.actions.desc": {
@@ -618,29 +504,27 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.c.card.meta": { fr: "Application · 2025", en: "Application · 2025" },
   "ds.c.live": { fr: "Les primitives du portfolio, en direct", en: "The portfolio's primitives, live" },
   "ds.c.live.desc": {
-    fr: "Ce bloc n'est pas une maquette : ce sont les composants que les quatre sections utilisent vraiment. Le sélecteur part du thème depuis lequel vous avez ouvert ce panneau — changez-en et regardez la police, le rayon et le traitement de l'accent basculer. Chaque section garde son identité ; c'est le rôle qui ne bouge pas.",
-    en: "This block is not a mock-up: these are the components the four sections actually use. The picker starts on the theme you opened this panel from — switch it and watch the family, the radius and the accent treatment change. Each section keeps its identity; it is the role that stays put.",
+    fr: "Ce bloc n'est pas une maquette : ce sont les composants que les trois sections utilisent vraiment. Le sélecteur part du thème depuis lequel vous avez ouvert ce panneau — changez-en et regardez la police, le rayon et le traitement de l'accent basculer. Chaque section garde son identité ; c'est le rôle qui ne bouge pas.",
+    en: "This block is not a mock-up: these are the components the three sections actually use. The picker starts on the theme you opened this panel from — switch it and watch the family, the radius and the accent treatment change. Each section keeps its identity; it is the role that stays put.",
   },
   "ds.c.live.kicker": { fr: "Libellé de section", en: "Section label" },
   "ds.c.live.picker": { fr: "Prévisualiser dans le thème", en: "Preview in theme" },
   "ds.c.live.title": { fr: "Un rôle,", en: "One role," },
-  "ds.c.live.accent": { fr: "quatre identités.", en: "four identities." },
+  "ds.c.live.accent": { fr: "trois identités.", en: "three identities." },
   "ds.c.inventory": { fr: "Inventaire des composants", en: "Component inventory" },
   "ds.c.th.component": { fr: "Composant", en: "Component" },
   "ds.c.th.variants": { fr: "Variantes", en: "Variants" },
   "ds.c.th.usage": { fr: "Usage", en: "Usage" },
   "ds.c.th.status": { fr: "Statut", en: "Status" },
   "ds.status.stable": { fr: "Stable", en: "Stable" },
-  "ds.status.review": { fr: "Révision", en: "Review" },
   "ds.status.beta": { fr: "Beta", en: "Beta" },
   "ds.inv.usage.global": { fr: "Toutes les pages", en: "Every page" },
   "ds.inv.usage.shell": { fr: "Coquille du site", en: "Site shell" },
   "ds.inv.usage.nav": { fr: "Navigation", en: "Navigation" },
   "ds.inv.usage.projects": { fr: "Sections projets", en: "Project sections" },
-  "ds.inv.usage.contact": { fr: "Contact", en: "Contact" },
   "ds.inv.usage.docs": { fr: "Documentation", en: "Documentation" },
   "ds.inv.usage.book": { fr: "Section livre", en: "Book section" },
-  "ds.inv.usage.sections": { fr: "Les quatre sections", en: "All four sections" },
+  "ds.inv.usage.sections": { fr: "Les trois sections", en: "All three sections" },
 
   // 03 États & accessibilité
   "ds.s.kicker": { fr: "ÉTATS & A11Y", en: "STATES & A11Y" },
@@ -674,8 +558,8 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.m.tokens": { fr: "Jetons de mouvement", en: "Motion tokens" },
   "ds.m.note": {
-    fr: "Ces trois jetons cadencent le panneau. Les quatre sections du portfolio s'appuient encore sur les durées utilitaires de Tailwind — de 200 à 700 ms, le plus souvent 500 — avec la même courbe de sortie. Unifier les deux échelles est le prochain chantier.",
-    en: "These three tokens pace this panel. The four portfolio sections still rely on Tailwind's utility durations — 200 to 700 ms, most often 500 — with the same easing curve. Unifying both scales is the next piece of work.",
+    fr: "Ces trois jetons cadencent le panneau. Les trois sections du portfolio s'appuient encore sur les durées utilitaires de Tailwind — de 200 à 700 ms, le plus souvent 500 — avec la même courbe de sortie. Unifier les deux échelles est le prochain chantier.",
+    en: "These three tokens pace this panel. The three portfolio sections still rely on Tailwind's utility durations — 200 to 700 ms, most often 500 — with the same easing curve. Unifying both scales is the next piece of work.",
   },
   "ds.m.fast": { fr: "retour d'état", en: "state feedback" },
   "ds.m.base": { fr: "entrée au scroll", en: "scroll reveal" },
@@ -738,11 +622,11 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.p.flow": { fr: "Flow — prise de contact", en: "Flow — getting in touch" },
   "ds.p.flow.1": { fr: "Grille projets", en: "Project grid" },
   "ds.p.flow.2": { fr: "Étude de cas", en: "Case study" },
-  "ds.p.flow.3": { fr: "Formulaire (3 champs)", en: "Form (3 fields)" },
+  "ds.p.flow.3": { fr: "Courriel ou LinkedIn", en: "Email or LinkedIn" },
   "ds.p.flow.4": { fr: "Confirmation + délai de réponse", en: "Confirmation + response time" },
   "ds.p.flow.desc": {
-    fr: "Quatre écrans, aucune impasse : chaque état d'erreur renvoie à l'étape précédente sans perdre la saisie.",
-    en: "Four screens, no dead ends: every error state returns to the previous step without losing input.",
+    fr: "Quatre étapes, aucune impasse : chaque projet mène à un site en ligne, et le contact se fait sans formulaire, par courriel ou LinkedIn.",
+    en: "Four steps, no dead ends: every project leads to a live site, and contact needs no form — email or LinkedIn.",
   },
 
   // 07 Gouvernance
@@ -759,11 +643,15 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.g.do.3": { fr: "Documenter une variante au moment où elle est créée, pas après.", en: "Document a variant the moment it's created, not later." },
   "ds.g.do.4": { fr: "Vérifier le contraste au calcul, pas à l'œil.", en: "Verify contrast by computation, not by eye." },
   "ds.g.dont": { fr: "À éviter", en: "Avoid" },
-  "ds.g.dont.1": { fr: "Une cinquième identité typographique de section.", en: "A fifth per-section type identity." },
+  "ds.g.dont.1": { fr: "Une quatrième identité typographique de section.", en: "A fourth per-section type identity." },
   "ds.g.dont.2": { fr: "Une animation sans garde prefers-reduced-motion.", en: "An animation with no prefers-reduced-motion guard." },
-  "ds.g.dont.3": { fr: "Un accent hors des quatre thèmes de section.", en: "An accent outside the four section themes." },
+  "ds.g.dont.3": { fr: "Un accent hors des trois thèmes de section.", en: "An accent outside the three section themes." },
   "ds.g.dont.4": { fr: "Une couleur porteuse de sens sans doublon textuel.", en: "Meaning carried by color with no text equivalent." },
   "ds.g.versions": { fr: "Cycle de version", en: "Release cycle" },
+  "ds.g.v15": {
+    fr: "Trois thèmes : la section agence est retirée, ses concepts rejoignent les projets du studio et le formulaire de contact disparaît. Les titres du livre passent en IM Fell English, plus lisible que la fraktur.",
+    en: "Three themes: the agency section is retired, its concepts move into the studio projects and the contact form goes away. The book's headings move to IM Fell English, easier to read than the fraktur.",
+  },
   "ds.g.v14": {
     fr: "Coque de panneau plein écran extraite en composant réutilisable, accent qui suit la section d'ouverture, section Méthode dans le studio.",
     en: "Full-screen panel shell extracted into a reusable component, accent that follows the opening section, Method section in the studio.",

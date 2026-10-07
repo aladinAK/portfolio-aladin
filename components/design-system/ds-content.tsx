@@ -31,15 +31,6 @@ const THEMES = [
     ],
   },
   {
-    name: "nature",
-    swatches: [
-      ["--section-bg", "#0a0a0a"],
-      ["--section-fg", "#f5f0e8"],
-      ["--section-accent", "#ff4d00"],
-      ["--section-muted", "#2d2d2d"],
-    ],
-  },
-  {
     name: "tech",
     swatches: [
       ["--section-bg", "#e3dacb"],
@@ -64,7 +55,6 @@ const NEUTRAL_STEPS = [100, 200, 300, 400, 500, 600, 700, 800, 900] as const
 /** Sections du portfolio, avec la classe de thème qui porte leurs jetons. */
 const PREVIEW_THEMES = [
   { label: "Studio", cls: "section-studio" },
-  { label: "Agency", cls: "section-nature" },
   { label: "Book", cls: "section-tech" },
   { label: "Mood", cls: "section-lifestyle" },
 ] as const
@@ -73,7 +63,6 @@ const PREVIEW_THEMES = [
 const CONTRASTS = [
   { pair: "#fafafa / #0a0a0a", ratio: "18.97:1", grade: "AAA" },
   { pair: "#c8ff00 / #0a0a0a", ratio: "16.74:1", grade: "AAA" },
-  { pair: "#ff4d00 / #0a0a0a", ratio: "5.95:1", grade: "AA" },
   { pair: "#818cf8 / #03094A", ratio: "6.17:1", grade: "AA" },
   { pair: "#1a1a1a / #e3dacb", ratio: "12.56:1", grade: "AAA" },
   { pair: "#c41e3a / #e3dacb", ratio: "4.22:1", grade: "AA large" },
@@ -85,7 +74,6 @@ const INVENTORY = [
   { name: "HorizontalScrollLayout", variants: "1", usage: "ds.inv.usage.shell", status: "stable" },
   { name: "FloatingOrb", variants: "4", usage: "ds.inv.usage.nav", status: "stable" },
   { name: "ProjectInfo", variants: "3", usage: "ds.inv.usage.projects", status: "stable" },
-  { name: "AgencyContactForm", variants: "1", usage: "ds.inv.usage.contact", status: "review" },
   { name: "ManuscriptCanvas", variants: "1", usage: "ds.inv.usage.book", status: "stable" },
   { name: "SectionButton", variants: "3", usage: "ds.inv.usage.sections", status: "stable" },
   { name: "SectionHead", variants: "2", usage: "ds.inv.usage.sections", status: "stable" },
@@ -97,7 +85,7 @@ const INVENTORY = [
 ] as const
 
 const MARQUEE_WORDS = [
-  "Tokens", "OKLCH", "Geist", "Playfair", "Clash Display", "Spacing",
+  "Tokens", "OKLCH", "Geist", "Playfair", "Syne", "Spacing",
   "Components", "States", "A11y", "Motion", "Responsive", "Governance",
 ]
 
@@ -262,7 +250,6 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
                 { label: "--font-geist", cls: "font-sans text-xl", sample: t("ds.f.type.body") },
                 { label: "--font-geist-mono", cls: "font-mono text-base", sample: t("ds.f.type.mono") },
                 { label: "--font-playfair", cls: "font-[family-name:var(--font-playfair)] italic text-xl", sample: t("ds.f.type.editorial") },
-                { label: "Clash Display", cls: "agency-font text-xl", sample: t("ds.f.type.agency") },
                 { label: "--font-typewriter", cls: "book-font text-base", sample: t("ds.f.type.book") },
                 { label: "--font-fantasy", cls: "book-title-font text-xl", sample: t("ds.f.type.novel") },
                 { label: "--font-syne", cls: "mood-font text-xl", sample: t("ds.f.type.mood") },
@@ -460,7 +447,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
                       <td className="text-[var(--ds-fg-muted)]">{row.variants}</td>
                       <td className="text-[var(--ds-fg-muted)]">{t(row.usage)}</td>
                       <td>
-                        <span className={`ds-tag ${row.status === "stable" ? "ds-tag--accent" : row.status === "review" ? "ds-tag--soft" : "ds-tag--outline"}`}>
+                        <span className={`ds-tag ${row.status === "stable" ? "ds-tag--accent" : "ds-tag--outline"}`}>
                           {t(`ds.status.${row.status}`)}
                         </span>
                       </td>
@@ -637,7 +624,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
                 </span>
               </div>
               <div className="mt-3 grid gap-2.5" style={{ gridTemplateColumns: gridCols }}>
-                {["#c8ff00", "#ff4d00", "#818cf8", "#e3dacb"].map((color) => (
+                {["#c8ff00", "#c41e3a", "#818cf8", "#e3dacb"].map((color) => (
                   <div key={color} className="h-14 rounded-[var(--ds-radius-sm)]" style={{ background: color, opacity: 0.85 }} />
                 ))}
               </div>
@@ -741,7 +728,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
 
           <Panel title={t("ds.g.versions")} step={2}>
             <div className="grid gap-3 text-[13px] leading-relaxed">
-              {["1.4", "1.3", "1.2", "1.1", "1.0"].map((version) => (
+              {["1.5", "1.4", "1.3", "1.2", "1.1", "1.0"].map((version) => (
                 <div key={version} className="flex gap-2.5">
                   <span className="ds-tag ds-tag--outline shrink-0">v{version}</span>
                   <span className="text-[var(--ds-fg-muted)]">{t(`ds.g.v${version.replace(".", "")}`)}</span>

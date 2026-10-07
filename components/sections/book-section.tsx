@@ -319,19 +319,27 @@ export function BookSection() {
         {/* Center */}
         <div className="relative z-10 flex-1 flex items-center justify-center text-center">
           <div className="max-w-3xl">
-            {/* Main title — like the book store */}
-            <h2 className="book-title-font text-center font-black leading-[0.85] mb-20" style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}>
-              {t("book.main.1")}<br />
-              <span className="italic book-ruby-glow">{t("book.main.2")}</span><br />
+            {/* Two lines, like the mood hero. IM Fell English ships a single
+                weight: no font-black, or the browser fakes a bold. */}
+            <h2 className="book-title-font text-center leading-[0.9] mb-4" style={{ fontSize: "clamp(2.5rem, 7vw, 6.5rem)" }}>
+              <span className="whitespace-nowrap">
+                {t("book.main.1")} <span className="italic book-ruby-glow">{t("book.main.2")}</span>
+              </span>
+              <br />
               {t("book.main.3")}
             </h2>
+
+            {/* Same rhythm as the other heroes: title, one short line, CTA. */}
+            <p className="book-font mx-auto mt-6 max-w-md text-sm leading-relaxed opacity-60 md:text-base">
+              {t("book.subtitle")}
+            </p>
 
             {/* CTA */}
             <a
               href={AMAZON_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="section-btn section-btn--primary book-font text-sm tracking-[0.15em] uppercase"
+              className="section-btn section-btn--primary book-font mt-8 text-sm tracking-[0.15em] uppercase"
             >
               {t("book.cta")}
               <ArrowUpRight className="w-4 h-4" />

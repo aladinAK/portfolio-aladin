@@ -9,10 +9,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Le portfolio est une page unique à défilement horizontal : chaque section
   // est une ancre, pas une route. On les déclare pour que les liens partagés
-  // vers #agency ou #book soient compris comme des points d'entrée.
+  // vers #book ou #mood soient compris comme des points d'entrée.
   return [
     { url: BASE_URL, lastModified, changeFrequency: 'monthly', priority: 1 },
-    { url: `${BASE_URL}/#agency`, lastModified, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${BASE_URL}/#book`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
     { url: `${BASE_URL}/#mood`, lastModified, changeFrequency: 'monthly', priority: 0.6 },
   ]

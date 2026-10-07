@@ -33,17 +33,6 @@
   --section-btn-radius: 0px;
 }
 
-.section-nature {
-  --section-bg: #0a0a0a;
-  --section-fg: #f5f0e8;
-  --section-accent: #ff4d00;
-  --section-muted: #2d2d2d;
-  --section-accent-alt: var(--section-accent);
-  --section-accent-alt-fg: var(--section-bg);
-  --section-font-kicker: 'Clash Display', sans-serif;
-  --section-btn-radius: 0px;
-}
-
 .section-tech {
   --section-bg: #e3dacb;
   --section-fg: #1a1a1a;
@@ -192,112 +181,9 @@
   to { transform: translateX(-33.333%); }
 }
 
-/* ═══════ Agency Section (Nature) ═══════ */
-
-.agency-font {
-  font-family: 'Clash Display', sans-serif;
-}
-
-
-.agency-bg {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-  z-index: 0;
-}
-
-/* Geometric shapes */
-.agency-shape {
-  position: absolute;
-  border: 1.5px solid rgba(255, 77, 0, 0.5);
-  opacity: 0;
-  animation: agencyShapeIn 1s ease-out forwards, agencyShapeDrift var(--drift-dur, 20s) ease-in-out infinite;
-  animation-delay: var(--d, 0s), var(--d, 0s);
-}
-
-.agency-shape--circle {
-  border-radius: 50%;
-}
-
-.agency-shape--square {
-  border-radius: 4px;
-}
-
-.agency-shape--ring {
-  border-radius: 50%;
-  border-width: 1px;
-  background: transparent !important;
-}
-
-.agency-shape--diamond {
-  border-radius: 2px;
-  transform: rotate(45deg);
-}
-
-@keyframes agencyShapeIn {
-  from { opacity: 0; transform: scale(0.7) rotate(var(--rot, 0deg)); }
-  to { opacity: var(--o, 0.12); transform: scale(1) rotate(var(--rot, 0deg)); }
-}
-
-@keyframes agencyShapeDrift {
-  0%, 100% { translate: 0 0; }
-  25% { translate: var(--dx, 15px) var(--dy, -10px); }
-  50% { translate: calc(var(--dx, 15px) * -0.5) calc(var(--dy, -10px) * 1.5); }
-  75% { translate: calc(var(--dx, 15px) * 0.8) calc(var(--dy, -10px) * -0.7); }
-}
-
-/* Gradient orbs */
-.agency-orb {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(100px);
-  z-index: 0;
-  will-change: transform;
-}
-
-.agency-orb-1 {
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(255, 77, 0, 0.21) 0%, transparent 70%);
-  top: -10%;
-  right: -10%;
-  animation: agencyOrbDrift 20s ease-in-out infinite;
-}
-
-.agency-orb-2 {
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(255, 122, 61, 0.17) 0%, transparent 70%);
-  bottom: -5%;
-  left: -5%;
-  animation: agencyOrbDrift 25s ease-in-out infinite reverse;
-}
-
-.agency-orb-3 {
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(255, 77, 0, 0.14) 0%, transparent 70%);
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  animation: agencyOrbDrift 18s ease-in-out infinite;
-}
-
-@keyframes agencyOrbDrift {
-  0%, 100% { transform: translate(0, 0); }
-  33% { transform: translate(30px, -20px); }
-  66% { transform: translate(-20px, 15px); }
-}
-
 /* Reduce motion for users who prefer it + lighten mobile GPU load */
 @media (prefers-reduced-motion: reduce) {
   /* Looping ambience — nothing of substance is lost by stopping it. */
-  .agency-shape,
-  .agency-orb-1,
-  .agency-orb-2,
-  .agency-orb-3,
   .floating-orb-float,
   .floating-orb-sphere,
   .floating-orb-glow,
@@ -374,15 +260,7 @@
   background-clip: text;
 }
 
-/* Validation message shared by every form field. */
-.form-error {
-  color: var(--state-error);
-  font-size: 0.75rem;
-  line-height: 1rem;
-  margin-top: 0.25rem;
-}
-
-/* MoodMovie's hero is the busiest of the four: a two-line title, a description,
+/* MoodMovie's hero is the busiest of the three: a two-line title, a description,
    a call to action and six mood bubbles. The top band is taken by the orb and
    the design system badge (down to 107px), so the content has to start below
    it — but under 720px of height, reserving that band pushes the bottom of the
@@ -422,7 +300,7 @@
 }
 
 .book-title-font {
-  font-family: var(--font-fantasy), 'UnifrakturMaguntia', serif;
+  font-family: var(--font-fantasy), 'IM Fell English', serif;
 }
 
 /* Paper texture background */
@@ -492,7 +370,7 @@
 /* ═══════ Shared portfolio primitives ═══════
    The panel documents .ds-* for its own pages; these are their portfolio
    counterparts. Structure lives here, personality comes from the section
-   theme — so one component survives all four identities.
+   theme — so one component survives all three identities.
    No font-weight on the kicker: Special Elite ships a single weight, and
    asking for 500 would make the browser synthesise a fake bold. */
 
@@ -523,10 +401,7 @@
   font-style: italic;
 }
 
-.section-nature .section-title {
-  font-family: 'Clash Display', sans-serif;
-  text-transform: uppercase;
-}
+
 
 .section-tech .section-title {
   font-family: var(--font-typewriter), 'Special Elite', monospace;
@@ -723,59 +598,6 @@
 .vertical-section {
   scrollbar-color: var(--section-accent, #888) transparent;
   scrollbar-width: thin;
-}
-
-/* ═══════ Agency Contact Form ═══════ */
-
-.agency-form-label {
-  display: block;
-  font-family: 'Clash Display', sans-serif;
-  font-size: 0.7rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 8px;
-  color: var(--section-fg);
-  opacity: 0.6;
-}
-
-.agency-form-input,
-.agency-form-select {
-  width: 100%;
-  padding: 14px 18px;
-  background: rgba(0, 0, 0, 0.4);
-  border: 1.5px solid rgba(255, 255, 255, 0.1);
-  /* Angles droits : la section aligne cartes, boutons et champs sur la même
-     géométrie que la grille de services. */
-  border-radius: 0;
-  color: var(--section-fg);
-  font-size: 0.9rem;
-  outline: none;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.agency-form-input::placeholder,
-.agency-form-select option[value=""] {
-  color: rgba(245, 240, 232, 0.3);
-}
-
-.agency-form-input:focus,
-.agency-form-select:focus {
-  border-color: var(--section-accent);
-  box-shadow: 0 0 20px rgba(255, 77, 0, 0.15);
-}
-
-.agency-form-select {
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 16px center;
-}
-
-.agency-form-select option {
-  background: #1a1a1a;
-  color: #f5f0e8;
 }
 
 /* Project info pulse */
@@ -1265,57 +1087,6 @@
   }
 }
 
-/* ═══════ Agency — service rows ═══════ */
-
-/* An editorial row list rather than a grid of identical boxes: the index is
-   stroked like the hero wordmark. Colours live here, not in an inline style,
-   so the hover actually fires (pitfall 1). */
-.agency-row {
-  border-top: 1px solid var(--section-muted);
-  transition: background-color 500ms ease, border-color 500ms ease;
-}
-
-.agency-row:last-child {
-  border-bottom: 1px solid var(--section-muted);
-}
-
-/* Restrained hover: the rule picks up the accent and the row warms by a few
-   percent. Filling the whole row with orange read as a banner, not as a list. */
-.agency-row:hover,
-.agency-row:focus-within {
-  border-top-color: var(--section-accent);
-  background-color: color-mix(in srgb, var(--section-accent) 7%, transparent);
-}
-
-.agency-row:hover .agency-row__desc,
-.agency-row:focus-within .agency-row__desc {
-  opacity: 0.65;
-}
-
-.agency-row__index {
-  -webkit-text-stroke: 1.5px var(--section-fg);
-  color: transparent;
-  transition: -webkit-text-stroke-color 500ms ease;
-}
-
-/* #ff4d00 on #0a0a0a is 5.95:1. */
-.agency-row:hover .agency-row__index,
-.agency-row:focus-within .agency-row__index {
-  -webkit-text-stroke-color: var(--section-accent);
-}
-
-/* ═══════ Agency — work bento ═══════ */
-
-.agency-work {
-  border: 1px solid var(--section-muted);
-  transition: border-color 500ms ease;
-}
-
-.agency-work:hover,
-.agency-work:focus-visible {
-  border-color: var(--section-accent);
-}
-
 /* ═══════ Mobile — sticky card deck ═══════ */
 
 /* On a phone, four or five cards in a row make for a very long scroll. Each
@@ -1425,8 +1196,8 @@
   .ds-badge-float { animation: none !important; }
 }
 
-/* Same defect as the agency grid: an inline `style` background always beat the
-   hover utility class, so the hover never fired. */
+/* An inline `style` background always beat the hover utility class, so the
+   hover never fired. The background lives in the class instead. */
 .studio-svc-card {
   background: var(--section-bg);
   transition: background-color 500ms ease;

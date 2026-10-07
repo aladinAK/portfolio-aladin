@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono, Playfair_Display, Special_Elite, UnifrakturMaguntia, Syne } from 'next/font/google'
+import { Geist, Geist_Mono, Playfair_Display, Special_Elite, IM_Fell_English, Syne } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { I18nProvider } from '@/lib/i18n'
 import { CustomCursor } from '@/components/custom-cursor'
@@ -10,7 +10,7 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist" });
 const geistMono = Geist_Mono({ subsets: ["latin"], variable: "--font-geist-mono" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair", weight: ["400", "700", "900"] });
 const specialElite = Special_Elite({ subsets: ["latin"], variable: "--font-typewriter", weight: "400" });
-const fraktur = UnifrakturMaguntia({ subsets: ["latin"], variable: "--font-fantasy", weight: "400" });
+const fell = IM_Fell_English({ subsets: ["latin"], variable: "--font-fantasy", weight: "400", style: ["normal", "italic"] });
 const syne = Syne({ subsets: ["latin"], variable: "--font-syne", weight: ["600", "700", "800"] });
 
 export const metadata: Metadata = {
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
     url: 'https://aladinakkari.ca',
     siteName: 'Aladin Akkari',
     title: 'Aladin Akkari — Développeur Frontend & Designer',
-    description: 'Portfolio créatif avec scroll horizontal — expérience, projets, agence web, roman fantasy.',
+    description: 'Portfolio créatif avec scroll horizontal — expérience, projets, roman fantasy, app MoodMovie.',
     images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Aladin Akkari — Portfolio' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Aladin Akkari — Développeur Frontend & Designer',
-    description: 'Portfolio créatif avec scroll horizontal — expérience, projets, agence web, roman fantasy.',
+    description: 'Portfolio créatif avec scroll horizontal — expérience, projets, roman fantasy, app MoodMovie.',
     images: ['/og-image.png'],
   },
   robots: {
@@ -114,11 +114,9 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <head>
-        <link rel="preload" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,700,900&display=swap" as="style" />
-        <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=clash-display@400,700,900&display=swap" />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </head>
-      <body className={`font-sans antialiased ${geist.variable} ${geistMono.variable} ${playfair.variable} ${specialElite.variable} ${fraktur.variable} ${syne.variable}`}>
+      <body className={`font-sans antialiased ${geist.variable} ${geistMono.variable} ${playfair.variable} ${specialElite.variable} ${fell.variable} ${syne.variable}`}>
         <I18nProvider>
           <CustomCursor />
           <DsLauncher />

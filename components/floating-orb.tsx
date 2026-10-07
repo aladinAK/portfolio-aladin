@@ -4,7 +4,6 @@ import { useRef, useEffect, useCallback } from "react"
 
 const SECTION_COLORS = [
   { main: "#c8ff00", glow: "rgba(200, 255, 0, 0.15)", highlight: "rgba(200, 255, 0, 0.4)" },
-  { main: "#ff4d00", glow: "rgba(255, 77, 0, 0.15)", highlight: "rgba(255, 77, 0, 0.4)" },
   { main: "#c41e3a", glow: "rgba(196, 30, 58, 0.35)", highlight: "rgba(196, 30, 58, 0.7)" },
   { main: "#818cf8", glow: "rgba(129, 140, 248, 0.15)", highlight: "rgba(129, 140, 248, 0.4)" },
 ]

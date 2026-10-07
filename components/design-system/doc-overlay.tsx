@@ -19,7 +19,6 @@ import { useScrollReveal } from "@/lib/use-scroll-reveal"
  */
 const ACCENT_BY_THEME: Record<string, { accent: string; fg: string }> = {
   "section-studio": { accent: "#c8ff00", fg: "#0a0a0a" },
-  "section-nature": { accent: "#ff4d00", fg: "#0a0a0a" },
   "section-tech": { accent: "#c41e3a", fg: "#ffffff" },
   "section-lifestyle": { accent: "#818cf8", fg: "#0a0a0a" },
 }
