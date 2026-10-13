@@ -69,6 +69,12 @@ const METHOD_STEPS = ["0", "1", "2", "3", "4"] as const
 
 const LAB_URL = "https://design-lab-aladin-akkari.netlify.app/"
 
+/** One CV per language: the pill hands out the one matching the page. */
+const CV_BY_LANG = {
+  fr: "/aladin-akkari-cv-FR.pdf",
+  en: "/aladin-akkari-cv-EN.pdf",
+} as const
+
 const LINKS = [
   { label: "LinkedIn", href: "https://linkedin.com/in/aladin-akkari", icon: "Li" },
   { label: "GitHub", href: "https://github.com/aladinAK", icon: "Gh" },
@@ -248,7 +254,7 @@ function LocalClock() {
 export function StudioSection() {
   const [scrollY, setScrollY] = useState(0)
   const sectionRef = useRef<HTMLDivElement>(null)
-  const { t } = useLang()
+  const { lang, t } = useLang()
 
   useScrollReveal(sectionRef)
 
@@ -311,7 +317,7 @@ export function StudioSection() {
 
             <SectionLink
               role="pill"
-              href="/cv-aladin-akkari.pdf"
+              href={CV_BY_LANG[lang]}
               download
               className="tap-44 hover:text-[var(--section-accent)]"
               aria-label={t("nav.cv.download")}
