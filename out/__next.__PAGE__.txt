@@ -1,9 +1,9 @@
 1:"$Sreact.fragment"
-2:I[64333,["/_next/static/chunks/6f2b21616b072a74.js","/_next/static/chunks/247a0aa5d2005258.js","/_next/static/chunks/732c4b12f42de847.js"],"HorizontalScrollLayout"]
-3:I[9242,["/_next/static/chunks/6f2b21616b072a74.js","/_next/static/chunks/247a0aa5d2005258.js","/_next/static/chunks/732c4b12f42de847.js"],"StudioSection"]
-4:I[12755,["/_next/static/chunks/6f2b21616b072a74.js","/_next/static/chunks/247a0aa5d2005258.js","/_next/static/chunks/732c4b12f42de847.js"],"BookSection"]
-5:I[42844,["/_next/static/chunks/6f2b21616b072a74.js","/_next/static/chunks/247a0aa5d2005258.js","/_next/static/chunks/732c4b12f42de847.js"],"MoodSection"]
+2:I[64333,["/_next/static/chunks/e1ff420d60aecddd.js","/_next/static/chunks/247a0aa5d2005258.js","/_next/static/chunks/d68d90604bb80aca.js"],"HorizontalScrollLayout"]
+3:I[9242,["/_next/static/chunks/e1ff420d60aecddd.js","/_next/static/chunks/247a0aa5d2005258.js","/_next/static/chunks/d68d90604bb80aca.js"],"StudioSection"]
+4:I[12755,["/_next/static/chunks/e1ff420d60aecddd.js","/_next/static/chunks/247a0aa5d2005258.js","/_next/static/chunks/d68d90604bb80aca.js"],"BookSection"]
+5:I[42844,["/_next/static/chunks/e1ff420d60aecddd.js","/_next/static/chunks/247a0aa5d2005258.js","/_next/static/chunks/d68d90604bb80aca.js"],"MoodSection"]
 6:I[16839,["/_next/static/chunks/fdb786f6f28ad81c.js"],"OutletBoundary"]
 7:"$Sreact.suspense"
-0:{"buildId":"u3FQWUEDOVOwCv5IyV6EX","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"overflow-hidden","children":["$","$L2",null,{"sectionNames":["Studio","Book","Mood"],"sectionSlugs":["studio","book","mood"],"sectionThemes":["section-studio","section-tech","section-lifestyle"],"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}]]}]}],[["$","script","script-0",{"src":"/_next/static/chunks/247a0aa5d2005258.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/732c4b12f42de847.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"loading":null,"isPartial":false}
+0:{"buildId":"AjZiyUKJSHVpzWKW-U3qV","rsc":["$","$1","c",{"children":[["$","main",null,{"className":"overflow-hidden","children":["$","$L2",null,{"sectionNames":["Studio","Book","Mood"],"sectionSlugs":["studio","book","mood"],"sectionThemes":["section-studio","section-tech","section-lifestyle"],"children":[["$","$L3",null,{}],["$","$L4",null,{}],["$","$L5",null,{}]]}]}],[["$","script","script-0",{"src":"/_next/static/chunks/247a0aa5d2005258.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/d68d90604bb80aca.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"loading":null,"isPartial":false}
 8:null

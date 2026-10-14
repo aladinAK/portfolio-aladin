@@ -9,11 +9,11 @@ import { SectionButton, SectionLink } from "@/components/primitives/section-butt
 import { openDesignSystem } from "@/components/design-system/ds-launcher"
 
 const EXPERIENCE_META = [
-  { company: "Gameaddik", location: "Montréal, QC", period: "2020 — présent", stack: ["Vue", "Nuxt", "Tailwind", "NestJS", "MongoDB", "AWS Athena", "Docker", "WordPress", "SEO"] },
-  { company: "Freelance", location: "Montréal, QC", period: "2020 — présent", stack: ["Figma", "Photoshop", "Illustrator"] },
-  { company: "XpertSource.com", location: "Montréal, QC", period: "Fév. — Mai 2019", stack: ["SEO", "Service client"] },
-  { company: "Imagine Concept", location: "Tunis, Tunisie", period: "Déc. 2017 — Jan. 2018", stack: ["Illustrator", "Photoshop"] },
-  { company: "Flashprint", location: "Tunis, Tunisie", period: "Juin — Août 2017", stack: ["Illustrator", "Photoshop", "Print"] },
+  { company: "Gameaddik", location: "Montréal, QC", period: "2020 — 2026", stack: ["React", "Next.js", "Vue", "Nuxt", "TypeScript", "Tailwind", "Figma", "NestJS", "WordPress", "SEO"] },
+  { company: "Freelance", location: "Montréal, QC", period: "2020 — présent", stack: ["Figma", "Photoshop", "Illustrator", "HTML/CSS", "WordPress", "Webflow", "Shopify", "Branding", "Print"] },
+  { company: "XpertSource.com", location: "Montréal, QC", period: "2019", stack: ["SEO", "Service client"] },
+  { company: "Imagine Concept", location: "Tunis, Tunisie", period: "2017 — 2018", stack: ["Illustrator", "Photoshop", "Branding", "Print"] },
+  { company: "Flashprint", location: "Tunis, Tunisie", period: "2017", stack: ["Illustrator", "Photoshop", "Print", "Offset"] },
 ]
 
 /**
@@ -24,7 +24,7 @@ const EXPERIENCE_META = [
  * The Freelance entry holds the concept sites instead of detail lines: they
  * are self-initiated, so they sit together under one heading and are flagged
  * as concepts — a recruiter who went looking for a client behind them would
- * stop trusting the rest of the page.
+ * stop trusting the rest of the page. The entry is hidden for now.
  */
 interface Concept {
   name: string
@@ -48,7 +48,8 @@ const PROJECTS: Project[] = [
   { key: "proj.0", title: "GameRebellion", type: "Market Intelligence Platform", role: "Senior Frontend Developer", year: "2023", href: "https://gamerebellion.com/", stack: ["React", "Node.js", "Next", "Tailwind", "TypeScript"], lines: 3 },
   { key: "proj.1", title: "PwnGames", type: "Website Redesign", role: "Designer & Frontend Developer", year: "2023", href: "https://pwngames.com", stack: ["React", "Tailwind", "TypeScript", "Figma"], lines: 3 },
   { key: "proj.2", title: "GameAddik", type: "Landing Pages & Redesign", role: "Frontend Developer & Designer", year: "2020 — 2023", href: "https://gameaddik.com/", stack: ["HTML/CSS", "Vue", "JavaScript", "WordPress", "SEO"], lines: 3 },
-  {
+  // hidden — concept sites pulled from the page while applying for full-time roles
+  /* {
     key: "proj.freelance",
     title: "Freelance",
     type: "Concept Sites",
@@ -61,7 +62,7 @@ const PROJECTS: Project[] = [
       { name: "Clinique Lumea", key: "proj.concept.1", href: "https://esthetic-service-website.vercel.app/" },
       { name: "FORMA", key: "proj.concept.2", href: "https://forma-studio-tau.vercel.app/" },
     ],
-  },
+  }, */
 ]
 
 /** General method, from brief to launch. */

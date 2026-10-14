@@ -45,8 +45,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "exp.0.role": { fr: "Senior Front End Developer", en: "Senior Front End Developer" },
   "exp.0.type": { fr: "Temps plein", en: "Full-time" },
   "exp.0.desc": {
-    fr: "Je conçois et développe des interfaces web performantes et réactives, en alliant design et expérience utilisateur. Je crée des composants réutilisables et optimise chaque projet pour la performance et le SEO, notamment dans le secteur du gaming. Côté back-end, j'ai construit une API REST complète d'analytics SDK avec NestJS, MongoDB, AWS Athena et Docker.",
-    en: "I design and develop responsive, high-performance web interfaces, blending design with user experience. I build reusable components and optimize every project for performance and SEO, especially in the gaming sector. On the back end, I built a complete REST API for SDK analytics with NestJS, MongoDB, AWS Athena and Docker."
+    fr: "J'ai conçu et développé des interfaces web performantes et réactives, en alliant design et expérience utilisateur. J'ai créé des composants réutilisables et optimisé chaque projet pour la performance et le SEO, notamment dans le secteur du gaming. Côté back-end, j'ai construit une API REST complète d'analytics SDK avec NestJS, MongoDB, AWS Athena et Docker.",
+    en: "I designed and developed responsive, high-performance web interfaces, blending design with user experience. I built reusable components and optimized every project for performance and SEO, especially in the gaming sector. On the back end, I built a complete REST API for SDK analytics with NestJS, MongoDB, AWS Athena and Docker."
   },
   "exp.1.role": { fr: "Designer Web", en: "Web Designer" },
   "exp.1.type": { fr: "Freelance", en: "Freelance" },
@@ -117,8 +117,8 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Montréal hair studio. Bold typography, work gallery and appointment booking.",
   },
   "proj.0.d0": {
-    fr: "Plateforme d'intelligence de marché pour l'industrie du jeu — plus de 250 000 titres Steam et 60 000 jeux mobiles suivis : revenus, téléchargements, joueurs actifs, sentiment.",
-    en: "Market intelligence platform for the games industry — over 250,000 Steam titles and 60,000 mobile games tracked: revenue, downloads, active players, sentiment.",
+    fr: "Produit GameAddik. Plateforme d'intelligence de marché pour l'industrie du jeu — plus de 250 000 titres Steam et 60 000 jeux mobiles suivis : revenus, téléchargements, joueurs actifs, sentiment.",
+    en: "GameAddik product. Market intelligence platform for the games industry — over 250,000 Steam titles and 60,000 mobile games tracked: revenue, downloads, active players, sentiment.",
   },
   "proj.0.d1": {
     fr: "Interfaces des profils de jeu : métriques et chronologies historiques, score MPI détaillé en cinq piliers, outil d'analyse de sentiment (thèmes, tonalité émotionnelle, termes classés par impact).",
@@ -129,8 +129,8 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Dashboards for SDK-reported analytics — DAU/MAU, D1/D7/D30 retention, engagement funnels and cohorts — shown alongside market data.",
   },
   "proj.1.d0": {
-    fr: "Refonte complète du site d'un réseau CPA de performance pour le gaming PC, qui sert plus de 250 studios annonceurs.",
-    en: "Full redesign of the site of a CPA performance network for PC gaming, serving over 250 advertiser studios.",
+    fr: "Produit GameAddik. Refonte complète du site d'un réseau CPA de performance pour le gaming PC, qui sert plus de 250 studios annonceurs.",
+    en: "GameAddik product. Full redesign of the site of a CPA performance network for PC gaming, serving over 250 advertiser studios.",
   },
   "proj.1.d1": {
     fr: "Transformation de maquettes en code responsive, optimisation de la performance et compatibilité multi-navigateurs.",
@@ -216,9 +216,9 @@ const dict: Record<string, Record<Lang, string>> = {
   "about.facts.exp": { fr: "Expérience", en: "Experience" },
   "about.facts.exp.value": { fr: "5+ ans", en: "5+ years" },
   "about.facts.availability": { fr: "Disponibilité", en: "Availability" },
-  "about.facts.availability.value": { fr: "Postes et mandats", en: "Roles and contracts" },
+  "about.facts.availability.value": { fr: "Temps plein", en: "Full-time" },
   "about.edu": { fr: "FORMATION", en: "EDUCATION" },
-  "about.edu.0.title": { fr: "Design UX/UI", en: "UX/UI Design" },
+  "about.edu.0.title": { fr: "Design Thinking et UX", en: "Design Thinking and UX" },
   "about.edu.0.place": { fr: "Montréal", en: "Montréal" },
   "about.edu.1.title": { fr: "Design Web", en: "Web Design" },
   "about.edu.1.place": { fr: "Montréal", en: "Montréal" },
@@ -231,7 +231,7 @@ const dict: Record<string, Record<Lang, string>> = {
   "contact.label": { fr: "06 / CONTACT", en: "06 / CONTACT" },
   "contact.title.1": { fr: "Restons", en: "Let's" },
   "contact.title.2": { fr: "en contact.", en: "connect." },
-  "contact.available": { fr: "Ouvert aux postes et aux mandats", en: "Open to roles and contracts" },
+  "contact.available": { fr: "Disponible", en: "Available" },
 
 
 

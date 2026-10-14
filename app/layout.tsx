@@ -71,7 +71,6 @@ const person = {
   description:
     "Développeur frontend et designer UI/UX basé à Montréal. Sites vitrines, e-commerce, design systems et interfaces sur mesure.",
   email: 'mailto:aladinakdesign@gmail.com',
-  worksFor: { '@type': 'Organization', name: 'Gameaddik' },
   address: { '@type': 'PostalAddress', addressLocality: 'Montréal', addressRegion: 'QC', addressCountry: 'CA' },
   knowsLanguage: ['fr-CA', 'en-CA'],
   sameAs: [
