@@ -11,7 +11,7 @@ import { openDesignSystem } from "@/components/design-system/ds-launcher"
 const EXPERIENCE_META = [
   { company: "Gameaddik", location: "Montréal, QC", period: "2020 — 2026", stack: ["React", "Next.js", "Vue", "Nuxt", "TypeScript", "Tailwind", "Figma", "NestJS", "WordPress", "SEO"] },
   { company: "Freelance", location: "Montréal, QC", period: "2020 — présent", stack: ["Figma", "Photoshop", "Illustrator", "HTML/CSS", "WordPress", "Webflow", "Shopify", "Branding", "Print"] },
-  { company: "XpertSource.com", location: "Montréal, QC", period: "2019", stack: ["SEO", "Service client"] },
+  { company: "XpertSource.com", location: "Montréal, QC", period: "2019", stack: ["Service client", "Vente", "MS Office"] },
   { company: "Imagine Concept", location: "Tunis, Tunisie", period: "2017 — 2018", stack: ["Illustrator", "Photoshop", "Branding", "Print"] },
   { company: "Flashprint", location: "Tunis, Tunisie", period: "2017", stack: ["Illustrator", "Photoshop", "Print", "Offset"] },
 ]

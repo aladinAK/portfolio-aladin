@@ -54,11 +54,11 @@ const dict: Record<string, Record<Lang, string>> = {
     fr: "J'accompagne mes clients dans la création d'identités visuelles impactantes — affiches, brochures, packaging, maquettes et sites web — en traduisant leurs idées en designs cohérents et esthétiques.",
     en: "I help clients craft impactful visual identities — posters, brochures, packaging, mockups, and websites — translating their ideas into cohesive and visually appealing designs."
   },
-  "exp.2.role": { fr: "Spécialiste en référencement", en: "SEO Specialist" },
+  "exp.2.role": { fr: "Agent au service à la clientèle", en: "Customer Service Agent" },
   "exp.2.type": { fr: "Temps partiel", en: "Part-time" },
   "exp.2.desc": {
-    fr: "Service client et suivi dans une agence spécialisée en référencement. Appels sortants, gestion de mandats et support aux opérations.",
-    en: "Customer service and follow-up at a specialized SEO agency. Outbound calls, mandate management and operations support.",
+    fr: "Plateforme de mise en relation avec des professionnels de l'immobilier et des services résidentiels (aujourd'hui Habitam). Appels sortants et vente du service, en parallèle de mes études. Suivi des dossiers dans Excel et Word.",
+    en: "Platform connecting people with real estate and home-service professionals (now Habitam). Outbound calls and selling the service, alongside my studies. Tracking files in Excel and Word.",
   },
   "exp.3.role": { fr: "Designer graphique", en: "Graphic Designer" },
   "exp.3.type": { fr: "Stage", en: "Internship" },
