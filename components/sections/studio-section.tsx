@@ -340,7 +340,7 @@ export function StudioSection() {
             <h1 className="studio-title-reveal text-[12vw] md:text-[10vw] lg:text-[9vw] font-bold tracking-tighter leading-[0.85] uppercase">
               <span className="block studio-line-reveal text-[6vw] md:text-[5vw]" style={{ animationDelay: "0.3s" }}>{t("hero.line1")}</span>
               <span className="block studio-line-reveal studio-glow" data-text={t("hero.line2")} style={{ animationDelay: "0.5s", color: "var(--section-accent)" }}>{t("hero.line2")}</span>
-              <span className="block studio-line-reveal text-[6vw] md:text-[5vw] text-[var(--section-fg-subtle)] font-(family-name:--font-playfair) italic" style={{ animationDelay: "0.7s" }}>{t("hero.line3")}</span>
+              <span className="block studio-line-reveal text-[6vw] md:text-[5vw] font-(family-name:--font-playfair) italic" style={{ animationDelay: "0.7s" }}>{t("hero.line3")}</span>
             </h1>
           </div>
         </div>

@@ -37,11 +37,10 @@
   --section-fg: var(--ds-fg);
   --section-accent: var(--ds-accent);
   --section-muted: var(--ds-muted);
-  /* Dimmed text: colours Lumen computes per theme to clear AA (fg-muted,
-     4.5:1) or the large-text floor (fg-subtle, 3:1). An opacity would land
-     anywhere between 1.9 and 4.1:1 depending on the background. */
+  /* Dimmed text: the colour Lumen computes per theme to clear AA (4.5:1).
+     An opacity would land anywhere between 1.9 and 4.1:1 depending on the
+     background. */
   --section-fg-muted: var(--ds-fg-muted);
-  --section-fg-subtle: var(--ds-fg-subtle);
   --section-accent-alt: var(--ds-accent-alt);
   --section-accent-alt-text: var(--ds-accent-alt-text);
 }
