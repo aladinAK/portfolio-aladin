@@ -1,4 +1,13 @@
 @import 'tailwindcss';
+/* Lumen (the lumen-ds package) is the single source of the tokens: colours,
+   derived AA colours, spacing, radii, shadows, motion, focus ring, and the
+   three themes through [data-theme]. In the base layer so Tailwind utilities
+   still win, as they did over these values before. */
+@import 'lumen-ds/tokens.css' layer(base);
+/* Lumen's components (.lm-*): in the components layer so the call site's
+   utilities (book font, tracking, colour) keep the last word, as they did
+   over the former section buttons. */
+@import 'lumen-ds/styles.css' layer(components);
 
 /* out/ is committed to the repo (cPanel deploys it verbatim), so Tailwind's
    automatic source detection — which only skips gitignored paths — scans the
@@ -14,52 +23,47 @@
   --ring: oklch(0.708 0 0);
   --radius: 0.625rem;
 
-  /* Validation states — semantic, shared by every theme: an error does not
-     change meaning from one section to the next. Values are Tailwind's
-     green-400 / red-400, the ones already rendered before tokenising. */
-  --state-success: #05df72;
-  --state-error: #ff6568;
+  /* Validation states (--ds-state-success / -error) and motion
+     (--ds-dur-*, --ds-ease-*) come from Lumen. */
 }
 
-/* Section Themes */
+/* Section Themes — the four roles every section exposes, read from the Lumen
+   theme set by data-theme (studio, book, mood) on the section's scroller.
+   Only the kicker family stays here: it goes through next/font's variables. */
+.section-studio,
+.section-tech,
+.section-lifestyle {
+  --section-bg: var(--ds-bg);
+  --section-fg: var(--ds-fg);
+  --section-accent: var(--ds-accent);
+  --section-muted: var(--ds-muted);
+  /* Dimmed text: colours Lumen computes per theme to clear AA (fg-muted,
+     4.5:1) or the large-text floor (fg-subtle, 3:1). An opacity would land
+     anywhere between 1.9 and 4.1:1 depending on the background. */
+  --section-fg-muted: var(--ds-fg-muted);
+  --section-fg-subtle: var(--ds-fg-subtle);
+  --section-accent-alt: var(--ds-accent-alt);
+  --section-accent-alt-text: var(--ds-accent-alt-text);
+}
+
 .section-studio {
-  --section-bg: #0a0a0a;
-  --section-fg: #fafafa;
-  --section-accent: #c8ff00;
-  --section-muted: #262626;
-  --section-accent-alt: var(--section-accent);
-  --section-accent-alt-fg: var(--section-bg);
   --section-font-kicker: var(--font-geist-mono), monospace;
-  --section-btn-radius: 0px;
 }
 
 .section-tech {
-  --section-bg: #e3dacb;
-  --section-fg: #1a1a1a;
-  --section-accent: #1a1a1a;
-  --section-muted: #d4cec4;
-  --section-accent-alt: #c41e3a;
-  --section-accent-alt-fg: #f5f2eb;
   --section-font-kicker: var(--font-typewriter), 'Special Elite', monospace;
-  --section-btn-radius: 0px;
 }
 
 .section-lifestyle {
-  --section-bg: #03094A;
-  --section-fg: #f5f5f5;
-  --section-accent: #818cf8;
-  --section-muted: #1e1e3a;
-  --section-accent-alt: var(--section-accent);
-  --section-accent-alt-fg: var(--section-bg);
   /* Two distinct gradients, both MoodMovie's own: one for calls to action,
      one for headings. The CTA gradient starts on blue-600 rather than the
      blue-500 it used to: white on #3080ff measured 3.71:1, below the 4.5
      AA floor for 14 px text. #155dfc gives 5.25:1 and keeps the same hue.
-     Not declined in the other themes: no shared component consumes them. */
-  --section-gradient: linear-gradient(to right, #155dfc, #9810fa);
-  --section-gradient-text: linear-gradient(to right, #60a5fa, #a78bfa);
+     Not declined in the other themes: Lumen's primary button paints its CTA
+     with this gradient (--ds-cta-bg) in this theme only. */
+  --section-gradient: var(--ds-gradient);
+  --section-gradient-text: var(--ds-gradient-text);
   --section-font-kicker: var(--font-geist-mono), monospace;
-  --section-btn-radius: 999px;
 }
 
 @theme inline {
@@ -210,6 +214,20 @@
     animation-duration: 1ms !important;
     animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
+  }
+}
+
+/* Site-wide floor for reduced motion — the one the panel already applies to
+   .ds-root: transitions resolve at once (the state change stays, the movement
+   goes) and nothing scrolls smoothly. Animations keep their own rules above,
+   so entrances land on their final frame instead of being skipped. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
@@ -380,13 +398,7 @@
   font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  opacity: 0.3;
-}
-
-/* Agency's nav labels want a more present kicker — a named modifier rather
-   than an !important utility at the call site. */
-.section-kicker--strong {
-  opacity: 0.5;
+  color: var(--section-fg-muted);
 }
 
 .section-title-accent {
@@ -419,82 +431,10 @@
   color: transparent;
 }
 
-/* ═══════ Shared action button ═══════ */
-
-.section-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  min-height: 44px;
-  border: 1.5px solid transparent;
-  border-radius: var(--section-btn-radius, 0px);
-  font-size: 0.875rem;
-  line-height: 1;
-  cursor: pointer;
-  transition: background-color var(--ds-dur-fast) var(--ds-ease-out),
-    border-color var(--ds-dur-fast) var(--ds-ease-out),
-    color var(--ds-dur-fast) var(--ds-ease-out),
-    transform var(--ds-dur-fast) var(--ds-ease-out);
-}
-
-/* Structure and colour only. Weight, case and tracking stay at the call site:
-   Special Elite ships a single weight (700 would synthesise a fake bold) and
-   MoodMovie's CTA is deliberately sentence case. */
-.section-btn--primary {
-  padding: 0 2rem;
-  min-height: 52px;
-  background-color: var(--section-accent);
-  color: var(--section-bg);
-}
-
-.section-btn--primary:hover { transform: scale(1.05); }
-
-/* Per-theme CTA colour: the novel uses its ruby, MoodMovie its gradient. */
-.section-tech .section-btn--primary {
-  background: var(--section-accent-alt);
-  color: var(--section-accent-alt-fg);
-}
-
-.section-tech .section-btn--primary:hover {
-  box-shadow: 0 0 30px color-mix(in srgb, var(--section-accent-alt) 25%, transparent);
-}
-
-.section-lifestyle .section-btn--primary {
-  background: var(--section-gradient);
-  color: #fff;
-}
-
-.section-lifestyle .section-btn--primary:hover {
-  box-shadow: 0 0 30px color-mix(in srgb, var(--section-accent) 25%, transparent);
-}
-
-.section-btn--outline {
-  padding: 0 1.5rem;
-  min-height: 52px;
-  border-color: var(--section-muted);
-  border-radius: 999px;
-  font-weight: 500;
-}
-
-.section-btn--outline:hover {
-  background-color: var(--section-accent);
-  border-color: var(--section-accent);
-  color: var(--section-bg);
-}
-
-.section-btn--pill {
-  position: relative;
-  gap: 0.375rem;
-  min-height: 28px;
-  padding: 0 0.75rem;
-  border-color: var(--section-muted);
-  border-radius: 999px;
-  font-family: var(--section-font-kicker);
-  font-size: 0.625rem;
-  letter-spacing: 0.05em;
-}
-
-.section-btn--pill:hover { border-color: var(--section-accent); }
+/* ═══════ Touch targets ═══════
+   The section buttons are Lumen's Button / ButtonLink (lumen-ds), which carry
+   their own 44 px target on pills. This utility covers the remaining small
+   controls. */
 
 /* The panel's a11y checklist promises a 44 px touch target. A pill is 28 px
    tall by design, so the target is widened behind it rather than around it:
@@ -513,10 +453,6 @@
   min-height: 44px;
   width: 100%;
   height: 100%;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .section-btn--primary:hover { transform: none; }
 }
 
 /* ═══════ Tooltip — nav pills ═══════ */
@@ -666,16 +602,9 @@
    ═══════════════════════════════════════════════════════════ */
 
 .ds-root {
-  /* Rampe neutre — OKLCH, clarté régulière */
-  --ds-n-100: oklch(0.98 0 0);
-  --ds-n-200: oklch(0.92 0 0);
-  --ds-n-300: oklch(0.84 0 0);
-  --ds-n-400: oklch(0.72 0 0);
-  --ds-n-500: oklch(0.60 0 0);
-  --ds-n-600: oklch(0.48 0 0);
-  --ds-n-700: oklch(0.36 0 0);
-  --ds-n-800: oklch(0.24 0 0);
-  --ds-n-900: oklch(0.14 0 0);
+  /* Rampe neutre (--ds-neutral-*), espacement, rayons, ombres et mouvement :
+     jetons de Lumen, déclarés sur :root. Ne sont redéfinis ici que les rôles
+     propres au panneau. */
 
   /* Rôles de surface */
   --ds-bg: oklch(0.13 0 0);
@@ -683,37 +612,15 @@
   --ds-surface-hi: rgba(255, 255, 255, 0.07);
   --ds-fg: #fafafa;
   --ds-fg-muted: rgba(250, 250, 250, 0.55);
+  /* Décor seulement (barres, séparateurs) : 2,69:1, jamais pour du texte. */
   --ds-fg-faint: rgba(250, 250, 250, 0.32);
   --ds-divider: rgba(250, 250, 250, 0.1);
 
-  /* Accent — injecté au runtime depuis la section visible */
+  /* Accent — injecté au runtime depuis la section visible. L'anneau de
+     focus global de Lumen suit le même accent dans le panneau. */
   --ds-accent: #c8ff00;
   --ds-accent-fg: #0a0a0a;
-
-  /* Espacement — 6 pas */
-  --ds-space-1: 4px;
-  --ds-space-2: 8px;
-  --ds-space-3: 12px;
-  --ds-space-4: 16px;
-  --ds-space-6: 24px;
-  --ds-space-8: 32px;
-
-  /* Rayon */
-  --ds-radius-sm: 8px;
-  --ds-radius-md: 16px;
-  --ds-radius-lg: 28px;
-
-  /* Élévation */
-  --ds-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
-  --ds-shadow-md: 0 8px 24px rgba(0, 0, 0, 0.45);
-  --ds-shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.55);
-
-  /* Mouvement — valeurs réellement utilisées dans ce portfolio */
-  --ds-dur-fast: 300ms;
-  --ds-dur-base: 900ms;
-  --ds-dur-slow: 1200ms;
-  --ds-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --ds-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ds-focus-ring: var(--ds-accent);
 
   color: var(--ds-fg);
   background: var(--ds-bg);
@@ -762,12 +669,6 @@
   color: var(--ds-accent);
 }
 
-.ds-btn--ghost { color: var(--ds-fg-muted); }
-.ds-btn--ghost:hover:not(:disabled) {
-  background: var(--ds-surface-hi);
-  color: var(--ds-fg);
-}
-
 .ds-tag {
   display: inline-flex;
   align-items: center;
@@ -798,22 +699,6 @@
   color: var(--ds-accent);
 }
 
-.ds-input {
-  width: 100%;
-  min-height: 44px;
-  padding: 12px 16px;
-  border-radius: var(--ds-radius-sm);
-  border: 1.5px solid var(--ds-divider);
-  background: rgba(0, 0, 0, 0.35);
-  color: var(--ds-fg);
-  font-size: 14px;
-  outline: none;
-  transition: border-color var(--ds-dur-fast) var(--ds-ease-out);
-}
-
-.ds-input::placeholder { color: var(--ds-fg-faint); }
-.ds-input:focus { border-color: var(--ds-accent); }
-
 .ds-swatch {
   height: 56px;
   border-radius: var(--ds-radius-sm);
@@ -832,7 +717,7 @@
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: var(--ds-fg-faint);
+  color: var(--ds-fg-muted);
   font-weight: 700;
 }
 .ds-table td {
@@ -912,6 +797,16 @@
    jetons, pas pour les fonds décoratifs de la section (grain du papier,
    dégradé radial). Déclaré après les thèmes, donc il gagne à spécificité
    égale. */
+/* Composants Lumen dans le panneau : data-theme y choisit le thème Lumen, et
+   ce fond est celui du thème, pas celui du panneau. */
+.ds-lumen-demo {
+  padding: var(--ds-space-4);
+  border: 1px solid var(--ds-divider);
+  border-radius: var(--ds-radius-sm);
+  background: var(--ds-bg);
+  color: var(--ds-fg);
+}
+
 .ds-theme-demo {
   /* Le fond de la section, pas celui du panneau : le --section-fg du thème
      « tech » vaut #1a1a1a, illisible sur un fond sombre. Le raccourci
@@ -1029,7 +924,7 @@
   max-width: 22rem;
   font-size: 0.875rem;
   line-height: 1.6;
-  opacity: 0.4;
+  color: var(--section-fg-muted);
 }
 
 @media (min-width: 768px) {
@@ -1247,7 +1142,7 @@
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--ds-fg-faint);
+  color: var(--ds-fg-muted);
   pointer-events: none;
 }
 

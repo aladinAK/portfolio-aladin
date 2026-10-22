@@ -5,6 +5,7 @@ import { useState, useEffect } from "react"
 import { useLang } from "@/lib/i18n"
 import { ManuscriptCanvas } from "@/components/manuscript-canvas"
 import { SectionHead, SectionKicker } from "@/components/primitives/section-head"
+import { ButtonLink } from "lumen-ds"
 
 const THOUGHT_KEYS = [
   "book.thought.0", "book.thought.1", "book.thought.2", "book.thought.3",
@@ -184,13 +185,13 @@ function ReviewCard({
       <cite className="book-title-font text-xl md:text-2xl not-italic mt-3 mb-3">{review.title}</cite>
 
       {review.body.map((paragraph, i) => (
-        <p key={i} className="book-font text-sm leading-loose opacity-60 mb-3">
+        <p key={i} className="book-font text-sm leading-loose text-[var(--section-fg-muted)] mb-3">
           {paragraph}
         </p>
       ))}
 
-      <footer className="book-font text-[10px] tracking-[0.12em] uppercase opacity-35 mt-auto pt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
-        <span className="opacity-100">{review.author}</span>
+      <footer className="book-font text-[10px] tracking-[0.12em] uppercase text-[var(--section-fg-muted)] mt-auto pt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
+        <span className="text-[var(--section-fg)]">{review.author}</span>
         <span aria-hidden>·</span>
         <span>{dateFmt.format(new Date(`${review.date}T12:00:00`))}</span>
         <span aria-hidden>·</span>
@@ -198,7 +199,7 @@ function ReviewCard({
         {review.verified && (
           <>
             <span aria-hidden>·</span>
-            <span style={{ color: "var(--section-accent-alt)" }}>{t("book.reviews.verified")}</span>
+            <span style={{ color: "var(--section-accent-alt-text)" }}>{t("book.reviews.verified")}</span>
           </>
         )}
       </footer>
@@ -225,7 +226,7 @@ function ReaderReviews() {
           </h2>
           <span className="flex items-center gap-2.5">
             <Stars label={t("book.reviews.stars")} />
-            <span className="book-font text-sm opacity-50">{t("book.reviews.summary")}</span>
+            <span className="book-font text-sm text-[var(--section-fg-muted)]">{t("book.reviews.summary")}</span>
           </span>
         </div>
         <div className="w-10 h-px bg-current opacity-15" />
@@ -250,7 +251,7 @@ function ReaderReviews() {
           href={AMAZON_REVIEWS_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="tap-44 book-font inline-flex items-center gap-2 mt-12 text-sm tracking-[0.15em] uppercase opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
+          className="tap-44 book-font inline-flex items-center gap-2 mt-12 text-sm tracking-[0.15em] uppercase text-[var(--section-fg-muted)] hover:text-[var(--section-fg)] transition-colors underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
         >
           {t("book.reviews.cta")}
           <ArrowUpRight className="w-4 h-4" />
@@ -303,14 +304,14 @@ export function BookSection() {
 
         {/* Nav */}
         <nav className="relative z-10 flex items-center justify-between">
-          <span className="book-font text-sm tracking-[0.3em] uppercase opacity-50">
+          <span className="book-font text-sm tracking-[0.3em] uppercase text-[var(--section-fg-muted)]">
             {t("book.label")}
           </span>
           <a
             href="https://aladin-akkari-book-store.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="tap-44 book-font text-sm tracking-[0.2em] uppercase opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
+            className="tap-44 book-font text-sm tracking-[0.2em] uppercase text-[var(--section-fg-muted)] hover:text-[var(--section-fg)] transition-colors underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
           >
             {t("book.store")}
           </a>
@@ -330,33 +331,34 @@ export function BookSection() {
             </h2>
 
             {/* Same rhythm as the other heroes: title, one short line, CTA. */}
-            <p className="book-font mx-auto mt-6 max-w-md text-sm leading-relaxed opacity-60 md:text-base">
+            <p className="book-font mx-auto mt-6 max-w-md text-sm leading-relaxed text-[var(--section-fg-muted)] md:text-base">
               {t("book.subtitle")}
             </p>
 
             {/* CTA */}
-            <a
+            {/* font-normal: Special Elite ships a single weight. */}
+            <ButtonLink
               href={AMAZON_REVIEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="section-btn section-btn--primary book-font mt-8 text-sm tracking-[0.15em] uppercase"
+              className="book-font mt-8 text-sm font-normal tracking-[0.15em] uppercase"
             >
               {t("book.cta")}
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </ButtonLink>
           </div>
         </div>
 
         {/* Bottom */}
         <div className="relative z-10 flex items-end justify-between">
-          <span className="book-font text-xs tracking-[0.2em] uppercase opacity-35">
+          <span className="book-font text-xs tracking-[0.2em] uppercase text-[var(--section-fg-muted)]">
             {t("book.genre")}
           </span>
           <div className="flex flex-col items-center gap-2">
             <div className="w-px h-10 bg-current opacity-15" />
-            <span className="book-font text-xs tracking-[0.2em] uppercase opacity-35">{t("book.scroll")}</span>
+            <span className="book-font text-xs tracking-[0.2em] uppercase text-[var(--section-fg-muted)]">{t("book.scroll")}</span>
           </div>
-          <span className="book-font text-xs tracking-[0.2em] uppercase opacity-35">
+          <span className="book-font text-xs tracking-[0.2em] uppercase text-[var(--section-fg-muted)]">
             {t("book.tomes.count")}
           </span>
         </div>
@@ -376,10 +378,10 @@ export function BookSection() {
           titleClassName="text-2xl md:text-3xl lg:text-4xl leading-[1.3] mb-8 opacity-85"
         />
             <div className="w-10 h-px bg-current opacity-15 mb-8" />
-            <p className="book-font text-base leading-loose opacity-60 mb-6">
+            <p className="book-font text-base leading-loose text-[var(--section-fg-muted)] mb-6">
               {t("book.synopsis.p1")}
             </p>
-            <p className="book-font text-base leading-loose opacity-60">
+            <p className="book-font text-base leading-loose text-[var(--section-fg-muted)]">
               {t("book.synopsis.p2")}
             </p>
           </div>
@@ -400,7 +402,7 @@ export function BookSection() {
                 style={{ borderColor: "var(--section-muted)" }}
               >
                 <span className="book-title-font text-2xl md:text-3xl group-hover:translate-x-2 transition-transform duration-500">{char.name}</span>
-                <span className="book-font text-sm opacity-50">{t(char.key)}</span>
+                <span className="book-font text-sm text-[var(--section-fg-muted)]">{t(char.key)}</span>
               </div>
             ))}
           </div>
@@ -431,21 +433,24 @@ export function BookSection() {
                 style={{ borderColor: "var(--section-muted)" }}
               >
                 <div className="flex items-baseline gap-4 md:gap-8 mb-2 md:mb-0">
-                  <span className="book-font text-sm opacity-35">{t("book.tome")} {tome.num}</span>
+                  <span className="book-font text-sm text-[var(--section-fg-muted)]">{t("book.tome")} {tome.num}</span>
                   <h3 className="book-title-font text-2xl md:text-3xl lg:text-4xl group-hover:translate-x-2 transition-transform duration-500">
                     {t(`${tome.key}.title`)}
                   </h3>
                 </div>
                 <div className="flex items-center gap-4 md:pl-4">
-                  <span className="book-font text-xs uppercase tracking-wider opacity-40">{t(`${tome.key}.status`)}</span>
-                  <a
+                  <span className="book-font text-xs uppercase tracking-wider text-[var(--section-fg-muted)]">{t(`${tome.key}.status`)}</span>
+                  {/* Dimmed until the row is hovered; on its own hover the accent fill
+                      needs its own text colour, which the row's would override. */}
+                  <ButtonLink
+                    variant="outline"
                     href={tome.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="section-btn section-btn--outline book-font text-sm tracking-wide opacity-50 group-hover:opacity-100"
+                    className="book-font text-sm tracking-wide text-[var(--section-fg-muted)] group-hover:text-[var(--section-fg)] hover:text-[var(--ds-accent-fg)]!"
                   >
                     Amazon <ArrowUpRight className="w-3 h-3" />
-                  </a>
+                  </ButtonLink>
                 </div>
               </div>
             ))}
@@ -454,10 +459,10 @@ export function BookSection() {
           {/* Author quote */}
           <div className="mt-24 text-center max-w-lg mx-auto">
             <div className="w-6 h-px bg-current opacity-10 mx-auto mb-8" />
-            <p className="book-font text-lg opacity-50 leading-relaxed mb-4">
+            <p className="book-font text-lg text-[var(--section-fg-muted)] leading-relaxed mb-4">
               &ldquo;{t("book.author.quote")}&rdquo;
             </p>
-            <span className="book-font text-xs tracking-[0.2em] uppercase opacity-35">— Aladin Akkari</span>
+            <span className="book-font text-xs tracking-[0.2em] uppercase text-[var(--section-fg-muted)]">— Aladin Akkari</span>
           </div>
 
           {/* Bookstore link */}
@@ -466,7 +471,7 @@ export function BookSection() {
               href="https://aladin-akkari-book-store.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="tap-44 book-font inline-flex items-center gap-2 text-base tracking-widest opacity-50 hover:opacity-100 transition-opacity underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
+              className="tap-44 book-font inline-flex items-center gap-2 text-base tracking-widest text-[var(--section-fg-muted)] hover:text-[var(--section-fg)] transition-colors underline underline-offset-4 decoration-current/30 hover:decoration-current/70"
             >
               {t("book.store.cta")}
               <ArrowUpRight className="w-3.5 h-3.5" />

@@ -5,11 +5,12 @@ import { useLang } from "@/lib/i18n"
 import { DsLiveCanvas } from "@/components/design-system/ds-live-canvas"
 import { Panel, SectionHead, delay } from "@/components/design-system/doc-primitives"
 import { SectionKicker } from "@/components/primitives/section-head"
-import { SectionButton } from "@/components/primitives/section-button"
+import { Button, Card, Input, Tag } from "lumen-ds"
 
 export const DS_SECTIONS = [
   { id: "ds-fondations", key: "ds.nav.foundations" },
   { id: "ds-composants", key: "ds.nav.components" },
+  { id: "ds-donnees", key: "ds.nav.data" },
   { id: "ds-etats", key: "ds.nav.states" },
   { id: "ds-motion", key: "ds.nav.motion" },
   { id: "ds-responsive", key: "ds.nav.responsive" },
@@ -20,9 +21,11 @@ export const DS_SECTIONS = [
 /** Thèmes réellement définis dans globals.css — aucune couleur inventée ici. */
 const THEME_TOKEN_PREFIX = "--section-"
 
+/** `label` : le nom du thème dans Lumen (data-theme), `name` : la classe du portfolio. */
 const THEMES = [
   {
     name: "studio",
+    label: "Studio",
     swatches: [
       ["--section-bg", "#0a0a0a"],
       ["--section-fg", "#fafafa"],
@@ -32,6 +35,7 @@ const THEMES = [
   },
   {
     name: "tech",
+    label: "Book",
     swatches: [
       ["--section-bg", "#e3dacb"],
       ["--section-fg", "#1a1a1a"],
@@ -41,6 +45,7 @@ const THEMES = [
   },
   {
     name: "lifestyle",
+    label: "Mood",
     swatches: [
       ["--section-bg", "#03094A"],
       ["--section-fg", "#f5f5f5"],
@@ -59,7 +64,7 @@ const PREVIEW_THEMES = [
   { label: "Mood", cls: "section-lifestyle" },
 ] as const
 
-/** Ratios calculés (WCAG 2.1 relative luminance), pas estimés. */
+/** Ratios calculés (WCAG 2.1 relative luminance), pas estimés — les mêmes que le rapport de contraste de Lumen. */
 const CONTRASTS = [
   { pair: "#fafafa / #0a0a0a", ratio: "18.97:1", grade: "AAA" },
   { pair: "#c8ff00 / #0a0a0a", ratio: "16.74:1", grade: "AAA" },
@@ -67,15 +72,35 @@ const CONTRASTS = [
   { pair: "#1a1a1a / #e3dacb", ratio: "12.56:1", grade: "AAA" },
   { pair: "#c41e3a / #e3dacb", ratio: "4.22:1", grade: "AA large" },
   { pair: "#ffffff / #155dfc", ratio: "5.25:1", grade: "AA" },
+  { pair: "#ffffff / #9810fa", ratio: "5.54:1", grade: "AA" },
 ] as const
+
+/** Lumen : design system extrait de ce portfolio (v1.6). */
+const LUMEN = {
+  repo: "https://github.com/aladinAK/DS-Lumen-figma",
+  demo: "https://ds-lumen-figma.vercel.app/",
+} as const
+
+/** Classe de section du portfolio → thème Lumen, pour ouvrir la démo dans le même thème. */
+const LUMEN_THEME: Record<string, string> = {
+  "section-studio": "studio",
+  "section-tech": "book",
+  "section-lifestyle": "mood",
+}
+
+/** Cycle de version, de la plus récente à la plus ancienne. */
+const VERSIONS = ["1.6", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0"] as const
+
+const DATA_STATES = ["verified", "estimated", "stale", "missing"] as const
+const DATA_COMPONENTS = ["DataValue", "Stat", "DataTable"] as const
 
 const INVENTORY = [
   { name: "CustomCursor", variants: "1", usage: "ds.inv.usage.global", status: "stable" },
   { name: "HorizontalScrollLayout", variants: "1", usage: "ds.inv.usage.shell", status: "stable" },
-  { name: "FloatingOrb", variants: "4", usage: "ds.inv.usage.nav", status: "stable" },
-  { name: "ProjectInfo", variants: "3", usage: "ds.inv.usage.projects", status: "stable" },
+  { name: "FloatingOrb", variants: "3", usage: "ds.inv.usage.nav", status: "stable" },
+  { name: "ProjectInfo", variants: "2", usage: "ds.inv.usage.projects", status: "stable" },
   { name: "ManuscriptCanvas", variants: "1", usage: "ds.inv.usage.book", status: "stable" },
-  { name: "SectionButton", variants: "3", usage: "ds.inv.usage.sections", status: "stable" },
+  { name: "Button · lumen-ds", variants: "3", usage: "ds.inv.usage.sections", status: "stable" },
   { name: "SectionHead", variants: "2", usage: "ds.inv.usage.sections", status: "stable" },
   { name: "DsLauncher", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
   { name: "DocOverlay", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
@@ -99,7 +124,7 @@ interface DsContentProps {
 }
 
 export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
-  const { t } = useLang()
+  const { t, lang } = useLang()
   const [vw, setVw] = useState(1180)
   const [preview, setPreview] = useState(theme)
   const riseRef = useRef<HTMLDivElement>(null)
@@ -134,6 +159,9 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
     play(spinRef.current, "dsSpin 1200ms linear 2")
   }, [])
 
+  const lumenTheme = LUMEN_THEME[preview] ?? "studio"
+  const locale = lang === "en" ? "en-CA" : "fr-CA"
+
   const breakpoint =
     vw < 640 ? t("ds.r.xs") : vw < 768 ? t("ds.r.compact") : vw < 1024 ? t("ds.r.medium") : t("ds.r.large")
   const gridCols = vw < 768 ? "1fr" : vw < 1024 ? "repeat(2, 1fr)" : "repeat(4, 1fr)"
@@ -162,6 +190,9 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
             <button type="button" className="ds-btn ds-btn--secondary" onClick={() => onNavigate("ds-process")}>
               {t("ds.hero.cta.2")}
             </button>
+            <a className="ds-btn ds-btn--secondary" href={LUMEN.demo} target="_blank" rel="noopener noreferrer">
+              {t("ds.hero.cta.3")}
+            </a>
           </div>
         </div>
 
@@ -175,7 +206,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
 
       {/* ───────── Marquee ───────── */}
       <div className="overflow-hidden border-y border-[var(--ds-divider)] py-3">
-        <div className="ds-marquee flex w-max text-[13px] text-[var(--ds-fg-faint)]">
+        <div className="ds-marquee flex w-max text-[13px] text-[var(--ds-fg-muted)]">
           {[0, 1].map((copyIndex) => (
             <span key={copyIndex} className="flex gap-5 pr-5" aria-hidden={copyIndex === 1}>
               {MARQUEE_WORDS.map((word) => (
@@ -203,8 +234,10 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           {THEMES.map((theme, i) => (
             <div key={theme.name} className="ds-card s-reveal s-up p-4" style={delay(i * 70)}>
               <div className="mb-3 flex items-baseline justify-between">
-                <strong className="text-[13px]">.section-{theme.name}</strong>
-                <code className="text-[11px] text-[var(--ds-fg-faint)]">{THEME_TOKEN_PREFIX}*</code>
+                <strong className="text-[13px]">
+                  {theme.label} <code className="font-normal text-[var(--ds-fg-muted)]">.section-{theme.name}</code>
+                </strong>
+                <code className="text-[11px] text-[var(--ds-fg-muted)]">{THEME_TOKEN_PREFIX}*</code>
               </div>
               <div className="grid grid-cols-4 gap-2">
                 {theme.swatches.map(([token, value]) => (
@@ -226,7 +259,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
         <div className="ds-card s-reveal s-up mt-3 p-4" style={delay(280)}>
           <div className="mb-3 flex items-baseline justify-between">
             <strong className="text-[13px]">{t("ds.f.neutral")}</strong>
-            <code className="text-[11px] text-[var(--ds-fg-faint)]">--ds-n-100 → 900</code>
+            <code className="text-[11px] text-[var(--ds-fg-muted)]">--ds-neutral-100 → 900</code>
           </div>
           <div className="grid grid-cols-9 gap-2">
             {NEUTRAL_STEPS.map((step) => (
@@ -234,10 +267,10 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
                 key={step}
                 type="button"
                 className="ds-swatch"
-                style={{ background: `var(--ds-n-${step})` }}
-                onClick={() => copy(`--ds-n-${step}`, `oklch neutral ${step}`)}
-                aria-label={`--ds-n-${step}`}
-                title={`--ds-n-${step}`}
+                style={{ background: `var(--ds-neutral-${step})` }}
+                onClick={() => copy(`--ds-neutral-${step}`, `oklch neutral ${step}`)}
+                aria-label={`--ds-neutral-${step}`}
+                title={`--ds-neutral-${step}`}
               />
             ))}
           </div>
@@ -255,7 +288,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
                 { label: "--font-syne", cls: "mood-font text-xl", sample: t("ds.f.type.mood") },
               ].map((row) => (
                 <div key={row.label} className="flex items-baseline gap-3 border-b border-[var(--ds-divider)] pb-2.5 last:border-0 last:pb-0">
-                  <code className="w-[118px] shrink-0 text-[11px] text-[var(--ds-fg-faint)]">{row.label}</code>
+                  <code className="w-[118px] shrink-0 text-[11px] text-[var(--ds-fg-muted)]">{row.label}</code>
                   <span className={`${row.cls} leading-tight`}>{row.sample}</span>
                 </div>
               ))}
@@ -306,25 +339,25 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
             <div>
               <div className="flex items-center gap-2">
                 <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--section-accent-alt, #c41e3a)" }} />
-                <code className="text-[11px] text-[var(--ds-fg-faint)]">--section-accent-alt</code>
+                <code className="text-[11px] text-[var(--ds-fg-muted)]">--section-accent-alt</code>
               </div>
               <p className="mt-1.5 leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.f.extra.alt.desc")}</p>
             </div>
 
             <div className="border-t border-[var(--ds-divider)] pt-3.5 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--state-success)" }} />
-                <code className="text-[11px] text-[var(--ds-fg-faint)]">--state-success</code>
-                <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--state-error)" }} />
-                <code className="text-[11px] text-[var(--ds-fg-faint)]">--state-error</code>
+                <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--ds-state-success)" }} />
+                <code className="text-[11px] text-[var(--ds-fg-muted)]">--ds-state-success</code>
+                <span className="ds-swatch !h-5 !w-5" style={{ background: "var(--ds-state-error)" }} />
+                <code className="text-[11px] text-[var(--ds-fg-muted)]">--ds-state-error</code>
               </div>
               <p className="mt-1.5 leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.f.extra.state.desc")}</p>
             </div>
 
             <div className="border-t border-[var(--ds-divider)] pt-3.5 sm:border-l sm:border-t-0 sm:pl-5 sm:pt-0">
               <div className="flex gap-2">
-                <span className="section-lifestyle h-5 flex-1 rounded-[3px]" style={{ background: "var(--section-gradient)" }} />
-                <span className="section-lifestyle h-5 flex-1 rounded-[3px]" style={{ background: "var(--section-gradient-text)" }} />
+                <span data-theme="mood" className="section-lifestyle h-5 flex-1 rounded-[3px]" style={{ background: "var(--section-gradient)" }} />
+                <span data-theme="mood" className="section-lifestyle h-5 flex-1 rounded-[3px]" style={{ background: "var(--section-gradient-text)" }} />
               </div>
               <p className="mt-1.5 leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.f.extra.grad.desc")}</p>
             </div>
@@ -343,89 +376,82 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           lead={t("ds.c.lead")}
         />
 
+        {/* Le thème de prévisualisation pilote toute la section : composants Lumen
+            et primitives des sections. */}
+        <div role="group" aria-label={t("ds.c.live.picker")} className="mb-4 flex flex-wrap gap-1.5">
+          {PREVIEW_THEMES.map(({ label, cls }) => {
+            const on = preview === cls
+            return (
+              <button
+                key={cls}
+                type="button"
+                onClick={() => setPreview(cls)}
+                aria-pressed={on}
+                className="tap-44 rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-colors duration-300"
+                style={{
+                  borderColor: on ? "var(--ds-accent)" : "var(--ds-divider)",
+                  background: on ? "var(--ds-accent)" : "transparent",
+                  color: on ? "var(--ds-accent-fg)" : "var(--ds-fg-muted)",
+                }}
+              >
+                {label}
+              </button>
+            )
+          })}
+        </div>
+
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <Panel title={t("ds.c.actions")}>
-            <div className="flex flex-wrap gap-2.5">
-              <button type="button" className="ds-btn ds-btn--primary">{t("ds.c.primary")}</button>
-              <button type="button" className="ds-btn ds-btn--secondary">{t("ds.c.secondary")}</button>
-              <button type="button" className="ds-btn ds-btn--ghost">Ghost</button>
+            <div data-theme={lumenTheme} className="ds-lumen-demo flex flex-wrap items-center gap-3">
+              <Button>{t("ds.c.primary")}</Button>
+              <Button variant="outline">{t("ds.c.outline")}</Button>
+              <Button variant="pill">Pill</Button>
+              <Button disabled>{t("ds.c.disabled")}</Button>
             </div>
             <p className="mt-4 text-[13px] leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.c.actions.desc")}</p>
           </Panel>
 
           <Panel title={t("ds.c.tags")} step={1}>
-            <div className="flex flex-wrap gap-2">
-              <span className="ds-tag ds-tag--accent">UI Design</span>
-              <span className="ds-tag ds-tag--soft">Next.js</span>
-              <span className="ds-tag ds-tag--soft">Tailwind</span>
-              <span className="ds-tag ds-tag--outline">2026</span>
+            <div data-theme={lumenTheme} className="ds-lumen-demo flex flex-wrap gap-2">
+              <Tag variant="accent">UI Design</Tag>
+              <Tag>Next.js</Tag>
+              <Tag>Tailwind</Tag>
+              <Tag variant="outline">2026</Tag>
             </div>
             <p className="mt-4 text-[13px] leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.c.tags.desc")}</p>
           </Panel>
 
           <Panel title={t("ds.c.form")} step={2}>
-            <label htmlFor="ds-demo-email" className="mb-2 block text-[13px] font-semibold">
-              {t("ds.c.form.email")}
-            </label>
-            <input id="ds-demo-email" type="email" className="ds-input" placeholder="prenom@studio.ca" />
-            <div className="mt-3 flex flex-wrap gap-4 text-[13px]">
-              <label className="flex items-center gap-2">
-                <input type="radio" name="ds-demo" defaultChecked className="accent-[var(--ds-accent)]" />
-                {t("ds.c.form.mission")}
-              </label>
-              <label className="flex items-center gap-2">
-                <input type="radio" name="ds-demo" className="accent-[var(--ds-accent)]" />
-                {t("ds.c.form.collab")}
-              </label>
+            <div data-theme={lumenTheme} className="ds-lumen-demo grid gap-4 sm:grid-cols-2">
+              <Input label={t("ds.c.form.email")} type="email" placeholder="prenom@studio.ca" help={t("ds.c.form.help")} locale={locale} />
+              <Input label={t("ds.c.form.confirm")} type="email" defaultValue="prenom@" error={t("ds.c.form.error")} locale={locale} />
             </div>
+            <p className="mt-4 text-[13px] leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.c.form.desc")}</p>
           </Panel>
 
           <Panel title={t("ds.c.card")} step={3}>
-            <div className="grid h-20 place-items-center rounded-[var(--ds-radius-sm)] bg-[var(--ds-surface-hi)] text-[11px] text-[var(--ds-fg-faint)]">
-              16:9
+            <div data-theme={lumenTheme} className="ds-lumen-demo">
+              <Card kicker={t("ds.c.card.meta")} title={t("ds.c.card.title")}>
+                {t("ds.c.card.body")}
+              </Card>
             </div>
-            <h3 className="mt-3 text-base font-semibold">{t("ds.c.card.title")}</h3>
-            <p className="mt-1 text-[13px] leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.c.card.body")}</p>
-            <div className="mt-2.5 text-[11px] uppercase tracking-[0.1em] text-[var(--ds-fg-faint)]">{t("ds.c.card.meta")}</div>
           </Panel>
 
           <Panel title={t("ds.c.live")} className="md:col-span-2" step={4}>
             <p className="mb-4 text-[13px] leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.c.live.desc")}</p>
 
-            <div role="group" aria-label={t("ds.c.live.picker")} className="mb-4 flex flex-wrap gap-1.5">
-              {PREVIEW_THEMES.map(({ label, cls }) => {
-                const on = preview === cls
-                return (
-                  <button
-                    key={cls}
-                    type="button"
-                    onClick={() => setPreview(cls)}
-                    aria-pressed={on}
-                    className="rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-colors duration-300"
-                    style={{
-                      borderColor: on ? "var(--ds-accent)" : "var(--ds-divider)",
-                      background: on ? "var(--ds-accent)" : "transparent",
-                      color: on ? "var(--ds-accent-fg)" : "var(--ds-fg-muted)",
-                    }}
-                  >
-                    {label}
-                  </button>
-                )
-              })}
-            </div>
-
-            <div className={`ds-theme-demo ${preview} rounded-[var(--ds-radius-sm)] p-5`}>
+            <div data-theme={LUMEN_THEME[preview]} className={`ds-theme-demo ${preview} rounded-[var(--ds-radius-sm)] p-5`}>
               <SectionKicker className="mb-3">{t("ds.c.live.kicker")}</SectionKicker>
               <h3 className="section-title mb-5 text-2xl leading-tight md:text-3xl">
                 {t("ds.c.live.title")}{" "}
                 <span className="section-title-accent">{t("ds.c.live.accent")}</span>
               </h3>
               <div className="flex flex-wrap items-center gap-3">
-                <SectionButton role="primary" className="text-sm">{t("ds.c.primary")}</SectionButton>
-                <SectionButton role="outline" className="text-sm">{t("ds.c.secondary")}</SectionButton>
-                <SectionButton role="pill" className="tap-44">FR / EN</SectionButton>
+                <Button className="text-sm">{t("ds.c.primary")}</Button>
+                <Button variant="outline" className="text-sm">{t("ds.c.outline")}</Button>
+                <Button variant="pill">FR / EN</Button>
               </div>
-              <code className="mt-4 block text-[11px] opacity-45">.{preview}</code>
+              <code className="mt-4 block text-[11px] text-[var(--section-fg-muted)]">.{preview}</code>
             </div>
           </Panel>
 
@@ -460,10 +486,88 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
         </div>
       </section>
 
-      {/* ───────── 03 États & a11y ───────── */}
-      <section id="ds-etats" className="scroll-mt-20 pt-14">
+      {/* ───────── 03 Données ───────── */}
+      <section id="ds-donnees" className="scroll-mt-20 pt-14">
         <SectionHead
           index="03"
+          kicker={t("ds.d.kicker")}
+          title={t("ds.d.title.1")}
+          accent={t("ds.d.title.2")}
+          lead={t("ds.d.lead")}
+        />
+
+        <div className="grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)]">
+          <Panel title={t("ds.d.states")}>
+            <div className="overflow-x-auto">
+              <table className="ds-table min-w-[480px]">
+                <thead>
+                  <tr>
+                    <th>{t("ds.d.th.state")}</th>
+                    <th>{t("ds.d.th.marker")}</th>
+                    <th>{t("ds.d.th.reader")}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {DATA_STATES.map((state) => (
+                    <tr key={state}>
+                      <td className="font-medium">{t(`ds.d.state.${state}`)}</td>
+                      <td className="whitespace-nowrap tabular-nums">
+                        {state === "verified" && <>✓ {t("ds.d.sample.price")}</>}
+                        {state === "estimated" && (
+                          <>
+                            ≈{" "}
+                            <span className="underline decoration-dotted underline-offset-[0.2em]">
+                              {t("ds.d.sample.price")}
+                            </span>
+                          </>
+                        )}
+                        {state === "stale" && (
+                          <>
+                            {t("ds.d.sample.rate")}{" "}
+                            <span className="text-[var(--ds-fg-muted)]">· {t("ds.d.sample.age")}</span>
+                          </>
+                        )}
+                        {state === "missing" && "—"}
+                      </td>
+                      <td className="text-[var(--ds-fg-muted)]">{t(`ds.d.reader.${state}`)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="mt-4 text-[13px] leading-relaxed text-[var(--ds-fg-muted)]">{t("ds.d.states.desc")}</p>
+          </Panel>
+
+          <Panel title={t("ds.d.components")} step={1}>
+            <ul className="grid gap-3 text-[13px] leading-relaxed">
+              {DATA_COMPONENTS.map((name) => (
+                <li key={name}>
+                  <code className="font-semibold">{name}</code>
+                  <span className="text-[var(--ds-fg-muted)]"> — {t(`ds.d.c.${name}`)}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-5 flex flex-wrap gap-2.5">
+              <a
+                className="ds-btn ds-btn--primary"
+                href={`${LUMEN.demo}?view=comparateur&theme=${LUMEN_THEME[theme] ?? "studio"}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {t("ds.d.cta.demo")}
+              </a>
+              <a className="ds-btn ds-btn--secondary" href={LUMEN.repo} target="_blank" rel="noopener noreferrer">
+                {t("ds.d.cta.repo")}
+              </a>
+            </div>
+          </Panel>
+        </div>
+      </section>
+
+      {/* ───────── 04 États & a11y ───────── */}
+      <section id="ds-etats" className="scroll-mt-20 pt-14">
+        <SectionHead
+          index="04"
           kicker={t("ds.s.kicker")}
           title={t("ds.s.title.1")}
           accent={t("ds.s.title.2")}
@@ -472,25 +576,22 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
 
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
           <Panel title={t("ds.s.five")}>
-            <div className="grid gap-2.5">
-              {[
-                ["default", ""],
-                ["hover", "brightness(1.12)"],
-                ["pressed", ""],
-                ["focus", ""],
-                ["disabled", ""],
-              ].map(([state, filter]) => (
+            {/* Le bouton primary de Lumen, figé dans chaque état, dans le thème prévisualisé. */}
+            <div data-theme={lumenTheme} className="ds-lumen-demo grid gap-2.5">
+              {(
+                [
+                  ["default", {}],
+                  ["hover", { transform: "scale(1.05)", boxShadow: "var(--ds-cta-glow)" }],
+                  ["pressed", { transform: "translateY(1px)" }],
+                  ["focus", { outline: "var(--ds-focus-width) solid var(--ds-focus-ring)", outlineOffset: "var(--ds-focus-offset)" }],
+                  ["disabled", { opacity: 0.45 }],
+                ] as const
+              ).map(([state, style]) => (
                 <div key={state} className="flex items-center gap-3">
-                  <code className="w-[64px] shrink-0 text-[11px] text-[var(--ds-fg-faint)]">{state}</code>
+                  <code className="w-[64px] shrink-0 text-[11px] text-[var(--ds-fg-muted)]">{state}</code>
                   <span
-                    className="ds-btn ds-btn--primary pointer-events-none !min-h-8 !px-4 !text-xs"
-                    style={{
-                      filter: filter || undefined,
-                      transform: state === "pressed" ? "translateY(1px)" : undefined,
-                      outline: state === "focus" ? "2px solid var(--ds-accent)" : undefined,
-                      outlineOffset: state === "focus" ? "3px" : undefined,
-                      opacity: state === "disabled" ? 0.45 : undefined,
-                    }}
+                    className="lm-btn lm-btn--primary pointer-events-none"
+                    style={{ minHeight: 32, paddingInline: 16, fontSize: 12, ...style }}
                   >
                     {t("ds.s.send")}
                   </span>
@@ -531,10 +632,10 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
         </div>
       </section>
 
-      {/* ───────── 04 Motion ───────── */}
+      {/* ───────── 05 Motion ───────── */}
       <section id="ds-motion" className="scroll-mt-20 pt-14">
         <SectionHead
-          index="04"
+          index="05"
           kicker={t("ds.m.kicker")}
           title={t("ds.m.title.1")}
           accent={t("ds.m.title.2")}
@@ -545,7 +646,9 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           <Panel title={t("ds.m.tokens")}>
             <div className="grid gap-2 text-[13px]">
               {[
+                ["--ds-dur-quick", "200 ms", t("ds.m.quick")],
                 ["--ds-dur-fast", "300 ms", t("ds.m.fast")],
+                ["--ds-dur-hover", "500 ms", t("ds.m.hover")],
                 ["--ds-dur-base", "900 ms", t("ds.m.base")],
                 ["--ds-dur-slow", "1200 ms", t("ds.m.slow")],
                 ["--ds-ease-out", "cubic-bezier(0.16, 1, 0.3, 1)", ""],
@@ -555,7 +658,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
                   <code className="text-[var(--ds-fg-muted)]">{token}</code>
                   <span className="text-right text-xs">
                     {value}
-                    {note && <span className="text-[var(--ds-fg-faint)]"> — {note}</span>}
+                    {note && <span className="text-[var(--ds-fg-muted)]"> — {note}</span>}
                   </span>
                 </div>
               ))}
@@ -582,10 +685,10 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
         </div>
       </section>
 
-      {/* ───────── 05 Responsive ───────── */}
+      {/* ───────── 06 Responsive ───────── */}
       <section id="ds-responsive" className="scroll-mt-20 pt-14">
         <SectionHead
-          index="05"
+          index="06"
           kicker={t("ds.r.kicker")}
           title={t("ds.r.title.1")}
           accent={t("ds.r.title.2")}
@@ -648,10 +751,10 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
         </Panel>
       </section>
 
-      {/* ───────── 06 Méthode ───────── */}
+      {/* ───────── 07 Méthode ───────── */}
       <section id="ds-process" className="scroll-mt-20 pt-14">
         <SectionHead
-          index="06"
+          index="07"
           kicker={t("ds.p.kicker")}
           title={t("ds.p.title.1")}
           accent={t("ds.p.title.2")}
@@ -699,17 +802,17 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
         </Panel>
       </section>
 
-      {/* ───────── 07 Gouvernance ───────── */}
+      {/* ───────── 08 Gouvernance ───────── */}
       <section id="ds-gouvernance" className="scroll-mt-20 pt-14">
         <SectionHead
-          index="07"
+          index="08"
           kicker={t("ds.g.kicker")}
           title={t("ds.g.title.1")}
           accent={t("ds.g.title.2")}
           lead={t("ds.g.lead")}
         />
 
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           <Panel title={t("ds.g.do")}>
             <ul className="grid gap-2.5 text-[13px] leading-relaxed">
               {["do.1", "do.2", "do.3", "do.4"].map((key) => (
@@ -725,18 +828,34 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
               ))}
             </ul>
           </Panel>
-
-          <Panel title={t("ds.g.versions")} step={2}>
-            <div className="grid gap-3 text-[13px] leading-relaxed">
-              {["1.5", "1.4", "1.3", "1.2", "1.1", "1.0"].map((version) => (
-                <div key={version} className="flex gap-2.5">
-                  <span className="ds-tag ds-tag--outline shrink-0">v{version}</span>
-                  <span className="text-[var(--ds-fg-muted)]">{t(`ds.g.v${version.replace(".", "")}`)}</span>
-                </div>
-              ))}
-            </div>
-          </Panel>
         </div>
+
+        {/* Pleine largeur : sept versions dans une colonne étiraient la grille. La
+            dernière est mise en avant, les autres se lisent en frise. */}
+        <Panel title={t("ds.g.versions")} className="mt-3" step={2}>
+          <div className="flex flex-col gap-2.5 text-[13px] leading-relaxed sm:flex-row">
+            <span className="ds-tag ds-tag--accent shrink-0 self-start">v{VERSIONS[0]}</span>
+            <p className="max-w-[90ch]">
+              {t(`ds.g.v${VERSIONS[0].replace(".", "")}`)}{" "}
+              <a className="tap-44 text-[var(--ds-fg)] underline underline-offset-2 hover:text-[var(--ds-accent)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-(--ds-accent)" href={LUMEN.repo} target="_blank" rel="noopener noreferrer">
+                GitHub
+              </a>
+              {" · "}
+              <a className="tap-44 text-[var(--ds-fg)] underline underline-offset-2 hover:text-[var(--ds-accent)] focus-visible:outline-2 focus-visible:outline-offset-[3px] focus-visible:outline-(--ds-accent)" href={LUMEN.demo} target="_blank" rel="noopener noreferrer">
+                {t("ds.g.demo")}
+              </a>
+            </p>
+          </div>
+
+          <ol className="mt-5 grid grid-cols-1 gap-x-6 gap-y-4 border-t border-[var(--ds-divider)] pt-5 text-[13px] leading-relaxed sm:grid-cols-2 lg:grid-cols-3">
+            {VERSIONS.slice(1).map((version) => (
+              <li key={version} className="grid content-start gap-1.5">
+                <span className="ds-tag ds-tag--outline justify-self-start">v{version}</span>
+                <span className="text-[var(--ds-fg-muted)]">{t(`ds.g.v${version.replace(".", "")}`)}</span>
+              </li>
+            ))}
+          </ol>
+        </Panel>
       </section>
 
       <footer className="s-reveal s-up mt-14 flex flex-wrap items-center justify-between gap-4 border-t border-[var(--ds-divider)] pt-6 text-[13px] text-[var(--ds-fg-muted)]">

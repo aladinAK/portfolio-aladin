@@ -70,6 +70,13 @@ export function FloatingOrb({ currentSection }: FloatingOrbProps) {
   }, [])
 
   useEffect(() => {
+    // Reduced motion: the orb stays put instead of chasing the pointer. Same
+    // centring transform as the animated path, so it does not shift.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      if (containerRef.current) containerRef.current.style.transform = "translate(-50%, 0)"
+      return
+    }
+
     const handleMouseMove = (e: MouseEvent) => {
       const nx = (e.clientX / window.innerWidth - 0.5) * 2
       const ny = (e.clientY / window.innerHeight - 0.5) * 2

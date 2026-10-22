@@ -3,6 +3,7 @@
 import { ArrowUpRight } from "lucide-react"
 import { useLang } from "@/lib/i18n"
 import { SectionHead, SectionKicker } from "@/components/primitives/section-head"
+import { ButtonLink } from "lumen-ds"
 
 const MOODS = [
   { emoji: "😄", key: "mood.joy", float: "mood-float-1" },
@@ -68,10 +69,10 @@ export function MoodSection() {
       <section className="relative h-screen flex flex-col justify-between p-6 md:p-12 lg:p-16 overflow-hidden">
         {/* Nav */}
         <nav className="relative z-10 flex items-center justify-between max-sm:pt-15 max-sm:flex-col max-sm:gap-4">
-          <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--section-fg-muted)]">
             {t("mood.vibe")}
           </span>
-          <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--section-fg-muted)]">
             {t("scroll.more")}
           </span>
         </nav>
@@ -83,20 +84,20 @@ export function MoodSection() {
             <span className="section-title-accent">{t("mood.hero.2")}</span>
           </h2>
 
-          <p className="mood-hero-desc text-sm md:text-base opacity-50 max-w-md mt-6 leading-relaxed">
+          <p className="mood-hero-desc text-sm md:text-base text-[var(--section-fg-muted)] max-w-md mt-6 leading-relaxed">
             {t("mood.hero.desc")}
           </p>
 
           {/* CTA */}
-          <a
+          <ButtonLink
             href="https://moodmovie-by-aladinakkari.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
-            className="mood-hero-cta section-btn section-btn--primary mt-8 text-sm font-medium"
+            className="mood-hero-cta mt-8 text-sm font-medium tracking-normal"
           >
             {t("mood.try")}
             <ArrowUpRight className="w-4 h-4" />
-          </a>
+          </ButtonLink>
 
           {/* Mood bubbles */}
           <div className="mood-bubbles flex flex-wrap justify-center gap-4 mt-10">
@@ -114,14 +115,14 @@ export function MoodSection() {
 
         {/* Bottom */}
         <div className="relative z-10 flex items-end justify-between">
-          <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--section-fg-muted)]">
             {t("mood.bottom.left")}
           </span>
           <div className="flex flex-col items-center gap-2">
             <div className="w-px h-10 bg-white/10" />
-            <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">{t("scroll")}</span>
+            <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--section-fg-muted)]">{t("scroll")}</span>
           </div>
-          <span className="text-[10px] font-mono uppercase tracking-widest opacity-20">
+          <span className="text-[10px] font-mono uppercase tracking-widest text-[var(--section-fg-muted)]">
             {t("mood.bottom.right")}
           </span>
         </div>
@@ -174,7 +175,7 @@ export function MoodSection() {
                     0{i + 1}
                   </div>
                   <h3 className="mood-font font-bold mb-2">{t(`mood.step.${i}.title`)}</h3>
-                  <p className="text-sm opacity-40 max-w-xs">{t(`mood.step.${i}.desc`)}</p>
+                  <p className="text-sm text-[var(--section-fg-muted)] max-w-xs">{t(`mood.step.${i}.desc`)}</p>
                 </div>
               ))}
             </div>
@@ -182,15 +183,15 @@ export function MoodSection() {
 
           {/* CTA */}
           <div className="my-15 text-center">
-            <a
+            <ButtonLink
               href="https://moodmovie-by-aladinakkari.vercel.app/"
               target="_blank"
               rel="noopener noreferrer"
-              className="section-btn section-btn--primary text-sm font-medium"
+              className="text-sm font-medium tracking-normal"
             >
               {t("mood.try")}
               <ArrowUpRight className="w-4 h-4" />
-            </a>
+            </ButtonLink>
           </div>
         </div>
       </section>

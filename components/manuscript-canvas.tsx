@@ -305,6 +305,9 @@ export function ManuscriptCanvas({ className, style }: Props) {
     let lastMouseTime = -Infinity
     let mouseDown = false
     let loopRunning = false
+    // Reduced motion: one still frame at the rest pose, redrawn on resize only —
+    // no wing beat, no ink boil, no pointer chase, no fire.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
     // Offscreen 2D canvas
     const offscreen = document.createElement("canvas")
@@ -396,20 +399,38 @@ export function ManuscriptCanvas({ className, style }: Props) {
     mainCanvas.addEventListener("touchmove", onTouchMove, { passive: true })
     mainCanvas.addEventListener("touchend", onTouchEnd)
 
-    const onResize = () => { resize() }
+    const onResize = () => {
+      resize()
+      if (reduceMotion && dragon) {
+        placeAtRest(dragon)
+        schedTick()
+      }
+    }
     window.addEventListener("resize", onResize)
+
+    function placeAtRest(d: Dragon) {
+      const anchor = restAnchor()
+      const rest = restPose(anchor.x, anchor.y, anchor.scale)
+      for (let i = 0; i < d.segments.length; i++) {
+        d.segments[i].x = rest[i].x
+        d.segments[i].y = rest[i].y
+        d.segments[i].angle = rest[i].angle
+      }
+    }
 
     function tick(ts: number) {
       loopRunning = false
       if (stopped || !dragon || !sprites) { schedTick(); return }
 
-      const rest = restAnchor()
-      const isIdle = ts - lastMouseTime > IDLE_MS
+      if (!reduceMotion) {
+        const rest = restAnchor()
+        const isIdle = ts - lastMouseTime > IDLE_MS
 
-      stepDragon(dragon, ts, mouseX, mouseY, isIdle, rest.x, rest.y)
+        stepDragon(dragon, ts, mouseX, mouseY, isIdle, rest.x, rest.y)
 
-      if (mouseDown) spawnFire(dragon, sprites)
-      if (dragon.fire.length > 0) stepFire(dragon, ts)
+        if (mouseDown) spawnFire(dragon, sprites)
+        if (dragon.fire.length > 0) stepFire(dragon, ts)
+      }
 
       const dpr = Math.ceil(window.devicePixelRatio || 1)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
@@ -428,7 +449,7 @@ export function ManuscriptCanvas({ className, style }: Props) {
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
       }
 
-      schedTick()
+      if (!reduceMotion) schedTick()
     }
 
     function schedTick() {
@@ -447,12 +468,7 @@ export function ManuscriptCanvas({ className, style }: Props) {
       if (stopped) return
       const anchor = restAnchor()
       dragon = createDragon(anchor.x, anchor.y, anchor.scale)
-      const rest = restPose(anchor.x, anchor.y, anchor.scale)
-      for (let i = 0; i < dragon.segments.length; i++) {
-        dragon.segments[i].x = rest[i].x
-        dragon.segments[i].y = rest[i].y
-        dragon.segments[i].angle = rest[i].angle
-      }
+      placeAtRest(dragon)
       schedTick()
     })()
 

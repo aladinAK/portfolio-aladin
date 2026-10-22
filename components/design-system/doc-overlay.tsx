@@ -200,7 +200,8 @@ export function DocOverlay({
   // Ancres internes par scrollIntoView : un href="#id" écrirait dans
   // location.hash, que HorizontalScrollLayout utilise pour ses sections.
   const goTo = useCallback((id: string) => {
-    scrollRef.current?.querySelector(`#${id}`)?.scrollIntoView({ behavior: "smooth", block: "start" })
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    scrollRef.current?.querySelector(`#${id}`)?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" })
   }, [])
 
   return (
@@ -274,7 +275,7 @@ export function DocOverlay({
           role="status"
           aria-live="polite"
           className="pointer-events-none fixed bottom-6 left-1/2 z-110 -translate-x-1/2 rounded-full px-5 py-3 text-xs font-semibold shadow-(--ds-shadow-lg)"
-          style={{ background: "var(--ds-n-100)", color: "var(--ds-n-900)" }}
+          style={{ background: "var(--ds-neutral-100)", color: "var(--ds-neutral-900)" }}
         >
           {toast}
         </div>

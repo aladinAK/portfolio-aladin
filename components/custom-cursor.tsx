@@ -92,10 +92,11 @@ export function CustomCursor() {
       }
     }
 
-    // Ring follows with lerp
+    // Ring follows with lerp — or sticks to the pointer when motion is reduced
+    const follow = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 1 : 0.15
     const animate = () => {
-      ringPos.current.x += (pos.current.x - ringPos.current.x) * 0.15
-      ringPos.current.y += (pos.current.y - ringPos.current.y) * 0.15
+      ringPos.current.x += (pos.current.x - ringPos.current.x) * follow
+      ringPos.current.y += (pos.current.y - ringPos.current.y) * follow
       if (ringRef.current) {
         ringRef.current.style.transform = `translate(${ringPos.current.x}px, ${ringPos.current.y}px)`
       }

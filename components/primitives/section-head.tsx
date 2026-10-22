@@ -1,14 +1,14 @@
 "use client"
 
 /**
- * Section heading shared by the four sections: a kicker, a title, and an
+ * Section heading shared by the three sections: a kicker, a title, and an
  * optional accented half.
  *
  * The four sections used to compose this by hand — seventeen `<h2>` blocks,
  * fourteen kicker variants, five different opacities. What differs between
  * them is personality (family, size, leading, how the accent is treated), and
  * that now lives in the section theme, not here. Which is the point: one
- * component has to survive all four identities.
+ * component has to survive every section identity.
  */
 
 interface SectionKickerProps {

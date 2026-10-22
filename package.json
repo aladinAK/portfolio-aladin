@@ -13,6 +13,7 @@
     "@formspree/react": "^3.0.0",
     "@vercel/analytics": "1.6.1",
     "lucide-react": "^0.564.0",
+    "lumen-ds": "github:aladinAK/DS-Lumen-figma#path:/react",
     "next": "16.1.6",
     "react": "19.2.4",
     "react-dom": "19.2.4"

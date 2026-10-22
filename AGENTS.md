@@ -91,6 +91,27 @@ Chaque thème expose 4 rôles : `--section-bg`, `--section-fg`, `--section-accen
 `--section-muted`. **Aucune couleur en dur dans un composant** — tout passe par ces
 jetons.
 
+### Jetons et composants : Lumen est la source
+
+Les valeurs viennent de **Lumen** (design system extrait de ce portfolio, dépôt
+`aladinAK/DS-Lumen-figma`, démo <https://ds-lumen-figma.vercel.app/>), installé comme
+dépendance git `lumen-ds` (sous-dossier `react/`, compilé à l'installation par son
+script `prepare`).
+
+- `globals.css` importe `lumen-ds/tokens.css` (couche `base`). Les `--section-*` sont
+  des alias des `--ds-*` ; le thème est choisi par `data-theme` (`studio`, `book`,
+  `mood` = les slugs) sur chaque `.vertical-section`.
+- Texte atténué : `--section-fg-muted` (AA), `--section-fg-subtle` (grand texte, 3:1),
+  `--section-accent-alt-text` (rubis en petit texte). Jamais une opacité sur du texte.
+- Boutons des sections : `Button` / `ButtonLink` de `lumen-ds` (`variant` : primary, outline, pill).
+  `lumen-ds/styles.css` est importé dans la couche `components` : les utilitaires posés au
+  site d'appel (police du livre, interlettrage, couleur) gardent la priorité.
+- Le panneau du design system affiche `Button`, `Tag`, `Input`, `Card` du package,
+  dans un bloc `.ds-lumen-demo` qui porte `data-theme`.
+
+Un changement de jeton se fait dans Lumen (`tokens.json`), jamais ici. Après un push
+de Lumen : `pnpm update lumen-ds`, puis les vérifications ci-dessous.
+
 ---
 
 ## Conventions

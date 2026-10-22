@@ -68,9 +68,10 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
   const scrollToSection = (index: number) => {
     if (!containerRef.current) return
     const sectionWidth = containerRef.current.clientWidth
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     containerRef.current.scrollTo({
       left: index * sectionWidth,
-      behavior: 'smooth'
+      behavior: reduced ? 'auto' : 'smooth'
     })
   }
 
@@ -115,6 +116,8 @@ export function HorizontalScrollLayout({ children, sectionNames, sectionSlugs, s
           <section
             key={index}
             id={sectionSlugs[index]}
+            // The slugs are Lumen's theme names: data-theme selects its tokens.
+            data-theme={sectionSlugs[index]}
             className={`vertical-section ${sectionThemes[index] ?? ''}`}
           >
             {child}

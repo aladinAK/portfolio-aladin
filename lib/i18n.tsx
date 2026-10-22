@@ -194,6 +194,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "method.4.output": { fr: "Mise en ligne + mesures", en: "Go-live + metrics" },
   "method.cta.ds": { fr: "Voir mon design system", en: "See my design system" },
+  "method.cta.lumen": { fr: "Lumen, le package", en: "Lumen, the package" },
   "method.cta.lab": { fr: "Explorer le design-lab", en: "Explore the design-lab" },
 
   "about.label": { fr: "05 / À PROPOS", en: "05 / ABOUT" },
@@ -410,6 +411,7 @@ const dict: Record<string, Record<Lang, string>> = {
 
   "ds.nav.foundations": { fr: "Fondations", en: "Foundations" },
   "ds.nav.components": { fr: "Composants", en: "Components" },
+  "ds.nav.data": { fr: "Données", en: "Data" },
   "ds.nav.states": { fr: "États", en: "States" },
   "ds.nav.motion": { fr: "Motion", en: "Motion" },
   "ds.nav.responsive": { fr: "Responsive", en: "Responsive" },
@@ -429,15 +431,16 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.hero.cta.1": { fr: "Parcourir le système", en: "Browse the system" },
   "ds.hero.cta.2": { fr: "Voir la méthode", en: "See the method" },
-  "ds.hero.stat": { fr: "3 thèmes · 6 familles · 6 pas d'espacement", en: "3 themes · 6 type families · 6 spacing steps" },
+  "ds.hero.cta.3": { fr: "Ouvrir Lumen ↗", en: "Open Lumen ↗" },
+  "ds.hero.stat": { fr: "3 thèmes · 6 familles · 6 pas de composant", en: "3 themes · 6 type families · 6 component spacing steps" },
 
   // 01 Fondations
   "ds.f.kicker": { fr: "FONDATIONS", en: "FOUNDATIONS" },
   "ds.f.title.1": { fr: "Les", en: "The" },
   "ds.f.title.2": { fr: "Fondations", en: "Foundations" },
   "ds.f.lead": {
-    fr: "Aucune couleur n'est écrite en dur dans un composant. Chaque section du portfolio expose quatre rôles — fond, texte, accent, atténué — et tout le reste s'y branche. Cliquez un échantillon pour copier son jeton.",
-    en: "No color is hard-coded in a component. Every portfolio section exposes four roles — background, text, accent, muted — and everything else plugs into them. Click a swatch to copy its token.",
+    fr: "Les jetons viennent de Lumen (--ds-*). Chaque section en expose quatre rôles — fond, texte, accent, atténué — sous --section-*, et ses composants s'y branchent, sans couleur en dur. Restent à migrer : l'orbe flottant et les couches décoratives (encre, particules). Cliquez un échantillon pour copier son jeton.",
+    en: "The tokens come from Lumen (--ds-*). Every portfolio section exposes four roles — background, text, accent, muted — as --section-*, and its components plug into them, with no hard-coded colour. Still to migrate: the floating orb and the decorative layers (ink, particles). Click a swatch to copy its token.",
   },
   "ds.f.neutral": { fr: "Rampe neutre — OKLCH", en: "Neutral ramp — OKLCH" },
   "ds.f.type": { fr: "Typographie — 6 familles", en: "Type — 6 families" },
@@ -454,8 +457,8 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.f.extra.grad": { fr: "Dégradés MoodMovie", en: "MoodMovie gradients" },
   "ds.f.extra.grad.desc": {
-    fr: "Deux dégradés distincts : l'un pour les boutons, l'autre pour les titres. Propres à cette section, ils ne sont pas déclinés dans les autres thèmes — aucun composant partagé ne les consomme.",
-    en: "Two distinct gradients: one for buttons, one for headings. Specific to this section, they are not declined across the other themes — no shared component consumes them.",
+    fr: "Deux dégradés distincts : l'un pour le bouton principal, l'autre pour les titres. Propres à cette section, ils ne sont pas déclinés dans les autres thèmes : le bouton partagé ne lit le dégradé que dans celui-ci.",
+    en: "Two distinct gradients: one for the primary button, one for headings. Specific to this section, they are not declined across the other themes: the shared button reads the gradient in this theme only.",
   },
 
   "ds.f.type.body": { fr: "Corps & interface", en: "Body & interface" },
@@ -466,8 +469,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.f.type.mood": { fr: "Titres MoodMovie", en: "MoodMovie headings" },
   "ds.f.space": { fr: "Espacement — 6 pas", en: "Spacing — 6 steps" },
   "ds.f.space.desc": {
-    fr: "4 · 8 · 12 · 16 · 24 · 32. Six pas suffisent. Au-delà, c'est une nouvelle mise en page, pas un nouvel espacement.",
-    en: "4 · 8 · 12 · 16 · 24 · 32. Six steps are enough. Beyond that it's a new layout, not a new spacing value.",
+    fr: "4 · 8 · 12 · 16 · 24 · 32. Six pas suffisent à un composant — les mêmes dans Lumen. Au-delà (48 à 96 px), ce sont des pas de mise en page, pas de composant.",
+    en: "4 · 8 · 12 · 16 · 24 · 32. Six steps are enough for a component — the same ones in Lumen. Beyond that (48 to 96 px) they are layout steps, not component ones.",
   },
   "ds.f.radius": { fr: "Rayon & élévation", en: "Radius & elevation" },
 
@@ -476,16 +479,17 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.c.title.1": { fr: "Ma", en: "My" },
   "ds.c.title.2": { fr: "Bibliothèque", en: "Library" },
   "ds.c.lead": {
-    fr: "Douze composants portent le portfolio et cette documentation. Quatre primitives partagées — libellé, titre, et trois rôles de bouton — habillent les trois sections ; celles présentées ci-dessous (bouton, étiquette, champ, carte) sont propres au panneau. Unifier les deux familles reste le chantier ouvert.",
-    en: "Twelve components carry the portfolio and this documentation. Four shared primitives — label, heading, and three button roles — dress all three sections; the ones shown below (button, tag, field, card) belong to the panel. Unifying both families is the open piece of work.",
+    fr: "Douze composants portent le portfolio et cette documentation. Deux primitives du portfolio — libellé et titre — et le bouton de Lumen, en trois rôles, habillent les trois sections ; les quatre blocs ci-dessous (bouton, étiquette, champ, carte) sont les composants de Lumen, installés depuis son package, dans le thème choisi.",
+    en: "Twelve components carry the portfolio and this documentation. Two portfolio primitives — label and heading — and Lumen's button, in three roles, dress all three sections; the four blocks below (button, tag, field, card) are Lumen's components, installed from its package, in the chosen theme.",
   },
   "ds.c.actions": { fr: "Actions", en: "Actions" },
   "ds.c.actions.desc": {
-    fr: "Une seule action primaire par vue. Le ghost ne porte jamais une action destructive.",
-    en: "One primary action per view. Ghost never carries a destructive action.",
+    fr: "Les trois rôles du bouton — primary, outline, pill —, ceux que les sections utilisent. Une seule action primaire par vue.",
+    en: "The button's three roles — primary, outline, pill — the ones the sections use. One primary action per view.",
   },
   "ds.c.primary": { fr: "Primaire", en: "Primary" },
-  "ds.c.secondary": { fr: "Secondaire", en: "Secondary" },
+  "ds.c.disabled": { fr: "Désactivé", en: "Disabled" },
+  "ds.c.outline": { fr: "Contour", en: "Outline" },
   "ds.c.tags": { fr: "Étiquettes", en: "Tags" },
   "ds.c.tags.desc": {
     fr: "Les étiquettes décrivent, elles ne cliquent pas. Un filtre cliquable est un bouton.",
@@ -493,8 +497,13 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.c.form": { fr: "Formulaire", en: "Form" },
   "ds.c.form.email": { fr: "Adresse e-mail", en: "Email address" },
-  "ds.c.form.mission": { fr: "Mission", en: "Project" },
-  "ds.c.form.collab": { fr: "Collaboration", en: "Collaboration" },
+  "ds.c.form.confirm": { fr: "Confirmer l'adresse", en: "Confirm address" },
+  "ds.c.form.help": { fr: "Jamais partagée.", en: "Never shared." },
+  "ds.c.form.error": { fr: "adresse incomplète.", en: "incomplete address." },
+  "ds.c.form.desc": {
+    fr: "Étiquette obligatoire, aide reliée au champ, erreur préfixée par du texte : la couleur n'est jamais seule.",
+    en: "A label is required, help is wired to the field, errors carry a text prefix: colour is never on its own.",
+  },
   "ds.c.card": { fr: "Carte projet", en: "Project card" },
   "ds.c.card.title": { fr: "MoodMovie", en: "MoodMovie" },
   "ds.c.card.body": {
@@ -526,20 +535,63 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.inv.usage.book": { fr: "Section livre", en: "Book section" },
   "ds.inv.usage.sections": { fr: "Les trois sections", en: "All three sections" },
 
-  // 03 États & accessibilité
+  // 03 Données
+  "ds.d.kicker": { fr: "DONNÉES", en: "DATA" },
+  "ds.d.title.1": { fr: "Les", en: "The" },
+  "ds.d.title.2": { fr: "Données", en: "Data" },
+  "ds.d.lead": {
+    fr: "Une interface ne présente jamais une donnée avec plus de certitude qu'elle n'en a. Cette couche vit dans Lumen, le design system extrait de ce portfolio : mêmes jetons, mêmes thèmes, contrastes calculés pour chacun.",
+    en: "An interface never presents a value with more certainty than it has. This layer lives in Lumen, the design system extracted from this portfolio: same tokens, same themes, contrast computed for each.",
+  },
+  "ds.d.states": { fr: "Quatre états", en: "Four states" },
+  "ds.d.th.state": { fr: "État", en: "State" },
+  "ds.d.th.marker": { fr: "Marqueur visible", en: "Visible marker" },
+  "ds.d.th.reader": { fr: "Lecteur d'écran", en: "Screen reader" },
+  "ds.d.state.verified": { fr: "Vérifiée", en: "Verified" },
+  "ds.d.state.estimated": { fr: "Estimée", en: "Estimated" },
+  "ds.d.state.stale": { fr: "Périmée", en: "Stale" },
+  "ds.d.state.missing": { fr: "Manquante", en: "Missing" },
+  "ds.d.sample.price": { fr: "39 $", en: "$39" },
+  "ds.d.sample.rate": { fr: "96,4 %", en: "96.4%" },
+  "ds.d.sample.age": { fr: "il y a 3 jours", en: "3 days ago" },
+  "ds.d.reader.verified": { fr: "aucun qualificatif", en: "no qualifier" },
+  "ds.d.reader.estimated": { fr: "« environ »", en: "“about”" },
+  "ds.d.reader.stale": { fr: "« donnée périmée », « mise à jour il y a… »", en: "“stale data”, “updated … ago”" },
+  "ds.d.reader.missing": { fr: "« donnée manquante »", en: "“missing data”" },
+  "ds.d.states.desc": {
+    fr: "La couleur n'est jamais seule (WCAG 1.4.1) : chaque état a un marqueur visible et un texte pour les lecteurs d'écran. Une valeur manquante n'est jamais affichée comme 0, et le tri la garde toujours en dernier.",
+    en: "Colour is never on its own (WCAG 1.4.1): each state has a visible marker and a screen reader text. A missing value is never shown as 0, and sorting always keeps it last.",
+  },
+  "ds.d.components": { fr: "Trois composants", en: "Three components" },
+  "ds.d.c.DataValue": {
+    fr: "nombre, unité et état ; source et date dans un toggletip accessible au clavier (Échap ferme et rend le focus).",
+    en: "number, unit and state; source and date in a keyboard-accessible toggletip (Escape closes it and returns focus).",
+  },
+  "ds.d.c.Stat": {
+    fr: "libellé, valeur et variation — flèche, signe et texte ; colorée seulement si le sens favorable est connu, masquée si la valeur manque.",
+    en: "label, value and change — arrow, sign and text; coloured only when the favourable direction is known, hidden when the value is missing.",
+  },
+  "ds.d.c.DataTable": {
+    fr: "légende, en-têtes de ligne et de colonne, tri au clavier avec aria-sort et annonce ; états chargement, vide, erreur et données partielles.",
+    en: "caption, row and column headers, keyboard sorting with aria-sort and an announcement; loading, empty, error and partial-data states.",
+  },
+  "ds.d.cta.demo": { fr: "Ouvrir le comparateur", en: "Open the comparator" },
+  "ds.d.cta.repo": { fr: "Code source", en: "Source code" },
+
+  // 04 États & accessibilité
   "ds.s.kicker": { fr: "ÉTATS & A11Y", en: "STATES & A11Y" },
   "ds.s.title.1": { fr: "Les", en: "The" },
   "ds.s.title.2": { fr: "États", en: "States" },
   "ds.s.lead": {
-    fr: "Un composant sans ses états n'est pas terminé. Les cinq états sont définis avant la première maquette, et le focus clavier est un choix de design, jamais un anneau bleu par défaut.",
-    en: "A component without its states isn't finished. All five are defined before the first mockup, and keyboard focus is a design decision — never a default blue ring.",
+    fr: "Un composant sans ses états n'est pas terminé. Les cinq états se définissent avant la première maquette, et le focus clavier est un choix de design, jamais un anneau bleu par défaut.",
+    en: "A component without its states isn't finished. All five belong in place before the first mockup, and keyboard focus is a design decision — never a default blue ring.",
   },
   "ds.s.five": { fr: "Les cinq états", en: "The five states" },
   "ds.s.send": { fr: "Envoyer", en: "Send" },
   "ds.s.contrast": { fr: "Contraste mesuré", en: "Measured contrast" },
   "ds.s.contrast.desc": {
-    fr: "Ratios calculés sur la luminance relative WCAG 2.1, pas estimés à l'œil. Chaque paire texte / fond du portfolio passe au minimum AA.",
-    en: "Ratios computed from WCAG 2.1 relative luminance, not eyeballed. Every text / background pair in the portfolio clears AA at minimum.",
+    fr: "Ratios calculés sur la luminance relative WCAG 2.1, les mêmes que le rapport de contraste de Lumen. Texte, accent et boutons passent AA. Le texte atténué n'est plus une opacité : il prend le gris que Lumen calcule pour chaque thème (4,5:1 au minimum, 3:1 pour le grand texte). Le rubis ne passe AA qu'en grand format ; en petit, il prend sa version foncée calculée.",
+    en: "Ratios computed from WCAG 2.1 relative luminance, the same as Lumen's contrast report. Text, accent and buttons clear AA. Dimmed text is no longer an opacity: it takes the grey Lumen computes for each theme (4.5:1 at least, 3:1 for large text). The ruby only clears AA at large sizes; small, it takes its computed darker shade.",
   },
   "ds.s.checklist": { fr: "Checklist livraison", en: "Shipping checklist" },
   "ds.s.a11y.1": { fr: "Cible tactile ≥ 44 px", en: "Touch target ≥ 44 px" },
@@ -548,20 +600,22 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.s.a11y.4": { fr: "Erreur annoncée par texte, pas par couleur seule", en: "Errors announced by text, never color alone" },
   "ds.s.a11y.5": { fr: "prefers-reduced-motion respecté partout", en: "prefers-reduced-motion honored everywhere" },
 
-  // 04 Motion
+  // 05 Motion
   "ds.m.kicker": { fr: "MOTION", en: "MOTION" },
   "ds.m.title.1": { fr: "Le", en: "The" },
   "ds.m.title.2": { fr: "Mouvement", en: "Motion" },
   "ds.m.lead": {
-    fr: "Trois durées, deux courbes — les valeurs réellement utilisées dans ce portfolio. Le mouvement explique une relation entre deux états ; il ne décore pas.",
-    en: "Three durations, two curves — the values actually used across this portfolio. Motion explains a relationship between two states; it doesn't decorate.",
+    fr: "Cinq durées, deux courbes — les valeurs réellement utilisées dans ce portfolio, fournies par Lumen. Le mouvement explique une relation entre deux états ; il ne décore pas.",
+    en: "Five durations, two curves — the values actually used across this portfolio, supplied by Lumen. Motion explains a relationship between two states; it doesn't decorate.",
   },
   "ds.m.tokens": { fr: "Jetons de mouvement", en: "Motion tokens" },
   "ds.m.note": {
-    fr: "Ces trois jetons cadencent le panneau. Les trois sections du portfolio s'appuient encore sur les durées utilitaires de Tailwind — de 200 à 700 ms, le plus souvent 500 — avec la même courbe de sortie. Unifier les deux échelles est le prochain chantier.",
-    en: "These three tokens pace this panel. The three portfolio sections still rely on Tailwind's utility durations — 200 to 700 ms, most often 500 — with the same easing curve. Unifying both scales is the next piece of work.",
+    fr: "Le panneau et les boutons partagés lisent ces jetons. Le reste des sections écrit encore ses durées en dur ou en utilitaires Tailwind — de 200 à 1600 ms, le plus souvent 500 — avec la même courbe de sortie. Les brancher sur les jetons est le prochain chantier.",
+    en: "The panel and the shared buttons read these tokens. The rest of the sections still hard-code their durations or use Tailwind utilities — 200 to 1600 ms, most often 500 — with the same easing curve. Wiring them to the tokens is the next piece of work.",
   },
+  "ds.m.quick": { fr: "micro-retour", en: "micro feedback" },
   "ds.m.fast": { fr: "retour d'état", en: "state feedback" },
+  "ds.m.hover": { fr: "survol de carte", en: "card hover" },
   "ds.m.base": { fr: "entrée au scroll", en: "scroll reveal" },
   "ds.m.slow": { fr: "entrée de titre", en: "title reveal" },
   "ds.m.demo": { fr: "Démonstration", en: "Demo" },
@@ -570,13 +624,13 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.m.demo.loading": { fr: "chargement", en: "loading" },
   "ds.m.replay": { fr: "Rejouer", en: "Replay" },
 
-  // 05 Responsive
+  // 06 Responsive
   "ds.r.kicker": { fr: "RESPONSIVE", en: "RESPONSIVE" },
   "ds.r.title.1": { fr: "Le", en: "The" },
   "ds.r.title.2": { fr: "Responsive", en: "Responsive" },
   "ds.r.lead": {
-    fr: "Deux points de rupture, une seule grille — ceux de Tailwind, aucun breakpoint maison. Faites glisser pour voir la grille projets se réorganiser.",
-    en: "Two breakpoints, one grid — Tailwind's own, no custom ones. Drag the handle to watch the project grid reflow.",
+    fr: "Trois points de rupture en largeur — ceux de Tailwind, 640, 768 et 1024 px — et un seul réglage maison, en hauteur (720 px), pour compacter le héros MoodMovie. Faites glisser pour voir la grille projets se réorganiser.",
+    en: "Three width breakpoints — Tailwind's own, 640, 768 and 1024 px — and a single custom one, on height (720 px), to compact the MoodMovie hero. Drag the handle to watch the project grid reflow.",
   },
   "ds.r.slider": { fr: "Largeur de la fenêtre simulée", en: "Simulated viewport width" },
   "ds.r.compact": { fr: "compact", en: "compact" },
@@ -591,18 +645,18 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.r.medium.desc": { fr: "2 colonnes, navigation repliée.", en: "2 columns, collapsed navigation." },
   "ds.r.large.desc": { fr: "4 colonnes, marges 32 px.", en: "4 columns, 32 px gutters." },
 
-  // 06 Méthode
+  // 07 Méthode
   "ds.p.kicker": { fr: "MÉTHODE", en: "METHOD" },
   "ds.p.title.1": { fr: "Ma", en: "My" },
   "ds.p.title.2": { fr: "Méthode", en: "Method" },
   "ds.p.lead": {
-    fr: "Le système ne commence pas par une couleur. Il commence par ce que les gens essaient de faire.",
-    en: "The system doesn't start with a color. It starts with what people are trying to do.",
+    fr: "Le système ne commence pas par une couleur, mais par ce que les gens essaient de faire. Une démarche pratiquée pendant ma formation UI/UX, que j'applique à mes projets.",
+    en: "The system doesn't start with a color, but with what people are trying to do. An approach practised during my UI/UX training, which I bring to my projects.",
   },
   "ds.p.1.title": { fr: "Recherche", en: "Research" },
   "ds.p.1.desc": {
-    fr: "Entretiens, tri de cartes, analytics existante. Sortie : trois tâches prioritaires et deux irritants récurrents.",
-    en: "Interviews, card sorting, existing analytics. Output: three priority tasks and two recurring pain points.",
+    fr: "Entretiens, tri de cartes, analytics quand elles existent : dégager les tâches prioritaires et les irritants avant de dessiner.",
+    en: "Interviews, card sorting, analytics when they exist: surface the priority tasks and pain points before drawing anything.",
   },
   "ds.p.2.title": { fr: "Wireframes", en: "Wireframes" },
   "ds.p.2.desc": {
@@ -611,8 +665,8 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.p.3.title": { fr: "Prototype", en: "Prototype" },
   "ds.p.3.desc": {
-    fr: "Cliquable, testé sur cinq personnes. Ce qui casse ici ne part pas en développement.",
-    en: "Clickable, tested on five people. What breaks here doesn't reach development.",
+    fr: "Cliquable, testé auprès de vraies personnes avant le code. Ce qui casse ici ne part pas en développement.",
+    en: "Clickable, tested with real people before any code. What breaks here doesn't reach development.",
   },
   "ds.p.4.title": { fr: "Système", en: "System" },
   "ds.p.4.desc": {
@@ -621,7 +675,7 @@ const dict: Record<string, Record<Lang, string>> = {
   },
   "ds.p.flow": { fr: "Flow — prise de contact", en: "Flow — getting in touch" },
   "ds.p.flow.1": { fr: "Grille projets", en: "Project grid" },
-  "ds.p.flow.2": { fr: "Étude de cas", en: "Case study" },
+  "ds.p.flow.2": { fr: "Site en ligne", en: "Live site" },
   "ds.p.flow.3": { fr: "Courriel ou LinkedIn", en: "Email or LinkedIn" },
   "ds.p.flow.4": { fr: "Confirmation + délai de réponse", en: "Confirmation + response time" },
   "ds.p.flow.desc": {
@@ -629,7 +683,7 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Four steps, no dead ends: every project leads to a live site, and contact needs no form — email or LinkedIn.",
   },
 
-  // 07 Gouvernance
+  // 08 Gouvernance
   "ds.g.kicker": { fr: "GOUVERNANCE", en: "GOVERNANCE" },
   "ds.g.title.1": { fr: "La", en: "The" },
   "ds.g.title.2": { fr: "Gouvernance", en: "Governance" },
@@ -648,6 +702,11 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.g.dont.3": { fr: "Un accent hors des trois thèmes de section.", en: "An accent outside the three section themes." },
   "ds.g.dont.4": { fr: "Une couleur porteuse de sens sans doublon textuel.", en: "Meaning carried by color with no text equivalent." },
   "ds.g.versions": { fr: "Cycle de version", en: "Release cycle" },
+  "ds.g.demo": { fr: "Démo", en: "Demo" },
+  "ds.g.v16": {
+    fr: "Extraction en package : Lumen. Jetons en source unique (CSS, Tailwind, variables Figma), contrastes calculés et vérifiés au build, composants React testés, couche données. Le portfolio lit ses jetons dans Lumen (thèmes, états, rampe neutre, espacement, rayons, ombres, mouvement, anneau de focus) et son texte atténué prend les gris AA calculés par Lumen ; les boutons des sections et les composants du panneau sont ceux du package lumen-ds ; focus visible et état pressé sur les boutons partagés, garde de mouvement étendue à l'orbe, au dragon, au curseur et au défilement.",
+    en: "Extracted into a package: Lumen. Tokens from a single source (CSS, Tailwind, Figma variables), contrast computed and checked at build time, tested React components, a data layer. The portfolio reads its tokens from Lumen (themes, states, neutral ramp, spacing, radii, shadows, motion, focus ring) and its dimmed text takes the AA greys Lumen computes; the section buttons and the panel's components come from the lumen-ds package; visible focus and a pressed state on the shared buttons, motion guard extended to the orb, the dragon, the cursor and scrolling.",
+  },
   "ds.g.v15": {
     fr: "Trois thèmes : la section agence est retirée, ses concepts rejoignent les projets du studio et le formulaire de contact disparaît. Les titres du livre passent en IM Fell English, plus lisible que la fraktur.",
     en: "Three themes: the agency section is retired, its concepts move into the studio projects and the contact form goes away. The book's headings move to IM Fell English, easier to read than the fraktur.",
@@ -657,8 +716,8 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "Full-screen panel shell extracted into a reusable component, accent that follows the opening section, Method section in the studio.",
   },
   "ds.g.v13": {
-    fr: "Primitives partagées par les quatre sections (libellé, titre, trois rôles de bouton), accent secondaire et états de validation extraits en jetons, cibles tactiles à 44 px, garde de mouvement sur 100 % des animations.",
-    en: "Primitives shared by all four sections (label, heading, three button roles), secondary accent and validation states extracted into tokens, 44 px touch targets, motion guard on 100% of animations.",
+    fr: "Primitives partagées par les quatre sections (libellé, titre, trois rôles de bouton), accent secondaire et états de validation extraits en jetons, cibles tactiles à 44 px, garde de mouvement sur les animations CSS.",
+    en: "Primitives shared by all four sections (label, heading, three button roles), secondary accent and validation states extracted into tokens, 44 px touch targets, motion guard on CSS animations.",
   },
   "ds.g.v12": { fr: "Panneau de documentation, rampe neutre OKLCH, contrastes recalculés.", en: "Documentation panel, OKLCH neutral ramp, contrasts recomputed." },
   "ds.g.v11": { fr: "Jetons de mouvement extraits, focus visible normalisé.", en: "Motion tokens extracted, visible focus normalized." },

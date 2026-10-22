@@ -5,7 +5,7 @@ import { useEffect, useRef, useState } from "react"
 import { useLang } from "@/lib/i18n"
 import { useScrollReveal } from "@/lib/use-scroll-reveal"
 import { SectionHead, SectionKicker } from "@/components/primitives/section-head"
-import { SectionButton, SectionLink } from "@/components/primitives/section-button"
+import { Button, ButtonLink } from "lumen-ds"
 import { openDesignSystem } from "@/components/design-system/ds-launcher"
 
 const EXPERIENCE_META = [
@@ -70,6 +70,9 @@ const METHOD_STEPS = ["0", "1", "2", "3", "4"] as const
 
 const LAB_URL = "https://design-lab-aladin-akkari.netlify.app/"
 
+/** Lumen: the design system extracted from this portfolio, as a package. */
+const LUMEN_URL = "https://ds-lumen-figma.vercel.app/"
+
 /** One CV per language: the pill hands out the one matching the page. */
 const CV_BY_LANG = {
   fr: "/aladin-akkari-cv-FR.pdf",
@@ -112,7 +115,8 @@ function ProjectAccordion() {
     // The panel takes 700ms to open; wait for its real height before scrolling
     // it into view, otherwise we scroll towards a box that is still flat.
     window.setTimeout(() => {
-      panelRefs.current[i]?.scrollIntoView({ behavior: "smooth", block: "nearest" })
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      panelRefs.current[i]?.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "nearest" })
     }, 380)
   }
 
@@ -128,14 +132,14 @@ function ProjectAccordion() {
               className="group w-full flex items-center justify-between py-8 md:py-10 px-2 text-left transition-colors duration-500 hover:bg-white/[0.02]"
             >
               <div className="flex items-baseline gap-4 md:gap-8">
-                <span className="text-xs font-mono opacity-20">0{i + 1}</span>
+                <span className="text-xs font-mono text-[var(--section-fg-muted)]">0{i + 1}</span>
                 <h3 className="text-2xl md:text-5xl lg:text-6xl font-bold tracking-tight group-hover:translate-x-4 transition-transform duration-500">
                   {project.title}
                 </h3>
               </div>
               <div className="flex items-center gap-4 md:gap-8">
-                <span className="hidden md:block text-sm opacity-30">{project.type}</span>
-                <span className="text-xs font-mono opacity-20">{project.year}</span>
+                <span className="hidden md:block text-sm text-[var(--section-fg-muted)]">{project.type}</span>
+                <span className="text-xs font-mono text-[var(--section-fg-muted)]">{project.year}</span>
                 <ChevronDown
                   className="w-5 h-5 opacity-40 transition-transform duration-500"
                   style={{ color: isOpen ? "var(--section-accent)" : "currentColor", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}
@@ -158,7 +162,7 @@ function ProjectAccordion() {
                       {t("proj.concept.tag")}
                     </span>
                   )}
-                  <span className="text-xs font-mono opacity-30 block mb-1">{project.role}</span>
+                  <span className="text-xs font-mono text-[var(--section-fg-muted)] block mb-1">{project.role}</span>
                   <div className="flex flex-wrap gap-2 mt-3">
                     {project.stack.map((tech) => (
                       <span key={tech} className="text-[10px] font-mono px-2 py-1 rounded-full border opacity-50" style={{ borderColor: "var(--section-muted)" }}>
@@ -222,11 +226,11 @@ function ProjectAccordion() {
 function LangToggle() {
   const { lang, toggle, t } = useLang()
   return (
-    <SectionButton role="pill" onClick={toggle} className="tap-44" aria-label={t("nav.lang")}>
-      <span className={`transition-opacity duration-300 ${lang === "fr" ? "opacity-100" : "opacity-30"}`}>FR</span>
-      <span className="opacity-20">/</span>
-      <span className={`transition-opacity duration-300 ${lang === "en" ? "opacity-100" : "opacity-30"}`}>EN</span>
-    </SectionButton>
+    <Button variant="pill" onClick={toggle} className="gap-1.5" aria-label={t("nav.lang")}>
+      <span className={`transition-colors duration-300 ${lang === "fr" ? "" : "text-[var(--section-fg-muted)]"}`}>FR</span>
+      <span className="text-[var(--section-fg-muted)]">/</span>
+      <span className={`transition-colors duration-300 ${lang === "en" ? "" : "text-[var(--section-fg-muted)]"}`}>EN</span>
+    </Button>
   )
 }
 
@@ -260,6 +264,8 @@ export function StudioSection() {
   useScrollReveal(sectionRef)
 
   useEffect(() => {
+    // Reduced motion: no scroll parallax, scrollY stays at 0.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
     const container = sectionRef.current?.closest(".vertical-section")
     if (!container) return
     let rafId = 0
@@ -299,33 +305,33 @@ export function StudioSection() {
             {/* The lab lives on its own domain, so the pill says where it goes
                 and the tooltip says what it is before anyone leaves the page. */}
             <span className="lab-wrap group relative">
-              <SectionLink
-                role="pill"
+              <ButtonLink
+                variant="pill"
                 href={LAB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tap-44 hover:text-[var(--section-accent)]"
+                className="gap-1.5 hover:text-[var(--section-accent)]"
                 aria-describedby="lab-tip"
               >
                 <FlaskConical className="w-3 h-3" />
                 <span>{t("nav.lab")}</span>
-              </SectionLink>
+              </ButtonLink>
 
               <span id="lab-tip" role="tooltip" className="lab-tip">
                 {t("nav.lab.tip")}
               </span>
             </span>
 
-            <SectionLink
-              role="pill"
+            <ButtonLink
+              variant="pill"
               href={CV_BY_LANG[lang]}
               download
-              className="tap-44 hover:text-[var(--section-accent)]"
+              className="gap-1.5 hover:text-[var(--section-accent)]"
               aria-label={t("nav.cv.download")}
             >
               <FileDown className="w-3 h-3" />
               <span>CV</span>
-            </SectionLink>
+            </ButtonLink>
           </div>
         </nav>
 
@@ -334,7 +340,7 @@ export function StudioSection() {
             <h1 className="studio-title-reveal text-[12vw] md:text-[10vw] lg:text-[9vw] font-bold tracking-tighter leading-[0.85] uppercase">
               <span className="block studio-line-reveal text-[6vw] md:text-[5vw]" style={{ animationDelay: "0.3s" }}>{t("hero.line1")}</span>
               <span className="block studio-line-reveal studio-glow" data-text={t("hero.line2")} style={{ animationDelay: "0.5s", color: "var(--section-accent)" }}>{t("hero.line2")}</span>
-              <span className="block studio-line-reveal text-[6vw] md:text-[5vw] opacity-30 font-(family-name:--font-playfair) italic" style={{ animationDelay: "0.7s" }}>{t("hero.line3")}</span>
+              <span className="block studio-line-reveal text-[6vw] md:text-[5vw] text-[var(--section-fg-subtle)] font-(family-name:--font-playfair) italic" style={{ animationDelay: "0.7s" }}>{t("hero.line3")}</span>
             </h1>
           </div>
         </div>
@@ -352,7 +358,7 @@ export function StudioSection() {
             </a>
           </div>
           <div className="flex flex-col items-end gap-1">
-            <span className="text-xs font-mono opacity-30">GMT-5</span>
+            <span className="text-xs font-mono text-[var(--section-fg-muted)]">GMT-5</span>
             <div className="flex items-center gap-2 text-sm opacity-50">
               <span>{t("hero.scroll")}</span>
               <div className="w-px h-8 bg-current opacity-30 studio-scroll-line" />
@@ -390,7 +396,7 @@ export function StudioSection() {
               titleClassName="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-[0.50]"
             />
           </div>
-          <span className="hidden md:block text-sm opacity-30 font-mono">{t("exp.date")}</span>
+          <span className="hidden md:block text-sm text-[var(--section-fg-muted)] font-mono">{t("exp.date")}</span>
         </div>
 
         <div className="space-y-0 md:pl-8 lg:pl-14">
@@ -401,22 +407,22 @@ export function StudioSection() {
               style={{ borderColor: "var(--section-muted)", "--delay": `${i * 100}ms` } as React.CSSProperties}
             >
               <div className="md:col-span-2 flex flex-col items-start gap-1">
-                <span className="text-xs font-mono opacity-30">{exp.period}</span>
-                <span className="text-[10px] font-mono opacity-20">{t(`exp.${i}.type`)}</span>
+                <span className="text-xs font-mono text-[var(--section-fg-muted)]">{exp.period}</span>
+                <span className="text-[10px] font-mono text-[var(--section-fg-muted)]">{t(`exp.${i}.type`)}</span>
               </div>
               <div className="md:col-span-4">
                 <h3 className="text-xl md:text-2xl font-bold group-hover:translate-x-2 transition-transform duration-500">
                   {t(`exp.${i}.role`)}
                 </h3>
                 <span className="text-sm mt-1 block" style={{ color: "var(--section-accent)" }}>{exp.company}</span>
-                <span className="text-xs mt-1 block opacity-25">{exp.location}</span>
+                <span className="text-xs mt-1 block text-[var(--section-fg-muted)]">{exp.location}</span>
               </div>
               <div className="md:col-span-4">
                 <p className="text-sm opacity-50 leading-relaxed">{t(`exp.${i}.desc`)}</p>
               </div>
               <div className="md:col-span-2 flex flex-wrap gap-2 items-start">
                 {exp.stack.map((tech) => (
-                  <span key={tech} className="text-[10px] font-mono px-2 py-1 rounded-full border opacity-40 group-hover:opacity-70 transition-opacity" style={{ borderColor: "var(--section-muted)" }}>
+                  <span key={tech} className="text-[10px] font-mono px-2 py-1 rounded-full border text-[var(--section-fg-muted)] group-hover:text-[var(--section-fg)] transition-colors" style={{ borderColor: "var(--section-muted)" }}>
                     {tech}
                   </span>
                 ))}
@@ -447,11 +453,11 @@ export function StudioSection() {
               className="studio-svc-card s-reveal s-scale group p-8 md:p-12"
               style={{ "--delay": `${i * 120}ms`, "--stack-i": i } as React.CSSProperties}
             >
-              <span className="text-xs font-mono opacity-20 block mb-6">0{i + 1}</span>
+              <span className="text-xs font-mono text-[var(--section-fg-muted)] block mb-6">0{i + 1}</span>
               <h3 className="text-2xl md:text-3xl font-bold mb-4 group-hover:translate-x-2 transition-transform duration-500">
                 {t(`svc.${i}.title`)}
               </h3>
-              <p className="text-sm opacity-40 leading-relaxed max-w-sm">{t(`svc.${i}.desc`)}</p>
+              <p className="text-sm text-[var(--section-fg-muted)] leading-relaxed max-w-sm">{t(`svc.${i}.desc`)}</p>
             </div>
           ))}
         </div>
@@ -499,7 +505,7 @@ export function StudioSection() {
               className="studio-method-card s-reveal s-scale group flex flex-col p-6"
               style={{ "--delay": `${i * 120}ms`, "--stack-i": i } as React.CSSProperties}
             >
-              <span className="text-xs font-mono opacity-20 block mb-6">0{i + 1}</span>
+              <span className="text-xs font-mono text-[var(--section-fg-muted)] block mb-6">0{i + 1}</span>
               <h3 className="text-xl font-bold mb-3 group-hover:translate-x-1 transition-transform duration-500">
                 {t(`method.${step}.title`)}
               </h3>
@@ -515,12 +521,15 @@ export function StudioSection() {
         </ol>
 
         <div className="s-reveal s-up flex flex-wrap items-center gap-4 mt-12">
-          <SectionButton type="button" role="outline" onClick={openDesignSystem} aria-haspopup="dialog">
+          <Button variant="outline" className="tracking-normal" onClick={openDesignSystem} aria-haspopup="dialog">
             {t("method.cta.ds")} <ArrowRight className="w-4 h-4" />
-          </SectionButton>
-          <SectionLink role="outline" href={LAB_URL} target="_blank" rel="noopener noreferrer">
+          </Button>
+          <ButtonLink variant="outline" className="tracking-normal" href={LUMEN_URL} target="_blank" rel="noopener noreferrer">
+            {t("method.cta.lumen")} <ArrowUpRight className="w-4 h-4" />
+          </ButtonLink>
+          <ButtonLink variant="outline" className="tracking-normal" href={LAB_URL} target="_blank" rel="noopener noreferrer">
             {t("method.cta.lab")} <ArrowUpRight className="w-4 h-4" />
-          </SectionLink>
+          </ButtonLink>
         </div>
       </section>
 
@@ -548,7 +557,7 @@ export function StudioSection() {
               {EDUCATION.map((edu) => (
                 <li key={edu.key} className="flex items-baseline justify-between gap-4 py-3 border-b text-sm" style={{ borderColor: "var(--section-muted)" }}>
                   <span className="font-medium">{t(`${edu.key}.title`)}</span>
-                  <span className="text-xs font-mono opacity-40 text-right">
+                  <span className="text-xs font-mono text-[var(--section-fg-muted)] text-right">
                     {edu.school && `${edu.school} · `}
                     {t(`${edu.key}.place`)}
                   </span>
@@ -562,14 +571,14 @@ export function StudioSection() {
             <ul className="mb-14">
               {FACTS.map((fact) => (
                 <li key={fact} className="flex items-baseline justify-between gap-4 py-3 border-b text-sm" style={{ borderColor: "var(--section-muted)" }}>
-                  <span className="font-mono text-xs opacity-40">{t(`about.facts.${fact}`)}</span>
+                  <span className="font-mono text-xs text-[var(--section-fg-muted)]">{t(`about.facts.${fact}`)}</span>
                   <span className="font-medium text-right">{t(`about.facts.${fact}.value`)}</span>
                 </li>
               ))}
             </ul>
 
             <SectionKicker className="mb-8">{t("about.tools")}</SectionKicker>
-            <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm opacity-40">
+            <div className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm text-[var(--section-fg-muted)]">
               {TOOLS.map((tool, i) => (
                 <span
                   key={tool}
@@ -601,7 +610,7 @@ export function StudioSection() {
           <div className="s-reveal s-down flex items-center gap-6 mb-12">
             <SectionKicker>{t("contact.label")}</SectionKicker>
             <div className="flex items-center gap-2 px-4 py-2 rounded-full border" style={{ borderColor: "var(--section-muted)" }}>
-              <div className="w-2 h-2 rounded-full animate-pulse" style={{ backgroundColor: "var(--state-success)" }} />
+              <div className="w-2 h-2 rounded-full motion-safe:animate-pulse" style={{ backgroundColor: "var(--ds-state-success)" }} />
               <span className="text-xs font-mono opacity-60">{t("contact.available")}</span>
             </div>
           </div>
@@ -615,24 +624,25 @@ export function StudioSection() {
           {/* Social links */}
           <div className="flex flex-wrap gap-4 md:gap-6 mb-16">
             {LINKS.map((link, i) => (
-              <a
+              <ButtonLink
                 key={link.label}
+                variant="outline"
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="section-btn section-btn--outline s-reveal s-up group"
+                className="s-reveal s-up group tracking-normal"
                 style={{ "--delay": `${250 + i * 100}ms` } as React.CSSProperties}
               >
                 <span className="text-xs font-mono font-bold opacity-50 group-hover:opacity-100">{link.icon}</span>
                 <span className="text-sm font-medium">{link.label}</span>
                 <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </a>
+              </ButtonLink>
             ))}
           </div>
 
           {/* Footer: copyright + local time */}
           <div className="mt-auto flex items-end justify-between">
-            <div className="text-xs font-mono opacity-20">&copy; {new Date().getFullYear()} Aladin Akkari</div>
+            <div className="text-xs font-mono text-[var(--section-fg-muted)]">&copy; {new Date().getFullYear()} Aladin Akkari</div>
             <LocalClock />
           </div>
         </div>
