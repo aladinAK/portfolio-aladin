@@ -105,6 +105,7 @@ const INVENTORY = [
   { name: "DsLauncher", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
   { name: "DocOverlay", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
   { name: "DsOverlay", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
+  { name: "OpticOverlay", variants: "1", usage: "ds.inv.usage.case", status: "beta" },
   { name: "DsLiveCanvas", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
   { name: "DsGhostCursor", variants: "1", usage: "ds.inv.usage.docs", status: "beta" },
 ] as const

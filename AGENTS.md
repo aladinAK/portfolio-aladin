@@ -74,6 +74,8 @@ components/
   design-system/                 Panneau de documentation du design system
     doc-overlay.tsx              Coque plein écran partagée (focus, Échap, jauge, nav, accent de section)
     doc-primitives.tsx           SectionHead / Panel des panneaux
+  case-study/                    Étude de cas Optic.ca (même coque que le design system,
+                                 visuels dans public/work/optic/)
 
 lib/i18n.tsx            Dictionnaire FR/EN (~420 clés) + useLang()
 lib/use-scroll-reveal.ts Hook partagé des révélations au scroll
@@ -232,11 +234,13 @@ Validé en conditions réelles (Apache local, `AllowOverride All`) : gzip actif,
 
 ## Points ouverts
 
-- **Aucun projet Shopify / e-commerce** alors que c'est un poste visé. Un gros
-  projet client Shopify est en cours — à ajouter dans les Projets du studio une fois livré.
-- **Pas d'étude de cas** : les projets sont des vitrines (lien + description). Pour
-  un poste UI/UX, une seule étude de cas fouillée (problème → recherche → itérations
-  → résultat mesuré) vaudrait mieux que cinq vitrines.
+- **Étude de cas Optic.ca** (projet Shopify B2B), publiée avec l'accord du client
+  avant la mise en ligne de son site : projet 01 du studio (`caseStudy: true`, sans
+  `href`) et bouton de la section Méthode. Au lancement d'Optic : ajouter l'URL du
+  site (`href`) au projet, passer le statut « Prêt pour le lancement » à « En ligne »
+  (`cs.meta.status.value`, `cs.out.*`) et remplacer « À mesurer » par les résultats.
+  Les visuels sont recadrés sur leur partie image (le texte des slides est en HTML,
+  FR/EN) ; les contrastes cités sont recalculés sur les couleurs du thème exporté.
 - **Aucun résultat chiffré** sur les projets réels.
 - **Section agency retirée le 07/10/2026.** Ses trois concepts (Maison Délice,
   Clinique Lumea, FORMA) sont regroupés sous l'entrée « 04 Freelance » des Projets du

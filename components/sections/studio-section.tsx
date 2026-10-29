@@ -7,6 +7,7 @@ import { useScrollReveal } from "@/lib/use-scroll-reveal"
 import { SectionHead, SectionKicker } from "@/components/primitives/section-head"
 import { Button, ButtonLink } from "lumen-ds"
 import { openDesignSystem } from "@/components/design-system/ds-launcher"
+import { LazyOpticOverlay } from "@/components/case-study/lazy-optic-overlay"
 
 const EXPERIENCE_META = [
   { company: "Gameaddik", location: "Montréal, QC", period: "2020 — 2026", stack: ["React", "Next.js", "Vue", "Nuxt", "TypeScript", "Tailwind", "Figma", "NestJS", "WordPress", "SEO"] },
@@ -19,7 +20,8 @@ const EXPERIENCE_META = [
 /**
  * `key` is the i18n prefix of the project's details, decoupled from its
  * position so the list can be reordered. `lines` is how many detail lines that
- * key carries.
+ * key carries. A project with `caseStudy` and no `href` (not live yet) opens
+ * its case study instead of a site.
  *
  * The Freelance entry holds the concept sites instead of detail lines: they
  * are self-initiated, so they sit together under one heading and are flagged
@@ -39,12 +41,14 @@ interface Project {
   role: string
   year: string
   href?: string
+  caseStudy?: boolean
   stack: string[]
   lines: number
   concepts?: Concept[]
 }
 
 const PROJECTS: Project[] = [
+  { key: "proj.optic", title: "Optic.ca", type: "B2B Shopify Redesign", role: "UX/UI Designer & Shopify Integrator", year: "2026", caseStudy: true, stack: ["Miro", "Figma", "Shopify", "Liquid"], lines: 3 },
   { key: "proj.0", title: "GameRebellion", type: "Market Intelligence Platform", role: "Senior Frontend Developer", year: "2023", href: "https://gamerebellion.com/", stack: ["React", "Node.js", "Next", "Tailwind", "TypeScript"], lines: 3 },
   { key: "proj.1", title: "PwnGames", type: "Website Redesign", role: "Designer & Frontend Developer", year: "2023", href: "https://pwngames.com", stack: ["React", "Tailwind", "TypeScript", "Figma"], lines: 3 },
   { key: "proj.2", title: "GameAddik", type: "Landing Pages & Redesign", role: "Frontend Developer & Designer", year: "2020 — 2023", href: "https://gameaddik.com/", stack: ["HTML/CSS", "Vue", "JavaScript", "WordPress", "SEO"], lines: 3 },
@@ -104,7 +108,7 @@ const EDUCATION = [
   { key: "about.edu.3", school: "" },
 ]
 
-function ProjectAccordion() {
+function ProjectAccordion({ onOpenCase }: { onOpenCase: () => void }) {
   const { t } = useLang()
   const [openIndex, setOpenIndex] = useState<number | null>(null)
   const panelRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -201,15 +205,27 @@ function ProjectAccordion() {
                           </li>
                         ))}
                       </ul>
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="tap-44 inline-flex items-center gap-2 mt-6 text-sm font-medium transition-opacity hover:opacity-100 opacity-60"
-                        style={{ color: "var(--section-accent)" }}
-                      >
-                        {t("proj.cta")} <ArrowUpRight className="w-4 h-4" />
-                      </a>
+                      {project.caseStudy ? (
+                        <button
+                          type="button"
+                          onClick={onOpenCase}
+                          aria-haspopup="dialog"
+                          className="tap-44 inline-flex items-center gap-2 mt-6 text-sm font-medium transition-opacity hover:opacity-100 opacity-60"
+                          style={{ color: "var(--section-accent)" }}
+                        >
+                          {t("proj.case")} <ArrowRight className="w-4 h-4" />
+                        </button>
+                      ) : (
+                        <a
+                          href={project.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="tap-44 inline-flex items-center gap-2 mt-6 text-sm font-medium transition-opacity hover:opacity-100 opacity-60"
+                          style={{ color: "var(--section-accent)" }}
+                        >
+                          {t("proj.cta")} <ArrowUpRight className="w-4 h-4" />
+                        </a>
+                      )}
                     </>
                   )}
                 </div>
@@ -258,6 +274,7 @@ function LocalClock() {
 
 export function StudioSection() {
   const [scrollY, setScrollY] = useState(0)
+  const [caseOpen, setCaseOpen] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
   const { lang, t } = useLang()
 
@@ -479,7 +496,7 @@ export function StudioSection() {
         </div>
 
         <div className="s-reveal s-up" style={{ "--delay": "150ms" } as React.CSSProperties}>
-          <ProjectAccordion />
+          <ProjectAccordion onOpenCase={() => setCaseOpen(true)} />
         </div>
       </section>
 
@@ -521,6 +538,9 @@ export function StudioSection() {
         </ol>
 
         <div className="s-reveal s-up flex flex-wrap items-center gap-4 mt-12">
+          <Button variant="outline" className="tracking-normal" onClick={() => setCaseOpen(true)} aria-haspopup="dialog">
+            {t("method.cta.case")} <ArrowRight className="w-4 h-4" />
+          </Button>
           <Button variant="outline" className="tracking-normal" onClick={openDesignSystem} aria-haspopup="dialog">
             {t("method.cta.ds")} <ArrowRight className="w-4 h-4" />
           </Button>
@@ -647,6 +667,8 @@ export function StudioSection() {
           </div>
         </div>
       </section>
+
+      {caseOpen && <LazyOpticOverlay onClose={() => setCaseOpen(false)} />}
     </div>
   )
 }
