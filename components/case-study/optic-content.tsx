@@ -1,6 +1,7 @@
 "use client"
 
-import { ArrowRight, Check, X } from "lucide-react"
+import { useState } from "react"
+import { ArrowLeft, ArrowRight, Check, X } from "lucide-react"
 import { useLang } from "@/lib/i18n"
 import { Panel, SectionHead, delay } from "@/components/design-system/doc-primitives"
 
@@ -51,7 +52,20 @@ const CONTRASTS = [
   { key: "5", bg: "linear-gradient(to right, #5BBEE1, #BFEDFD)", fg: "#FFFFFF", ratio: "1,2–2,1", pass: false },
 ] as const
 
-const PROTOTYPE = ["1", "2", "3", "4", "5", "6"] as const
+/**
+ * Écrans du prototype et leur zone cliquable, en % de l'image (900 × 564), relevée
+ * sur les captures. Sur l'écran Produit, « Add to Quote » est sous le cadre de la
+ * capture : la zone est posée en bas de la colonne produit, avec son étiquette,
+ * comme une annotation.
+ */
+const PROTOTYPE = [
+  { key: "1", hot: { left: 12.5, top: 0.5, width: 8, height: 6 } },
+  { key: "2", hot: { left: 26, top: 7.5, width: 9.5, height: 5.5 } },
+  { key: "3", hot: { left: 31, top: 19.5, width: 19, height: 35 } },
+  { key: "4", hot: { left: 54, top: 92, width: 19, height: 6.5 }, label: "Add to Quote" },
+  { key: "5", hot: { left: 19.5, top: 90, width: 8.5, height: 6 } },
+  { key: "6", hot: { left: 43, top: 58, width: 14, height: 6 } },
+] as const
 
 const QA = ["sku", "maker", "stock", "blog"] as const
 
@@ -76,6 +90,123 @@ function Shot({ src, alt, width, height, className = "" }: { src: string; alt: s
       decoding="async"
       className={`block h-auto w-full rounded-[var(--ds-radius-sm)] border border-[var(--ds-divider)] ${className}`}
     />
+  )
+}
+
+/**
+ * Prototype cliquable : un écran à la fois, une zone en surbrillance qui mène au
+ * suivant, comme dans Figma. Précédent / suivant, flèches du clavier et liste des
+ * étapes pour qui ne veut pas chercher la zone ; chaque changement est annoncé.
+ */
+function PrototypePlayer() {
+  const { t } = useLang()
+  const [step, setStep] = useState(0)
+
+  const last = PROTOTYPE.length - 1
+  const screen = PROTOTYPE[step]
+  const nextStep = step === last ? 0 : step + 1
+  const go = (i: number) => setStep(Math.min(Math.max(i, 0), last))
+  const name = (i: number) => t(`cs.proto.${PROTOTYPE[i].key}.name`)
+
+  return (
+    <div className="grid grid-cols-1 gap-4 lg:grid-cols-[minmax(0,1.7fr)_minmax(0,1fr)]">
+      <div
+        role="group"
+        aria-roledescription={t("cs.proto.player")}
+        aria-label={t("cs.proto.title.1") + " " + t("cs.proto.title.2")}
+        onKeyDown={(e) => {
+          if (e.key === "ArrowRight") go(step + 1)
+          if (e.key === "ArrowLeft") go(step - 1)
+        }}
+      >
+        <div className="relative aspect-[900/564] overflow-hidden rounded-[var(--ds-radius-sm)] border border-[var(--ds-divider)] bg-[var(--ds-surface)]">
+          {PROTOTYPE.map((s, i) => (
+            <img
+              key={s.key}
+              src={`/work/optic/prototype-0${s.key}.jpg`}
+              alt={i === step ? t(`cs.proto.${s.key}.alt`) : ""}
+              aria-hidden={i !== step}
+              width={900}
+              height={564}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 h-full w-full transition-opacity duration-300"
+              style={{ opacity: i === step ? 1 : 0 }}
+            />
+          ))}
+          {/* La clé relance le halo à chaque écran. */}
+          <button
+            key={screen.key}
+            type="button"
+            className="cs-hotspot"
+            style={{
+              left: `${screen.hot.left}%`,
+              top: `${screen.hot.top}%`,
+              width: `${screen.hot.width}%`,
+              height: `${screen.hot.height}%`,
+            }}
+            onClick={() => setStep(nextStep)}
+            aria-label={`${t(`cs.proto.${screen.key}`)} — ${t("cs.proto.go")} ${name(nextStep)}`}
+          >
+            {"label" in screen && <span className="cs-hotspot-label">{screen.label}</span>}
+          </button>
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            className="ds-btn ds-btn--secondary !min-h-10 !px-3"
+            onClick={() => go(step - 1)}
+            disabled={step === 0}
+            aria-label={t("cs.proto.prev")}
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden />
+          </button>
+          <button
+            type="button"
+            className="ds-btn ds-btn--secondary !min-h-10 !px-3"
+            onClick={() => go(step + 1)}
+            disabled={step === last}
+            aria-label={t("cs.proto.next")}
+          >
+            <ArrowRight className="h-4 w-4" aria-hidden />
+          </button>
+          <p className="text-[13px]">
+            <span className="font-mono text-[11px]" style={{ color: "var(--ds-accent)" }}>{n(step)} / {n(last)}</span>{" "}
+            <strong className="font-semibold">{name(step)}</strong>
+            <span className="text-[var(--ds-fg-muted)]"> · {t(`cs.proto.${screen.key}`)}</span>
+          </p>
+        </div>
+        <p className="mt-2 text-[12px] text-[var(--ds-fg-muted)]">{t("cs.proto.hint")}</p>
+        <p className="sr-only" aria-live="polite">{`${t("cs.proto.screen")} ${step + 1} / ${PROTOTYPE.length} — ${name(step)}`}</p>
+      </div>
+
+      <ol aria-label={t("cs.proto.steps")} className="grid content-start gap-1.5">
+        {PROTOTYPE.map((s, i) => {
+          const on = i === step
+          return (
+            <li key={s.key}>
+              <button
+                type="button"
+                onClick={() => setStep(i)}
+                aria-current={on ? "step" : undefined}
+                className="flex w-full items-start gap-3 rounded-[var(--ds-radius-sm)] border px-3 py-2.5 text-left transition-colors duration-300"
+                style={{
+                  borderColor: on ? "var(--ds-accent)" : "var(--ds-divider)",
+                  background: on ? "var(--ds-surface-hi)" : "transparent",
+                }}
+              >
+                <span className="font-mono text-[11px] leading-[1.6]" style={{ color: "var(--ds-accent)" }}>{n(i)}</span>
+                <span>
+                  <span className="block text-[13px] font-semibold">{name(i)}</span>
+                  <span className="block text-[12px] text-[var(--ds-fg-muted)]">{t(`cs.proto.${s.key}`)}</span>
+                </span>
+              </button>
+            </li>
+          )
+        })}
+      </ol>
+    </div>
   )
 }
 
@@ -350,18 +481,9 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
       <section id="cs-prototype" className="scroll-mt-20 pt-14">
         {head("06", "cs.proto")}
 
-        <ol className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {PROTOTYPE.map((key, i) => (
-            <li key={key} className="s-reveal s-up" style={delay((i % 3) * 70)}>
-              <Shot src={`/work/optic/prototype-0${key}.jpg`} alt={t(`cs.proto.${key}.alt`)} width={900} height={564} />
-              <div className="mt-2.5 flex items-baseline gap-2">
-                <span className="font-mono text-[11px]" style={{ color: "var(--ds-accent)" }}>{n(i)}</span>
-                <span className="text-[13px] font-semibold">{t(`cs.proto.${key}.name`)}</span>
-              </div>
-              <p className="mt-0.5 text-[12px] text-[var(--ds-fg-muted)]">{t(`cs.proto.${key}`)}</p>
-            </li>
-          ))}
-        </ol>
+        <div className="s-reveal s-up">
+          <PrototypePlayer />
+        </div>
         <p className="mt-5 flex flex-wrap gap-x-6 gap-y-1 text-[13px] text-[var(--ds-fg-muted)]">
           <span><strong className="text-[var(--ds-fg)]">6</strong> {t("cs.proto.screens")}</span>
           <span><strong className="text-[var(--ds-fg)]">14</strong> {t("cs.proto.zones")}</span>
