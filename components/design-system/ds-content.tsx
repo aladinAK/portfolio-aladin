@@ -474,7 +474,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
                       <td className="text-[var(--ds-fg-muted)]">{row.variants}</td>
                       <td className="text-[var(--ds-fg-muted)]">{t(row.usage)}</td>
                       <td>
-                        <span className={`ds-tag ${row.status === "stable" ? "ds-tag--accent" : "ds-tag--outline"}`}>
+                        <span className={`ds-tag ${row.status === "stable" ? "ds-tag--soft" : "ds-tag--outline"}`}>
                           {t(`ds.status.${row.status}`)}
                         </span>
                       </td>
@@ -622,7 +622,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
             <ul className="grid gap-2.5 text-[13px] leading-snug">
               {["a11y.1", "a11y.2", "a11y.3", "a11y.4", "a11y.5"].map((key) => (
                 <li key={key} className="flex gap-2.5">
-                  <span className="font-bold" style={{ color: "var(--ds-accent)" }} aria-hidden>
+                  <span className="font-bold text-[var(--ds-fg-muted)]" aria-hidden>
                     ✓
                   </span>
                   <span>{t(`ds.s.${key}`)}</span>
@@ -766,8 +766,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
           {["1", "2", "3", "4"].map((step, i) => (
             <div key={step} className="ds-card s-reveal s-up p-4" style={delay(i * 70)}>
               <div
-                className="grid h-8 w-8 place-items-center rounded-full text-[13px] font-bold"
-                style={{ background: "var(--ds-accent)", color: "var(--ds-accent-fg)" }}
+                className="grid h-8 w-8 place-items-center rounded-full border border-[var(--ds-divider)] text-[13px] font-bold"
               >
                 {step}
               </div>
@@ -785,7 +784,7 @@ export function DsContent({ onNavigate, onCopy, theme }: DsContentProps) {
                   className="flex-1 rounded-full px-3.5 py-2.5 text-[13px] font-semibold"
                   style={
                     i === 3
-                      ? { background: "var(--ds-accent)", color: "var(--ds-accent-fg)" }
+                      ? { border: "1px solid var(--ds-accent)" }
                       : { background: "var(--ds-surface-hi)" }
                   }
                 >

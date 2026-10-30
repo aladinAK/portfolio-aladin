@@ -104,8 +104,12 @@ script `prepare`).
   des alias des `--ds-*` ; le thème est choisi par `data-theme` (`studio`, `book`,
   `mood` = les slugs) sur chaque `.vertical-section`.
 - Texte atténué : `--section-fg-muted` (AA) et `--section-accent-alt-text` (rubis en petit
-  texte). Jamais une opacité sur du texte — et une opacité sur un élément animé avec
-  `forwards` (`.studio-line-reveal`…) n'a aucun effet : voir le piège n°7.
+  texte). Une opacité sur du texte n'est acceptable que si le résultat passe AA dans son
+  thème — et une opacité sur un élément animé avec `forwards` (`.studio-line-reveal`…)
+  n'a aucun effet : voir le piège n°7.
+- Accent (lime en studio) : réservé aux signaux — action principale, état actif, zone
+  cliquable, barre et italique des titres. Pas sur les titres de panneaux, chiffres,
+  pastilles ou listes répétées : en lecture longue, le néon fatigue.
 - Boutons des sections : `Button` / `ButtonLink` de `lumen-ds` (`variant` : primary, outline, pill).
   `lumen-ds/styles.css` est importé dans la couche `components` : les utilitaires posés au
   site d'appel (police du livre, interlettrage, couleur) gardent la priorité.

@@ -265,9 +265,23 @@ const dict: Record<string, Record<Lang, string>> = {
     fr: "Une épopée de guerre, de secrets et de destinée brisée.",
     en: "An epic of war, secrets and shattered destiny.",
   },
-  "book.cta": { fr: "Découvrir la saga", en: "Discover the saga" },
+  "book.cta": { fr: "Voir la saga sur Amazon", en: "See the saga on Amazon" },
   "book.scroll": { fr: "Défiler", en: "Scroll" },
   // Avis lecteurs — le corps des avis reste en VO dans le composant
+  "book.project.label": { fr: "Le projet", en: "The project" },
+  "book.project.title": { fr: "Écrire le livre que", en: "Writing the book" },
+  "book.project.accent": { fr: "je voulais lire", en: "I wanted to read" },
+  "book.project.p1": {
+    fr: "Tout est parti d'un livre qui m'a frustré : j'ai voulu écrire l'histoire que j'aurais aimé lire. Les Chroniques de Jez se sont écrites sur plusieurs années, par périodes, nourries par les grands noms de la dark fantasy : George R. R. Martin, David Gemmell, Robin Hobb.",
+    en: "It all started with a book that frustrated me: I wanted to write the story I would have loved to read. The Chronicles of Jez were written over several years, in stretches, fuelled by the great names of dark fantasy: George R. R. Martin, David Gemmell, Robin Hobb.",
+  },
+  "book.project.p2": {
+    fr: "J'ai tout fait moi-même : l'écriture des quatre tomes, les couvertures, la mise en page, la publication sur Amazon et le site du livre.",
+    en: "I did everything myself: writing all four volumes, the covers, the layout, publishing on Amazon and the book's website.",
+  },
+  "book.project.fact.1": { fr: "4 tomes · saga complète", en: "4 volumes · complete saga" },
+  "book.project.fact.2": { fr: "Écriture, couvertures, mise en page, publication", en: "Writing, covers, layout, publishing" },
+  "book.project.fact.3": { fr: "Influences : G. R. R. Martin · D. Gemmell · R. Hobb", en: "Influences: G. R. R. Martin · D. Gemmell · R. Hobb" },
   "book.reviews.label": { fr: "Avis des lecteurs", en: "Reader reviews" },
   "book.reviews.title": {
     fr: "Ce qu\u2019en disent les premiers lecteurs",
@@ -292,7 +306,7 @@ const dict: Record<string, Record<Lang, string>> = {
     en: "In a medieval-fantasy world where magic operates through pacts, debts and curses — Death gods scheme against mortals, and legendary swords are never mere weapons.",
   },
   "book.characters.label": { fr: "Personnages", en: "Characters" },
-  "book.char.jez": { fr: "L'héritier maudit", en: "The cursed heir" },
+  "book.char.jez": { fr: "Le voleur", en: "The thief" },
   "book.char.marv": { fr: "Le colosse silencieux", en: "The silent colossus" },
   "book.char.oslo": { fr: "Le capitaine déchu", en: "The fallen captain" },
   "book.char.ava": { fr: "La survivante", en: "The survivor" },
@@ -310,18 +324,6 @@ const dict: Record<string, Record<Lang, string>> = {
   "book.tomes.count": { fr: "IV Tomes", en: "IV Volumes" },
   "book.tome": { fr: "Tome", en: "Volume" },
   "book.store.cta": { fr: "Pour plus d'informations", en: "For more information" },
-  "book.thought.0": { fr: "Wow...", en: "Wow..." },
-  "book.thought.1": { fr: "Incroyable", en: "Incredible" },
-  "book.thought.2": { fr: "Jez est fou", en: "Jez is insane" },
-  "book.thought.3": { fr: "Non... Oslo ?!", en: "No... Oslo?!" },
-  "book.thought.4": { fr: "Je peux pas lâcher", en: "Can't put it down" },
-  "book.thought.5": { fr: "Plot twist !", en: "Plot twist!" },
-  "book.thought.6": { fr: "C'est dark...", en: "So dark..." },
-  "book.thought.7": { fr: "Encore un chapitre", en: "One more chapter" },
-  "book.author.quote": {
-    fr: "L'héroïsme, ce n'est pas l'absence de peur. C'est savoir ce qu'on perd avant de choisir.",
-    en: "Heroism isn't absence of fear. It's knowing what you lose before choosing.",
-  },
 
   // MoodMovie section
   "mood.vibe": { fr: "Besoin d'un vibe ?", en: "Need a vibe?" },
@@ -339,6 +341,17 @@ const dict: Record<string, Record<Lang, string>> = {
   "mood.surprise": { fr: "Surprise", en: "Surprise" },
   "mood.bottom.left": { fr: "Films · Séries · Livres · Musique", en: "Movies · Shows · Books · Music" },
   "mood.bottom.right": { fr: "Basé sur l'émotion", en: "Emotion-based" },
+  "mood.project.label": { fr: "Le projet", en: "The project" },
+  "mood.project.title": { fr: "Une appli née d'un vrai problème :", en: "An app born from a real problem:" },
+  "mood.project.accent": { fr: "le mien", en: "mine" },
+  "mood.project.p1": {
+    fr: "Il m'arrivait souvent de parcourir les plateformes sans fin pour trouver quoi regarder, puis d'éteindre et d'aller dormir. MoodMovie part de là : choisir une humeur plutôt que fouiller un catalogue. Je l'ai construite pour moi, et je l'utilise encore quand je ne sais pas quoi regarder.",
+    en: "I often found myself scrolling through streaming platforms endlessly, looking for something to watch, then switching off and going to bed. MoodMovie starts there: pick a mood instead of digging through a catalogue. I built it for myself, and I still use it when I don't know what to watch.",
+  },
+  "mood.project.p2": {
+    fr: "C'est aussi le projet qui m'a fait progresser techniquement : Next.js 16, React 19, TypeScript, l'API TMDB, des pages SEO statiques et un système de favoris.",
+    en: "It's also the project that pushed me technically: Next.js 16, React 19, TypeScript, the TMDB API, static SEO pages and a favourites system.",
+  },
   "mood.feat.label": { fr: "Fonctionnalités", en: "Features" },
   "mood.feat.title.1": { fr: "Du contenu pour", en: "Content for" },
   "mood.feat.title.2": { fr: "chaque émotion.", en: "every emotion." },
@@ -362,8 +375,8 @@ const dict: Record<string, Record<Lang, string>> = {
     fr: "Pop dansant, soul, metal, ambient, rock — la bande-son parfaite pour ton mood.",
     en: "Pop dance, soul, metal, ambient, rock — the perfect soundtrack for your mood.",
   },
-  "mood.how.label": { fr: "Comment ça marche", en: "How it works" },
-  "mood.how.title": { fr: "Simple comme bonjour.", en: "Simple as that." },
+  "mood.how.label": { fr: "L'expérience", en: "The experience" },
+  "mood.how.title": { fr: "Pensée pour décider vite.", en: "Built to decide fast." },
   "mood.step.0.title": { fr: "Choisis ton mood", en: "Pick your mood" },
   "mood.step.0.desc": {
     fr: "Sélectionne l'émotion qui correspond à ce que tu ressens en ce moment.",
@@ -389,8 +402,8 @@ const dict: Record<string, Record<Lang, string>> = {
 
   // Book info
   "book.info.overview": {
-    fr: "Oui, c'est un vrai livre. Les Chroniques de Jez est une saga de dark fantasy en 4 tomes écrite par Moi :) — la saga est complète, les 4 tomes sont disponibles sur Amazon. Une épopée de guerre, de secrets et de destins brisés.",
-    en: "Yes, it's a real book. The Chronicles of Jez is a 4-volume dark fantasy saga written by Me :) — the saga is complete, all 4 volumes are available on Amazon. An epic of war, secrets and shattered destiny.",
+    fr: "Oui, c'est un vrai livre : une saga de dark fantasy en 4 tomes, écrite sur plusieurs années et entièrement faite par moi, de l'écriture à la publication sur Amazon. La saga est complète.",
+    en: "Yes, it's a real book: a 4-volume dark fantasy saga, written over several years and made entirely by me, from writing to publishing on Amazon. The saga is complete.",
   },
   "book.info.stack": {
     fr: "Next.js 14 (App Router) · React 18 · TypeScript 5 · Tailwind CSS 3.4 · Framer Motion 11 · Lucide React · pnpm",
@@ -403,8 +416,8 @@ const dict: Record<string, Record<Lang, string>> = {
 
   // Mood info
   "mood.info.overview": {
-    fr: "MoodMovie est une Appli qui recommande des films, séries, livres et musique selon votre humeur. Choisissez une émotion et découvrez du contenu qui matche ce que vous ressentez — avec un système de favoris.",
-    en: "MoodMovie recommends movies, shows, books and music based on your mood. Choose an emotion and discover content that matches how you feel — with a favorites system.",
+    fr: "MoodMovie est une appli que j'ai conçue et développée pour moi : on choisit une émotion, elle recommande des films, séries, livres et musique qui y correspondent, avec un système de favoris. Je l'utilise quand je ne sais pas quoi regarder.",
+    en: "MoodMovie is an app I designed and built for myself: you pick an emotion and it recommends movies, shows, books and music to match, with a favourites system. I use it when I don't know what to watch.",
   },
   "mood.info.stack": {
     fr: "Next.js 16 (App Router, Turbopack) · React 19 · TypeScript 5 · Tailwind CSS 3.4 · Radix UI + shadcn/ui · Lucide React · TMDB API · Vercel · pnpm",
@@ -605,8 +618,8 @@ const dict: Record<string, Record<Lang, string>> = {
   "ds.s.send": { fr: "Envoyer", en: "Send" },
   "ds.s.contrast": { fr: "Contraste mesuré", en: "Measured contrast" },
   "ds.s.contrast.desc": {
-    fr: "Ratios calculés sur la luminance relative WCAG 2.1, les mêmes que le rapport de contraste de Lumen. Texte, accent et boutons passent AA. Le texte atténué n'est plus une opacité : il prend le gris que Lumen calcule pour chaque thème (4,5:1 au minimum, 3:1 pour le grand texte). Le rubis ne passe AA qu'en grand format ; en petit, il prend sa version foncée calculée.",
-    en: "Ratios computed from WCAG 2.1 relative luminance, the same as Lumen's contrast report. Text, accent and buttons clear AA. Dimmed text is no longer an opacity: it takes the grey Lumen computes for each theme (4.5:1 at least, 3:1 for large text). The ruby only clears AA at large sizes; small, it takes its computed darker shade.",
+    fr: "Ratios calculés sur la luminance relative WCAG 2.1, les mêmes que le rapport de contraste de Lumen. Texte, accent et boutons passent AA. Le texte atténué qui passait sous 4,5:1 prend désormais le gris que Lumen calcule pour chaque thème ; une opacité ne reste que là où elle passe AA dans son thème. Le rubis ne passe AA qu'en grand format ; en petit, il prend sa version foncée calculée.",
+    en: "Ratios computed from WCAG 2.1 relative luminance, the same as Lumen's contrast report. Text, accent and buttons clear AA. Dimmed text that fell below 4.5:1 now takes the grey Lumen computes for each theme; an opacity only remains where it clears AA in its theme. The ruby only clears AA at large sizes; small, it takes its computed darker shade.",
   },
   "ds.s.checklist": { fr: "Checklist livraison", en: "Shipping checklist" },
   "ds.s.a11y.1": { fr: "Cible tactile ≥ 44 px", en: "Touch target ≥ 44 px" },

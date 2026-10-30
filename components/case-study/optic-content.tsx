@@ -172,7 +172,7 @@ function PrototypePlayer() {
             <ArrowRight className="h-4 w-4" aria-hidden />
           </button>
           <p className="text-[13px]">
-            <span className="font-mono text-[11px]" style={{ color: "var(--ds-accent)" }}>{n(step)} / {n(last)}</span>{" "}
+            <span className="font-mono text-[11px] text-[var(--ds-fg-muted)]">{n(step)} / {n(last)}</span>{" "}
             <strong className="font-semibold">{name(step)}</strong>
             <span className="text-[var(--ds-fg-muted)]"> · {t(`cs.proto.${screen.key}`)}</span>
           </p>
@@ -181,22 +181,22 @@ function PrototypePlayer() {
         <p className="sr-only" aria-live="polite">{`${t("cs.proto.screen")} ${step + 1} / ${PROTOTYPE.length} — ${name(step)}`}</p>
       </div>
 
-      <ol aria-label={t("cs.proto.steps")} className="grid content-start gap-1.5">
+      <ol aria-label={t("cs.proto.steps")} className="flex flex-col gap-1.5">
         {PROTOTYPE.map((s, i) => {
           const on = i === step
           return (
-            <li key={s.key}>
+            <li key={s.key} className="lg:flex-1">
               <button
                 type="button"
                 onClick={() => setStep(i)}
                 aria-current={on ? "step" : undefined}
-                className="flex w-full items-start gap-3 rounded-[var(--ds-radius-sm)] border px-3 py-2.5 text-left transition-colors duration-300"
+                className="flex h-full w-full items-center gap-3 rounded-[var(--ds-radius-sm)] border px-3 py-2.5 text-left transition-colors duration-300"
                 style={{
                   borderColor: on ? "var(--ds-accent)" : "var(--ds-divider)",
                   background: on ? "var(--ds-surface-hi)" : "transparent",
                 }}
               >
-                <span className="font-mono text-[11px] leading-[1.6]" style={{ color: "var(--ds-accent)" }}>{n(i)}</span>
+                <span className="font-mono text-[11px] leading-[1.6] text-[var(--ds-fg-muted)]">{n(i)}</span>
                 <span>
                   <span className="block text-[13px] font-semibold">{name(i)}</span>
                   <span className="block text-[12px] text-[var(--ds-fg-muted)]">{t(`cs.proto.${s.key}`)}</span>
@@ -274,18 +274,18 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
         {head("01", "cs.ctx")}
 
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)]">
-          <div className="grid content-start gap-3">
+          <div className="flex flex-col gap-3">
             <Panel title={t("cs.ctx.mandate.title")}>
               <p className="text-[13px] leading-relaxed">{t("cs.ctx.mandate")}</p>
             </Panel>
             <Panel title={t("cs.ctx.role.title")} step={1}>
               <p className="text-[13px] leading-relaxed">{t("cs.ctx.role")}</p>
             </Panel>
-            <Panel title={t("cs.ctx.problems")} step={2}>
+            <Panel title={t("cs.ctx.problems")} className="flex-1" step={2}>
               <ol className="grid gap-2.5 text-[13px] leading-relaxed">
                 {["1", "2", "3"].map((key, i) => (
                   <li key={key} className="flex gap-3">
-                    <span className="font-mono text-[11px] leading-[1.7]" style={{ color: "var(--ds-accent)" }}>{n(i)}</span>
+                    <span className="font-mono text-[11px] leading-[1.7] text-[var(--ds-fg-muted)]">{n(i)}</span>
                     {t(`cs.ctx.problem.${key}`)}
                   </li>
                 ))}
@@ -293,7 +293,7 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
             </Panel>
           </div>
 
-          <div className="grid content-start gap-3">
+          <div className="flex flex-col gap-3">
             <figure className="s-reveal s-up" style={delay(140)}>
               <Shot src="/work/optic/contexte-nouveau-site.jpg" alt={t("cs.ctx.img")} width={1400} height={605} />
               <figcaption className="mt-2 text-[11px] uppercase tracking-[0.12em] text-[var(--ds-fg-muted)]">{t("cs.ctx.img.caption")}</figcaption>
@@ -301,17 +301,17 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
             <div className="grid grid-cols-3 gap-3">
               {FIGURES.map((fig, i) => (
                 <div key={fig.key} className="ds-card s-reveal s-up p-4" style={delay(200 + i * 70)}>
-                  <div className="text-2xl font-bold tracking-tight md:text-3xl" style={{ color: "var(--ds-accent)" }}>{number.format(fig.value)}</div>
+                  <div className="text-2xl font-bold tracking-tight md:text-3xl">{number.format(fig.value)}</div>
                   <div className="mt-1 text-[11px] leading-snug text-[var(--ds-fg-muted)]">{t(fig.key)}</div>
                 </div>
               ))}
             </div>
-            <Panel title={t("cs.ctx.steps")} step={3}>
+            <Panel title={t("cs.ctx.steps")} className="flex-1" step={3}>
               <ol className="flex flex-wrap items-center gap-2 text-[13px]">
                 {["1", "2", "3", "4"].map((key, i) => (
                   <li key={key} className="flex items-center gap-2">
                     <span className="rounded-full border border-[var(--ds-divider)] px-3 py-1.5">
-                      <span className="mr-1.5 font-mono text-[11px]" style={{ color: "var(--ds-accent)" }}>{n(i)}</span>
+                      <span className="mr-1.5 font-mono text-[11px] text-[var(--ds-fg-muted)]">{n(i)}</span>
                       {t(`cs.ctx.step.${key}`)}
                     </span>
                     {i < 3 && <ArrowRight className="h-3.5 w-3.5 text-[var(--ds-fg-muted)]" aria-hidden />}
@@ -329,7 +329,7 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
 
         <Panel title={t("cs.arch.tree")}>
           <div className="mb-4 flex justify-center">
-            <span className="ds-tag ds-tag--accent">{t("cs.arch.home")}</span>
+            <span className="ds-tag ds-tag--outline">{t("cs.arch.home")}</span>
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {TREE.map((col) => (
@@ -372,7 +372,7 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
               <div className="flex items-center gap-2.5">
                 <span
                   className="grid h-8 w-8 shrink-0 place-items-center rounded-full text-[12px] font-bold"
-                  style={{ background: "var(--ds-accent)", color: "var(--ds-accent-fg)" }}
+                  style={{ border: "1px solid var(--ds-divider)" }}
                 >
                   {n(i)}
                 </span>
@@ -404,14 +404,14 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
             <figcaption className="mt-2 text-[11px] uppercase tracking-[0.12em] text-[var(--ds-fg-muted)]">{t("cs.wf.img.caption")}</figcaption>
           </figure>
 
-          <div className="grid content-start gap-3">
+          <div className="flex flex-col gap-3">
             <Panel title={t("cs.wf.blocks")}>
               <ol className="grid gap-3 text-[13px] leading-relaxed">
                 {["1", "2", "3", "4", "5", "6", "7"].map((key, i) => (
                   <li key={key} className="flex gap-3">
                     <span
                       className="grid h-6 w-6 shrink-0 place-items-center rounded-full text-[11px] font-bold"
-                      style={{ background: "var(--ds-accent)", color: "var(--ds-accent-fg)" }}
+                      style={{ border: "1px solid var(--ds-divider)" }}
                     >
                       {i + 1}
                     </span>
@@ -423,7 +423,7 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
                 ))}
               </ol>
             </Panel>
-            <Panel title={t("cs.wf.mobile.title")} step={1}>
+            <Panel title={t("cs.wf.mobile.title")} className="flex-1" step={1}>
               <p className="text-[13px] leading-relaxed">{t("cs.wf.mobile")}</p>
             </Panel>
           </div>
@@ -456,18 +456,18 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
             </ul>
           </Panel>
 
-          <div className="grid content-start gap-3">
+          <div className="flex flex-col gap-3">
             <Panel title={t("cs.a11y.done")} step={1}>
               <ul className="grid gap-2 text-[13px] leading-relaxed">
                 {["1", "2", "3", "4"].map((key) => (
                   <li key={key} className="flex gap-2.5">
-                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0" style={{ color: "var(--ds-accent)" }} aria-hidden />
+                    <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--ds-fg-muted)]" aria-hidden />
                     {t(`cs.a11y.done.${key}`)}
                   </li>
                 ))}
               </ul>
             </Panel>
-            <Panel title={t("cs.a11y.fix.title")} step={2}>
+            <Panel title={t("cs.a11y.fix.title")} className="flex-1" step={2}>
               <div className="flex items-start gap-3">
                 <span className="mt-0.5 h-8 w-8 shrink-0 rounded-[var(--ds-radius-sm)]" style={{ background: "#007A99" }} aria-hidden />
                 <p className="text-[13px] leading-relaxed">{t("cs.a11y.fix")}</p>
@@ -509,7 +509,7 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
             <Panel key={key} title={t(`cs.qa.${key}.where`)} step={i % 2}>
               <h3 className="text-base font-semibold">{t(`cs.qa.${key}.title`)}</h3>
               {/* Retour du client tel quel, en anglais : c'est sa formulation. */}
-              <blockquote lang="en" className="mt-2 border-l-2 pl-3 text-[13px] italic leading-relaxed text-[var(--ds-fg-muted)]" style={{ borderColor: "var(--ds-accent)" }}>
+              <blockquote lang="en" className="mt-2 border-l-2 border-[var(--ds-divider)] pl-3 text-[13px] italic leading-relaxed text-[var(--ds-fg-muted)]">
                 {t(`cs.qa.${key}.quote`)}
               </blockquote>
               <dl className="mt-3 grid gap-2 text-[13px] leading-relaxed">
@@ -522,7 +522,7 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
                   <dd className="mt-0.5">{t(`cs.qa.${key}.action`)}</dd>
                 </div>
               </dl>
-              <span className="ds-tag ds-tag--accent mt-3">
+              <span className="ds-tag ds-tag--soft mt-3">
                 <Check className="mr-1 h-3 w-3" aria-hidden />
                 {t("cs.qa.applied")}
               </span>
@@ -538,13 +538,13 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
           {(["before", "after"] as const).map((side, i) => (
             <figure key={side} className="s-reveal s-up" style={delay(i * 100)}>
-              <span className={`ds-tag mb-2 ${side === "after" ? "ds-tag--accent" : "ds-tag--outline"}`}>{t(`cs.ba.${side}`)}</span>
+              <span className={`ds-tag mb-2 ${side === "after" ? "ds-tag--soft" : "ds-tag--outline"}`}>{t(`cs.ba.${side}`)}</span>
               <Shot src={`/work/optic/${side === "before" ? "avant" : "apres"}.jpg`} alt={t(`cs.ba.${side}.img`)} width={1400} height={1003} />
               <ul className="mt-3 grid gap-2 text-[13px] leading-relaxed">
                 {["1", "2", "3"].map((key) => (
                   <li key={key} className="flex gap-2.5">
                     {side === "after" ? (
-                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0" style={{ color: "var(--ds-accent)" }} aria-hidden />
+                      <Check className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
                     ) : (
                       <X className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--ds-fg-muted)]" aria-hidden />
                     )}
@@ -572,7 +572,7 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
               <ul className="grid gap-2.5 text-[13px] leading-relaxed">
                 {Array.from({ length: count }, (_, j) => (
                   <li key={j} className="flex gap-2.5">
-                    <ArrowRight className="mt-1 h-3.5 w-3.5 shrink-0" style={{ color: "var(--ds-accent)" }} aria-hidden />
+                    <ArrowRight className="mt-1 h-3.5 w-3.5 shrink-0 text-[var(--ds-fg-muted)]" aria-hidden />
                     {t(`cs.out.${col}.${j + 1}`)}
                   </li>
                 ))}
@@ -581,7 +581,7 @@ export function OpticContent({ onNavigate }: OpticContentProps) {
           ))}
         </div>
 
-        <blockquote className="mt-6 border-l-2 pl-4 text-base leading-relaxed" style={{ borderColor: "var(--ds-accent)" }}>
+        <blockquote className="mt-6 border-l-2 border-[var(--ds-divider)] pl-4 text-base leading-relaxed">
           {t("cs.out.quote")}
         </blockquote>
       </section>

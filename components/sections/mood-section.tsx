@@ -128,6 +128,25 @@ export function MoodSection() {
         </div>
       </section>
 
+      {/* ═══════════════ LE PROJET ═══════════════ */}
+      {/* The hero speaks as the app; this block speaks as its maker: the
+          problem it came from, and what building it taught. */}
+      <section className="relative p-6 md:p-12 lg:p-16 py-24">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+          <SectionHead
+            kicker={t("mood.project.label")}
+            title={t("mood.project.title")}
+            accent={t("mood.project.accent")}
+            kickerClassName="mb-4"
+            titleClassName="text-3xl md:text-4xl font-extrabold leading-[1.05] tracking-tight"
+          />
+          <div className="space-y-6 text-sm md:text-base leading-relaxed text-[var(--section-fg-muted)]">
+            <p>{t("mood.project.p1")}</p>
+            <p>{t("mood.project.p2")}</p>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════ FEATURES ═══════════════ */}
       <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24 flex flex-col justify-center">
         <div className="max-w-5xl mx-auto w-full">

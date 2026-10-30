@@ -1,67 +1,10 @@
 "use client"
 
 import { ArrowUpRight, Star } from "lucide-react"
-import { useState, useEffect } from "react"
 import { useLang } from "@/lib/i18n"
 import { ManuscriptCanvas } from "@/components/manuscript-canvas"
 import { SectionHead, SectionKicker } from "@/components/primitives/section-head"
 import { ButtonLink } from "lumen-ds"
-
-const THOUGHT_KEYS = [
-  "book.thought.0", "book.thought.1", "book.thought.2", "book.thought.3",
-  "book.thought.4", "book.thought.5", "book.thought.6", "book.thought.7",
-]
-
-function ReadingPerso() {
-  const { t } = useLang()
-  const [index, setIndex] = useState(0)
-  const [visible, setVisible] = useState(true)
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setVisible(false)
-      setTimeout(() => {
-        setIndex((prev) => (prev + 1) % THOUGHT_KEYS.length)
-        setVisible(true)
-      }, 400)
-    }, 3500)
-    return () => clearInterval(interval)
-  }, [])
-
-  return (
-    <div className="flex flex-col items-center">
-      {/* Thought bubble */}
-      <div className="relative mb-2">
-        <div
-          className="book-font text-sm md:text-base px-5 py-3 rounded-full border transition-all duration-400"
-          style={{
-            borderColor: "var(--section-fg)",
-            backgroundColor: "rgba(26, 26, 26, 0.05)",
-            opacity: visible ? 0.6 : 0,
-            transform: visible ? "translateY(0)" : "translateY(4px)",
-          }}
-        >
-          {t(THOUGHT_KEYS[index])}
-        </div>
-        {/* Bubble tail — small circles */}
-        <div className="flex flex-col items-center gap-1 mt-1">
-          <div className="w-2 h-2 rounded-full border opacity-30" style={{ borderColor: "var(--section-fg)" }} />
-          <div className="w-1.5 h-1.5 rounded-full border opacity-20" style={{ borderColor: "var(--section-fg)" }} />
-        </div>
-      </div>
-      {/* Character */}
-      <img
-        src="/perso.png"
-        alt=""
-        loading="lazy"
-        decoding="async"
-        width={241}
-        height={274}
-        className="w-50 h-auto"
-      />
-    </div>
-  )
-}
 
 function BrushStrokes() {
   return (
@@ -364,6 +307,32 @@ export function BookSection() {
         </div>
       </section>
 
+      {/* ═══════════════ LE PROJET ═══════════════ */}
+      {/* The maker's voice before the product's: why the book exists and what
+          was done by hand, so the section reads as a project, not a shop. */}
+      <section className="relative p-6 md:p-12 lg:p-16 py-24">
+        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24">
+          <SectionHead
+            kicker={t("book.project.label")}
+            title={t("book.project.title")}
+            accent={t("book.project.accent")}
+            kickerClassName="mb-6"
+            titleClassName="text-2xl md:text-3xl lg:text-4xl leading-[1.3]"
+          />
+          <div>
+            <p className="book-font text-base leading-loose text-[var(--section-fg-muted)] mb-6">{t("book.project.p1")}</p>
+            <p className="book-font text-base leading-loose text-[var(--section-fg-muted)]">{t("book.project.p2")}</p>
+            <ul className="mt-8 grid gap-3 border-t pt-6" style={{ borderColor: "var(--section-muted)" }}>
+              {["1", "2", "3"].map((key) => (
+                <li key={key} className="book-font text-xs uppercase tracking-[0.15em]">
+                  {t(`book.project.fact.${key}`)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* ═══════════════ AVIS LECTEURS ═══════════════ */}
       <ReaderReviews />
 
@@ -411,10 +380,6 @@ export function BookSection() {
 
       {/* ═══════════════ TOMES ═══════════════ */}
       <section className="relative min-h-screen p-6 md:p-12 lg:p-16 py-24 overflow-hidden">
-        {/* Reading character — absolute bottom right */}
-        <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 z-10">
-          <ReadingPerso />
-        </div>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16 md:mb-24">
             <SectionHead
@@ -456,17 +421,8 @@ export function BookSection() {
             ))}
           </div>
 
-          {/* Author quote */}
-          <div className="mt-24 text-center max-w-lg mx-auto">
-            <div className="w-6 h-px bg-current opacity-10 mx-auto mb-8" />
-            <p className="book-font text-lg text-[var(--section-fg-muted)] leading-relaxed mb-4">
-              &ldquo;{t("book.author.quote")}&rdquo;
-            </p>
-            <span className="book-font text-xs tracking-[0.2em] uppercase text-[var(--section-fg-muted)]">— Aladin Akkari</span>
-          </div>
-
           {/* Bookstore link */}
-          <div className="mt-15 mb-80 max-sm:mb-50 text-center">
+          <div className="my-20 text-center">
             <a
               href="https://aladin-akkari-book-store.vercel.app/"
               target="_blank"

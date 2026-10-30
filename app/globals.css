@@ -690,12 +690,15 @@
   background: var(--ds-surface);
 }
 
+/* Gris et non accent : répété sur chaque panneau, le lime fatiguait à la
+   lecture. L'accent est réservé aux signaux (action principale, état actif,
+   zone cliquable, barre et italique des titres). */
 .ds-kicker {
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ds-accent);
+  color: var(--ds-fg-muted);
 }
 
 .ds-swatch {
@@ -860,10 +863,6 @@
   background: var(--section-bg);
   border: 1px solid var(--ds-divider);
   color: var(--section-fg);
-}
-
-.ds-close {
-  box-shadow: 0 6px 20px color-mix(in srgb, var(--ds-accent) 35%, transparent);
 }
 
 /* `.s-reveal` porte opacity:0 : sans transition, le contenu resterait

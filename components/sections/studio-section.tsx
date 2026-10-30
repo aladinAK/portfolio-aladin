@@ -431,7 +431,7 @@ export function StudioSection() {
                 <h3 className="text-xl md:text-2xl font-bold group-hover:translate-x-2 transition-transform duration-500">
                   {t(`exp.${i}.role`)}
                 </h3>
-                <span className="text-sm mt-1 block" style={{ color: "var(--section-accent)" }}>{exp.company}</span>
+                <span className="text-sm font-medium mt-1 block">{exp.company}</span>
                 <span className="text-xs mt-1 block text-[var(--section-fg-muted)]">{exp.location}</span>
               </div>
               <div className="md:col-span-4">
@@ -528,7 +528,7 @@ export function StudioSection() {
               </h3>
               <p className="text-sm opacity-50 leading-relaxed">{t(`method.${step}.desc`)}</p>
               <div className="mt-auto pt-6">
-                <span className="text-[10px] font-mono uppercase tracking-[0.15em] block mb-1" style={{ color: "var(--section-accent)" }}>
+                <span className="text-[10px] font-mono uppercase tracking-[0.15em] block mb-1 text-[var(--section-fg-muted)]">
                   {t("method.output")}
                 </span>
                 <span className="text-xs opacity-60">{t(`method.${step}.output`)}</span>

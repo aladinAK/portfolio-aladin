@@ -260,8 +260,7 @@ export function DocOverlay({
         type="button"
         onClick={onClose}
         aria-label={closeLabel}
-        className="ds-close fixed right-4 top-3.5 z-103 grid h-10 max-sm:h-8 max-sm:w-8 w-10 place-items-center rounded-full transition-transform duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--ds-accent)"
-        style={{ background: "var(--ds-accent)", color: "var(--ds-accent-fg)" }}
+        className="fixed right-4 top-3.5 z-103 grid h-10 max-sm:h-8 max-sm:w-8 w-10 place-items-center rounded-full border border-(--ds-divider) bg-[color-mix(in_srgb,var(--ds-bg)_82%,transparent)] text-(--ds-fg) backdrop-blur-xl transition-transform duration-300 hover:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--ds-accent)"
       >
         <X className="h-5 w-5" strokeWidth={2.5} />
       </button>
